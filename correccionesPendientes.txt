@@ -1,0 +1,10 @@
+COSAS PARA CORREGIR 
+
+Si usamos el menú <<*Import Dataset*>> de la pestaña **Environment** para importar un vector contenido en un fichero externo (véase la página \pageref{page:import} de la Lección \@ref(chap:lm)), obtendremos en realidad un *data frame* de una sola columna, llamada `V1`. Para construir un vector con esta columna, podemos usar luego la instrucción `nombre_del_vector=nombre_del_dataframe$V1`.
+
+Véase la Lección  \@ref(chap:df} para más detalles.\label{page:dolar)
+
+-----------------------------------------
+
+
+

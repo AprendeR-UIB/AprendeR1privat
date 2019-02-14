@@ -1,0 +1,380 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% preambulo original con ligeros cambios
+\usepackage{booktabs}% lo comento ya se carga con el preambulo del MOOC
+\usepackage{amsthm}% lo comento ya se carga con el preambulo del MOOC
+\usepackage{ifplatform} % nuestro
+%%%%%%%\usepackage{graphicx} % lo comento ya se carga con el preambulo del MOOC
+\usepackage[spanish]{babel} % nuestro  
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+%%%%
+\graphicspath{{_bookdown_files/}} % esto es necesario y puede ser dependiente de plataforma en linux va bien
+%\def\indR#1{\index{#1@{\tt #1}}}
+%\def\indRp#1#2{\index{#1@{\tt #1}!{\tt #2}}}
+  
+% %path en  linux y otros sistemas
+% \ifwindows
+% % add settings
+% \fi
+% \iflinux
+%   \graphicspath{{_bookdown_files/}}
+% \fi
+% \ifmacosx
+% % add settings
+% \fi
+
+\usepackage{makeidx}
+\makeindex
+
+%%%%%%% Preambulo Rbook del MOOC he comentado los paquetes repetidos y el documentclass los marco con %%%%%%% (7 %)
+
+
+%%%%%%%\documentclass[12pt,a4paper,oneside]{book}
+%\documentclass[11pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+%%%%%%%\usepackage[spanish]{babel}
+\spanishdecimal{.}
+\usepackage[T1]{fontenc}   
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
+
+%% tamany
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{24.5cm}
+\setlength{\evensidemargin}{-0.4cm}
+\setlength{\oddsidemargin}{-0.4cm}
+\setlength{\topmargin}{-2cm}
+\parskip= 1 ex
+\parindent = 10pt
+\baselineskip= 13pt
+%
+%
+\setlength{\footnotesep}{3ex}
+\usepackage[hang,flushmargin]{footmisc} 
+\makeatletter\def\footnoterule{\kern-3\p@
+  \hrule \@width 2in \kern -0.4\p@}
+ \makeatother 
+\renewcommand{\hangfootparskip}{1ex}
+\renewcommand{\hangfootparindent}{0pt}  
+%%
+\newenvironment{tightcenter}{%
+  \setlength\topsep{3pt}
+  \setlength\parskip{3pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+ %%
+\newenvironment{tightquote}{%
+  \setlength\topsep{3pt}
+  \setlength\parskip{3pt}
+  \begin{quote}
+}{%
+  \end{quote}
+}
+ 
+\definecolor{dkgreen}{rgb}{0,1,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lgray}{rgb}{0.93,0.93,0.93}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkred}{rgb}{1,0.3,1}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+
+\usepackage{listings}
+
+\lstset{
+language=R, %
+aboveskip=2 ex, %
+belowskip=-4ex, %
+linewidth=\textwidth,
+xleftmargin=0.5cm,
+xrightmargin=0.5cm,
+basicstyle={\small\ttfamily}, %
+commentstyle=\ttfamily\color{BrickRed}, %
+numbers=none, %
+numberstyle=\ttfamily\color{gray}\footnotesize,
+stepnumber=1,
+numbersep=5pt,
+backgroundcolor=\color{cyan!5},%15
+showspaces=false,
+%showstringspaces=false,
+showtabs=false,
+frame=single, %????
+framerule=0pt,
+keepspaces=true,
+tabsize=2,
+captionpos=b, %
+breaklines=true, %
+breakatwhitespace=false,  %
+showstringspaces=false,
+title=\lstname,
+literate={{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1 {¡}{{\textexclamdown}}1 {¿}{{\textquestiondown}}1 {!}{{!}}1 {*}{{*}}1 {<}{{<}}1 {-}{{-}}1 {_}{{\_{}}}1 {/}{{/}}1 
+  {·}{{\textperiodcentered}}1}
+ }
+ 
+\lstdefinestyle{item1}{xrightmargin=1.55cm}
+\lstdefinestyle{item2}{xrightmargin=2cm}
+
+
+
+
+%% Extra Packages
+\usepackage{curves}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,enumerate,graphicx,hyperref, booktabs,multirow}
+\usepackage{makeidx}
+\usepackage[font=small, it, labelsep=period,width=.75\linewidth]{caption}
+\abovecaptionskip=-3ex
+
+\usepackage{fancyhdr}
+%\usepackage{showframe}
+% capçaleres
+\pagestyle{fancyplain}
+\addtolength{\headheight}{-\baselineskip}
+\addtolength{\headsep}{0.5\baselineskip}
+\addtolength{\topmargin}{2\baselineskip}
+\setlength{\headwidth}{17.4cm}
+%\def\lastchapter{Lección \thechapter}
+%\renewcommand{\chaptermark}[1]%
+%{\markboth{{#1}}
+%{{#1}}
+%\renewcommand{\lastchapter}{#1}}
+%\renewcommand{\sectionmark}[1]%
+%{\markboth{{\lastchapter}}
+%{{\lastchapter}}}
+\renewcommand{\thepage}{{\arabic{chapter}-\arabic{page}}}
+\lhead[]%{}{\let\uppercase\relax \textbf{\emph{Lección \thechapter}}}
+\chead{}
+\rhead[]{}
+\rfoot{}
+\cfoot{\textbf{\emph{\thepage}}}
+\lfoot{}
+%\lhead[{\fancyplain{\thepage}{\thepage}}]
+%	\fancyplain{}{\rightmark}
+%\rhead[\fancyplain{}{\leftmark}]
+%	{\fancyplain{\thepage}{\thepage}}
+% definicions
+\newcommand{\Rt}{\texttt{R}}
+\newcommand{\Rstudio}{\textsl{RStudio}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\df}{\textsl{data frame}}
+\newcommand{\dfs}{\textsl{data frames}}
+
+\def\indR#1{\index{#1@{\tt #1}}}
+\def\indRp#1#2{\index{#1@{\tt #1}!{\tt #2}}}
+
+
+
+\newcommand{\limn}{\displaystyle \lim_{n\to\infty}}
+\newcommand{\limt}{\displaystyle \lim_{t\to\infty}}
+
+%%%teoremes
+
+\pagestyle{plain}
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[chapter]
+\newtheorem{exemple}{Ejemplo}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{ejemplo}{Ejemplo}[chapter]
+\newtheorem{teorema}{Teorema}[chapter]
+
+\renewcommand{\thetheorem}{\arabic{chapter}.\arabic{theorem}}
+\renewcommand{\theexemple}{\arabic{chapter}.\arabic{exemple}}
+\renewcommand{\thedefinition}{\arabic{chapter}.\arabic{definition}}
+
+
+\newenvironment{demostracio}{\footnotesize\noindent\textbf{Demostración:} }{}
+
+\newcounter{problemes}
+
+\setcounter{problemes}{0}
+
+\newcounter{punts} 
+\def\thepunts{\roman{punts}}
+
+\def\probl{\addtocounter{problemes}{1} \setcounter{punts}{0}
+\medskip\noindent{\textbf{\arabic{chapter}.\theproblemes) }}}
+
+
+\def\punt{\addtocounter{punts}{1}
+\smallskip{\textbf{(\thepunts) }}}
+
+%\makeindex
+
+
+\addto\captionsspanish{%
+\renewcommand\chaptername{Lección}}
+\addto\captionsspanish{%
+\renewcommand\tablename{Tabla}}
+%\setcounter{chapter}{20}
+
+\renewcommand\thesubsection {\thechapter.\arabic{subsection}}
+\setcounter{subsection}{0}
+
+
+\newcommand\dubte[1]{\textcolor{red}{#1}}
+
+\makeatletter
+\def\@makechapterhead#1{%
+  %%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 5\p@
+    \fi
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+\def\@makeschapterhead#1{%
+  %%%%%\vspace*{50\p@}% %%% removed!
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
+
+
+\includeonly{%
+R0cast,
+R1cast,
+R2cast,
+R3cast,
+R5cast,
+R6noucast,
+R4cast,
+ED2_cast,
+ED3_cast,
+ED4_cast,
+ED6_cast,
+ED5_cast,
+EDextra,
+%RTests
+}
+
+
+\begin{document}
+
+
+%\tableofcontents
+
+\include{R0cast}
+\include{R1cast}
+\include{R2cast}
+\include{R3cast}
+\include{R5cast}
+\include{R6noucast}
+\include{R4cast}
+\include{ED2_cast}
+\include{ED3_cast}
+\include{ED4_cast}
+\include{ED6_cast}
+\include{ED5_cast}
+\include{EDextra}
+\include{RTests}
+
+
+\end{document}
+
+\chapter*{Bibliografía}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+En esta bibliografía recogemos algunas referencias que creemos que pueden 
+ser de utilidad para el lector. De estas, los textos más adecuados para introducirse en el uso de \Rt\ son \mbox{[5--8]}. Los otros textos [1--4] contienen introducciones a \Rt\ que nos gustan, pero requieren que el lector ya esté un poco familiarizado con este lenguaje o que tenga alguna experiencia en su uso.
+
+
+El texto [1] es el manual de referencia para el lenguaje \Rt\ por exce\l.lència, e incluye una guía práctica con muchos ejemplos gráficos. También se explica como se pueden aplicar métodos avanzados de estadística usando \Rt.
+
+El texto [2] no es un manual de \Rt. La idea de esta obra es introducir el lector en un conjunto de conceptos y técnicas básicos que le permitan empezar a trabajar con estadística desde el punto de vista práctico. 
+
+El texto [3] explica las técnicas estadísticas más importantes y avances para estudiar la regresión lineal y el análisis de la varianza (ANOVA) usando \Rt\ desde un punto de vista práctico. Se presupone que el lector tiene conocimientos de conceptos estadísticos básicos, como pueden ser estimación, contrastes de hipótesis e intervalos de confianza, así como de los conceptos y técnicas básicos del análisis de datos, el álgebra lineal y el cálculo infinitesimal. 
+
+El objetivo de [4] es dar una introducción de la estadística de cara a resolver problemas relacionados con la bioinformàtica. Esta introducción cubre la exploración y visualización de datos e hipótesis biológicas. 
+
+El texto [5] es un buen punto de partida para la gente interesada en el uso de \Rt. Nos da una idea del funcionamiento de \Rt\ desde el punto de vista de una persona no iniciada. Dado que las cosas que se pueden hacer con \Rt\ son muchísimas, es útil para un no iniciado empezar con unas nociones y unos conceptos básicos para después ir progresando de forma fácil. En esta obra se han intentado simplificar las explicaciones para hacerlas más entendedoras.
+
+El texto [6] está dirigido principalmente a los lectores que quieren aprender~\Rt\ yendo más al grano, siguiendo un aprendizaje rápido, y que ya tienen alguna experiencia en programación. Es un texto que introduce \Rt\ como una herramienta de programación haciendo énfasis en los objetos y en la forma de hacer programación básica. Aunque tiene dos capítulos de estadística, no es esta disciplina su objetivo fundamental.
+
+Finalmente, [8] intenta explicar por qué se tiene que adoptar \Rt\ como herramienta principal para aprender estadística. Se introduce todo un conjunto de conceptos estadísticos y cómo se pueden tratar estos conceptos con \Rt. El ritmo de aprendizaje que ofrece es tal que los estudiantes son capaces bien pronto de manipular y explorar datos, para pasar más adelante a tratar conceptos estadísticos más complicados. Existe una versión reducida y libre [7].
+
+\begin{enumerate}
+
+\item[{[1]}] M. J. Crawley. \textsl{The R Book.} John Wiley \& Sons (2007).
+
+\item[{[2]}] P. Dalgaard. \textsl{Introductory Statistics with R (Statistics and Computing).} Springer (2002).
+
+\item[{[3]}] J. J. Faraway. \textsl{Practical regression and ANOVA using R.}\\ \url{http://cran.r-project.org/doc/contrib/Faraway-PRA.pdf} (2002). 
+
+\item[{[4]}] W. P. Krijnen.\textsl{Applied Statistics for Bioinformatics using R.}\\ \url{http://cran.r-project.org/doc/contrib/Krijnen-IntroBioInfStatistics.pdf} (2009). 
+
+\item[{[5]}] E. Paradis. \textsl{R for beginners.}\\  \url{http://cran.r-project.org/doc/contrib/Paradis-rdebuts\_en.pdf} (2005). 
+
+\item[{[6]}] W. N. Venables \& D. M. Smith. \textsl{An Introduction to R.}\\  \url{http://cran.r-project.org/doc/manuals/R-intro.pdf} (1999). 
+
+\item[{[7]}] J. Verzani. \textsl{SimpleR. Using R for Introductory Statistics. v0.4.}\\ \url{http://cran.r-project.org/doc/manuals/Verzani-SimpleR.pdf} (2002). 
+
+\item[{[8]}] J. Verzani. \textsl{Using R for Introductory Statistics.} Taylor \& Francis (2005).
+
+\end{enumerate}
+
+
+
+%
+\backmatter
+%\include{Rind}
+%%
+%\renewcommand{\chaptermark}[1]%
+%{\markboth{{#1}}{{#1}}
+%\renewcommand{\lastchapter}{#1}}
+%\renewcommand{\sectionmark}[1]%
+%{\markboth{{\lastchapter}}
+%{{\lastchapter}}}
+%
+%\chapter{Bibliografia} 
+%%
+%\renewcommand{\descriptionlabel}[1]%
+%{\hspace{\labelsep} [#1]}
+%%
+%
+\cleardoublepage
+%
+%%
+ \printindex
+%\begin{theindex}
+%   
+%
+%
+%\end{theindex}
+%
+\cleardoublepage
+
+
+
+
+
+\end{document}

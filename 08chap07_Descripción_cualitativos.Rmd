@@ -1,0 +1,935 @@
+# Descripción de datos cualitativos {#chap:edqual}
+
+ Los datos cualitativo corresponden a observaciones sobre cualidades de un objeto o individuo, tales como su  especie o su sexo, que pueden ser iguales o diferentes, pero que no admiten ningún otro tipo de comparación significativa: por ejemplo,  para los que no tenga ningún sentido preguntarse si uno es más grande que otro, ni efectuar operaciones aritméticas con ellos, aunque estén representados por números.
+Llamaremos `variable cualitativa`  a una lista de observaciones de un tipo de datos cualitativos  sobre un
+conjunto concreto de objetos, y  `niveles`, como en los factores,  a los diferentes valores que pueden tomar estos datos; por ejemplo, los dos niveles de una variable `Sexo`  serían <<Macho>> y <<Hembra>>, o sinónimos.
+
+Con `R`, usaremos vectores y factores para representar variables cualitativas. Los factores nos servirán para agrupar las observaciones según los niveles de la variable. De esta manera podremos segmentar la población que representa la variable en grupos o subpoblaciones, asignando un grupo a cada nivel, y podremos comparar el comportamiento de otras variables sobre estos grupos. 
+
+
+## Frecuencias
+
+ Los estadísticos básicos para datos cualitativos son sencillos: dada una variable
+cualitativa, para cada uno de sus niveles  podemos contar cuántos datos hay en ese nivel (la *frecuencia absoluta* del nivel) y qué fracción del total representan (la *frecuencia relativa*  del nivel) y nada más.
+
+
+
+```{example ex1601}
+Supongamos que se ha realizado un seguimiento a 20 personas ingresadas en un geriátrico. Uno de los datos que se han recogido sobre estas personas ha sido su sexo. El resultado ha sido una variable cualitativa formada por las 20 observaciones siguientes:
+```
+```
+Mujer,  Mujer,  Hombre,  Mujer,  Mujer,  Mujer,  Mujer,  Mujer,  Hombre,  Mujer,
+Hombre,  Hombre,  Mujer,  Mujer,  Hombre,  Mujer,  Mujer,  Mujer,  Mujer,  Hombre.
+```
+
+Sus dos niveles son <<{Hombre}>> y <<{Mujer}>>. En esta variable
+ hay 14 mujeres y 6 hombres. Por lo tanto, éstas son las frecuencias absolutas de estos niveles. Puesto que en total hay 20 individuos, sus frecuencias relativas son
+
+$$
+\mbox{Hombre: }\frac{6}{20}=0.3, \qquad \mbox{Mujer: } \frac{14}{20}=0.7.
+$$
+
+En general, supongamos que tenemos un tipo de datos cualitativos con niveles
+$$
+l_1, l_2, \ldots, l_k.
+$$
+Efectuamos $n$ observaciones de este tipo de datos, y sean
+$$
+x_1, x_2, \ldots, x_n
+$$
+
+los resultados que obtenemos.
+Cada una de estas observaciones $x_j$ toma como valor alguno de los niveles $l_i$. Estas observaciones forman una *variable cualitativa*.
+
+Así, en el ejemplo anterior tendríamos que $l_1=\mbox{Hombre}$ y  $l_2=\mbox{Mujer}$, 
+que $n=20$ (el número de observaciones efectuadas), y $x_1, \ldots, x_{20}$ formarían la muestra de sexos.
+
+Con estas notaciones:
+
+* La frecuencia absoluta* del nivel $l_j$ en esta variable cualitativa, que denotaremos por
+$n_j$, es el número de observaciones en las que el resultado $x_i$ es igual al nivel $l_j$.
+
+* La *frecuencia relativa* del nivel $l_j$ en esta variable cualitativa
+ es la fracción $f_j={n_j}/{n}$.
+Es decir,  la fracción (en tanto por uno) de observaciones que corresponden a este nivel.
+El tanto por ciento de observaciones del nivel $l_j$ es entonces $f_j\cdot 100\%$.
+
+* La *moda*
+ de esta variable cualitativa es su nivel, o niveles, de mayor frecuencia (absoluta o relativa, tanto da).
+
+
+La Tabla \@ref(tab:T1602) resume las frecuencias absolutas y relativas de la variable cualitativa  del Ejemplo~\@ref(exm:ex1601), con las notaciones que acabamos de introducir. Su moda es el nivel `Mujer` .
+
+AAAAAA Ajustar tabla o cita 
+
+```{r T1602,results='asis'}
+```
+
+<!--
+\begin{table}[htb]
+\begin{center}
+\abovecaptionskip=5pt
+\begin{tabular}{|c||rrr|}
+\hline Sexo & $n_j$ & $f_j$ & \% \\\hline\hline
+Hombre & 6 & 0.3 & 30\% \\
+Mujer & 14 & 0.7 & 70 \% \\\hline
+Total & 20 & 1 & 100\% \\\hline
+\end{tabular}
+\caption{Frecuencias de la variable   del Ejemplo~\@ref(ex:16.1).\label{t:16.2})
+\end{center}
+\vspace*{-1cm}
+\end{table}
+-->
+
+## Tablas unidimensionales de frecuencias
+
+ Supongamos que tenemos una variable cualitativa guardada en un vector o un factor,^[  Para simplificar, en lo que queda de sección, diremos  *vector*  para referirnos genéricamente tanto a un vector como a un factor.]  como por ejemplo:^[Sí, ya sabemos que <<Sí>> lleva acento ortográfico, pero procuramos evitar acentos y caracteres especiales en los guiones de las lecciones, para que se puedan abrir sin problemas en cualquier ordenador.] .
+
+```{r}
+x=c(3,2,5,1,3,1,5,6,2,2,2,1,3,5,2)
+x
+Respuestas=factor(c("No","No","Si","No","Si","No","No","Si"))
+Respuestas
+```
+
+
+Con `R`, la *tabla de frecuencias absolutas*  de un vector que representa una variable cualitativa se calcula con la función `table`.
+
+```{r}
+table(x)
+table(Respuestas)
+```
+
+
+El resultado de una función `table` es un objeto de datos  de un tipo nuevo: una *tabla de contingencia*, una *table* en el argot de `R`. Como vemos, al aplicar `table` a un vector obtenemos una tabla unidimensional formada por una fila con los niveles  de la variable y una segunda fila donde, debajo de cada nivel, aparece su frecuencia absoluta en el vector. 
+
+Los nombres de las columnas de una tabla unidimensional se obtienen con la función `names`.
+
+```{r}
+names(table(x))
+names(table(Respuestas))
+```
+
+
+Habréis observado que en la  `table`  de un vector sólo aparecen los nombres de los niveles presentes en el vector.  Si el tipo de datos cualitativos usado tenía más niveles y queremos que aparezcan explícitamente en la tabla (con frecuencia 0), hay que transformar el vector en un factor con los niveles deseados.
+
+
+```{r}
+z=factor(x, levels=1:7)  #Los niveles serán 1,2,3,4,5,6,7
+z
+table(z)
+```
+
+
+A efectos prácticos, podemos pensar que una tabla unidimensional es como un vector de números donde cada entrada está identificada por un nombre: el de su columna. Para referirnos a una entrada de una tabla unidimensional, podemos usar tanto su posición como su nombre (entre comillas, aunque sea un número). 
+
+```{r}
+table(x)[4] #La cuarta columna de table(x)
+table(x)["4"] #¿La columna de table(x) con nombre 4?
+table(x)["5"] #La columna de table(x) con nombre 5
+3*table(x)[2] #El triple de la segunda columna de table(x)
+```
+
+
+Las tablas de contingencia aceptan la mayoría de las funciones explicadas para vectores.
+
+```{r}
+sum(table(x))  #Suma de las entradas de table(x)
+sqrt(table(Respuestas))  #Raíces cuadradas de las entradas de table(Respuestas)
+```
+
+
+La `tabla de frecuencias relativas`  de un vector se puede calcular aplicando la función `prop.table` a su `table`. El resultado vuelve a ser una tabla de contingencia unidimensional.
+
+```{r}
+prop.table(table(x))
+prop.table(table(Respuestas))
+```
+
+
+**¡Atención!** La función `prop.table`  se tiene que aplicar al resultado de `table`, no al vector original. Si aplicamos 
+`prop.table`  a un vector de palabras o a un factor, dará un error, pero si la aplicamos a un vector de números, nos dará una tabla. Esta tabla `no es la tabla de frecuencias relativas`  de la variable cualitativa representada por el vector, sino la de una variable que tuviera como tabla de frecuencias absolutas este vector de números, entendiendo que cada entrada del vector representa  la frecuencia de un nivel diferente.
+
+```{r}
+prop.table(x)
+X=c(1,1,1)
+prop.table(table(X))
+prop.table(X)
+```
+
+
+También podemos calcular la tabla de frecuencias relativas de un vector dividiendo el resultado de `table` por el número de observaciones.
+
+```{r}
+table(x)/length(x)
+```
+
+
+Dados un vector $x$ y un número natural $n$, la instrucción
+
+`names(which(table(`$x$`)==`$n$`))`
+
+nos da los niveles que tienen frecuencia absoluta $n$ en $x$.
+
+```{r}
+table(x)
+names(which(table(x)==3))
+names(which(table(x)==2))
+```
+
+
+En particular, por lo tanto,
+
+`names(which(table(`$x$`)==max(table(`$x$`))))`
+
+nos da los niveles de frecuencia máxima en $x$: su `moda`.
+
+```{r}
+names(which(table(x)==max(table(x))))
+names(which(table(Respuestas)==max(table(Respuestas))))
+```
+
+
+```{example sexo}
+Continuamos en la situación del Ejemplo~\@ref(exm:1601). Para calcular las frecuencias y la moda con `R`, \ haríamos lo siguiente:
+
+
+```{r}
+Sexo_Ger=c("Mujer","Mujer","Hombre","Mujer","Mujer","Mujer",
+  "Mujer","Mujer","Hombre","Mujer","Hombre","Hombre","Mujer",
+  "Mujer","Hombre","Mujer","Mujer","Mujer","Mujer","Hombre")
+t0=table(Sexo_Ger)
+t0
+Sexo_Ger
+prop.table(t0)
+Sexo_Ger
+names(which(t0==max(t0)))
+```
+<!--
+\end{exemple}
+-->
+
+## Tablas bidimensionales de frecuencias
+
+ La función `table` también permite construir tablas de frecuencias conjuntas de dos o más variables. A modo de ejemplo, supongamos que el vector `Respuestas`, de la sección anterior, contiene las respuestas a una pregunta dadas por unos individuos cuyos sexos tenemos almacenados en un vector  `Sexo`,  en el mismo orden que sus respuestas. En este caso, podemos construir una tabla que nos diga cuántos individuos de cada sexo han dado cada respuesta.
+
+```{r}
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+Sexo=c("M","M","M","H","H","H","H","H") #H es hombre, M es mujer
+table(Respuestas,Sexo)
+table(Sexo,Respuestas)
+```
+El resultado es, en ambos casos, una tabla de contingencia como antes, pero ahora `bidimensional` , puesto que cada entrada tiene dos dimensiones, una por cada variable, como en una matriz.
+
+Como podemos ver, en una tabla bidimensional producida aplicando `table` a dos vectores, los niveles del primer vector  en el argumento definen las filas, y los del segundo, las columnas.  Así, en `table(Respuestas,Sexo)`, las filas corresponden a las respuestas y las columnas a los sexos.
+Para intercambiar filas por columnas, es decir, para <<trasponer>> la tabla sin tener que recalcularla, podemos usar la misma función `t` que usamos para trasponer matrices:
+
+```{r}
+t(table(Respuestas,Sexo))
+```
+
+
+En la práctica, tenéis que decidir si alguna de las asignaciones de variables a dimensiones es más conveniente que la otra. Por ejemplo, y teniendo en cuenta que nuestra manera natural de leer una tabla es por filas, si lo que nos interesa son las frecuencias de las respuestas entre las personas de cada sexo, seguramente lo más adecuado será elegir el sexo como variable para las filas.
+
+
+
+
+Para referirnos a una entrada de una tabla bidimensional podemos usar la construcción `[ , ]` como si estuviéramos en una matriz o un *data frame*  Dentro de los corchetes,  tanto podemos usar los índices como los nombres (entre comillas) de los niveles.
+
+```{r}
+table(Respuestas,Sexo)[1,2]
+table(Respuestas,Sexo)["No","M"]
+table(Sexo,Respuestas)[1,2]
+table(Sexo,Respuestas)["H","Si"]
+```
+
+
+Como en el caso unidimensional, la función `prop.table` sirve para calcular tablas bidimensionales de frecuencias relativas conjuntas de pares de variables. Pero en el caso bidimensional tenemos dos tipos de frecuencias relativas, que definen,  para cada par de variables, tres tablas diferentes:
+
+* Las frecuencias relativas `globales` : para cada par de niveles, uno de cada variable, la fracción de individuos que pertenecen a ambos niveles respecto del total de la muestra; por ejemplo, la fracción de mujeres que han contestado que sí respecto del total de la muestra sería la frecuencia relativa global del par (mujer, sí).
+
+* Las frecuencias relativas `marginales` : dentro de cada nivel de una variable, y para cada nivel de la otra, 
+la fracción de individuos que pertenecen al segundo nivel respecto del total de la subpoblación  definida por el primer nivel; por ejemplo, la fracción de mujeres que han contestado que sí  `respecto del total de mujeres`  sería una frecuencia relativa marginal.
+
+Dadas dos variables, se pueden calcular dos familias de frecuencias relativas marginales, según cuál sea la variable que defina las subpoblaciones en las que calculemos las frecuencias relativas de los niveles de la otra variable; no es lo mismo la fracción de mujeres que han contestado que sí respecto del total de mujeres, que la fracción de mujeres que han contestado que sí respecto del total de personas que han dado esta misma respuesta.
+
+
+La tabla de frecuencias relativas globales se calcula aplicando sin más la función `prop.table` a la `table`.
+Por lo que se refiere a las frecuencias relativas marginales, la variable que define las subpoblaciones en las que las calculamos se indica con el parámetro `margin`. Así, con `margin=1` especificamos que la  variable que define las subpoblaciones es la primera, y que, por lo tanto, las frecuencias relativas se calculan dentro de las filas; en cambio,  con `margin=2` especificamos que la  variable que define las subpoblaciones es la segunda, por lo que las frecuencias relativas se calculan por columnas; `margin=NULL` es su valor por defecto y, por lo tanto, equivalente a no especificar este parámetro.
+
+```{r}
+prop.table(table(Sexo,Respuestas)) #Global
+prop.table(table(Sexo,Respuestas), margin=1) #Por sexo
+prop.table(table(Sexo,Respuestas), margin=2) #Por respuesta
+```
+De esta manera:
+
+* La tabla `prop.table(table(Sexo,Respuestas))` nos da la fracción del total que representa cada pareja (sexo, respuesta): por ejemplo, un $25\%$ del total de la muestra son mujeres que han contestado que no.
+
+* La tabla `prop.table(table(Sexo,Respuestas), margin=1)` nos da la fracción que representa cada respuesta
+dentro de cada sexo: por ejemplo, un 66.67\% de las mujeres  han contestado que no.
+
+
+* La tabla `prop.table(table(Sexo,Respuestas), margin=2)` nos da la fracción que representa cada sexo
+dentro de cada respuesta: por ejemplo, las mujeres representan el $40\%$ del total de las personas que han contestado que no.
+
+
+La función `CrossTable` del paquete `gmodels` permite producir  (especificando el parámetro `prop.chisq=FALSE`) un resumen de la tabla de frecuencias absolutas y las tres tablas de frecuencias relativas de dos variables en un formato adecuado para su visualización:
+
+```{r}
+#Instalamos y cargamos el paquete "gmodels"
+library(gmodels) 
+CrossTable(Sexo,Respuestas,prop.chisq=FALSE)
+```
+La leyenda `Cell Contents` explica los contenidos de cada celda de la tabla: en este caso, y en orden descendente, la frecuencia absoluta `N`, la frecuencia relativa por filas, la frecuencia relativa por columnas, y la frecuencia relativa global.  
+Asimismo, se muestran las celdas de los márgenes, con las frecuencias absolutas y relativas de cada fila (en la columna <<*Row Total*>>)
+y cada columna (en la fila  <<*Column Total*>>).
+Esta función dispone de muchos parámetros que permiten modificar el contenido de las celdas y que podéis consultar en su Ayuda.
+
+Una tabla de contingencia bidimensional es, básicamente, una matriz con algunos atributos extra. En particular, podemos usar sobre estas tablas la mayoría de las funciones para matrices que tengan sentido para tablas; por ejemplo, `rowSums` y `colSums` se pueden aplicar a una tabla y suman sus filas y sus columnas, respectivamente:
+
+```{r}
+table(Sexo,Respuestas)
+colSums(table(Sexo,Respuestas))
+rowSums(table(Sexo,Respuestas))
+colSums(prop.table(table(Sexo,Respuestas)))
+rowSums(prop.table(table(Sexo,Respuestas)))
+```
+
+
+También podemos usar sobre una tabla bidimensional (o, en general, multidimensional) la función `apply`
+con la misma sintaxis que para matrices; véase la próxima sección.
+
+## Tablas multidimensionales de frecuencias
+
+ En general, podemos calcular tablas de frecuencias de cualquier número de variables, no sólo de una o  dos.  El manejo de estas tablas multidimensionales es similar al caso bidimensional, simplemente recordando que ahora hay más variables que tener en cuenta a la hora, por ejemplo, de especificar entradas o de calcular frecuencias relativas marginales. 
+
+Veamos un ejemplo tridimensional. Supongamos que, además  de los vectores
+
+```{r}
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+Sexo=c("M","M","M","H","H","H","H","H") 
+```
+tenemos  un tercer vector con las nacionalidades de los individuos representados en estos dos vectores:
+
+```{r}
+Pais=c("Francia","Alemania","Italia","Italia","Italia","Italia",
+  "Alemania","Francia")
+```
+Podemos calcular entonces una tabla de frecuencias absolutas para las ternas (sexo, respuesta, país).
+```{r}
+table(Sexo,Respuestas,Pais)
+```
+`R` muestra la *tabla tridimensional*  que obtenemos como una lista de tablas bidimensionales `table(Sexo,Respuestas)`, separando la población según los niveles de la tercera variable. Si no os gusta esta manera de visualizar una tabla tridimensional, una alternativa es usar la función `ftable`, que la mostrará en lo que se llama `formato  plano`:
+
+```{r}
+ftable(Sexo,Respuestas,Pais)
+```
+
+
+Los parámetros `row.vars` y `col.vars` de `ftable` permiten especificar qué variables queremos que aparezcan  como filas o como columnas.
+
+```{r}
+ftable(Sexo,Respuestas,Pais, col.vars=c("Sexo","Respuestas"))
+```
+
+
+Para referirnos a una entrada, o a una subtabla, de una tabla  podemos usar los corchetes.
+
+```{r}
+table(Sexo,Respuestas,Pais)["H","Si","Italia"]
+table(Sexo,Respuestas,Pais)[ , ,"Italia"]
+table(Sexo,Respuestas,Pais)[  ,"Si","Italia"]
+table(Sexo,Respuestas,Pais)["M", ,"Italia"]
+```
+
+
+En una tabla multidimensional, podemos calcular frecuencias relativas marginales respecto de los niveles de una variable o respecto de combinaciones de niveles de varias variables: por ejemplo, las frecuencias relativas marginales de las respuestas en cada combinación (sexo, país). Como en el caso bidimensional, las tablas correspondientes se calculan aplicando `prop.table` a la tabla de frecuencias absolutas, y especificando  con el parámetro `margin` las dimensiones, o combinaciones de dimensiones, respecto de las que calculamos las frecuencias relativas. Si no se especifica el parámetro `margin`, se obtiene la tabla de frecuencias relativas globales.
+
+```{r}
+prop.table(table(Sexo,Respuestas,Pais)) #Frecuencias relativas globales
+prop.table(ftable(Sexo,Respuestas,Pais)) #Frecuencias relativas globales, en formato plano
+prop.table(table(Sexo,Respuestas,Pais), margin=3)   #Frecuencias relativas por país
+prop.table(table(Sexo,Respuestas,Pais), margin=c(1,3)) #Frecuencias relativas por sexo y país
+```
+
+En este caso:
+
+*  La  tabla `prop.table(table(Sexo,Respuestas,Pais))` nos da la fracción que representa cada terna (sexo, respuesta, país) dentro del total de la muestra: 
+por ejemplo, los hombres españoles que han contestado afirmativamente forman un 
+$12.5\%$ del total de individuos.
+* La  tabla `prop.table(table(Sexo,Respuestas,Pais), margin=3)` nos da la fracción que representa cada pareja (sexo, respuesta) dentro de cada país: por ejemplo, los hombres que han contestado  que sí representan un $25\%$ del total de individuos españoles.
+* La  tabla `prop.table(table(Sexo,Respuestas,Pais), margin=c(1,3))` nos da la fracción que representa cada respuesta dentro de cada combinación de (sexo, país): por ejemplo, un $33.33\%$ del total  de hombres españoles ha contestado  que sí.
+
+Observad, también, que al aplicar `prop.table` al resultado de una `ftable`, la tabla resultante sigue en formato plano.
+
+Podemos  aplicar funciones a filas o columnas de (sub)tablas de una tabla multidimensional con la función `apply`, especificando en el parámetro `FUN` la función y en el parámetro `MARGIN` la variable o combinación de variables a la que aplicamos la función (son las variables que aparecerán en la tabla resultante). Observad las dos instrucciones siguientes y sus resultados:
+
+```{r}
+apply(table(Sexo,Respuestas,Pais), MARGIN=c(1,3), FUN=sum)
+apply(table(Sexo,Respuestas,Pais), MARGIN=2, FUN=sum)
+```
+
+
+Hasta ahora hemos manipulado tablas de frecuencias que hemos construido nosotros mismos a partir de variables cualitativas. Todo lo que hemos hecho con estas tablas se puede también hacer con las tablas de frecuencias que lleva `R` predefinidas o que obtengamos de otra manera.
+Por ejemplo, el objeto de datos `HairEyeColor` que lleva predefinido `R` es una tabla las frecuencias absolutas, en una muestra de personas, de tres variables cualitativas: color de cabello (`Hair`), color de los ojos (`Eye`) y sexo (`Sex`), en este orden.\label{page:HES}
+
+```{r}
+HairEyeColor
+ftable(HairEyeColor)
+```
+
+
+Efectuemos algunas operaciones sobre esta tabla, para ilustrar como podemos trabajar con ella:
+
+```{r}
+sum(HairEyeColor)   #Número total de individuos en la muestra
+HairEyeColor[ , ,"Male"]  #Subtabla de hombres
+prop.table(HairEyeColor, margin=3)   #Frecuencias relativas de las combinaciones(color de cabello, color de ojos) en cada sexo
+prop.table(HairEyeColor, margin=c(1,2)) #Frecuencias relativas de los sexos en cada combinación (color de cabello, color de ojos) 
+```
+
+
+Para cambiar el orden de las variables en una `tabla`  multidimensional, se puede usar la instrucción `aperm(` tabla `, perm=`...`)`, igualando el parámetro `perm` a la lista de las variables en el orden deseado. Por ejemplo, si queremos una tabla equivalente a `HairEyeColor`, pero con primera variable `Sex`, segunda variable `Hair` y tercera variable `Eye`, podemos hacer:
+
+```{r}
+aperm(HairEyeColor, perm=c("Sex", "Hair", "Eye"))
+```
+
+
+## Tablas a partir de *dta frames* de de variables cualitativas 
+
+
+ Como ya hemos comentado en varias ocasiones, la manera natural de organizar datos multidimensionales en `R` es en forma de *data frame* En esta sección explicaremos algunas instrucciones para calcular tablas de frecuencias absolutas a partir de un *data frame* de variables cualitativas. Para ilustrarla, usaremos el fichero que se encuentra en el `url` 
+
+ [http://aprender.uib.es/Rdir/bebenerg.txt](http://aprender.uib.es/Rdir/bebenerg.txt) .
+
+Este fichero consiste en una tabla de datos con la siguiente información sobre 122 estudiantes de la Escuela Politécnica Superior de la UIB: su sexo (variable `sexo`), el grado en el que están matriculados
+ (variable `estudio`) y si consumen habitualmente bebidas energéticas (variable `bebe`). Como contiene letras acentuadas, conviene que uséis el parámetro `encoding`.
+
+```{r}
+Beb_Energ=read.table("http://aprender.uib.es/Rdir/bebenerg.txt", header=TRUE, encoding="UTF-8")
+str(Beb_Energ)
+head(Beb_Energ)
+```
+
+
+Aplicando la función `summary` a un *data frame* de variables cualitativas, obtenemos, a modo de resumen, una tabla con las  frecuencias absolutas de cada variable.
+
+```{r}
+summary(Beb_Energ)
+```
+Esta tabla sólo sirve para ver la información, porque sus entradas son palabras. 
+
+```{r}
+summary(Beb_Energ)[,2]
+```
+
+
+Para calcular en un solo paso la `table` de cada variable, podemos usar la función `sapply` de la manera siguiente:
+
+```{r}
+sapply(Beb_Energ, FUN=table)
+```
+De esta manera, obtenemos una `list` cuyas componentes son las tablas que queríamos. 
+
+```{r}
+sapply(Beb_Energ, FUN=table)$sexo
+table(Beb_Energ$sexo)
+```
+
+
+Si aplicamos la función `table` a un *data frame* de variables cualitativas, obtenemos su tabla de frecuencias absolutas, con las variables ordenadas tal y como aparecen en el *data frame*
+
+```{r}
+table(Beb_Energ)
+table(Beb_Energ[c(1,3)])
+```
+
+Otra opción es usar la función `ftable`, que produce la misma tabla de frecuencias pero en formato plano.
+
+```{r}
+ftable(Beb_Energ)
+```
+
+## Diagramas de barras 
+
+  El tipo de gráfico más usado para representar variables cualitativas son los diagramas de barras  (*bar plots*).
+Como su nombre indica, un  *diagrama de barras*  contiene, para cada nivel de la variable cualitativa,  una barra de altura su frecuencia; por ejemplo, la Figura\@ref(fig:F1601) es un diagrama de barras de las frecuencias absolutas de los dos niveles de la muestra de sexos del Ejemplo \@ref(exr:ex1601). El código que lo ha producido, y que explicaremos en esta sección, es el siguiente:
+
+
+```{r F1601, fig.cap="Diagrama de barras de las frecuencias absolutas de los datos  del Ejemplo \\@ref(ex:ex1601)."}
+barplot(table(Sexo_Ger), col=c("lightblue","pink"), 
+        main="Diagrama de barras de las frecuencias absolutas\n de la variable \"Sexo_Ger\"")
+```
+La función `\n` dentro de una frase entrada entre comillas introduce un cambio de línea. El mismo efecto se obtiene con un cambio de línea. Id con cuidado, porque ambos efectos se acumulan, así que si cambiáis de línea después del `\n`, obtendréis una línea en blanco. Por otro lado, `\\"` escribe unas comillas en el texto entrado entre comillas.
+
+<!--
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{01-001.pdf}
+\end{center}
+\caption{Diagrama de barras de las frecuencias absolutas de los datos  del Ejemplo~\@ref(ex:16.1}.}\label{fig:16.1)
+\end{figure}
+-->
+
+La manera más sencilla de dibujar un diagrama de barras de las frecuencias absolutas o relativas de una variable cualitativa es usando la instrucción `barplot` aplicada a la tabla correspondiente. Así, 
+
+```{r F1602,fig.cap="Diagramas de barras."}
+x=c(3,2,5,1,3,1,5,6,2,2,2,1,3,5,2)
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+par(mfrow=c(1,2))# dos figuras en un plot 
+barplot(table(x), main="Diagrama de barras de frecuencias absolutas de la variable \"x\"")
+barplot(prop.table(table(Respuestas)), main="Diagrama de barras de frecuencias relativas\n de la variable \"Respuestas\"")
+par(mfrow=c(1,1))# volvemos a una figura por plot
+```
+produce  los diagramas de la Figura \@ref(fig:F1602). 
+
+<!--
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotx}\
+\includegraphics[width=0.45\textwidth]{barplotyr}
+\end{center}
+\caption{Diagramas de barras.}\label{fig:16.2}
+\end{figure}
+-->
+
+**¡Atención!** Como pasaba con `prop.table`, el argumento de `barplot` ha de ser una tabla, y, por consiguiente, se ha de aplicar al resultado de `table` o de `prop.table`, nunca al vector de datos original. 
+
+Habréis observado que en las funciones `barplot` anteriores hemos usado el parámetro `main` para poner título a los diagramas; en general, la función `barplot` admite los parámetros de `plot` que tienen sentido en el contexto de los diagramas de barras: `xlab`, `ylab`, `main`, etc. Los parámetros disponibles se pueden consultar en  la Ayuda de `barplot`. Aquí sólo vamos a comentar algunos.
+
+Se pueden especificar los colores de las barras usando el parámetro `col`. Si se iguala a un solo color, todas las barras serán de este color, pero también se puede especificar un color para cada barra, igualando   `col` a un vector de colores. Por ejemplo, 
+
+```
+barplot(table(Respuestas), col=c("green"))
+barplot(table(Respuestas), col=c("red","blue"))
+```
+producen, respectivamente, los dos diagramas de la Figura~\@ref(fig:F1605). En un diagrama con muchas barras, es conveniente usar un esquema adecuado de colores para ellas. Para ello se puede usar el paquete `RColorBrewer`, del que hablaremos en detalle en la Sección \ref(sec:grmulti).
+
+
+```{r F1605,fig.cap="Ejemplos de diagramas de barras de colores."}
+knitr::include_graphics(c("images/barplotyverd.png","images/barploty2col.png"))
+```
+
+<!--
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotyverd.pdf} 
+\includegraphics[width=0.45\textwidth]{barploty2col.pdf}
+\end{center}
+\caption{Ejemplos de diagramas de barras de colores.}\label{fig:16.5}
+\end{figure}
+-->
+
+Una opción interesante es dibujar las barras horizontales en vez de  verticales: para hacerlo, se tiene que añadir el parámetro `horiz=TRUE`. Así, la Figura~\@ref(fig:F1606} se obtiene con la siguiente instrucción:
+
+```{r  F1606,fig.cap="Un diagrama de barras horizontales."}
+barplot(table(x), horiz=TRUE)
+```
+
+<!--
+\vspace*{-3ex}
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotxhoriz}
+\end{center}
+\caption{Un diagrama de barras horizontales.}\label{fig:16.6}
+\end{figure}
+-->
+
+Si se aplica `barplot` a una tabla bidimensional, por defecto dibuja las barras de la segunda variable cortadas por la frecuencia de la primera variable: se le llama un `diagrama de barras apiladas` . Por ejemplo, las instrucciones siguientes producen la Figura~\@ref(fig:F1607). 
+
+```{r f1607,fig.cap="Diagrama de barras apiladas."}
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+Sexo=c("M","M","M","H","H","H","H","H")
+table(Sexo,Respuestas)
+barplot(table(Sexo,Respuestas))
+```
+
+
+En un  diagrama de barras apiladas, las barras globales corresponden a los niveles de la variable que definen  las columnas de la tabla, es decir, la segunda variable especificada dentro de `table`: en el de la Figura \@ref(fig:F1607), se trata de la variable `Respuestas`, de niveles `No` y `Si`. Cada una de estas barras se divide verticalmente en sectores que representan los niveles de la otra variable, en orden ascendente: en el ejemplo que nos ocupa,  la zona inferior de cada barra representa el nivel `H` de la variable `Sexo` y la zona superior su nivel `M`. 
+
+<!--
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotSy.pdf}
+\end{center}
+\caption{Diagrama de barras apiladas.}\label{fig:16.7}
+\end{figure}
+-->
+
+En vez de organizar  las barras de la primera variable en una sola barra vertical, se pueden dibujar una junto a la otra añadiendo el parámetro `beside=TRUE`, obteniéndose de esta manera un `diagrama de barras por bloques` . Así,
+
+```
+barplot(table(Sexo,Respuestas), beside=TRUE)
+```
+produce el diagrama de barras de la izquierda de la Figura \@ref(fig:F1608). En este diagrama,  cada bloque de barras representa un nivel de la variable de las columnas (`No`  y `Si`), y en cada uno de estos bloques las barras representan los niveles de las filas en su orden (en cada bloque, la barra de la izquierda corresponde a `H` y la de la derecha  a `M`). 
+
+Los diagramas de barras tienen que mostrar la información de la manera más adecuada. Por ejemplo, en un diagrama de barras por bloques, si lo que nos interesa es la distribución de las respuestas por sexo, los bloques de barras deberían corresponder a los sexos, y las barras dentro de cada bloque a las respuestas. En este caso, convendría cambiar el orden de los vectores dentro de la `table` a la que aplicamos `barplot`, o trasponer la tabla antes de aplicarle `barplot`. 
+
+Suele ser conveniente añadir a un diagrama de barras de dos variables una leyenda que indique  qué nivel representa cada sector (en los diagramas de barras apiladas) o cada barra (en los diagramas de barras por bloques). Esto se puede realizar entrando el parámetro `legend.text` igualado a `TRUE`, si no queremos modificar los nombres de los niveles de las filas, o igualado a un vector con los nombres que les queremos asignar (en el orden que toque). 
+Por ejemplo,
+
+```
+barplot(table(Sexo,Respuestas), beside=TRUE, legend.text=TRUE)
+```
+produce el diagrama de la derecha de la Figura \@ref(fig:F1608). 
+
+```{r F1608,fig.cap="Diagramas de barras por bloques."}
+knitr::include_graphics(c("images/barplotSybeside.png","images/barplotSYbesidelegend.png"))
+```
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotSybeside.pdf}\
+\includegraphics[width=0.45\textwidth]{barplotSYbesidelegend.pdf}
+\end{center}
+\caption{Diagramas de barras por bloques.}\label{fig:16.8}
+\end{figure}
+-->
+
+La leyenda que genera `R` se puede modificar usando el parámetro `args.legend` igualado a una `list` con los parámetros que usaríamos   en la función `legend` que explicamos en la Lección \@ref(chap:plot):  `x`, para indicar la posición de la leyenda,  `cex` para indicar el factor por el cual se quiere multiplicar su tamaño, etc. 
+Podéis consultar los parámetros disponibles en la Ayuda de `legend`. 
+
+Se pueden cambiar los colores de las barras usando el parámetro `col` como en los diagramas de barras de tablas unidimensionales. La función `legend.text` importa estos colores, no hace falta especificarlos en el `args.legend`. 
+
+También puede ser conveniente poner nombres más informativos a los niveles de las variables. El parámetro `names` dentro de `barplot` permite cambiar los nombres de los niveles que muestra debajo del eje horizontal: en un diagrama de barras de una variable, los de sus niveles, y en un diagrama bidimensional, los de los niveles de la variable de las columnas.
+
+Veamos un ejemplo usando `col` y con los nombres que se muestran de los niveles de ambas variables traducidos al inglés; el resultado es la Figura \@ref(fig:F16011):
+
+```{r F16011,fig.cap="Diagrama de barras para visualizar la distribución de las respuestas por sexo."}
+barplot(table(Respuestas,Sexo), beside=TRUE, names=c("Men",
+  "Women"), col=c("red","blue"), legend.text=c("No","Yes"))
+```
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{barplotyScorrecte.pdf}
+\end{center}
+\caption{Diagrama de barras para visualizar la distribución de las respuestas por sexo.}\label{fig:16.11}
+\end{figure}
+-->
+
+
+
+## Otros gráficos para datos cualitativos 
+
+ Un tipo muy popular de representación gráfica de variables cualitativas son los {diagramas circulares}.
+En un `diagrama circular`  (*pie chart*) se representan los niveles de una variable cualitativa como sectores circulares de un círculo, de manera que el ángulo (o equivalentemente, el área) de cada sector sea proporcional a la frecuencia  del nivel al que corresponde.
+Con `R`, este tipo de diagramas se producen con la instrucción `pie`, de nuevo aplicada a una tabla de frecuencias y no al vector original. La función `pie` admite muchos parámetros para modificar el resultado: se pueden cambiar los colores con `col`, se pueden cambiar los nombres de los niveles con `names`, se puede poner un título con `main`, etc.;
+podéis consultar la lista completa de parámetros en su Ayuda. 
+Así, por ejemplo, 
+```
+x=c(3,2,5,1,3,1,5,6,2,2,2,1,3,5,2)
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+pie(table(x), main="Diagrama circular de la variable   \"x\"")
+pie(table(Respuestas), main="Diagrama circular de la variable  
+   \"Respuestas\"")
+```
+produce los diagramas de la Figura \@ref(fig:F16012). 
+
+
+```{r F16012, fig.cap="Diagramas circulares."}
+knitr::include_graphics(c("images/piex2.png","images/piey2.png"))
+```
+
+
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{piex2.pdf}\quad
+\includegraphics[width=0.45\linewidth]{piey2.pdf}
+\end{center}
+\caption{Diagramas circulares.}\label{fig:16.12}
+\end{figure}
+-->
+
+Pese a su popularidad, es poco recomendable usar diagramas circulares cuando manejamos más de dos niveles, porque a veces es difícil, a simple vista, comprender las relaciones entre las frecuencias que representan.  Para convencerse, basta comparar los diagramas de barras y los diagramas circulares de la Figura \@ref(fig:wiki).^[Extraída de la entrada sobre diagramas circulares de la *Wikipedia*: [http://en.wikipedia.org/wiki/Pie_chart](http://en.wikipedia.org/wiki/Pie_chart) .] 
+
+
+```{r wiki,fig.cap="Diagramas de barras *vs* diagramas circulares."}
+knitr::include_graphics("images/wikipc.png")
+```
+
+
+<!--
+\begin{figure}[ht]
+\abovecaptionskip=-1ex
+\begin{center}
+\includegraphics[width=0.55\linewidth]{wikipc.pdf}
+\end{center}
+\caption{Diagramas de barras *vs* diagramas circulares.}\label{fig:wiki}
+\end{figure}
+-->
+
+
+Otra representación de las tablas multidimensionales de frecuencias son los `gráficos de mosaico` . Estos gráficos se obtienen sustituyendo cada entrada de la tabla de frecuencias por una región rectangular de área proporcional a su valor. En concreto, para obtener el gráfico de mosaico de una tabla bidimensional, se parte de un cuadrado de lado 1,
+primero se divide en barras verticales  de amplitudes iguales a las frecuencias relativas de una variable, y luego cada barra se divide, a lo alto, en regiones de alturas proporcionales a las frecuencias relativas marginales de cada nivel de la otra variable dentro del nivel correspondiente de la primera variable. 
+
+Un gráfico de mosaico de una tabla se obtiene con `R` aplicando la función `plot` a la tabla, o también la función `mosaicplot`; esta última también se puede aplicar a matrices. Por ejemplo,
+```
+Respuestas=c("No","No","Si","No","Si","No","No","Si")
+Sexo=c("M","M","M","H","H","H","H","H")
+plot(table(Sexo,Respuestas), main="Gráfico de mosaico de las variables \"Sexo\" y \"Respuestas\"")
+```
+produce el gráfico de mosaico de la izquierda en la Figura \@ref(fig:mosaic1).
+
+En el gráfico de mosaico de una tabla tridimensional, primero se divide el cuadrado en barras verticales  de amplitudes iguales a las frecuencias relativas de una variable; luego, cada barra se divide, a lo alto, en regiones de alturas proporcionales a las frecuencias relativas marginales de cada nivel de una segunda variable dentro del nivel correspondiente de la primera variable; y, finalmente, cada sector rectangular se vuelve a dividir a lo ancho en regiones de amplitudes proporcionales a las frecuencias relativas marginales de cada nivel de la tercera variable dentro de la combinación correspondiente de niveles de las otras dos. Por ejemplo,
+
+```
+plot(HairEyeColor,  main="Gráfico de mosaico de la tabla 
+   \"HairEyeColor\"", col=c("pink","lightblue"))
+```
+produce el gráfico de la derecha en la Figura \@ref(fig:mosaic1).
+
+```{r mosaic1,fig.cap=""}
+knitr::include_graphics(c("images/mosaic1.png","images/mosaic2.png"))
+
+```
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{mosaic1.pdf}\ 
+\includegraphics[width=0.45\linewidth]{mosaic2.pdf}
+\end{center}
+\caption{Diagramas de mosaico bidimensional y tridimensional.}\label{fig:mosaic1}
+\end{figure}
+-->
+
+Además de sus parámetros usuales,  la función `plot` admite algunos parámetros específicos 
+cuando se usa para producir el gráfico de mosaico de una tabla. Los más interesantes son:
+
+* `col`, que ya hemos usado en el gráfico de mosaico anterior, asigna colores a los niveles de la última variable (en ese ejemplo, los sexos).
+* `dir`, igualado a un vector de direcciones `"v"` (vertical) y `"h"` (horizontal), sirve para especificar la dirección de las barras de cada variable (por defecto, como hemos comentado, alternan vertical y horizontal, empezando por vertical).
+
+Estos y otros parámetros se pueden consultar en  la Ayuda de `mosaicplot`. 
+
+El paquete `vcd` incorpora una función, `mosaic`, que sirve para producir gráficos de mosaico con algunos aspectos gráficos diferentes. Por ejemplo, la Figura \@ref(fig:HCSvcd) se obtiene con
+
+```{r HCSvcd,fig.cap="Gràfico de mosaico de obtenido con `mosaic`."}
+#Instalamos y cargamos el paquete "vcd"
+library(vcd)
+mosaic(HairEyeColor, dir=c("v","h","v"), highlighting="Sex",  
+   highlighting_fill=c("pink","lightblue"),
+   main="Gráfico de mosaico de la tabla HairEyeColor")
+```
+El parámetro `dir` es el equivalente del parámetro homónimo en `mosaicplot` (y lo hemos especificado para obtener el gráfico equivalente al de la derecha de la Figura \@ref(fig:mosaic1}; por defecto, `mosaic` toma la primera variable en horizontal);  el parámetro `highlighting` sirve para destacar una variable; y el parámetro `highlighting_fill` para asignar colores a los niveles de la variable destacada. Para más parámetros, podéis consultar su Ayuda.
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{mosaicHCSvcd}
+\end{center}
+\caption{Gràfico de mosaico de obtenido con `mosaic`.}\label{fig:HCSvcd} 
+\end{figure}
+-->
+
+Los paquetes `vcd` y `vcdExtra` incluyen otras funciones que producen representaciones gráficas interesantes de tablas tridimensionales. Por ejemplo:
+
+* La función `cotabplot` de  `vcd` produce un diagrama de mosaico para cada nivel de la tercera variable.
+* La función `mosaic3d` de  `vcdExtra` produce un diagrama de mosaico tridimensional en una ventana de una aplicación para gráficos 3D interactivos.
+
+Por ejemplo, con
+```
+#Ya tenemos cargado el paquete "vcd"
+cotabplot(table(Sexo,Respuestas,Pais))
+#Instalamos y cargamos el paquete vcdExtra
+library(vcdExtra)
+mosaic3d(HairEyeColor, type="expected", box=TRUE,
+  col=c("pink","lightblue"))
+```
+obtenemos los dos gráficos de la Figura \@ref(fig:extresqual) .
+
+
+```{r extresqual,fig.cap="Ejemplos de gráficos obtenido con `cotabplot` (izquierda) y `mosaic3d` (derecha)."}
+knitr::include_graphics(c("images/cotabplot.png","images/exmosaic3d.png"))
+```
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\linewidth]{cotabplot.pdf}\quad
+\includegraphics[width=0.42\linewidth]{exmosaic3d.pdf}
+\end{center}
+\caption{Ejemplos de gráficos obtenido con `cotabplot` (izquierda) y `mosaic3d` (derecha).}\label{fig:extresqual} 
+\end{figure}
+-->
+
+
+
+### Un ejemplo completo {#sec:exqual}
+
+ Vamos a llevar a cabo un análisis completo de un ejemplo con lo que hemos aprendido en esta lección.
+Como ya hemos comentado, el objeto de datos `HairEyeColor` que lleva predefinido `R` es una tabla de frecuencias absolutas de tres variables cualitativas: color de cabello (`Hair`), color de los ojos (`Eye`) y sexo (`Sex`).
+Vamos a extraer de esta tabla una  tabla bidimensional de frecuencias absolutas de las variables `Eye` y `Hair`, sin distinguir según el sexo. La manera más sencilla de obtener esta tabla es combinando la función `apply` con `as.table`, para que el resultado final sea una tabla de contingencia (sin esta instrucción, el resultado sería una matriz), de la manera siguiente:
+
+```{r}
+HEC=as.table(apply(HairEyeColor, MARGIN=c(1,2), FUN=sum))
+HEC
+```
+
+
+Vamos a traducir al castellano los nombres de las variables de esta tabla y de sus niveles. Esto lo podemos llevar a cabo en un solo paso con la función `dimnames` que ya usamos sobre *data frames*.
+El resultado de aplicar esta función a una `table` es una `list` cuyas componentes son los niveles de cada variable.
+
+```{r}
+dimnames(HEC)
+```
+Por lo tanto, para reescribir los nombres de las variables y sus niveles, basta redefinir esta `list` de la manera siguiente:
+
+```{r}
+dimnames(HEC)=list(Cabello=c("Negro","Castaño","Rojo","Rubio"), Ojos=c("Marrones","Azules","Pardos","Verdes"))
+HEC
+```
+
+
+
+
+Vamos a dibujar un diagrama de mosaico de esta tabla, para visualizar gráficamente sus entradas. 
+```{r HECmosaic,fig.cap="Diagrama de mosaico de las frecuencias conjuntas de colores de ojos y de cabellos en `HairEyeColor`." }
+plot(HEC,col=c("lightblue"),main="Diagrama de mosaico de la tabla bidimensional de frecuencias\n de colores de cabellos y ojos")
+```
+Obtenemos la Figura \@ref(fig:HECmosaic). A simple vista, vemos que las combinaciones de colores de cabellos y ojos más frecuentes son 
+los cabellos castaños con los ojos marrones, y los cabellos rubios con los ojos azules. 
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{HECmosaic}\
+\end{center}
+\caption{Diagrama de mosaico de las frecuencias conjuntas de colores de ojos y de cabellos en `HairEyeColor`.}\label{fig:HECmosaic}
+\end{figure}
+-->
+
+A continuación, vamos a calcular el número total de individuos representados en esta tabla, así como las tablas de frecuencias absolutas y relativas de cada variable,  y representaremos  estas últimas en sendos diagramas de barras.
+
+```{r}
+sum(HEC)  #Número total de individuos
+colSums(HEC)    #Frec. abs. de Ojos
+rowSums(HEC)       #Frec. abs. de Cabello
+round(prop.table(colSums(HEC)),3)   #Frec. rel. de Ojos
+round(prop.table(rowSums(HEC)),3)   #Frec. rel. de Cabello
+```
+
+```
+barplot(prop.table(colSums(HEC)), ylim=c(0,0.4),
+  col=c("burlywood4","lightblue","orange3","lightgreen"), 
+  main="Frecuencias relativas de colores de ojos")
+barplot(prop.table(rowSums(HEC)),
+  col=c("black","brown","red","gold"), ylim=c(0,0.5),
+  main="Frecuencias relativas de colores de cabello")
+```
+Los diagramas de barras producidos con la dos últimas instrucciones son los de la Figura \@ref(fig:HECuni). Vemos que el color dominante de cabellos es el castaño, mientras que en el color de ojos el marrón y el azul están prácticamente empatados.
+
+```{r HECuni,fig.cap="Diagrama de barras de frecuencias relativas de colores de ojos y de cabellos en `HairEyeColor`."}
+knitr::include_graphics(c("images/HECEye.png","images/HEChair.png"))
+```
+
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{HECEye}\
+\includegraphics[width=0.45\textwidth]{HECHair}\
+\end{center}
+\caption{Diagrama de barras de frecuencias relativas de colores de ojos y de cabellos en `HairEyeColor`.}\label{fig:HECuni}
+\end{figure}
+-->
+ 
+Pasamos ahora a calcular las tablas de frecuencias relativas y dibujar los dos diagramas de barras de las frecuencias relativas marginales.
+
+```{r}
+round(prop.table(HEC), 3)  #Frec. rel. globales
+round(prop.table(HEC, margin=1), 3)  #Frec. rel. por filas
+round(prop.table(HEC, margin=2), 3)  #Frec. rel. por columnas
+```
+```
+barplot(prop.table(HEC, margin=1), beside=TRUE, legend.text=TRUE,
+   col=c("black","brown","red","gold"), ylim=c(0,0.8),
+   main="Frecuencias relativas de colores de cabello\n en cada color de ojos")
+barplot(t(prop.table(HEC, margin=2)), beside=TRUE,
+   legend.text=TRUE, ylim=c(0,0.6),
+   col=c("burlywood4","lightblue","orange3","lightgreen"),  
+   main="Frecuencias relativas de colores de ojos\n en cada 
+   color de cabellos")
+```
+Los diagramas de barras producidos con la dos últimas instrucciones son los de la Figura \@ref(fig:HECmarg). Vemos, por ejemplo, que entre las personas de ojos azules, los cabellos rubios son los más frecuentes, y que entre las personas castañas el color de ojos más frecuente es el pardo.
+
+
+
+```{r HECmarg,fig.cap="Diagrama de barras de frecuencias relativas marginales de colores de ojos y de cabellos en `HairEyeColor`."}
+knitr::include_graphics(c("images/HECmargin1.png","images/HECmargin2.png"))
+```
+<!--
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=0.45\textwidth]{HECmargin1}\
+\includegraphics[width=0.45\textwidth]{HECmargin2}\
+\end{center}
+\caption{Diagrama de barras de frecuencias relativas marginales de colores de ojos y de cabellos en `HairEyeColor`.}\label{fig:HECmarg}
+\end{figure}
+-->
+
+
+
+## Guía rápida de funciones
+
+
+* `table` calcula la tabla de frecuencias absolutas de un vector o un factor.
+* `as.table` convierte un objeto (por ejemplo, una matriz) en una tabla de contingencia.
+* `ftable` muestra una tabla multidimensional en formato plano.
+* `t` sirve para trasponer una tabla bidimensional.
+* `aperm` sirve para permutar las variables de una tabla multidimensional.
+* `prop.table` calcula la tabla de frecuencias relativas de un vector o un factor a partir de su tabla de frecuencias absolutas. Tiene el parámetro siguiente:
+* `margin`: sirve para especificar las dimensiones en cuyos niveles se calcularán las frecuencias relativas marginales. Si no se especifica, se calculan las frecuencias relativas globales.
+* `CrossTable`, del paquete `gmodels`, produce, en el caso bidimensional, una tabla conjunta de frecuencias absolutas y de frecuencias relativas globales y marginales.
+* `names`  da los nombres de las columnas de una tabla unidimensional, y sirve también para modificar estos nombres.
+* `dimnames`  da una `list` con los vectores de los nombres de los niveles de las diferentes variables de una tabla multidimensional, y sirve también para modificar los nombres tanto de las variables como de sus niveles.
+* `tabla` `[...]` se usa para especificar un elemento, una fila, una columna o una subtabla de la `tabla` .
+* `barplot` dibuja el diagrama de barras de un vector o un factor a partir de una tabla de frecuencias. Algunos parámetros importantes:
+* `col`: sirve para especificar los colores de las barras.
+* `horiz=TRUE`: sirve para dibujar el diagrama  horizontal.
+* `beside=TRUE`: sirve para especificar que el diagrama sea por bloques.
+* `legend.text`: sirve para añadir una leyenda que explique qué barras corresponden a cada uno de los niveles de la primera variable.
+* `args.legend`: sirve para modificar las características de esta leyenda, igualándolo a una `list` con los valores de los parámetros de la función `legend` que queramos especificar.
+* `names`: sirve para cambiar en el diagrama los nombres de los niveles de la segunda variable.
+* `main`, `xlab`, `ylab` y el resto de parámetros de `plot` que tengan sentido para diagramas de barras.
+* `pie` dibuja el diagrama circular de un vector o un factor a partir de una tabla de frecuencias. Algunos parámetros importantes:
+* `col`: sirve para especificar los colores de los sectores.
+* `names`: sirve para cambiar en el diagrama los nombres de los niveles.
+* `main`, `xlab`, `ylab` y el resto de parámetros de `plot` que tengan sentido para diagramas circulares.
+* `plot` y `mosaicplot` dibujan el diagrama de mosaico de una tabla de frecuencias. Algunos parámetros relevantes (aparte de los usuales de `plot`):
+* `col`: asigna colores a los niveles de la última variable.
+* `dir`: igualado a un vector de direcciones `"v"` (vertical) y `"h"` (horizontal), sirve para especificar la dirección de las barras de cada variable.
+* `mosaic`, del paquete `vcd`, también dibuja el diagrama de mosaico de una tabla de frecuencias. Algunos parámetros importantes:
+* `dir`: como en `mosaicplot`.
+* `highlighting`: sirve para destacar una variable.
+* `highlighting_fill`: sirve para asignar colores a los niveles de la variable destacada. 
+* `cotabplot`, del paquete `vcd`, produce una tabla con un diagrama de mosaico para cada nivel de la última variable.
+* `mosaic3d`, del paquete `vcdExtra`, produce un diagrama de mosaico tridimensional.
+* `\n` indica un cambio de línea en un título o etiqueta.
+* `\"` escribe unas comillas en el texto de un título o etiqueta.
+
+## Ejercicio
+
+ Instalad y cargad el paquete `MASS`. Este paquete lleva una tabla de datos llamada `birthwt` sobre factores que pueden incidir en el peso de los niños al nacer. Con `str` y `head`, explorad su estructura, y en la pestaña de Ayuda, consultad el significado de cada variable.
+
+* Calculad una tabla bidimensional de frecuencias relativas  marginales de los pares (raza de la madre, peso inferior a 2.5 kg o no) que permita ver, fácilmente, si la raza de la madre influye en el peso del bebé. Dibujad un diagrama de mosaico de esta tabla.
+
+Asimismo, dibujad un diagrama de barras por bloques que permita visualizar esta información. Poned nombres adecuados a los bloques, colores a las barras, y añadid una leyenda que explique qué representa cada barra. ¿Se puede obtener alguna conclusión de esta tabla y de este diagrama de barras?
+
+* Repetid el punto anterior para los pares (madre fumadora o no, peso inferior a 2.5 kg o no) y para los pares (madre hipertensa o no, peso inferior a 2.5 kg o no).
+
+* Calculad una tabla de frecuencias relativas  marginales de las ternas (raza de la madre, madre fumadora o no, peso inferior a 2.5 kg o no) que permita ver, fácilmente, si la combinación de la raza de la madre y su condición de fumadora o no fumadora influye en el peso del bebé. Dibujad un diagrama de mosaico de esta tabla tridimensional.
+
+Asimismo, dibujad un diagrama de barras por bloques que permita visualizar esta información (pensad cómo pasaréis de la tabla tridimensional a un diagrama de barras bidimensional que muestre la información deseada). Poned nombres adecuados a los bloques, colores a las barras, y añadid una leyenda que explique qué representa cada barra. ¿Se puede obtener alguna conclusión de esta tabla y de este diagrama de barras?
+
+
+
+
+
