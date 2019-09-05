@@ -1,6 +1,6 @@
 --- 
 title: "AprendeR: Parte I"
-author: "The AprendeR team"
+author: "The UIB-AprendeR team"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
@@ -9,7 +9,7 @@ documentclass: book
 #bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: RicUIB/AprendeR
+github-repo: AprendeR-UIB/AprendeR1
 description: "Apuntes AprendeR bookdown::gitbook."
 bookdown::pdf_book:
   includes:
@@ -37,10 +37,12 @@ options(knitr.graphics.auto_pdf=TRUE)
 par(cex.main=0.9,cex.axis=0.8,cex.lab=0.8)
 ```
 
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
 
 # Presentación {-}
 
-Esto es una edición preliminar en línea de la 1a parte del libro "AprendeR".
+Edición preliminar en línea de la 1a parte del libro *AprendeR*, producido por un grupo de profesores del Departamento de Ciencias Matemáticas e Informática de la UIB.
 
 El libro está escrito en *R Markdown*, usando *RStudio* como editor de texto y el paquete **bookdown** para convertir los ficheros *markdown* en un libro. 
 

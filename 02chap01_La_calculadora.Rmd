@@ -1,32 +1,35 @@
 # La calculadora {#chap:calc}
 
- Cuando se trabaja en modo interactivo en la consola de `R`, hay que escribir las instrucciones a la derecha de la marca de inicio `>` de la línea inferior. 
-Para evaluar una instrucción al terminar de escribirla, se tiene que pulsar la tecla *Entrar* ($\hookleftarrow$); así, por ejemplo, si junto a la marca de inicio escribimos `2+3` y pulsamos  *Entrar*, `R` escribirá en la línea siguiente el resultado, `5`, y a continuación una nueva línea en blanco encabezada por la marca de inicio, donde podremos continuar entrando instrucciones.
+ Cuando se trabaja en modo interactivo en la consola de R, hay que escribir las instrucciones a la derecha de la marca de inicio `>` de la línea inferior (que omitimos en los bloques de código de este libro). 
+Para evaluar una instrucción al terminar de escribirla, se tiene que pulsar la tecla *Entrar* ($\hookleftarrow$); así, por ejemplo, si junto a la marca de inicio escribimos 2+3 y pulsamos  *Entrar*, R escribirá en la línea siguiente el resultado, 5, y a continuación una nueva línea en blanco encabezada por la marca de inicio, donde podremos continuar entrando instrucciones.
 
 ```{r}
-2+3 #Y ahora aquí pulso Entrar
+2+3 #Y ahora aquí pulsamos Entrar
 ```
 
 
-Bueno, hemos hecho trampa. Como ya habíamos comentado en la Sección \@ref(sec:guiones), se pueden escribir comentarios: `R` ignora  todo lo que se escribe en la línea después de un signo `#`. También podéis observar que `R` ha dado el resultado en una línea que empieza con `[1]`; ya discutiremos en la Lección \@ref(chap:vect) qué significa este `[1]`. 
+Bueno, hemos hecho trampa. Como ya habíamos comentado en la lección anterior, se pueden escribir comentarios: R ignora  todo lo que se escribe en la línea después de un signo `#`. También podéis observar que R ha dado el resultado en una línea que empieza con `[1]`; ya discutiremos en la Lección \@ref(chap:vect) qué significa este `[1]`. 
 
 
-Si la expresión que entramos no está completa, `R` no la evaluará y en la línea siguiente esperará a que la acabemos; lo indicará con la `marca de continuación`, por defecto un signo `+`.^[ En estas notas, y excepto en el  ejemplo que damos en esta página, no mostraremos este signo `+` para no confundirlo con una suma.]  Además, si cometemos algún error de sintaxis, `R` nos avisará con un mensaje de error.^[Cuando instaláis `R`, éste reconoce la zona donde vivís a partir de información que extrae del ordenador, y especifica el idioma de los mensajes de acuerdo con esta zona. Seguramente, por lo tanto, los mensajes de error y advertencias os aparecerán en castellano; un castellano algo chapucero, la verdad. Si los queréis en inglés, entrad la instrucción 
-`system("defaults write org.R-project.R force.LANG en_US.UTF-8")` y, a continuación, cerrad `Rstudio` y volvedlo a abrir. Si los tenéis en inglés, o en cualquier otro idioma, y los 
-queréis en castellano, tenéis que usar `system("defaults write org.R-project.R force.LANG es_Es.UTF-8")`.]
+Si la expresión que entramos no está completa, R no la evaluará y en la línea siguiente esperará a que la acabemos, indicándolo con la **marca de continuación**, por defecto un signo +. (En estas notas, y excepto en el  ejemplo que damos a continuación, no mostraremos este signo + para no confundirlo con una suma.)  Además, si cometemos algún error de sintaxis, R nos avisará con un mensaje de error.
 
 
-```
-> 2*(3+5 #Pulso Entrar, pero no he acabado
+```{r, eval=FALSE,error=TRUE}
+2*(3+5 #Pulsamos Entrar, pero no hemos acabado
 + ) #ahora sí
-[1] 16
-> 2*3+5)
-Error: unexpected ')' in "2*3+5)"
 ```
 
-Como podemos ver, al ejecutar la segunda instrucción, `R` nos  avisa de que el paréntesis  no está en su sitio.
+```{r,echo=FALSE}
+2*(3+5)
+```
 
-Se puede agrupar más de una instrucción en una sola línea separándolas con signos de punto y coma. Al pulsar la tecla *Entrar*, `R` las ejecutará todas, una tras otra y en el orden en el que las hayamos escrito. 
+```{r,error=TRUE}
+2*3+5)
+```
+
+Como podemos ver, al ejecutar la segunda instrucción, R nos  avisa de que el paréntesis  no está en su sitio.
+
+Se puede agrupar más de una instrucción en una sola línea separándolas con signos de punto y coma. Al pulsar la tecla *Entrar*, R las ejecutará todas, una tras otra y en el orden en el que las hayamos escrito. 
 
 ```{r}
 2+3; 2+4; 2+5
@@ -34,33 +37,29 @@ Se puede agrupar más de una instrucción en una sola línea separándolas con s
 
 ## Números reales: operaciones y funciones básicas
 
- La separación entre la parte entera y la parte decimal en  los números reales se indica con un punto, no con una coma.^[Por consistencia, en el texto también seguiremos el convenio angloamericano de usar un punto en lugar de una coma como separador decimal.] 
+ La separación entre la parte entera y la parte decimal en  los números reales se indica con un punto, no con una coma. Por consistencia, en el texto también seguiremos el convenio angloamericano de usar un punto en lugar de una coma como separador decimal.
 
 
-```
-> 2+2.5 #¡ATENCIÓN! El separador decimal ha de ser un punto
-[1] 4.5
-> 2+2,5 #No con una coma
-Error: unexpected ',' in "2+2,"
+
+```{r,error=TRUE}
+2+2,5
 ```
 
-Las operaciones usuales se indican en `R` con los signos que damos en la Tabla \@ref(tab:ops).
-Por lo que se refiere a los dos últimos operadores en esta tabla, recordad que si $a$ y $b$ son dos números  reales, con $b>0$, la `división entera`  de $a$ por $b$ da como `cociente entero` el mayor número entero $q$ tal que $q\cdot b\leq a$, y como `resto`
-la diferencia $a-q\cdot b$. Por ejemplo, la división entera de 29.5 entre 6.3 es $29.5=4\cdot 6.3+4.3$, con cociente entero 4 y resto 4.3.^[ Cuando $b<0$, `R` da como cociente entero el menor número entero $q$ tal que $q\cdot b\geq a$, y como resto  la diferencia $a-q\cdot b$, que en este caso es negativa.]
-
-
-
-```{r echo=FALSE}
-df.aux=cbind( c("Operación","Suma","Resta","Multiplicación","División","Potencia"," Cociente entero ","Resto div. entera"),
-c("Simbolos" , "+" , "-", "*", "/", "^", "%/%","%%"))
+```{r}
+2+2.5
 ```
 
-```{r ops,echo=FALSE}
-knitr::kable(
-df.aux,
-  caption = 'Símbolos de operaciones aritméticas.', booktabs = FALSE
-)
-```
+Las operaciones usuales se indican en R con los signos que damos en la lista siguiente.
+Por lo que se refiere a los dos últimos operadores en esta lista, recordad que si $a$ y $b$ son dos números  reales, con $b>0$, la **división entera**  de $a$ por $b$ da como **cociente entero** el mayor número entero $q$ tal que $q\cdot b\leq a$, y como **resto**
+la diferencia $a-q\cdot b$. Por ejemplo, la división entera de 29.5 entre 6.3 es 29.5=4·6.3+4.3, con cociente entero 4 y resto 4.3. (Cuando $b<0$, R da como cociente entero el menor número entero $q$ tal que $q\cdot b\geq a$, y como resto  la diferencia $a-q\cdot b$, que en este caso es negativa.)
+
+* **Suma**: `+`
+* **Resta**: -
+* **Multiplicación**: `*`
+* **División**: `/` 
+* **Potencia**: `^`
+* **Cociente entero**: `%/%`
+* **Resto de la división entera**: `%%`
 
 <!--
 \begin{table}[htb]
@@ -103,55 +102,87 @@ pi
 
 ¡Cuidado! No  podemos omitir el signo `*` en las  multiplicaciones.
 
-```
-> 2(3+5)
-Error: attempt to apply non-function
-> 2*(3+5)
-[1] 16
-> 2pi
-Error: unexpected symbol in "2pi"
-> 2*pi
-[1] 6.283185
+```{r,error=TRUE}
+2(3+5)
 ```
 
-Cuando un número es muy grande o muy pequeño, `R` emplea la llamada `notación científica` para dar una aproximación.
+```{r}
+2*(3+5)
+```
+
+```{r,error=TRUE}
+2pi
+```
+
+```{r}
+2*pi
+```
+
+Cuando un número es muy grande o muy pequeño, R emplea la llamada `notación científica` para dar una aproximación.
 
 ```{r}
 2^40
 2^(-20)
 ```
 
-En este ejemplo,  `1.099512e+12` representa el número $1.099512\cdot 10^{12}$, es decir, 1099512000000, y `9.536743e-07` representa el número $9.536743\cdot 10^{-7}$, es decir,
-$0.0000009536743$. Como muestra el ejemplo siguiente, no es necesario que un número sea  especialmente grande o pequeño
-para que `R` lo escriba en notación científica: basta que esté rodeado de otros números en esa notación.
+En este ejemplo,  `1.099512e+12` representa el número 1.099512·10^12^, es decir, 1099512000000, y `9.536743e-07` representa el número 9.536743· 10^-7^, es decir,
+0.0000009536743. Como muestra el ejemplo siguiente, no es necesario que un número sea  especialmente grande o pequeño
+para que R lo escriba en notación científica: basta que esté rodeado de otros números en esa notación.
 
 
 ```{r}
 c(2^40,2^(-20),17/3) #La función c sirve para definir vectores
 ```
 
-Este  `5.666667e+00`  representa el número $5.666667\cdot 10^0$, es decir, 
-$5.666667$. 
+Este  `5.666667e+00`  representa el número 5.666667·10^0^, es decir, 
+5.666667. 
 
-`R` dispone, entre muchas otras, de las funciones numéricas de la Tabla \@ref(tab:ops).
+R dispone, entre muchas otras, de las funciones numéricas de la lista siguiente:
 
-Recordad que $n!$, el `factorial` de $n$, es el producto
+* **Valor absoluto**, $|x|$: `abs(x)`
 
+* **Raíz cuadrada**, $\sqrt(x)$: `sqrt(x)`
+
+* **Exponencial**, $e^x$: `exp(x)`
+
+* **Logaritmo neperiano**, $\ln(x)$: `log(x)`
+
+* **Logaritmo decimal**, $\log_{10}(x)$: `log10(x)`
+
+* **Logaritmo binario**, $\log_2(x)$: `log2(x)`
+
+* **Logaritmo en base $a$**, $\log_a(x)$: `log(x,a)`
+
+* **Factorial**, $n!$: `factorial(n)`
+
+* **Número combinatorio**, $\binom{n}{m}$: `choose(n,m)`
+
+* **Seno**, $\sin(x)$: `sin(x)`
+
+* **Coseno**, $\cos(x)$: `cos(x)`
+
+* **Tangente**, $\tan(x)$: `tan(x)`
+
+* **Arcoseno**, $\arcsin(x)$: `asin(x)`
+
+* **Arcocoseno**, $\arccos(x)$: `acos(x)`
+
+* **Arcotangente**, $\arctan(x)$: `atan(x)`
+
+
+Recordad que el **valor absoluto**  $|x|$ de un número $x$ se obtiene tomando $x$ sin signo: $|-8|=|8|=8$. Recordad también que el **factorial** $n!$ de $n$, es el producto
 $$
 n!=n\cdot (n-1)\cdot (n-2) \cdots 3\cdot 2 \cdot 1
 $$
-
-(con el convenio de que $0!=1$), y es igual al número de maneras posibles de ordenar una lista de $n$ objetos diferentes (su número de `permutaciones` ).
-El `número combinatorio`  $\binom{n}{m}$, con $m\leq n$, es
-
+(con el convenio de que $0!=1$), y es igual al número de maneras posibles de ordenar una lista de $n$ objetos diferentes (su número de **permutaciones**),
+y que el **número combinatorio**  $\binom{n}{m}$, con $m\leq n$, es
 $$
 \binom{n}{m}=\frac{n!}{m!\cdot (n-m)!}=\frac{n(n-1)(n-2)\cdots (n-m+1)}{m(m-1)(m-2)\cdots 2\cdot 1},
 $$
-
-y es igual al número de maneras posibles de escoger un subconjunto de $m$ elementos de un conjunto de $n$ objetos diferentes. Recordad también que el `valor absoluto`  $|x|$ de un número $x$ se obtiene tomando $x$ sin signo: $|-8|=|8|=8$.
-
+y es igual al número de maneras posibles de escoger un subconjunto de $m$ elementos de un conjunto de $n$ objetos diferentes. 
 
 
+<!--
 |Función  | $\sqrt{x}$ | $e^x$ | $\ln(x)$ | $\log_{10}(x)$ | $\log_a(x)$ | $n!$ | $\binom{n}{m}$|
 |---:|---:|---:|---:|---:|---:|---:|---:|  
 **Signo** | sqrt | exp | log | log10 | log( , a) |`factorial`|`choose`|
@@ -159,6 +190,7 @@ y es igual al número de maneras posibles de escoger un subconjunto de $m$ eleme
 |Función | $\sin(x)$ | $\cos(x)$ | $\tan(x)$ | $\arcsin(x)$ | $\mathrm{arccos}(x)$ | $\arctan(x)$ | `|`$x$`|` |
 |---:|---:|---:|---:|---:|---:|---:|---:|  
 **Signo** | `sin` | `cos`|`tan`|`asin`|`acos`| `atan`|`abs`|
+-->
 
 
 
@@ -197,19 +229,20 @@ Signo & `sin`\vphantom{$\Big($} & `cos` & `tan` & `asin` & `acos`& `atan` & `abs
 \end{table}
 -->
 
-Las funciones de `R` se aplican a sus argumentos introduciéndolos siempre entre paréntesis. Si la función se tiene que aplicar a más de un argumento, éstos se tienen que especificar en el orden que toque y separándolos mediante comas; `R` no tiene en cuenta los espacios en blanco alrededor de las comas. Veamos algunos ejemplos:
+
+
+Las funciones de R se aplican a sus argumentos introduciéndolos siempre entre paréntesis. Si la función se tiene que aplicar a más de un argumento, éstos se tienen que especificar en el orden que toque y separándolos mediante comas; R no tiene en cuenta los espacios en blanco alrededor de las comas. Veamos algunos ejemplos:
 
 ```{r}
 sqrt(4)
 sqrt(8)-8^(1/2)
 log10(8)
 log(8)/log(10)
-7^log(2, 7) #7 elevado al logaritmo en base 7 de 2 da...
+7^log(2,7) #7 elevado al logaritmo en base 7 de 2 es 2
 ```
 
-```
-> 10! #R no entiende esta expresión
-Error: syntax error
+```{r,error=TRUE}
+10! #R no entiende esta expresión
 ```
 
 ```{r}
@@ -219,8 +252,8 @@ choose(5,3)  #Núm. de subconjuntos de 3 elementos de un conjunto de 5
 choose(3,5)  #Núm. de subconjuntos de 5 elementos de un conjunto de 3
 ```
 
-`R` entiende que los argumentos de las funciones `sin`, `cos` y `tan` están en radianes. Si queremos aplicar una de estas funciones a un número de grados, podemos traducir los grados a radianes multiplicándolos por $\pi/180$.
-De manera similar, los resultados de `asin`, `acos` y `atan` también están en radianes, y se pueden convertir a grados 
+R entiende que los argumentos de las funciones `sin`, `cos` y `tan` están en radianes. Si queremos aplicar una de estas funciones a un número de grados, podemos traducir los grados a radianes multiplicándolos por $\pi/180$.
+De manera similar, los resultados de `asin`, `acos` y `atan` también están en radianes, y se pueden traducir a grados 
 multiplicándolos por $180/\pi$.
 
 ```{r}
@@ -231,9 +264,9 @@ acos(0.5)*180/pi #Arcocoseno de 0.5 en grados
 acos(2) 
 ```
 
-Este último `NaN` (acrónimo de `Not a Number` ) significa que el resultado no existe; en efecto, $\mathrm{arccos}(2)$ no existe como número real, ya que $\cos(x)$ siempre pertenece al intervalo $[-1,1]$.
+Este último `NaN` (acrónimo de `Not a Number`) significa que el resultado no existe; en efecto, $\mathrm{arccos}(2)$ no existe como número real, ya que $\cos(x)$ siempre pertenece al intervalo $[-1,1]$.
 
-Ya hemos visto que `R` dispone del signo `pi` para representar el número real $\pi$. En cambio, 
+Ya hemos visto que R dispone del signo `pi` para representar el número real $\pi$. En cambio, 
 no tiene ningún signo para indicar la constante de Euler $e$, y hay que emplear `exp(1)`.
 
 ```{r}
@@ -248,19 +281,20 @@ Para terminar esta sección, observad el resultado siguiente:
 sqrt(2)^2-2
 ```
 
-
-`R` opera numéricamente con $\sqrt{2}$, no formalmente,
+R opera numéricamente con $\sqrt{2}$, no formalmente,
 y por eso no  da como resultado de $(\sqrt{2})^2-2$ el valor 0 exacto, sino
-el número pequeñísimo $4.440892\cdot 10^{-16}$; de hecho, `R` trabaja internamente con una precisión de aproximadamente 16 cifras decimales, por lo que no siempre podemos esperar resultados exactos.^[ Si necesitáis trabajar de manera exacta con más cifras significativas, os recomendamos usar las funciones del paquete `Rmpfr`. Podéis consultar su manual de referencia en [https://cran.r-project.org/web/packages/Rmpfr/index.html](https://cran.r-project.org/web/packages/Rmpfr/index.html) .] 
+el número pequeñísimo 4.440892·10^-16^; de hecho, R trabaja internamente con una precisión de aproximadamente 16 cifras decimales, por lo que no siempre podemos esperar resultados exactos. Si necesitáis trabajar de manera exacta con más cifras significativas, os recomendamos usar las funciones del paquete `Rmpfr`. 
 
 
 ## Cifras significativas y redondeos
 
- En cada momento, `R` decide cuántas cifras muestra de un número según el contexto.^[ También podéis especificar este número de cifras para toda una sesión, entrándolo en lugar de los puntos suspensivos en `options(digits=...)`. Esto no cambia la precisión de los cálculos, sólo cómo se muestran los resultados.]   Si queremos conocer
-una cantidad específica $n$ de cifras significativas
- de un número $x$, podemos emplear la función `print(x, n)`.
-Por ejemplo:
+En cada momento, R decide cuántas cifras muestra de un número según el contexto. También podemos especificar este número de cifras para toda una sesión, entrándolo en lugar de los puntos suspensivos en `options(digits=...)`. Hay que tener presente que ejecutar esta instrucción no cambiará la precisión de los cálculos, sólo cómo se muestran los resultados. 
 
+Si queremos conocer una cantidad específica *n* de cifras significativas de un número *x*, podemos emplear la función 
+```{r,eval=FALSE}
+print(x, n)
+```
+Observad su efecto:
 ```{r}
 sqrt(2)
 print(sqrt(2), 20)
@@ -271,38 +305,42 @@ print(2^100, 5)
 ```
 
 
-El número máximo de cifras que podemos pedir con `print` es 22; si pedimos más, `R` nos dará un mensaje de error.
+El número máximo de cifras que podemos pedir con `print` es 22; si pedimos más, R nos dará un mensaje de error.
 
 ```{r}
 print(sqrt(2), 22)
 ```
-```
-> print(sqrt(2), 23)
-Error in print.default(sqrt(2), 23) : invalid 'digits' argument
+
+```{r,error=TRUE}
+print(sqrt(2), 23)
 ```
 
 
-Por otro lado, hay que tener en cuenta que, como ya hemos comentado, `R` trabaja con una precisión de unas 16 cifras decimales y por lo tanto los dígitos más allá de esta precisión pueden ser incorrectos. Por ejemplo, si le pedimos las 22 primeras cifras de $\pi$, obtenemos el resultado siguiente:
+Por otro lado, hay que tener en cuenta que, como ya hemos comentado, R trabaja con una precisión de unas 16 cifras decimales y por lo tanto los dígitos más allá de esta precisión pueden ser incorrectos. Por ejemplo, si le pedimos las 22 primeras cifras de $\pi$, obtenemos el resultado siguiente:
 
 ```{r}
 print(pi,22)
 ```
-En cambio, $\pi$ vale  en realidad $3.141592653589793\underline{238462}\ldots$, lo que significa que el valor que  da `R` es erróneo a partir de la decimosexta cifra decimal.
+En cambio, $\pi$ vale  en realidad 3.141592653589793***238462...***, lo que significa que el valor que  da R es erróneo a partir de la decimosexta cifra decimal.
 
-La función `print`  permite indicar las cifras que queremos `leer` , pero no sirve para especificar las cifras decimales con las que queremos `trabajar`.
-Para `redondear`  un número $x$ a una cantidad específica $n$ de cifras decimales, y trabajar solamente con esas cifras, hay que usar la función
-`round(x, n)`. La diferencia entre los efectos de `print` y `round` consiste en que `print(sqrt(2), 3)` es igual a $\sqrt{2}$, pero  `R` sólo muestra sus primeras 3 cifras, mientras que  `round(sqrt(2), 3)` `es igual a`  $1.414$.
+La función `print`  permite indicar las cifras que queremos *leer*, pero no sirve para especificar las cifras decimales con las que queremos *trabajar*.
+Para *redondear*un número $x$ a una cantidad específica *n* de cifras decimales, y trabajar solamente con esas cifras, hay que usar la función
+```{r,eval=FALSE}
+round(x, n)
+```
+
+La diferencia entre los efectos de `print` y `round` consiste en que `print(sqrt(2), 4)` es igual a $\sqrt{2}$, pero  R sólo muestra sus primeras 4 cifras, 1.414, mientras que  `round(sqrt(2), 3)` *es igual a*  1.414.  Veamos algunos ejemplos
 
 ```{r}
-print(sqrt(2), 3)
-print(sqrt(2), 3)^2
-1.41^2
+print(sqrt(2), 4)
+print(sqrt(2), 4)^2
+1.414^2
 round(sqrt(2), 3)
 round(sqrt(2), 3)^2
 ```
 
 
-En caso de empate, R redondea al valor que termina en cifra par.^[  No es un capricho, es la regla de redondeo en caso de empate recomendada por el estándar IEEE 754 para aritmética en coma flotante.] 
+En caso de empate, R redondea al valor que termina en cifra par, siguiendo la regla de redondeo en caso de empate recomendada por el estándar IEEE 754 para aritmética en coma flotante.
 
 ```{r}
 round(2.25, 1)
@@ -316,10 +354,10 @@ round(sqrt(2))
 round(sqrt(2), 0) 
 ```
 
-Al entrar `round(sqrt(2))`, `R` ha entendido que el número de cifras decimales al que queríamos redondear era 0. Esto significa que 0 es el `valor por defecto`  de este parámetro. No es necesario especificar los valores por defecto de los parámetros de una función, y para saber cuáles son, hay que consultar su Ayuda. Así, por ejemplo,  la Ayuda de `round`  indica que su sintaxis es
-
-`round(x, digits=0)`,
-
+Al entrar `round(sqrt(2))`, R ha entendido que el número de cifras decimales al que queríamos redondear era 0. Esto significa que 0 es el **valor por defecto**  de este parámetro. No es necesario especificar los valores por defecto de los parámetros de una función, y para saber cuáles son, hay que consultar su Ayuda. Así, por ejemplo,  la Ayuda de `round`  indica que su sintaxis es
+```{r,eval=FALSE}
+round(x, digits=0)
+```
 donde  el valor de `digits` ha de ser un número entero que indique el número de cifras decimales. Esta sintaxis significa que el valor por defecto del parámetro `digits` es  0. 
 
 Escribir `digits=` en el argumento para especificar el número de cifras decimales es optativo, siempre que mantengamos el orden de los argumentos indicado en la Ayuda: en este caso,  primero el número y luego las cifras. Este es el motivo  por el que podemos escribir 
@@ -331,16 +369,16 @@ round(3, sqrt(2))
 ```
 
 
-En la tabla de funciones ya vimos una función de dos argumentos que toma uno por defecto: `log`. Su sintaxis completa es `log(x, base=...)`, y si no especificamos la `base`, toma su valor por defecto, $e$, y calcula el logaritmo neperiano.
+En la lista de funciones ya vimos una función de dos argumentos que toma uno por defecto: `log`. Su sintaxis completa es `log(x, base=...)`, y si no especificamos la `base`, toma su valor por defecto, $e$, y calcula el logaritmo neperiano.
 
 
-La función `round(x)` redondea $x$ al valor entero más cercano (y en caso de empate, al que termina en cifra par). `R` también dispone de otras funciones que permiten redondear a números enteros en otros sentidos específicos:
+La función `round(x)` redondea $x$ al valor entero más cercano (y en caso de empate, al que termina en cifra par). R también dispone de otras funciones que permiten redondear a números enteros en otros sentidos específicos:
 
-* `floor(x)` redondea $x$ a un número entero por defecto, dando el mayor número entero menor o igual que $x$, que denotamos por $\lfloor x\rfloor$.
+* `floor(x)` redondea $x$ a un número entero **por defecto**, dando el mayor número entero menor o igual que $x$, que denotamos por $\lfloor x\rfloor$.
 
-* `ceiling(x)` redondea $x$ a un número entero por exceso, dando el menor número entero mayor o igual que $x$, que denotamos por $\lceil x\rceil$.
+* `ceiling(x)` redondea $x$ a un número entero **por exceso**, dando el menor número entero mayor o igual que $x$, que denotamos por $\lceil x\rceil$.
 
-* `trunc(x)` da la parte entera de $x$, eliminando la parte decimal.
+* `trunc(x)` da la **parte entera** de $x$, eliminando la parte decimal: es lo que se llama **truncar** $x$ a un entero.
 
 
 ```{r}
@@ -356,17 +394,21 @@ round(-3.7) #El entero más cercano a -3.7
 
 ## Definición de variables
 
- `R` funciona mediante `objetos`, estructuras de diferentes tipos que sirven para realizar diferentes tareas. Una `variable`  es un tipo de objeto que sirve para guardar datos. 
-Por ejemplo, si queremos crear una variable $x$ que  contenga el valor $\pi^2$, podemos escribir:
+ R funciona mediante **objetos**, estructuras de diferentes tipos que sirven para realizar diferentes tareas. Una **variable**  es un tipo de objeto que sirve para guardar datos. 
+Por ejemplo, si queremos crear una variable `x` que  contenga el valor $\pi^2$, podemos escribir:
 
 ```{r}
 x=pi^2
 ```
 
 
-Al entrar esta instrucción, `R` creará el objeto `x` y le asignará el valor que hemos especificado.
+Al entrar esta instrucción, R creará el objeto `x` y le asignará el valor que hemos especificado.
 En general, se puede crear una variable y asignarle un valor, o asignar un nuevo valor a una variable definida anteriormente, mediante
-la construcción `nombre_de_la_variable=valor`.
+la construcción 
+```{r, eval=FALSE}
+nombre_de_la_variable=valor
+```
+
 
 También se puede conectar el nombre de la variable con el valor por medio de una flecha `->` o `<-`, compuesta de un guión y un signo de desigualdad,  de manera que el sentido de la flecha vaya del valor a la variable; por ejemplo, las tres primeras instrucciones siguientes son equivalentes, y asignan el valor 2 a la variable $x$, mientras que las dos últimas son incorrectas:
 
@@ -375,20 +417,21 @@ x=2
 x<-2
 2->x
 ```
+
+```{r,error=TRUE}
+2=x
 ```
-> 2=x
-Error in 2 = x : invalid (do_set) left-hand side to assignment
-> 2<-x
-Error in 2 <- x : invalid (do_set) left-hand side to assignment
+
+```{r,error=TRUE}
+2<-x
 ```
 
 Nosotros usaremos sistemáticamente el signo `=` para hacer asignaciones. 
 
-Se puede usar como nombre de una variable cualquier palabra que combine letras mayúsculas y minúsculas (`R` las distingue), con acentos o sin,^[ Aunque os recomendamos que no uséis letras acentuadas, ya que se pueden importar mal de un ordenador a otro. Nosotros las evitaremos.]  dígitos (0,..., 9), puntos <<.>> y signos <<`_`>>, siempre que empiece con una letra o un punto. Aunque no esté prohibido, es  muy mala idea redefinir 
-nombres que ya sepáis que tienen significado para `R`, como por ejemplo `pi` o `sqrt`.^[En la Web se pueden encontrar muchas <*guías de estilo de `R`* con recomendaciones sobre cómo construir los nombres de objetos. Un buen artículo introductorio sobre el tema se puede encontrar en [http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf](http://journal.r-project.org/archive/2012-2/RJournal_2012-2_Baaaath.pdf) . Al aprender un lenguaje informático es cuando es más fácil adquirir buenos hábitos.] 
+Se puede usar como nombre de una variable cualquier palabra que combine letras mayúsculas y minúsculas (R las distingue), con acentos o sin (aunque os recomendamos que no uséis letras acentuadas, ya que se pueden importar mal de un ordenador a otro),  dígitos (0,..., 9), puntos `.` y  guiones bajos `_`, siempre que empiece con una letra o un punto. Aunque no esté prohibido, es  muy mala idea redefinir  nombres que ya sepáis que tienen significado para R, como por ejemplo `pi` o `sqrt`.  
 
-Como podéis ver en las instrucciones anteriores y en las que siguen, cuando asignamos un valor a una variable, `R` no da ningún resultado; después podemos usar el nombre de la variable para referirnos al valor que representa. 
-Es posible asignar varios valores a una misma variable en una misma sesión: naturalmente, en cada momento `R` empleará el último valor asignado. Incluso se puede redefinir el valor de una variable usando en la nueva definición su valor actual.
+Como podéis ver en las instrucciones anteriores y en las que siguen, cuando asignamos un valor a una variable, R no da ningún resultado; después podemos usar el nombre de la variable para referirnos al valor que representa. 
+Es posible asignar varios valores a una misma variable en una misma sesión: naturalmente, en cada momento R empleará el último valor asignado. Incluso se puede redefinir el valor de una variable usando en la nueva definición su valor actual.
 
 ```{r}
 x=5
@@ -403,13 +446,17 @@ x
 
 ## Definición de funciones
 
- A menudo querremos definir alguna función. Para ello tenemos que usar, en vez de simplemente `=`, una construcción especial: `nombre_de_la_función=function(variable(s)){definición}`. Una vez definida una función, la podemos aplicar a valores de la(s) variable(s). 
+ A menudo querremos definir alguna función. Para ello tenemos que usar, en vez de simplemente `=`, una construcción especial: 
+ 
+```{r, eval=FALSE}
+nombre_de_la_función=function(variables){definición}
+```
+Una vez definida una función, la podemos aplicar a valores de la variable o variables. 
 
-Veamos un ejemplo. Vamos a llamar $f$ a la función $x^2-2^x$, usando $x$ como variable:
-
+Veamos un ejemplo. Vamos a llamar $f$ a la función $x^2-2^x$, usando $x$ como variable, y a continuación la aplicamos a $x=30$:
 ```{r}
 f=function(x){x^2-2^x}
-f(30) #La función f aplicada a 30
+f(30)
 ```
 
 
@@ -440,10 +487,10 @@ hay que separar las diferentes instrucciones con signos de punto y coma o escrib
 Ya iremos viendo ejemplos a medida que avance el curso.
 
 En cada momento  se pueden saber los objetos (por ejemplo, variables y funciones)  que se han definido en la sesión hasta ese momento entrando 
-la instrucción `ls()` o consultando la pestaña **Environment**.
+la instrucción `ls()` o consultando la pestaña *Environment*.
 Para borrar la definición de un objeto, hay que aplicarle la función `rm`.
 Si se quiere hacer limpieza y borrar  de golpe las definiciones de todos los objetos que se han definido hasta el momento,
-se puede emplear la instrucción `rm(list=ls())` o usar el botón <<*Clear*>> (icono de la escoba) de la barra superior de la pestaña  **Environment**.
+se puede emplear la instrucción `rm(list=ls())` o usar el botón con el icono de la escoba de la barra superior de la pestaña  *Environment*.
 
 ```{r}
 rm(list=ls())    #Borramos todas las definiciones
@@ -455,16 +502,15 @@ rm(a)
 ls()
 ```
 
-```
-> a
-Error: object 'a' not found
+```{r,error=TRUE}
+a
 ```
 
 
 
 ## Números complejos (opcional)
 
- Hasta aquí, hemos operado con números reales. Con `R` también podemos operar con números complejos. Los signos para las operaciones son los mismos que en el caso real.
+ Hasta aquí, hemos operado con números reales. Con R también podemos operar con números complejos. Los signos para las operaciones son los mismos que en el caso real.
 
 ```{r}
 (2+5i)*3
@@ -473,37 +519,44 @@ Error: object 'a' not found
 ```
 
 
-Fijaos en que cuando entramos en `R` un número complejo escrito en forma binomial $a+bi$, **no** escribimos un `*` entre la `i` y su coeficiente; de hecho, *no hay que escribirlo* :
+Fijaos en que cuando entramos en R un número complejo escrito en forma binomial $a+bi$, *no* escribimos un `*` entre la `i` y su coeficiente; de hecho, *no hay que escribirlo* :
 
+```{r,error=TRUE}
+2+5*i
 ```
-> 2+5*i
-Error: object 'i' not found
-```
-Por otro lado, si el coeficiente de $i$ es 1 o $-1$, hay que escribir el <<1>>: por ejemplo, $3-i$ se tiene que escribir `3-1i`. Si no lo hacemos, `R` da un mensaje de error.
+Por otro lado, si el coeficiente de $i$ es 1 o -1, hay que escribir el 1: por ejemplo, $3-i$ se tiene que escribir `3-1i`. Si no lo hacemos, R da un mensaje de error.
 
+```{r,error=TRUE}
+(3+i)*(2-i)
 ```
-> (3+i)*(2-i)
-Error: object 'i' not found
-```
+
 ```{r}
 (3+1i)*(2-1i)
 ```
 
 
-Los  complejos que tienen como parte imaginaria un número entero o un racional escrito en forma decimal se pueden entrar directamente en forma binomial, como lo hemos hecho hasta ahora. Para definir números complejos más <<complejos>> se puede usar la función `complex(real=..., imaginary=...)`.
+Los  complejos que tienen como parte imaginaria un número entero o un racional escrito en forma decimal se pueden entrar directamente en forma binomial, como lo hemos hecho hasta ahora. Para definir números complejos más... complejos, se puede usar la función 
+```{r,eval=FALSE}
+complex(real=..., imaginary=...)
+```
+
 
 Veamos un ejemplo:
 
-```{R}
+```{r}
 1+2/3i #Esto en realidad es 1 más 2 partido por 3i
 ```
+
+```{r,error=TRUE}
+1+(2/3)i  
 ```
-> 1+(2/3)i  
-Error: unexpected symbol in "1+(2/3)i"
-> complex(real=1,imaginary=2/3)
-[1] 1+0.666667i
-> z=1+sqrt(2)i
-Error: unexpected symbol in "z=1+sqrt(2)i"
+
+```{r}
+complex(real=1,imaginary=2/3)
+```
+
+```{r,error=TRUE}
+z=1+sqrt(2)i
 ```
 
 ```{r}
@@ -512,22 +565,19 @@ z
 ```
 
 
-Como sabéis, los números complejos se inventaron para poder trabajar con raíces cuadradas de números negativos. Ahora bien, por defecto,  cuando calculamos la raíz cuadrada de un número negativo `R` no devuelve un número complejo, sino que se limita a avisarnos de que no existe.
+Como sabéis, los números complejos se inventaron para poder trabajar con raíces cuadradas de números negativos. Ahora bien, por defecto,  cuando calculamos la raíz cuadrada de un número negativo R no devuelve un número complejo, sino que se limita a avisarnos de que no existe.
 
-```
+```{r,error=TRUE,warning=TRUE}
 sqrt(-3)
-[1] NaN
-Warning message:
-In sqrt(-3) : NaNs produced
 ```
-Si queremos que `R` produzca un número complejo al calcular la raíz cuadrada de un número negativo, tenemos que especificar que este número negativo es un número complejo. La mejor manera de hacerlo es declarándolo como  complejo aplicándole la función `as.complex`
+Si queremos que R produzca un número complejo al calcular la raíz cuadrada de un número negativo, tenemos que especificar que este número negativo es un número complejo. La mejor manera de hacerlo es declarándolo como  complejo aplicándole la función `as.complex`
 
 ```{r}
 sqrt(as.complex(-3))
 ```
 
 
-La mayoría de las funciones que hemos dado para los números reales admiten extensiones para números complejos, y con `R` se calculan con la misma función. Ahora no entraremos a explicar cómo se definen estas extensiones, sólo lo comentamos por si sabéis qué hacen y os interesa calcularlas.
+La mayoría de las funciones que hemos dado para los números reales admiten extensiones para números complejos, y con R se calculan con la misma función. Ahora no entraremos a explicar cómo se definen estas extensiones, sólo lo comentamos por si sabéis qué hacen y os interesa calcularlas.
 
 ```{r}
 sqrt(2+3i)
@@ -537,8 +587,8 @@ acos(as.complex(2)) #El arcocoseno de 2 es un número complejo
 ```
 
 
-La raíz cuadrada merece un comentario. Naturalmente, `sqrt(2+3i)` calcula un número complejo $z$ tal que $z^2=2+3i$. Como ocurre con los números reales, todo número complejo diferente de 0 tiene dos raíces cuadradas, y una se obtiene multiplicando la otra por $-1$.
-`R`  da como raíz cuadrada de un número real la positiva, y como raíz cuadrada de un complejo la que tiene parte real positiva, y si su parte real es 0, la que tiene parte imaginaria positiva. 
+La raíz cuadrada merece un comentario. Naturalmente, `sqrt(2+3i)` calcula un número complejo $z$ tal que $z^2=2+3i$. Como ocurre con los números reales, todo número complejo diferente de 0 tiene dos raíces cuadradas, y una se obtiene multiplicando la otra por -1.
+R  da como raíz cuadrada de un número real la positiva, y como raíz cuadrada de un complejo la que tiene parte real positiva, y si su parte real es 0, la que tiene parte imaginaria positiva. 
 <!--
 AAAAAAAA pendiente dibujo de raíces de  complejos
 -->
@@ -568,7 +618,6 @@ getangle<- function(r=sqrt(2^2+2^2),cx=0,cy=0,x0=0,x1=2,inc=0.01){
 }
 getangle(r=sqrt(2^2+2^2),cx=0,cy=0,x0=2,x1=3,inc=0.01)-> xy
 points(xy$x,xy$y,type="l")
-
 ```
 
 
@@ -601,22 +650,24 @@ points(xy$x,xy$y,type="l")
 -->
 
 Un número complejo $z=a+bi$ se puede representar como el punto $(a,b)$ del plano cartesiano $\mathbb{R}^2$. Esto permite asociarle dos
-magnitudes geométricas véase la Figura \@ref(fig:geom)
+magnitudes geométricas: véase la Figura \@ref(fig:geom)
 
-* El `módulo`  de $z$, que denotaremos por $|z|$, es la distancia
+* El **módulo**  de $z$, que denotaremos por $|z|$, es la distancia
 euclídea de $(0,0)$ a $(a,b)$:
 $$
 |z|=\sqrt{a^2+b^2}.
 $$
 Si $z\in \mathbb{R}$, su módulo coincide con su valor absoluto; en particular, si $z=0$, su módulo es $0$, y es el único número complejo de módulo 0.
 
-* El `argumento`  de $z$ (para $z\neq 0$), que denotaremos por 
+* El **argumento**  de $z$ (para $z\neq 0$), que denotaremos por 
 $\theta_{z}$, es el ángulo que forman el semieje positivo de abscisas y el vector que va de $(0,0)$ a $(a,b)$.
 Este ángulo está determinado por las ecuaciones
 $$
 \cos (\theta_{z})=\frac{a}{\sqrt{a^2+b^2}},\qquad
 \sin (\theta_{z})=\frac{b}{\sqrt{a^2+b^2}}.
 $$
+
+
 
 <!--
 \begin{table}[htb]
@@ -633,6 +684,7 @@ Signo\vphantom{$\Big($} & `Re` & `Im` & `Mod` & `Arg` & `Conj` \\ \hline
 -->
 
 
+<!--
 ```{r,echo=FALSE}
 df_aux=cbind(x=c("Parte real", "Parte imaginaria", "Módulo" , "Argumento"," Conjugado"),
 y=c("`Re`","`Im`","`Mod`" , "`Arg`" , "`Conj`" ))
@@ -642,13 +694,20 @@ y=c("`Re`","`Im`","`Mod`" , "`Arg`" , "`Conj`" ))
 ```{r comp,echo=FALSE}
 knitr::kable(df_aux,caption = "Funciones específicas para números complejos.", booktabs = FALSE,col.names=c("Operación","Signo"))
 ```
+-->
 
 
 
-`R` sabe calcular módulos y argumentos de números complejos. Los argumentos los da en radianes y dentro del intervalo $(-\pi,\pi]$.
-En general, `R` dispone de las  funciones básicas específicas para números complejos de la Tabla \@ref(tab:comp). 
-Recordad que el `conjugado`  de un número complejo $z=a+bi$ es $\overline{z}=a-bi$. 
-Veamos algunos ejemplos de uso de estas funciones:
+R sabe calcular módulos y argumentos de números complejos. Los argumentos los da en radianes y dentro del intervalo $(-\pi,\pi]$.
+En general, R dispone de las  funciones básicas específicas para números complejos de la lista siguiente:
+
+* **Parte real**: `Re` 
+* **Parte imaginaria**: `Im`
+* **Módulo**: `Mod`
+* **Argumento**: `Arg`
+* **Conjugado**: `Conj`
+
+Recordad que el **conjugado**  de un número complejo $z=a+bi$ es $\overline{z}=a-bi$.  Veamos algunos ejemplos de uso de estas funciones:
 
 ```{r}
 Re(4-7i)
@@ -664,7 +723,9 @@ $$
 z=|z|\big(\cos(\theta_z)+\sin(\theta_z)i\big).
 $$
 Si queremos definir un número complejo mediante su módulo y  argumento, no hace falta utilizar esta igualdad: podemos usar la instrucción
-`complex(modulus=..., argument=...)`.
+```{r,eval=FALSE}
+complex(modulus=..., argument=...)
+```
 
 Por ejemplo:
 
@@ -680,55 +741,46 @@ pi/5
 
 * Signos de operaciones aritméticas:
 
-```{r echo=FALSE}
-df.aux=cbind( c("Operación","Suma","Resta","Multiplicación","División","Potencia"," Cociente entero ","Resto div. entera"),
-c("Simbolos" , "+" , "-", "*", "/", "^", "%/%","%%"))
-```
-
-```{r echo=FALSE}
-knitr::kable(
-df.aux,
-  caption = 'Símbolos de operaciones aritméticas.', booktabs = FALSE
-)
-```
-<!--
-```
-\begin{center}
-\small
-\hspace*{-1cm}\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-Operación\vphantom{$\Big($} & Suma & Resta & Multiplicación & División & Potencia & Cociente & Resto \\[-1ex] 
-& & & & & & entero & div. entera\\\hline
-Signo\vphantom{$\Big($} & `+` & `-` & `*` & `/` & `\^{`}  &\quad `\%/\%` & \qquad `\%\%` \\ \hline
-\end{tabular}
-\end{center}
-```
--->
+    * Suma: `+`
+    * Resta: `-`
+    * Multiplicación: `*`
+    * División: `/` 
+    * Potencia: `^`
+    * Cociente entero: `%/%`
+    * Resto de la división entera: `%%`
 
 * Funciones numéricas:
 
-|Función  | $\sqrt{x}$ | $e^x$ | $\ln(x)$ | $\log_{10}(x)$ | $\log_a(x)$ | $n!$ | $\binom{n}{m}$|
-|---:|---:|---:|---:|---:|---:|---:|---:|  
-**Signo** | sqrt | exp | log | log10 | log( , a) |`factorial`|`choose`|
+    * Valor absoluto: `abs`
 
-|Función | $\sin(x)$ | $\cos(x)$ | $\tan(x)$ | $\arcsin(x)$ | $\mathrm{arccos}(x)$ | $\arctan(x)$ | `|`$x$`|` |
-|---:|---:|---:|---:|---:|---:|---:|---:|  
-**Signo** | `sin` | `cos`|`tan`|`asin`|`acos`| `atan`|`abs`|
- 
+    * Raíz cuadrada: `sqrt`
 
-<!---
-```
-\begin{center}
-\hspace*{-1cm}\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-Función & $\sqrt{x}$ \vphantom{$\Big($} & $e^x$ & $\ln(x)$ & $\log_{10}(x)$ & $\log_a(x)$ & $n!$ & $\binom{n}{m}$\\ \hline
-Signo & `sqrt`\vphantom{$\Big($} & `exp` & `log` & `log10` & `log( , a)` & `factorial` & `choose`\\ \hline\hline
-Función &$\sin(x)$\vphantom{$\Big($} & $\cos(x)$ & $\tan(x)$ & $\arcsin(x)$ & $\mathrm{arccos}(x)$ & $\arctan(x)$ & `|`$x$`|` \\ \hline
-Signo & `sin`\vphantom{$\Big($} & `cos` & `tan` & `asin` & `acos`& `atan` & `abs`\\ \hline
-\end{tabular}
-\end{center}
-```
--->
+    * Exponencial de base *e*: `exp`
+
+    * Logaritmo neperiano: `log`
+
+    * Logaritmo decimal: `log10`
+
+    * Logaritmo binario: `log2`
+
+    * Logaritmo en base $a$: `log(...,base=a)`
+
+    * Factorial: `factorial`
+
+    * Número combinatorio: `choose`
+
+    * Seno: `sin`
+
+    * Coseno: `cos`
+
+    * Tangente: `tan`
+
+    * Arcoseno: `asin`
+
+    * Arcocoseno: `acos`
+
+    * Arcotangente: `atan`
+
 
 * `pi` es el número $\pi$.
 
@@ -742,10 +794,9 @@ Signo & `sin`\vphantom{$\Big($} & `cos` & `tan` & `asin` & `acos`& `atan` & `abs
 
 * `trunc(x)` da la parte entera de $x$.
 
-* `variable` `=``valor`  asigna el `valor`  a la `variable` . Otras construcciones equivalentes son
-`variable` `<-``valor`  y `valor` `->``variable` .
+* `variable=valor`  asigna el `valor`  a la `variable`. Otras construcciones equivalentes son `variable<-valor`  y `valor->variable`.
 
-* `funcion=function(variables){instrucciones}` define la `funcion` (no ponemos acento en la o)  de variables  las especificadas entre los paréntesis mediante las instrucciones especificadas entre las llaves.
+* `función=function(variables){instrucciones}` define la `función`   de variables  las especificadas entre los paréntesis mediante las instrucciones especificadas entre las llaves.
 
 * `ls()` nos da la lista de objetos actualmente definidos.
 
@@ -755,29 +806,65 @@ Signo & `sin`\vphantom{$\Big($} & `cos` & `tan` & `asin` & `acos`& `atan` & `abs
 
 * `complex` se usa para definir números complejos que no se puedan entrar directamente en forma binomial. Algunos parámetros importantes:
 
-* `real` e `imaginary`: sirven para especificar su parte real y su parte imaginaria.
+    * `real` e `imaginary`: sirven para especificar su parte real y su parte imaginaria.
 
-* `modulus` y `argument`: sirven para especificar su módulo y su argumento.
+    * `modulus` y `argument`: sirven para especificar su módulo y su argumento.
 
 * `as.complex` convierte un número real en complejo.
 
 * Funciones específicas para números complejos:
 
-Operación | Parte real | Parte imaginaria | Módulo | Argumento | Conjugado
-**Signo** | `Re` | `Im` | `Mod` | `Arg` | `Conj`
+    * Parte real: `Re` 
+    * Parte imaginaria: `Im`
+    * Módulo: `Mod`
+    * Argumento: `Arg`
+    * Conjugado: `Conj`
 
-<!--
-```
-\begin{center}
-\hspace*{-0.5cm}\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Operación\vphantom{$\Big($} & Parte real & Parte imaginaria & Módulo & Argumento & Conjugado \\ \hline
-Signo\vphantom{$\Big($} & `Re` & `Im` & `Mod` & `Arg` & `Conj` \\ \hline
-\end{tabular}
-\end{center}
-```
--->
 
-## Ejercicio
+## Ejercicios
 
- Si hubiéramos empezado a contar segundos a partir de las 12 campanadas que marcaron el inicio de 2015, ¿qué día de qué año llegaríamos a los 250 millones de segundos? ¡Cuidado con los años bisiestos!
+### Modelo de test {-}
+
+En los tests, tenéis que entrar las respuestas sin dejar ningún espacio en blanco excepto los que se pidan explícitamente. Cuando os pidan que deis una instrucción de R, *no* tenéis que incluir la marca de inicio `>`. Del mismo modo, cuando os pidan que copiéis un resultado dado por R, *no* tenéis que incluir el `[1]`. 
+
+*(1)* Dad una expresión para calcular $(2+7)8+\frac{5}{2}-3^6+8!$, con las operaciones escritas exactamente en el orden dado y sin paréntesis innecesarios, y a continuación, separado por un único espacio en blanco, copiad exactamente el resultado que ha dado R al evaluarla.
+
+*(2)* Dad una expresión para calcular $|\sin(\sqrt{2})-e^{\sqrt[5]{2}}|$, con las operaciones y funciones escritas exactamente en el orden dado, y a continuación, separado por un único espacio en blanco, copiad exactamente el resultado que ha dado R al evaluarla.
+
+*(3)* Dad una expresión para calcular $\sin(37^{\mathrm{o}})$, empleando la construcción explicada en esta lección para calcular funciones trigonométricas de ángulos dados en grados, y a continuación, separado por un único espacio en blanco, copiad exactamente el resultado que ha dado R al evaluarla.
+
+*(4)* Dad una expresión para calcular $3e-\pi$, con las operaciones escritas exactamente en la orden dado, y a continuación, separado por un único espacio en blanco, copiad exactamente el resultado que ha dado R al evaluarla.
+
+*(5)* Dad una expresión para calcular $e^{2/3}$ redondeado a 3 cifras decimales y a continuación, separado por un único espacio en blanco, copiad exactamente el resultado que ha dado R al evaluarla.
+
+*(6)* En una sola línea, definid $x$ como $\sqrt{2}$ e $y$ como  $\cos(3\pi)$ y calculad $\ln(x^{y})$; separad las tres instrucciones con puntos y comas seguidos de un único espacio en blanco. A continuación, separado por un espacio en blanco (sin punto y coma), copiad exactamente el resultado que ha dado R al evaluar  esta secuencia de instrucciones.
+
+*(7)* Corresponde el número en notación científica `3.3333e10` al número 33333000000? Tenéis que contestar SI (sin acento) o NO.
+
+
+
+### Ejercicio {-}
+
+Si hubiéramos empezado a contar segundos a partir de las 12 campanadas que marcaron el inicio de 2015, ¿qué día de qué año llegaríamos a los 250 millones de segundos? ¡Cuidado con los años bisiestos!
+
+
+### Respuestas al test {-}
+
+*(1)* `(2+7)*8+5/2-3^6+factorial(8) 39665.5`
+
+*(2)* `abs(sin(sqrt(2))-exp(2^(1/5))) 2.166319`
+
+También sería correcto `abs(sin(2^(1/2))-exp(2^(1/5))) 2.166319`
+
+*(3)* `sin(37*pi/180) 0.601815`
+
+*(4)* `3*exp(1)-pi 5.013253`
+
+*(5)* `round(exp(2/3),3) 1.948`
+
+*(6)* `x=sqrt(2); y=cos(3*pi); log(x^y) -0.3465736`
+
+*(7)* SI 
+
+
+
