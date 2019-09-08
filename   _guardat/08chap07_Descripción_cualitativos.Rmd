@@ -1,3 +1,6 @@
+# (PART\*) Parte II: Estadística descriptiva {-}
+
+
 # Descripción de datos cualitativos {#chap:edqual}
 
  Los datos cualitativo corresponden a observaciones sobre cualidades de un objeto o individuo, tales como su  especie o su sexo, que pueden ser iguales o diferentes, pero que no admiten ningún otro tipo de comparación significativa: por ejemplo,  para los que no tenga ningún sentido preguntarse si uno es más grande que otro, ni efectuar operaciones aritméticas con ellos, aunque estén representados por números.

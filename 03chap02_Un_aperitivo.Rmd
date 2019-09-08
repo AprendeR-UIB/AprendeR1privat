@@ -16,7 +16,7 @@ sea mínima.  A esta recta $y=b_1x+b_0$ se la llama **recta de regresión por m�
 
 El objetivo de esta lección es ilustrar el uso de R mediante el cálculo de  esta recta de regresión. Para ello, introduciremos algunas funciones de R que ya explicaremos con más detalle en otras lecciones. Utilizaremos también transformaciones logarítmicas para tratar casos en los que los puntos dados se aproximen mejor mediante una función potencial o exponencial. 
 
-## Cálculo de rectas de regresión
+## Cálculo de rectas de regresión {#sec:introlm}
 
 Consideremos la Tabla  \@ref(tab:nin1), que da la altura media  de los niños a determinadas edades. Los datos se han extraído de  [http://www.cdc.gov/growthcharts/clinical_charts.htm](http://www.cdc.gov/growthcharts/clinical_charts.htm).  Queremos determinar a partir de estos datos si hay una relación lineal entre la edad y la altura media de los niños.
 

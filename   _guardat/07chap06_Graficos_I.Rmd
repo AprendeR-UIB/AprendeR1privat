@@ -1,5 +1,5 @@
 
-# Gráficos I {#chap:plot}
+# Gráficos básicos {#chap:plot}
 
  El objetivo de esta lección es introducir los aspectos básicos de los gráficos que se obtienen por medio de la función `plot`. Muchos de los parámetros y funciones auxiliares que explicamos en esta lección se podrán usar más adelante en otras funciones que producen tipos específicos de gráficos en estadística descriptiva.
 

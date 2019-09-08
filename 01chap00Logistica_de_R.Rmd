@@ -1,3 +1,6 @@
+# (PART\*) Parte I: R básico {-}
+
+
 # Logística de R {#chap:0}
 
 R es un entorno de programación para el análisis estadístico y gráfico de datos muy popular, cada día más utilizado en empresas y universidades. Su uso  tiene muchas ventajas. Para empezar, es *software* libre. La elección de *software* libre es, en general, acertada por varios motivos. Por un lado,  transmite valores socialmente positivos, como por ejemplo la libertad individual, el conocimiento compartido, la solidaridad y la cooperación. Por otro, nos aproxima al método científico, porque permite el examen y mejora del código desarrollado por otros usuarios y la reproducibilidad de los resultados obtenidos. Finalmente, pero no menos importante desde un punto de vista práctico, podemos adquirir de manera legal y gratuita copias del programa, sin necesidad de licencias personales o académicas. 
@@ -104,13 +107,16 @@ Además de guiones, con *RStudio* también podemos crear otros tipos de ficheros
 
 Por poner un ejemplo, supongamos que habéis elegido realizar un informe (*Document*) con formato de salida html (los formatos posibles son: PDF, HTML o Word); entonces, para  generar un informe básico  basta sustituir las palabras clave que  ha generado *RStudio* en esta ventana. Probadlo: cambiad el título y el texto; a continuación, guardad el fichero con el nombre que queráis y extensión `.Rmd`, y pulsad el botón *Knit* situado en la barra superior de la ventana; se generará un fichero HTML en la carpeta de trabajo, con el texto del fichero *R Markdown* y el mismo título cambiando la extensión  `.Rmd` por  `.html`, y se abrirá en una ventana aparte.
 
-Aprender los primeros pasos de   *R Markdown* es sencillo. Para ello, podéis consultar el manual de referencia rápida de  *R Markdown* que encontraréis en el *url* [https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf), que se puede leer en 15 minutos y que para la mayoría de ejercicios de este curso es más que suficiente.
+Aprender los primeros pasos de   *R Markdown* es sencillo. Para ello, podéis consultar el manual de referencia rápida de  *R Markdown*  que encontraréis en el menú *Help* de *RStudio*, que para la mayoría de ejercicios de este curso es más que suficiente.
 También os puede ser útiles  las "chuletas"  de  *R Markdown*   siguientes:
 
+* [https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+
 * [https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) 
+
 * [https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
-En la Lección \@ref(chap:Rmd), al final de esta primera parte, explicamos algunas técnicas para mejorar los ficheros resultantes.
+En la Lección \@ref(chap:Rmd)  explicamos algunas técnicas para mejorar los ficheros resultantes.
 
 
 ## Cómo obtener ayuda {#sec:help}

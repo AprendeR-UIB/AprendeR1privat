@@ -823,7 +823,7 @@ pi/5
 
 ## Ejercicios
 
-### Modelo de test {-}
+### Test {-}
 
 En los tests, tenéis que entrar las respuestas sin dejar ningún espacio en blanco excepto los que se pidan explícitamente. Cuando os pidan que deis una instrucción de R, *no* tenéis que incluir la marca de inicio `>`. Del mismo modo, cuando os pidan que copiéis un resultado dado por R, *no* tenéis que incluir el `[1]`. 
 
