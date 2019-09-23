@@ -643,7 +643,7 @@ x=c()
 x
 z=NULL
 z
-y=c(x, 2, z)
+y=c(x,2,z)
 y
 ```
 
@@ -720,7 +720,7 @@ sum(x[!is.na(x)])
 cumsum(x)
 ```
 ```{r,error=TRUE}
-cumsum(x,na.rm=TRUE) #cumsum no admite na.rm
+cumsum(x, na.rm=TRUE) #cumsum no admite na.rm
 ```
 ```{r}
 cumsum(x[!is.na(x)])
@@ -844,7 +844,7 @@ Supongamos por ejemplo que queremos guardar en una lista un vector, su nombre, s
 
 ```{r}
 x=c(1,2,-3,-4,5,6)
-L=list(nombre="x",vector=x,media=mean(x),sumas=cumsum(x))
+L=list(nombre="x", vector=x, media=mean(x), sumas=cumsum(x))
 L
 ```
 
@@ -889,7 +889,7 @@ names(L)
 Finalmente, queremos comentar que la función `c` también se puede usar para concatenar *lists* o para añadir miembros a una *list*:
 
 ```{r}
-L=c(L,numero.pi=pi)
+L=c(L, numero.pi=pi)
 L
 ```
 

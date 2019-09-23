@@ -26,7 +26,7 @@ Consideremos la Tabla  \@ref(tab:nin1), que da la altura media  de los niños a 
 ```{r,echo=FALSE}
 edad=c(1,2,3,5,7,9,11,13)
 altura=c(76.11,86.45,95.27,109.18,122.03,133.73,143.73,156.41)
-df_aux=cbind(edad,altura)
+df_aux=cbind(edad, altura)
 ```
 
 ```{r nin1,echo=FALSE}
@@ -70,7 +70,7 @@ Ahora vamos a construir un *data frame* de dos columnas, una para la edad  y otr
 Para organizar diversos vectores de la misma longitud en un  *data frame*, podemos aplicar la función `data.frame` a los vectores:
 
 ```{r}
-datos1=data.frame(edad,altura)
+datos1=data.frame(edad, altura)
 datos1
 ```
 Observad que las filas del *data frame* resultante corresponden a los pares (edad, altura) de la Tabla  \@ref(tab:nin1).
@@ -79,7 +79,7 @@ Al analizar unos datos, siempre es conveniente empezar con una representación g
 
 Dada una familia de puntos $(x_n,y_n)_{n=1,\ldots,k}$, si llamamos `x` al vector $(x_n)_{n=1,\ldots,k}$ de sus abscisas e `y` al vector $(y_n)_{n=1,\ldots,k}$ de sus ordenadas, podemos obtener el gráfico de los puntos $(x_n,y_n)_{n=1,\ldots,k}$ mediante la instrucción
 ```{r,eval=FALSE}
-plot(x,y)
+plot(x, y)
 ```
 Si los vectores `x` e `y` son, en este orden, la primera y la segunda columna de un *data frame* de dos variables, como es nuestro caso, es suficiente aplicar la función `plot` al *data frame*.
 Así, por ejemplo, para dibujar el gráfico de la Figura  \@ref(fig:A301) de los puntos $(\mathrm{edad}_n,\textrm{altura}_n)_{n=1,\ldots,8}$, basta entrar la siguiente instrucción:
@@ -312,7 +312,7 @@ Con la instrucción siguiente obtenemos la Figura  \@ref(fig:F304bis), donde vem
 
 
 ```{r F304bis,fig.cap="Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina."}
-plot(inh,ser)
+plot(inh, ser)
 ```
 
 
@@ -493,7 +493,7 @@ Lo que haremos ahora será calcular la recta de regresión del logaritmo de `SID
 
 ```{r loglogreg}
 lm(log10(SIDA_acum)~log10(tiempo), data=df_SIDA)
-summary(lm(log10(SIDA_acum)~log10(tiempo),data=df_SIDA))$r.squared
+summary(lm(log10(SIDA_acum)~log10(tiempo), data=df_SIDA))$r.squared
 ```
 
 
@@ -547,7 +547,7 @@ Hay que mencionar aquí que se han propuesto modelos matemáticos que predicen q
 * `read.table` define un *data frame* a partir de un fichero externo. También se puede usar el menú *Import Dataset* de la pestaña *Environment* en la ventana superior derecha de *RStudio*.
 * `lm(y~x)` calcula la recta de regresión del vector $y$ respecto del vector $x$. Si $x$ e $y$ son dos columnas de un *data frame*, éste se ha de especificar en el argumento mediante el parámetro `data` igualado al nombre del *data frame*.
 * `summary` sirve para obtener un resumen estadístico de un objeto. Este resumen depende del objeto. En el caso de una recta de regresión calculada con `lm`, muestra una serie de información estadística extra obtenida en dicho cálculo. 
-* `plot(x,y)` produce el gráfico de los puntos $(x_n,y_n)$. Si $x$ e $y$ son, respectivamente, la primera y la segunda columna de un *data frame* de dos columnas, se le puede entrar directamente el nombre del *data frame* como argumento. El parámetro `log` sirve para indicar los ejes que se desea que estén en escala logarítmica: `"x"` (abscisas),
+* `plot(x, y)` produce el gráfico de los puntos $(x_n,y_n)$. Si $x$ e $y$ son, respectivamente, la primera y la segunda columna de un *data frame* de dos columnas, se le puede entrar directamente el nombre del *data frame* como argumento. El parámetro `log` sirve para indicar los ejes que se desea que estén en escala logarítmica: `"x"` (abscisas),
 `"y"` (ordenadas) o `"xy"` (ambos).
 * `abline` añade  una recta al gráfico activo. 
 * `curve(función, add=TRUE)` añade la gráfica de la `función`  al gráfico activo. 

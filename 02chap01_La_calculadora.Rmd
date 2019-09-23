@@ -125,7 +125,7 @@ Cuando un número es muy grande o muy pequeño, R emplea la llamada `notación c
 2^(-20)
 ```
 
-En este ejemplo,  `1.099512e+12` representa el número 1.099512·10^12^, es decir, 1099512000000, y `9.536743e-07` representa el número 9.536743· 10^-7^, es decir,
+En este ejemplo, `1.099512e+12` representa el número 1.099512·10^12^, es decir, 1099512000000, y `9.536743e-07` representa el número 9.536743· 10^-7^, es decir,
 0.0000009536743. Como muestra el ejemplo siguiente, no es necesario que un número sea  especialmente grande o pequeño
 para que R lo escriba en notación científica: basta que esté rodeado de otros números en esa notación.
 
@@ -283,7 +283,7 @@ sqrt(2)^2-2
 
 R opera numéricamente con $\sqrt{2}$, no formalmente,
 y por eso no  da como resultado de $(\sqrt{2})^2-2$ el valor 0 exacto, sino
-el número pequeñísimo 4.440892·10^-16^; de hecho, R trabaja internamente con una precisión de aproximadamente 16 cifras decimales, por lo que no siempre podemos esperar resultados exactos. Si necesitáis trabajar de manera exacta con más cifras significativas, os recomendamos usar las funciones del paquete `Rmpfr`. 
+el número pequeñísimo 4.440892·10^-16^; de hecho, R trabaja internamente con una precisión de aproximadamente 16 cifras decimales, por lo que no siempre podemos esperar resultados exactos. Si necesitáis trabajar de manera exacta con más cifras significativas, os recomendamos usar las funciones del paquete **Rmpfr**. 
 
 
 ## Cifras significativas y redondeos
@@ -319,7 +319,7 @@ print(sqrt(2), 23)
 Por otro lado, hay que tener en cuenta que, como ya hemos comentado, R trabaja con una precisión de unas 16 cifras decimales y por lo tanto los dígitos más allá de esta precisión pueden ser incorrectos. Por ejemplo, si le pedimos las 22 primeras cifras de $\pi$, obtenemos el resultado siguiente:
 
 ```{r}
-print(pi,22)
+print(pi, 22)
 ```
 En cambio, $\pi$ vale  en realidad 3.141592653589793***238462...***, lo que significa que el valor que  da R es erróneo a partir de la decimosexta cifra decimal.
 
@@ -354,13 +354,13 @@ round(sqrt(2))
 round(sqrt(2), 0) 
 ```
 
-Al entrar `round(sqrt(2))`, R ha entendido que el número de cifras decimales al que queríamos redondear era 0. Esto significa que 0 es el **valor por defecto**  de este parámetro. No es necesario especificar los valores por defecto de los parámetros de una función, y para saber cuáles son, hay que consultar su Ayuda. Así, por ejemplo,  la Ayuda de `round`  indica que su sintaxis es
+Al entrar `round(sqrt(2))`, R ha entendido que el número de cifras decimales al que queríamos redondear era 0. Esto significa que 0 es el **valor por defecto**  de este parámetro. No es necesario especificar los valores por defecto de los parámetros de una función, y para saber cuáles son, hay que consultar su Ayuda. Así, por ejemplo, la Ayuda de `round`  indica que su sintaxis es
 ```{r,eval=FALSE}
 round(x, digits=0)
 ```
 donde  el valor de `digits` ha de ser un número entero que indique el número de cifras decimales. Esta sintaxis significa que el valor por defecto del parámetro `digits` es  0. 
 
-Escribir `digits=` en el argumento para especificar el número de cifras decimales es optativo, siempre que mantengamos el orden de los argumentos indicado en la Ayuda: en este caso,  primero el número y luego las cifras. Este es el motivo  por el que podemos escribir 
+Escribir `digits=` en el argumento para especificar el número de cifras decimales es optativo, siempre que mantengamos el orden de los argumentos indicado en la Ayuda: en este caso, primero el número y luego las cifras. Este es el motivo  por el que podemos escribir 
 `round(sqrt(2), 1)` en lugar de `round(sqrt(2), digits=1)`. Si cambiamos el orden de los argumentos, entonces sí que hay que especificar el nombre del parámetro, como muestra el siguiente ejemplo:
 
 ```{r}
@@ -410,7 +410,7 @@ nombre_de_la_variable=valor
 ```
 
 
-También se puede conectar el nombre de la variable con el valor por medio de una flecha `->` o `<-`, compuesta de un guión y un signo de desigualdad,  de manera que el sentido de la flecha vaya del valor a la variable; por ejemplo, las tres primeras instrucciones siguientes son equivalentes, y asignan el valor 2 a la variable $x$, mientras que las dos últimas son incorrectas:
+También se puede conectar el nombre de la variable con el valor por medio de una flecha `->` o `<-`, compuesta de un guión y un signo de desigualdad, de manera que el sentido de la flecha vaya del valor a la variable; por ejemplo, las tres primeras instrucciones siguientes son equivalentes, y asignan el valor 2 a la variable $x$, mientras que las dos últimas son incorrectas:
 
 ```{r}
 x=2
@@ -428,7 +428,7 @@ x<-2
 
 Nosotros usaremos sistemáticamente el signo `=` para hacer asignaciones. 
 
-Se puede usar como nombre de una variable cualquier palabra que combine letras mayúsculas y minúsculas (R las distingue), con acentos o sin (aunque os recomendamos que no uséis letras acentuadas, ya que se pueden importar mal de un ordenador a otro),  dígitos (0,..., 9), puntos `.` y  guiones bajos `_`, siempre que empiece con una letra o un punto. Aunque no esté prohibido, es  muy mala idea redefinir  nombres que ya sepáis que tienen significado para R, como por ejemplo `pi` o `sqrt`.  
+Se puede usar como nombre de una variable cualquier palabra que combine letras mayúsculas y minúsculas (R las distingue), con acentos o sin (aunque os recomendamos que no uséis letras acentuadas, ya que se pueden importar mal de un ordenador a otro), dígitos (0,..., 9), puntos `.` y  guiones bajos `_`, siempre que empiece con una letra o un punto. Aunque no esté prohibido, es  muy mala idea redefinir  nombres que ya sepáis que tienen significado para R, como por ejemplo `pi` o `sqrt`.  
 
 Como podéis ver en las instrucciones anteriores y en las que siguen, cuando asignamos un valor a una variable, R no da ningún resultado; después podemos usar el nombre de la variable para referirnos al valor que representa. 
 Es posible asignar varios valores a una misma variable en una misma sesión: naturalmente, en cada momento R empleará el último valor asignado. Incluso se puede redefinir el valor de una variable usando en la nueva definición su valor actual.
@@ -552,7 +552,7 @@ Veamos un ejemplo:
 ```
 
 ```{r}
-complex(real=1,imaginary=2/3)
+complex(real=1, imaginary=2/3)
 ```
 
 ```{r,error=TRUE}
@@ -565,7 +565,7 @@ z
 ```
 
 
-Como sabéis, los números complejos se inventaron para poder trabajar con raíces cuadradas de números negativos. Ahora bien, por defecto,  cuando calculamos la raíz cuadrada de un número negativo R no devuelve un número complejo, sino que se limita a avisarnos de que no existe.
+Como sabéis, los números complejos se inventaron para poder trabajar con raíces cuadradas de números negativos. Ahora bien, por defecto, cuando calculamos la raíz cuadrada de un número negativo R no devuelve un número complejo, sino que se limita a avisarnos de que no existe.
 
 ```{r,error=TRUE,warning=TRUE}
 sqrt(-3)
