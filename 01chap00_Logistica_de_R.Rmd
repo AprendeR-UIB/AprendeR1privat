@@ -214,10 +214,6 @@ Para terminar, observad que a la derecha del nombre de cada paquete en la pesta�
 ## Guía rápida
 
 * `help` o `?` permiten pedir información sobre una función. También se puede usar el campo de búsqueda de la pestaña *Help* en la ventana inferior derecha de *RStudio*.
-
-
 * `help.search` o `??` permiten pedir información sobre una palabra clave (entrada entre comillas). De nuevo, también se puede usar el campo de búsqueda de la pestaña *Help* en la ventana inferior derecha de *RStudio*.
-
 * `install.packages("paquete", dep=TRUE)` instala el `paquete` y todos los otros paquetes de los que dependa. También se puede usar el botón *Install* de la pestaña *Packages* en la ventana inferior derecha de *RStudio*.
-
 * `library(paquete)` carga el `paquete`. También se puede cargar marcándolo en la ventana *Packages*  de *RStudio*.

@@ -689,9 +689,7 @@ usan.
 ## Guía rápida
 
 * `expression` sirve para producir textos matemáticamente bien formateados.
-
 *  `par` sirve para modificar el aspecto general de los gráficos. Consultad su Ayuda para conocer todos los parámetros que se pueden especificar en esta función.
-
 * `plot` es la función genérica para producir gráficos. Sus dos usos principales (por el momento) son:
     * `plot(x, y)`, que dibuja el gráfico de los puntos con vector de primeras coordenadas `x` y vector de segundas coordenadas `y`.
     * `plot(función)`, que dibuja la gráfica de la `función`.
@@ -712,19 +710,14 @@ usan.
 
     Los parámetros `pch`, `cex`, `col`, `bg`, `type`, `lty` y  `lwd` también se pueden usar en las funciones que siguen.
 
-
 * `points` añade puntos al gráfico activo.
-
 * `abline` añade una recta al gráfico activo. Algunos parámetros específicos importantes:
     * `v`: la abscisa de una recta vertical.
     * `h`: la ordenada de una recta horizontal.
-
 * `lines` añade una línea poligonal al gráfico activo.
-
 * `text` añade textos al gráfico activo. Algunos parámetros específicos importantes:
     * `pos`: la posición del texto con respecto a sus coordenadas.
     * `labels`: el texto.
-
 * `legend` añade una leyenda al gráfico activo. 
 * `curve`, con el parámetro `add=TRUE`, sirve para añadir la gráfica de una función al gráfico activo. Esta función admite todos los parámetros de `plot`.
 

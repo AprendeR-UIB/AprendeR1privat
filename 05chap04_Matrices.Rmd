@@ -714,7 +714,6 @@ prod(eigen(A)$values)
     * `%*%`: Producto de matrices
     * `%^%` del paquete **expm**: Potencia
     * `t`: Traspuesta 
-
 * `matrix.power(X, k)` del paquete **matrixcalc** calcula la potencia $k$-ésima de la matriz $X$.
 * `det` calcula el determinante de una matriz.
 *  `matrix.rank` del paquete **matrixcalc**, calcula el rango de una matriz cuadrada.

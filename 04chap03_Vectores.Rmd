@@ -897,33 +897,23 @@ L
 ## Guía rápida de funciones
 
 * `c` sirve para definir un vector concatenando elementos o vectores. También sirve para concatenar *lists*.
-
 * `scan` crea un vector importando datos que se entren en la consola o contenidos en un fichero. Algunos parámetros importantes:
     * `dec`:  indica el separador decimal.
     * `sep`:  indica el signo usado para separar las entradas.
     * `what`:  indica el tipo de datos que se importan.
     * `encoding`:  indica la codificación de alfabeto del fichero externo;
 sus dos valores posibles  son `"latin1"` y `"UTF-8"`. 
-
 * `rep` sirve para definir un vector repitiendo un valor o las entradas de otro vector. Algunos parámetros  importantes:
     * `each`: cuando aplicamos la función a un vector, sirve para indicar cuántas veces queremos repetir cada entrada del vector.
     * `times`: cuando aplicamos la función a un vector, sirve para indicar cuántas veces  queremos repetir todo el vector en bloque.
-
 * `seq` sirve para definir progresiones aritméticas. Sus tres usos principales son:
     * `seq(a, b, by=p)` define la progresión  $a, a+p, a+2p, \ldots, b$ (o parándose en el término inmediatamente anterior a $b$, si $b$ no pertenece a la progresión).
-
     *  `seq(a, b, length.out=n)` define la progresión  $\overbrace{a, a+p, a+2p, \ldots, b}^n$ de longitud $n$, tomando como paso $p=(b-a)/(n-1)$.
-    
     *  `seq(a, by=p, length.out=n)` define la progresión  $a, a+p, a+2p, \ldots, a+(n-1)p$
-
 * `a:b` es sinónimo de `seq(a, b, by=1)` (si $a<b$) o `seq(a, b, by=-1)` (si $a>b$).
-
 * `NULL` indica un vector vacío.
-
 * `fix` abre un vector (o, en general, un objeto de datos: una matriz, un *data frame*...) en el editor de datos.
-
 * Funciones para vectores:
-
     * `length`: calcula la longitud de un vector.
     * `max`: calcula el máximo de un vector.
     * `min`: calcula el mínimo de un vector
@@ -936,11 +926,8 @@ sus dos valores posibles  son `"latin1"` y `"UTF-8"`.
     * `rev`: invierte el orden de un vector.
  
     Las funciones `max`, `min`, `sum`, `prod` y  `mean` admiten el parámetro   `na.rm=TRUE` que impone que no se tengan en cuenta los valores `NA` del vector al calcularla.
-    
 * `sapply(vector, FUN=función)` aplica la `función`  a todas las entradas del `vector`.
-
 * `vector[...]` se usa para especificar un elemento o un subvector del `vector`. Las entradas que formarán el subvector pueden especificarse mediante el vector de sus índices o mediante una condición lógica sobre las entradas. Los signos de operadores lógicos que se pueden usar para definir condiciones lógicas son los siguientes:
-
     * `==`: $=$
     * `!=`: $\neq$
     *  `<`: $<$
@@ -950,35 +937,21 @@ sus dos valores posibles  son `"latin1"` y `"UTF-8"`.
     *  `!`: negación
     *  `&`: conjunción
     *  `|`: disjunción
-
-
-
 * `which` sirve para obtener los índices de las entradas de un vector que satisfacen una condición lógica.
-
 * `which.min` y `which.max` dan la primera posición en la que el vector toma su valor mínimo o máximo, respectivamente.
-
 * `is.na` es la alternativa correcta a la condición `==NA`.
-
 * `na.omit` elimina las entradas `NA` de un vector.
-
 * `as.factor` transforma un vector en un factor.
-
 * `factor` crea  un factor a partir de un vector. Algunos parámetros importantes:
-    `levels`: sirve para especificar los niveles.
-    `labels`: sirve para cambiar los nombres de los niveles.
+    * `levels`: sirve para especificar los niveles.
+    * `labels`: sirve para cambiar los nombres de los niveles.
     
 * `ordered` crea  un factor ordenado a partir de un vector o un factor; sus parámetros son los mismos que los de `factor`.
-
 * `levels` sirve para obtener los niveles de un factor, y también para cambiar sus nombres.
-
 * `list` construye listas heterogéneas, *lists*.
-
 * `str` sirve para obtener la estructura de una *list*.
-
 * `names` sirve para conocer los nombres de las componentes de una *list*.
-
 * `list$componente`  sirve para referirnos al objeto que forma la `componente`  de la *list*.
-
 * `list[[i]]` sirve para referirnos al objeto que forma la $i$-ésima componente de la *list*.
 
 

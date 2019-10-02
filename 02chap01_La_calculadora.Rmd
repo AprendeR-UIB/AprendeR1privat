@@ -740,7 +740,6 @@ pi/5
 ## Guía rápida
 
 * Signos de operaciones aritméticas:
-
     * Suma: `+`
     * Resta: `-`
     * Multiplicación: `*`
@@ -748,72 +747,38 @@ pi/5
     * Potencia: `^`
     * Cociente entero: `%/%`
     * Resto de la división entera: `%%`
-
 * Funciones numéricas:
-
     * Valor absoluto: `abs`
-
     * Raíz cuadrada: `sqrt`
-
     * Exponencial de base *e*: `exp`
-
     * Logaritmo neperiano: `log`
-
     * Logaritmo decimal: `log10`
-
     * Logaritmo binario: `log2`
-
     * Logaritmo en base $a$: `log(...,base=a)`
-
     * Factorial: `factorial`
-
     * Número combinatorio: `choose`
-
     * Seno: `sin`
-
     * Coseno: `cos`
-
     * Tangente: `tan`
-
     * Arcoseno: `asin`
-
     * Arcocoseno: `acos`
-
     * Arcotangente: `atan`
-
-
 * `pi` es el número $\pi$.
-
 * `print(x, n)`  muestra el valor de $x$ con $n$ cifras significativas.
-
 * `round(x, n)` redondea el valor de $x$ a $n$ cifras decimales.
-
 * `floor(x)` redondea $x$ a un número entero por defecto.
-
 * `ceiling(x)` redondea $x$ a un número entero por exceso.
-
 * `trunc(x)` da la parte entera de $x$.
-
 * `variable=valor`  asigna el `valor`  a la `variable`. Otras construcciones equivalentes son `variable<-valor`  y `valor->variable`.
-
 * `función=function(variables){instrucciones}` define la `función`   de variables  las especificadas entre los paréntesis mediante las instrucciones especificadas entre las llaves.
-
 * `ls()` nos da la lista de objetos actualmente definidos.
-
 * `rm` borra la definición del objeto u objetos a los que se aplica.
-
 * `rm(list=ls())` borra las definiciones de todos los objetos que hayamos definido.
-
 * `complex` se usa para definir números complejos que no se puedan entrar directamente en forma binomial. Algunos parámetros importantes:
-
     * `real` e `imaginary`: sirven para especificar su parte real y su parte imaginaria.
-
     * `modulus` y `argument`: sirven para especificar su módulo y su argumento.
-
 * `as.complex` convierte un número real en complejo.
-
 * Funciones específicas para números complejos:
-
     * Parte real: `Re` 
     * Parte imaginaria: `Im`
     * Módulo: `Mod`
