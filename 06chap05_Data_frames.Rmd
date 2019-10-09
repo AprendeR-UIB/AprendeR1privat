@@ -169,7 +169,7 @@ En todos los casos, obtenemos subtablas del *data frame* `d.f` con sus filas y c
 
 ## Cómo importar y exportar *data frames*
 
- R dispone de varias instrucciones que permiten importar ficheros externos como objetos de datos; por ejemplo, ya vimos en la Sección \@ref(sec:vect) la función `scan`, que permitía  definir un vector con el contenido de un fichero. En esta sección explicaremos cómo podemos definir un *data frame* a partir de una tabla de datos contenida en un fichero externo. Para ello, usaremos la función `read.table` o  el menú *Import Dataset* de la pestaña **Environment** de la ventana superior derecha de *RStudio*. 
+R dispone de varias instrucciones que permiten importar ficheros externos como objetos de datos; por ejemplo, ya vimos en la Sección \@ref(sec:vect) la función `scan`, que permitía  definir un vector con el contenido de un fichero. En esta sección explicaremos cómo podemos definir un *data frame* a partir de una tabla de datos contenida en un fichero externo. Para ello, usaremos la función `read.table` o  el menú *Import Dataset* de la pestaña **Environment** de la ventana superior derecha de *RStudio*. 
 
 Empecemos con la función `read.table`. Para crear un *data frame* a partir de un fichero de texto simple que contenga una tabla de datos, podemos aplicar esta función al nombre del fichero, si está en el directorio de trabajo de R, o a su *url*, si está en Internet; en ambos casos, entre comillas. Esta función `read.table` tiene algunos parámetros  que evitan errores en la creación del *data frame*:
 
@@ -287,7 +287,12 @@ B=read.table("trozoiris.txt", header=TRUE, sep=";")
 B
 ```
 
+Para terminar, una última instrucción para importar tablas, basada en funciones del paquete **readr**.  Podéis seleccionar y copiar toda el contenido de una tabla de datos en el portapapeles con la combinación de teclas que corresponda en vuestro sistema operativo y "pegarlo" en un *data frame* con la siguiente instrucción (tras cargar primero el paquete **readr** si es necesario):
 
+```{r,eval=FALSE}
+Nombre=read_delim(clipboard(),delim=...)
+```
+donde `Nombre` refiere al nombre que queréis dar al *data frame* y en el parámetro  `delim` tenéis que especificar el separador de columnas de manera similar a cómo usamos `sep` en `read.table`; la función `clipboard()` de **readr** devuelve el contenido del portapapeles. Leed la Ayuda de  la función `read_delim` para conocer otros parámetros que podéis especificar. 
 
 ## Cómo crear *data frames*
 
@@ -941,7 +946,7 @@ DT
 * `aggregate` sirve para aplicar una función a una o varias variables de un *data frame* agrupando sus entradas por los niveles de uno o varios factores.
 * `attach` añade las variables de un *data frame* al entorno global de R.
 * `detach` deshace el efecto de `attach`.
-
+* `clipboard()`, del paquete **readr** , da el contenido del Portapapeles.
 <!--
 * `data.table`, del paquete `data.table`, crea un *data table* a partir de vectores o de un *data frame*
 * `fread`, del paquete `data.table`,  permite importar un fichero externo en un *data table*.

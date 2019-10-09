@@ -1,4 +1,4 @@
-"estudio" "bebe" "sexo"
+"ID" "estudio" "bebe" "sexo"
 "1" "Informática" "No" "Mujer"
 "2" "Matemáticas" "No" "Hombre"
 "3" "Ing.Industrial" "Sí" "Mujer"
