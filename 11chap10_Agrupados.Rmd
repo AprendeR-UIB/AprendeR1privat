@@ -372,7 +372,7 @@ $$
  Lo que nos interesa ahora es que R calcule esta tabla por nosotros.
 
 
-## Agrupamiento de datos con R
+## Agrupamiento de datos con R {#sec:agrupR}
 
 Al agrupar un conjunto de datos con R, lo que hacemos es codificarlos, 
 convirtiendo la variable cuantitativa en un factor cuyos niveles son las clases en las que hemos agrupado los valores y asignando cada dato a su clase. Las etiquetas de estos niveles pueden ser de diferentes tipos, en función de los intereses o el gusto del usuario. A modo de ejemplo, supongamos que agrupamos los valores de una variable cuantitativa en los intervalos 
@@ -889,19 +889,35 @@ este consejo se extiende a los histogramas de frecuencias relativas.
 
 ```{r 205, echo=FALSE, fig.show="hold", fig.width=10,fig.asp=0.5, fig.cap='Estructura básica de un histograma de frecuencias absolutas (izquierda) y absolutas acumuladas (derecha)'}
 par(mfrow=c(1,2))
-
+plot(c(1,1,1.5,1.5,1.5,2,2,2.5,2.5,3,3),c(0,6,6,0,2,2,0,0,4,4,0),
+main="Histograma y polígono de frecuencias absolutas",type="S",ylim=c(0.22,6),xlim=c(0.95,3.5),xlab="Intervalos",
+ ylab="Frecuencias absolutas",xaxs="i",yaxs="i",bty="l",xaxt="n",yaxt="n")
+lines(c(1,1.25,1.75),c(0,6,2),col="red")
+lines(c(2.25,2.75,3),c(2,4,0),col="red")
+axis(1,at=c(1,1.5,2,2.5, 3),
+labels=c(expression(L[1]),expression(L[2]),
+expression(L[3]),expression(L[k]),expression(L[k+1])))
+text(1.25,3,expression(n[1]))
+text(1.75,1,expression(n[k]))
+text(2.75,3,expression(n[2]))
+text(2.25,1,"......")
+#
+plot(c(1,1,1.5,1.5,1.5,2,2,2.5,2.5,3,3),c(0,6,6,0,8,8,0,0,12,12,0),type="S",
+main="Histograma y polígono de frec. absolutas acumuladas",ylim=c(0.22,12),xlim=c(0.95,3.5),xlab="Intervalos",
+ ylab="Frecuencias absolutas acumuladas",xaxs="i",yaxs="i",bty="l",xaxt="n",yaxt="n")
+lines(c(1,1.50,2),c(0,6,8),col="red")
+lines(c(2.3,2.5,3),c(10,11,12),col="red")
+axis(1,at=c(1,1.5,2,2.5,3),
+labels=c(expression(L[1]),expression(L[2]),
+expression(L[3]),expression(L[k]),expression(L[k+1])))
+text(1.25,3.5,expression(N[1]))
+text(1.75,4,expression(N[2]))
+text(2.75,5,expression(N[k]))
+text(2.25,4,"......")
+axis(2,at=c(6,8,12),labels=c(expression(N[1]),expression(N[2]),expression(N[k])))
 par(mfrow=c(1,1))
 ```
 
-
-\end{itemize}
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=0.45\linewidth]{histgen1.pdf}\ 
-\includegraphics[width=0.45\linewidth]{histgen2.pdf}
-\end{center} 
-\caption{.\label{fig:205}}
-\end{figure}
 
 
 De este modo, en el histograma de la izquierda de la Figura \@ref(fig:205), el área de la barra sobre cada clase $[L_j,L_{j+1})$ es igual  a la frecuencia absoluta $n_j$ de esta clase; es decir, el producto de la altura $h_j$ de la barra por la amplitud $L_{j+1}-L_j$ es lo que representa la frecuencia, no la altura de la barra. En cambio, en el histograma de la derecha, la barra sobre cada clase $[L_j,L_{j+1})$ tiene una altura igual a la frecuencia absoluta acumulada $N_j$ de esta clase.
@@ -911,21 +927,23 @@ Una observación: en la práctica, no es conveniente que en un histograma aparez
 
 La función para dibujar histogramas con R es `hist`. Su estructura básica es 
 ```{r,eval=FALSE}
-hist(x, breaks=..., freq=..., right=..., ...)}
+hist(x, breaks=..., freq=..., right=..., ...)
 ```
 donde:
 
 * `x` es el vector formado por los datos que queremos representar.
 
-* El parámetro `breaks` es similar al de la función `cut`: con él podemos establecer los valores de los extremos de los intervalos o el número de intervalos; incluso se puede indicar, entre comillas, el método para calcular el número de clases: `"Scott"`, `"Sturges"`, etc. Tanto si entráis el número de clases como el método para calcularlo, R lo considerará sólo como una sugerencia, por lo que no siempre obtendréis el número deseado de intervalos;  además, el método que usa para calcular los intervalos es diferente del usado en `cut`; por todo ello, os recomendamos que, si queréis tener algún control sobre la producción del  histograma,  especifiquéis  los extremos.
+* El parámetro `breaks` es similar al de la función `cut`: con él podemos establecer los valores de los extremos de los intervalos o el número de intervalos; incluso se puede indicar, entre comillas, el método para calcular el número de clases: `"Scott"`, `"Sturges"`, etc. 
 
-* El parámetro `freq` es un parámetro lógico: igualado a `TRUE` (que es el valor por defecto, por lo que en este caso no hace falta incluirlo), produce el histograma de frecuencias absolutas si los intervalos son todos de la misma longitud, y el de frecuencias relativas en caso contrario; igualado a `FALSE`, produce siempre el de frecuencias relativas.
+    Ahora bien, tanto si entráis el número de clases como el método para calcularlo, R lo considerará sólo como una sugerencia, por lo que no siempre obtendréis el número deseado de intervalos;  además, el método que usa para calcular los intervalos es diferente del usado en `cut`; por todo ello, os recomendamos que, si queréis tener algún control sobre la producción del  histograma,  especifiquéis  los extremos.
+
+* El parámetro `freq` es un parámetro lógico: igualado a `TRUE` (que es el valor por defecto, por lo que en este caso no hace falta incluirlo), produce el histograma de frecuencias absolutas si los intervalos son todos de la misma longitud, y el de frecuencias relativas en caso contrario; igualado a `FALSE`, produce en los dos casos el de frecuencias relativas.
 
 * El parámetro `right` funciona como en `cut`: si queremos nuestros intervalos cerrados a la izquierda y abiertos a la derecha, tenemos que especificar `right=FALSE`.
 
 * Como ya pasaba en `cut`, se tiene que añadir `include.lowest=TRUE` si se ha entrado `right=FALSE` y  el máximo del conjunto de datos coincide con el extremo superior del último intervalo.
 
-* Aparte, podéis usar los parámetros usuales de la función `plot} para poner un título, cambiar las etiquetas de los ejes, colorear las barras, etc.  Recordad también el parámetro `plot}, que ha salido hace unas páginas: igualado a `FALSE`, calcula el histograma, pero no lo dibuja.
+* Aparte, podéis usar los parámetros usuales de la función `plot` para poner un título, cambiar las etiquetas de los ejes, colorear las barras, etc.  Recordad también el parámetro `plot`, que ha salido hace unas páginas: igualado a `FALSE`, calcula el histograma, pero no lo dibuja.
 
 
 Podéis consultar el resto de parámetros en la Ayuda de `hist`. 
@@ -949,12 +967,12 @@ hist(fruta, breaks= L2, right=FALSE)
 ```
 
 
-Como podéis ver, `hist`  ha dibujado los ejes y las barras, pero en el eje horizontal no ha marcado los extremos de las clases; por lo que refiere al eje vertical, en el histograma con las clases de las mismas amplitudes, ha marcado las frecuencias absolutas, pero en el otro ha marcado las densidades, lo que dificulta su comprensión.
+Como podéis ver, `hist`  ha dibujado los ejes y las barras, pero en el eje horizontal no ha marcado los extremos de las clases; por lo que refiere al eje vertical, en el histograma con las clases de las mismas amplitudes, ha marcado las frecuencias absolutas, pero en el otro ha marcado las densidades, lo que puede dificultar su comprensión.
 Además, fijaos en los títulos: `hist` titula por defecto los histogramas  "Histogram of" seguido del nombre del vector de datos, lo que no es muy adecuado si no estáis escribiendo en inglés.
 
-Por suerte, el resultado de `hist` contiene mucha información escondida, que podemos usar para mejorar estos histogramas. 
+Por suerte, el resultado de `hist` contiene mucha información escondida que podemos usar para mejorar estos histogramas. Vamos a consultar el contenido del primer histograma del vector `fruta`; añadimos `plot=FALSE` para que no lo dibuje.
 ```{r}
-h=hist(fruta, breaks=L1, right=FALSE, plot=FALSE) #Para que no lo dibuje; sería el histograma de la izquierda de la Fig. 10.7
+h=hist(fruta, breaks=L1, right=FALSE, plot=FALSE)
 h
 ```
 En concreto:
@@ -973,44 +991,42 @@ Podemos servirnos de  toda esta información para mejorar el histograma producid
 Por ejemplo, para histogramas de frecuencias absolutas, podéis usar la función siguiente; sus parámetros son: $x$, el vector de datos, y $L$, el vector de extremos de los intervalos.
 ```{r}
 hist_abs=function(x,L){
-h=hist(x, breaks=L, right=FALSE, freq=FALSE,
+if (sum(diff(diff(L)))==0){ 
+h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE,
+    xaxt="n", col="lightgray",
+    main="Histograma de frecuencias absolutas",
+    xlab="Intervalos",ylab="Frecuencias absolutas")
+}
+  else {
+ h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE,
     axes=FALSE, col="lightgray",
     main="Histograma de frecuencias absolutas",
-    xlab="Intervalos y marcas de clase",
-    ylab="Frecuencias absolutas")
-axis(1, at=L)
-text(h$mids, h$density/2, labels=h$counts, col="blue")
+    xlab="Intervalos",ylab="")
+ text(h$mids, h$density/2, labels=h$counts, col="blue")
 }
+axis(1, at=L)}
 ```
 
 
-Si la aplicamos a los valores de `fruta` y `L1` anteriores:
-```{r}
+Si la aplicamos a los valores de `fruta` y `L1` o `L2` anteriores, obtenemos los dos histogramas siguientes
+```{r ,fig.width=10,fig.asp=0.5}
+par(mfrow=c(1,2))
 hist_abs(fruta, L1)
+hist_abs(fruta, L2)
+par(mfrow=c(1,1))
 ```
 
 
 Algunos comentarios  sobre la manera como hemos definido esta función, para que la podáis modificar:
 
-* El parámetro `axes=FALSE` especifica que no se dibujen los ejes; alternativamente, hubiéramos podido usar  los dos parámetros `xaxt="n"` e `yaxt="n"`, que especifican, respectivamente,  que no se dibuje el eje de abscisas y que no se dibuje el eje de ordenadas, y que són más útiles cuando se quiere eliminar un solo eje, como haremos en los histogramas de frecuencias relativas. 
+* La condición `sum(diff(diff(L)))==0` es equivalente a que los intervalos definidos por los elementos de `L` tengan todos la misma amplitud, y por lo tanto tenga sentido marcar las frecuencias en el eje de ordenadas.
 
-* La instrucción `axis(i, at=...)`  dibuja el eje correspondiente al valor de $i$ ($i=1$, el de abscisas; $i=2$, el de ordenadas) con marcas en los lugares indicados por el vector definido mediante `at`; por lo tanto, la instrucción `axis(1, at=L)` añade un eje de abscisas (que no habíamos dibujado) con marcas en los extremos de las clases.
+* El parámetro `axes=FALSE` especifica que no se dibujen los ejes, y los parámetros `xaxt="n"` e `yaxt="n"`  especifican, respectivamente, que no se dibuje el eje de abscisas y que no se dibuje el eje de ordenadas.
 
-* Con `freq=FALSE` en realidad hemos dibujado un histograma de frecuencias relativas, pero como hemos omitido el eje de ordenadas, tanto da; en cambio, esto nos ha servido para poder añadir,  con la función `text`, la frecuencia absoluta de cada clase, sobre el punto medio de su intervalo (los valores `h$mids`) y a media altura de su barra correspondiente (con `freq=FALSE`, estas alturas son siempre los valores `h$density`). 
+* La instrucción `axis(i, at=..., labels=...)`  dibuja el eje correspondiente al valor de $i$ ($i=1$, el de abscisas; $i=2$, el de ordenadas) con marcas en los lugares indicados por el vector definido mediante `at` y etiquetas en las marcas indicadas por el valor de `labels`; si este último parámetro no se usa, las etiquetas son los valores de las marcas. Por lo tanto, la instrucción `axis(1, at=L)` añade un eje de abscisas (que no habíamos dibujado) con marcas en los extremos de las clases.
 
-Naturalmente, podéis adaptar a vuestro gusto esta función `hist_abs` o las otras que daremos: podéis cambiar el título, cambiar los colores, etc. A modo de ejemplo,  si usáis muchas clases, es probable que las barras queden muy estrechas y no tenga sentido escribir en su interior las frecuencias absolutas. Si todas las clases son de la misma amplitud, podéis representar estas frecuencias en el eje de ordenadas: para ello, en la definición de `hist_abs` basta con sustituir, en la función `hist`,
-`freq=FALSE` por `freq=TRUE` y `axes=FALSE` por `xaxt="n"` (y así dibujará el eje de ordenadas con marcas que representen frecuencias absolutas),  y eliminar la instrucción `text`. 
-```{r}
-hist_abs2=function(x,L){
-h=hist(x, breaks=L, right=FALSE, freq=TRUE,
-    xaxt="n", col="lightgray",
-    main="Histograma de frecuencias absolutas",
-    xlab="Intervalos y marcas de clase",
-    ylab="Frecuencias absolutas")
-axis(1, at=L)
-}
-```
 
+Naturalmente, podéis adaptar a vuestro gusto esta función `hist_abs` o las otras que daremos: podéis cambiar el título, cambiar los colores, la etiqueta del eje de abscisas, etc.
 
 Otra posibilidad para indicar las frecuencias absolutas de las barras es usar la función `rug`, que permite añadir al histograma una "alfombra" con marcas en todos los valores del vector; el grosor de cada marca es proporcional a la frecuencia del valor que representa. 
 Veamos un ejemplo:
@@ -1030,11 +1046,11 @@ rug(jitter(fruta))
 Para dibujar histogramas de frecuencias absolutas acumuladas, podéis usar la  función:
 ```{r}
 hist_abs.cum=function(x,L){
-h=hist(x, breaks=L, right=FALSE, plot=FALSE)
+h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE, plot=FALSE)
 h$density=cumsum(h$density)
 plot(h, freq=FALSE, axes=FALSE, col="lightgray",
   main="Histograma de frecuencias absolutas acumuladas", 
-  xlab="Intervalos", ylab="Frec. absolutas acumuladas")
+  xlab="Intervalos", ylab="")
 axis(1, at=L)
 text(h$mids, h$density/2, labels=cumsum(h$counts), col="blue")
 }
@@ -1048,7 +1064,26 @@ hist_abs.cum(fruta,L1)
 
 
 Con esta función producimos el histograma "básico" de los datos, sin dibujarlo, y a continuación
-modificamos su componente `density} para que contenga las sumas acumuladas de la componente `density` del histograma original. Luego dibujamos el nuevo histograma resultante, aplicándole la función `plot}; los parámetros del gráfico se tienen que añadir a este `plot`, no al histograma original. Finalmente, completamos el gráfico añadiendo el eje de abscisas y las frecuencias acumuladas en el interior de las barras.
+modificamos su componente `density` para que contenga las sumas acumuladas de la componente `density` del histograma original. Luego dibujamos el nuevo histograma resultante, aplicándole la función `plot}; los parámetros del gráfico se tienen que añadir a este `plot`, no al histograma original. Finalmente, completamos el gráfico añadiendo el eje de abscisas y las frecuencias acumuladas en el interior de las barras. También podéis añadir un eje de ordenadas con marcas de frecuencias, por ejemplo añadiendo una instrucción del estilo de
+```{r,eval=FALSE}
+axis(2,at=seq(0,max(h$density),length.out=...),labels=seq(0,length(x),length.out=...))
+```
+con los números de marcas (indicados por los `length.out`) a vuestro gusto: pueden ser un parámetro de la nueva función que defináis. Por ejemplo
+```{r}
+hist_abs.cum.2=function(x,L,m){
+h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE, plot=FALSE)
+h$density=cumsum(h$density)
+plot(h, freq=FALSE, axes=FALSE, col="lightgray",
+  main="Histograma de frecuencias absolutas acumuladas", 
+  xlab="Intervalos", ylab="")
+axis(1, at=L)
+axis(2,at=seq(0,max(h$density),length.out=m),labels=seq(0,length(x),length.out=m))
+}
+hist_abs.cum.2(fruta,L1,11)
+```
+
+
+
 
 Pasemos a los histogramas de frecuencias relativas. En ellos, es costumbre superponer una curva que estime la **densidad** de la
 distribución de la variable definida por la característica que medimos. 
@@ -1059,7 +1094,7 @@ en una familia cada vez mayor de intervalos;  si el rango de los datos se mantie
 intervalos del histograma irá decreciendo; cuando el tamaño del conjunto de datos tiende a infinito, 
 los intervalos tienden a ser puntos y, las barras, a ser líneas verticales. Los extremos superiores de estas líneas dibujarán una curva: ésta es la densidad de la variable.
 
-La densidad más famosa es la llamada **campana de Gauss**, y  corresponde a una variable que tenga una **distribución normal** (véase la Figura \@ref(fig:norm). Hay muchas variables que suelen tener distribuciones  normales: características morfológicas y fisiológicas de individuos de una especie, calificaciones en exámenes, errores de medida...  En cada caso, la forma concreta de la campana depende de dos parámetros: el valor medio $\mu$ de la variable y su desviación típica $\sigma$.
+La densidad más famosa es la llamada **campana de Gauss**, y  corresponde a una variable que tenga una **distribución normal** (véase la Figura \@ref(fig:norm). La forma concreta de la campana depende de dos parámetros: el valor medio $\mu$ de la variable y su desviación típica $\sigma$.
 
 
 ```{r,norm,out.width="100%", echo=FALSE, fig.cap='Campana de Gauss.'}
@@ -1068,12 +1103,20 @@ knitr::include_graphics("AprendeR-Parte-I_files/figure-html/gauss.png")
 
 
 
-Hay muchos métodos  para estimar la densidad de la distribución a partir de una muestra; la manera más sencilla de hacerlo con R es usar la función `density`. Cuando aplicamos esta función, con sus parámetros por defecto, a un vector númerico, produce una `list` que incluye los vectores `x` e `y` de primeras y segundas coordenadas de una secuencia de puntos $(x,y)$ sobre la curva densidad estimada. (Explicar el método que usa esta función `density} para estimar la densidad cae fuera del nivel de este curso. Los curiosos pueden consultar el [artículo de la Wikipedia](http://en.wikipedia.org/wiki/Kernel_density_estimation) y luego la Ayuda de la función.) Aplicando `plot`, con `type="l"`, o `lines` (si hay que añadirla a un gráfico anterior) al resultado de `density`, obtenemos el gráfico de esta curva.
+Hay muchos métodos  para estimar la densidad de la distribución a partir de una muestra; la manera más sencilla de hacerlo con R es usar la función `density`. Cuando aplicamos esta función, con sus parámetros por defecto, a un vector númerico, produce una `list` que incluye los vectores `x` e `y` de primeras y segundas coordenadas de una secuencia de puntos $(x,y)$ sobre la curva densidad estimada. (Explicar el método que usa esta función `density` para estimar la densidad cae fuera del nivel de este curso. Los curiosos pueden consultar  [este artículo de la Wikipedia](http://en.wikipedia.org/wiki/Kernel_density_estimation) y luego la Ayuda de la función.) Aplicando `plot`, con `type="l"`, o `lines` (si hay que añadirla a un gráfico anterior) al resultado de `density`, obtenemos el gráfico de esta curva.
+
+La instrucción siguiente produce el gráfico de la densidad estimada de la variable que ha producido el vector `fruta`:
 ```{r}
-str(density(fruta))
 plot(density(fruta), type="l", xlab="Número de árboles",
   ylab="Densidad", main="Densidad de la variable \"fruta\"")
 ```
+
+La estructura del resultado de `density(fruta)` es la siguiente:
+
+```{r}
+str(density(fruta))
+```
+Destacamos en particular sus componentes `density(fruta)$x` y `density(fruta)$y`, que nos dan las abscisas y las ordenadas de los puntos usados para dibujar su gráfico, y que usaremos más adelante. 
 
 
 Para dibujar un histograma de frecuencias relativas más informativo que el que produce R por defecto y que incluya la estimación de la densidad, podéis usar la función siguiente:
@@ -1183,7 +1226,7 @@ MC.cr
 crw_int=cut(crw, breaks=L.cr, right=FALSE)
 ```
 Ahora calcularemos la tabla de frecuencias para este agrupamiento `crw_int`. Usaremos la función 
-`Tabla_frec_agrup` de ...
+`Tabla_frec_agrup` que hemos definido al final de la Sección \@ref(sec:agrupR).
 
 ```{r}
 Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4)
@@ -1195,11 +1238,11 @@ hist_rel(crw, L.cr)
 
 
 
-La curva de densidad que obtenemos en este gráfico tiene una forma de campana que nos recuerda la campana de Gauss. Para explorar este parecido, vamos a añadir al histograma la gráfica de la función densidad de una distribución normal de  media y  desviación típica la media y la desviación típica muestral del conjunto de datos original, respectivamente; esta función se define mediante
+La curva de densidad que obtenemos en este gráfico tiene una forma de campana que nos recuerda la campana de Gauss. Para explorar este parecido, vamos a añadir al histograma la gráfica de la función densidad de una distribución normal de  media y  desviación típica la media y la desviación típica muestral del conjunto de datos original, respectivamente. Esta función se define mediante
 ```{r,eval=FALSE}
-dnorm(x, mu=lll, sd=...)
+dnorm(x, mu=..., sd=...)
 ```
-entrando como valores de `mu` y `sd` la media y la desviación típica deseadas, respectivamente.
+entrando como valores de `mu` y `sd` la media y la desviación típica deseadas, respectivamente. 
 
 ```{r}
 hist_rel(crw, L.cr)
@@ -1279,7 +1322,7 @@ Se observan una ligera diferencia entre la densidad estimada y la campana de Gau
 
 *(4)* Agrupad según la regla de Freedman-Diaconis los datos de la variable `uptake` del *data frame* `CO2` que lleva predefinido R (están expresados con una precisión de una cifra decimal).  ¿Cuál es la frecuencia relativa de su tercer intervalo, redondeada a 3 cifras decimales?
 
-*(5)* Supongamos que tenemos un vector de datos llamado *alturas*.  Da una instrucción que agrupe estos datos en intervalos con extremos dados por un vector llamado *Extremos* y codificando cada intervalo por él mismo, y llame *alturas_cut* al factor resultante. Los intervalos resultantes tienen que ser todos cerrados a la izquierda y abiertos a la derecha. Entrad los parámetros en orden alfabético y no dejéis espacios en blanco innecesarios.
+*(5)* Supongamos que tenemos un vector de datos llamado *alturas*.  Dad una instrucción que agrupe estos datos en intervalos con extremos dados por un vector llamado *Extremos* y codificando cada intervalo por él mismo, y llame *alturas_cut* al factor resultante. Los intervalos resultantes tienen que ser todos cerrados a la izquierda y abiertos a la derecha. Entrad los parámetros en orden alfabético y no dejéis espacios en blanco innecesarios.
 
 *(6)*  Definid un *data frame* con la tabla  https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/ESD.txt.  A continuación, agrupad los valores de su variable `MB` según la regla de Sturges (mirad antes con qué precisión están dadas sus entradas). ¿Cuál es la frecuencia  absoluta del intervalo modal de este agrupamiento? 
 
