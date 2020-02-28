@@ -14,7 +14,7 @@ El gráfico siguiente muestra el diagrama de barras de sus frecuencias, tomando 
 
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,fig.width=6,out.width="60%"}
 alturas1=factor(alturas,levels=1.55+0.01*(0:17))
 barplot(table(alturas1))
 ```
@@ -22,7 +22,7 @@ barplot(table(alturas1))
 En situaciones como esta, es recomendable dividir los posibles valores de la variable en  intervalos y contar cuántos datos caen dentro de cada intervalo: habitualmente, las frecuencias que se obtienen de esta manera son más fáciles de interpretar que las de los datos individuales. Así, siguiendo con nuestro ejemplo de las alturas, el diagrama de barras siguiente representa sus frecuencias cuando las agrupamos en intervalos de 5 cm. La distribución de estas alturas es mucho más fácil de entender mediante este gráfico que con el primero.
 
 
-```{r echo=FALSE}
+```{r echo=FALSE,fig.width=6,out.width="60%"}
 alturas2=cut(alturas,breaks=1.55+0.05*(0:6),right=FALSE)
 barplot(table(alturas2))
 ```
@@ -84,11 +84,11 @@ $$
 k= \left\lceil \frac{\max(x) -\min(x)}{A_{FD}}\right\rceil.
 $$
 
-Como podéis ver, las dos primeras sólo dependen de $n$, mientras que las  dos últimas tienen  en cuenta, de maneras diferentes, su dispersión; no hay una regla mejor que las otras y, además, números de clases diferentes pueden revelar  características diferentes de los datos. Las tres últimas reglas están implementadas en las funciones `nclass.Sturges`, `nclass.scott` y `nclass.FD` de R, respectivamente.
+Como podéis ver, las dos primeras sólo dependen de $n$, mientras que las  dos últimas tienen  en cuenta, de maneras diferentes, su dispersión. No hay una regla mejor que las otras y, además, números de clases diferentes pueden revelar  características diferentes de los datos. Las tres últimas reglas están implementadas en las funciones `nclass.Sturges`, `nclass.scott` y `nclass.FD` de R, respectivamente.
 
 
 ```{example,alerg}
-Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto; estas reacciones varían entre pacientes, no sólo en lo que se refiere a la gravedad de la reacción, sino también en el tiempo que tarda en manifestarse. En un estudio se midió,  en 40 pacientes que experimentaron una reacción alérgica a una picadura de abeja,  el tiempo de inicio de esta reacción desde la picadura, y se obtuvieron los datos siguientes,  que expresamos en minutos:
+Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto. Estas reacciones varían entre pacientes, no sólo en lo que se refiere a la gravedad de la reacción, sino también en el tiempo que tarda en manifestarse. En un estudio se midió,  en 40 pacientes que experimentaron una reacción alérgica a una picadura de abeja,  el tiempo de inicio de esta reacción desde la picadura, y se obtuvieron los datos siguientes,  que expresamos en minutos:
 
   
 ```
@@ -141,13 +141,13 @@ Ahora hemos de calcular los extremos de los intervalos. En este curso, tomaremos
 $$
 [L_1,L_2),[L_2,L_3),\ldots, [L_k,L_{k+1}).
 $$
-Sin entrar en detalles, el motivo por el que tomamos los intervalos de esta forma y no al revés (abiertos por la izquierda y cerrados por la derecha, que es como los construye R por defecto) es porque así es como se usan en Teoría de Probabilidades al definir la distribución de una variable aleatoria discreta, y también en muchas situaciones cotidianas (calificaciones, edades...).  En todo caso, queremos haceros notar que, con la regla que explicamos a continuación, los extremos de los intervalos nunca van a coincidir con valores del conjunto de datos: si la usáis, tanto dará si consideráis los intervalos abiertos o cerrados en sus extremos.
+Sin entrar en detalles, el motivo por el que tomamos los intervalos de esta forma y no al revés (abiertos por la izquierda y cerrados por la derecha, que es como los construye R por defecto) es porque así es como se usan en Teoría de Probabilidades al definir la distribución de una variable aleatoria discreta, y también en muchas situaciones cotidianas (calificaciones, edades...).  En todo caso, queremos haceros notar que, con la regla que explicamos a continuación, los extremos de los intervalos nunca van a coincidir con valores del conjunto de datos. Por lo tanto, si la usáis, tanto dará si consideráis los intervalos abiertos o cerrados en sus extremos.
 
 Los extremos $L_1,\ldots,L_{k+1}$ de estos intervalos se calculan de la manera siguiente: tomamos como extremo izquierdo $L_1$ del primer intervalo el valor 
 $$
 L_1=\min(x)-\frac{1}{2}\cdot \text{precisión} 
 $$
-Es decir, si la precisión son las unidades en las que hemos medido los datos, $L_1=\min(x)-0.5$; si la precisión son décimas de unidad, $L_1=\min(x)-0.05$; etc. A partir de este extremo inferior, cada uno de los extremos siguientes se obtiene sumando la amplitud al anterior:  $L_2=L_1+A$, $L_3=L_{2}+A$ y así sucesivamente, hasta llegar a $L_{k+1}=L_{k}+A$. Por consiguiente, estos extremos forman una progresión aritmética de paso $A$:
+Es decir, si la precisión son las unidades en las que hemos medido los datos, $L_1=\min(x)-0.5$; si la precisión son décimas de unidad, $L_1=\min(x)-0.05$; etc. A partir de este extremo inferior, cada uno de los extremos siguientes se obtiene sumando la amplitud al extremo anterior:  $L_2=L_1+A$, $L_3=L_{2}+A$ y así sucesivamente, hasta llegar a $L_{k+1}=L_{k}+A$. Por consiguiente, estos extremos forman una progresión aritmética de paso $A$:
 $$
 L_i=L_1+(i-1)A,\quad i=2,\ldots,k+1.
 $$
@@ -210,7 +210,7 @@ X_7= 4.7 + 6\cdot 1.9= 16.1
 $$
 ```
 
-```{example}
+```{example,alerg7cl}
 Volvamos a la situación inicial del Ejemplo \@ref(exm:alerg), y esta vez vamos a agrupar los datos siguiendo la regla de Scott. 
 Ya  calculamos en su momento que, con esta regla, tenemos que usar  $k=5$ intervalos. Como el rango de los datos es 12.7 y $12.7/5=2.54$, redondeando por exceso este cociente a una décima obtenemos que la amplitud de los intervalos ha de ser  $A=2.6$.
 
@@ -267,7 +267,7 @@ Una vez agrupados los datos, ya podemos empezar a estudiarlos. Una primera posib
 
 * etc. 
 
-La manera usual de representar las frecuencias de un conjunto de datos agrupados es la mostrada en la tabla siguiente, donde $X_j$ indica la marca de clase, $n_j$ la frecuencia absoluta de la clase, $N_j$ su frecuencia absoluta acumulada, $f_j$ su frecuencia relativa y $F_j$ su frecuencia relativa acumulada. Recordad que $N_k$ será igual al número total de datos recogidos y $F_k$ siempre valdrá 1.
+La manera usual de representar las frecuencias de un conjunto de datos agrupados es la que mostramos  en la tabla siguiente, donde $X_j$ indica la marca de clase, $n_j$ la frecuencia absoluta de la clase, $N_j$ su frecuencia absoluta acumulada, $f_j$ su frecuencia relativa y $F_j$ su frecuencia relativa acumulada. De esta manera, $N_k$ será igual al número total de datos recogidos y $F_k$ siempre valdrá 1.
 
 $$
 \begin{array}{lccccc}
@@ -293,7 +293,7 @@ Continuemos con el Ejemplo \@ref(exm:alerg). Recordemos los datos, que damos ord
 sort(alergia)
 ```
 
-Las frecuencias de este conjunto de datos para su agrupamiento en 7 clases  se muestran en la tabla siguiente. Para construir esta tabla, primero hemos calculado las frecuencias absolutas de cada clase: sólo hay 1 valor dentro de [3.75, 5.65), por lo que $n_1=1$; hay 3 valores dentro de [5.65, 7.55), por lo que $n_2=3$; etc. A partir de estas frecuencias absolutas, hemos calculado el resto de la manera usual.
+Las frecuencias de este conjunto de datos para su agrupamiento en 7 clases obtenido en el Ejemplo \@ref(exm:alerg7cl) se muestran en la tabla siguiente. Para construir esta tabla, primero hemos calculado las frecuencias absolutas de cada clase: sólo hay 1 valor dentro de [3.75, 5.65), por lo que $n_1=1$; hay 3 valores dentro de [5.65, 7.55), por lo que $n_2=3$; etc. A partir de estas frecuencias absolutas, hemos calculado el resto de la manera usual.
 
 $$
 \begin{array}{lrrrrr}
@@ -322,7 +322,7 @@ fruta=c(8,11,11,8,9,10,16,6,12,19,13,6,9,13,15,9,12,16,8,7,14,11,15,6,14,
   14,17,11,6,9,10,19,12,11,12,6,15,16,16,12,13,12,12,8,17,13,7,12,14,12)
 ```
 
-Para estudiar estos valores, vamos a agruparlos; usaremos la regla de Freedman-Diaconis.
+Para estudiar estos valores, vamos a agruparlos; par variar, usaremos la regla de Freedman-Diaconis.
 ```{r} 
 nclass.FD(fruta)
 diff(range(fruta))/5
@@ -331,7 +331,7 @@ min(fruta)
 
 
 Por consiguiente, usaremos 5 clases. Como hemos dado las medidas con una precisión de unidades, 
-para calcular su amplitud $A$  hemos de redondear por exceso a unidades el cociente  entre el rango de la variable y el número de clases; este cociente vale 2.6, y por lo tanto $A=3$.  Recordad que, si la precisión hubiera sido de décimas de unidad, como este cociente ha dado exactamente 2.6, hubiéramos tenido que tomar como amplitud el cociente más una unidad de precisión: 2.7.
+para calcular su amplitud $A$  hemos de redondear por exceso a unidades el cociente  entre el rango de la variable y el número de clases; este cociente vale 2.6, y por lo tanto $A=3$.  Recordad que, si la precisión hubiera sido de décimas de unidad, como este cociente ha dado exactamente 2.6, hubiéramos tomado como amplitud el cociente más una unidad de precisión: 2.7.
 
 El extremo inferior de la primera clase será 6-0.5=5.5, y a partir de aquí calculamos los 5 extremos siguientes sumando sucesivamente la amplitud:
 ```{r}
@@ -396,7 +396,7 @@ donde:
 
 * El parámetro `breaks` puede ser un vector numérico formado por los extremos de los intervalos en los que queremos agrupar los datos y que habremos calculado previamente. También podemos igualar este parámetro a un número $k$, en cuyo caso  R   agrupa los datos en $k$ clases; para ello, divide el intervalo comprendido entre los valores mínimo y máximo de $x$ en $k$ intervalos y, a continuación, desplaza ligeramente  a la izquierda el extremo inferior del primero  y a la derecha el extremo superior del último. Por consiguiente, estos intervalos no tienen todos la misma amplitud, y además puede pasar que algún extremo intermedio coincida con algún dato del conjunto.
 
-* El parámetro `labels` es un vector con las etiquetas de los intervalos. Su valor por defecto, el que utiliza si no lo especificamos, es la  codificación 1: usa como etiquetas los mismos intervalos. (Aunque puede que escriba sus extremos redondeados, para que muestren todos un número máximo de cifras significativas: por defecto, 3.) Si especificamos `labels=FALSE`,  obtenemos la codificación 3: los intervalos se identifican por medio de números naturales correlativos empezando por 1. Para usar como etiquetas las marcas de clase  o cualquier otro vector, hay que entrarlo  como valor de este parámetro.
+* El parámetro `labels` es un vector con las etiquetas de los intervalos. Su valor por defecto, el que utiliza si no lo especificamos, es la  codificación 1: usa como etiquetas los mismos intervalos (aunque puede que escriba sus extremos redondeados, para que muestren todos un número máximo de cifras significativas: por defecto, 3). Si especificamos `labels=FALSE`,  obtenemos la codificación 3: los intervalos se identifican por medio de números naturales correlativos empezando por 1. Para usar como etiquetas las marcas de clase  o cualquier otro vector, hay que entrarlo  como valor de este parámetro.
 
 * El parámetro `right` es un parámetro lógico que permite indicar qué tipo de intervalos queremos. Si usamos intervalos cerrados por la izquierda y abiertos por la derecha, que va a ser la norma en este curso, tenemos que especificar `right=FALSE`, que **no es el valor por defecto**.
 
@@ -452,7 +452,7 @@ x_Num
 ```
 
 
-El resultado de `cut` ha sido, en cada caso, una lista con los elementos del vector original codificados con las etiquetas de las clases a las que pertenecen. Podemos observar  que las dos primeras aplicaciones de `cut` han producido factores (cuyos niveles son los intervalos y las marcas de clase, respectivamente, en ambos casos ordenados de manera natural), mientras que aplicándolo con `labels=FALSE`  hemos obtenido un vector.
+El resultado de `cut` ha sido, en cada caso, una lista con los elementos del vector original codificados con las etiquetas de las clases a las que pertenecen. Podemos observar  que las dos primeras aplicaciones de `cut` han producido factores (cuyos niveles son los intervalos y las marcas de clase, respectivamente, en ambos casos ordenados de manera natural), mientras que aplicándola con `labels=FALSE`  hemos obtenido un vector.
 
 
 Antes de continuar, ¿que habría pasado si hubiéramos pedido a R que cortase los datos en 3 grupos?
@@ -462,7 +462,7 @@ cut(x, breaks=3, right=FALSE)
 ```
 
 
-R ha repartido los datos en tres intervalos de longitud 3, y ha desplazado ligeramente a la izquierda el extremo izquierdo del primer intervalo. Fijaos en que, según el resultado que muestra R, 10 pertenece a [7,10). Aunque así escrito resulte contradictorio, la realidad es que R ha tomado como  extremo derecho del último intervalo el valor 10.009, tal y como se explica en la Ayuda de `cut`, pero lo ha escrito redondeado a 10.
+R ha repartido los datos en tres intervalos de longitud 3, y ha desplazado ligeramente a la izquierda el extremo izquierdo del primer intervalo y a la derecha el extremo derecho del último intervalo; esto último no se ve a simple vista, pero lo podéis deducir del hecho que, según el resultado que muestra R, 10 pertenece a [7,10). Aunque así escrito resulte contradictorio, la realidad es que R ha tomado como  extremo derecho del último intervalo el valor 10.009, tal y como se explica en la Ayuda de `cut`, pero lo ha escrito redondeado a 10.
 
 
 Una vez agrupados los datos y codificados con las etiquetas de las clases, ya podemos calcular las tablas de frecuencias absolutas, relativas y acumuladas de los datos agrupados. Una posibilidad es usar las funciones `table`, `prop.table` y `cumsum` tal como lo hacíamos en las Lecciones \@ref(chap:edqual) y \@ref(chap:ord). Otra posibilidad es usar la función `hist`, a la que dedicaremos la Sección \@ref(sec:hist). Esta función sirve para dibujar el **histograma** de la variable cuantitativa agrupada (una especie de diagrama de barras para las clases del agrupamiento), pero internamente da lugar a una `list`  cuya componente  `count` es el vector de frecuencias absolutas de las clases. Por consiguiente, para calcular estas frecuencias absolutas, podemos usar la instrucción
@@ -491,53 +491,51 @@ Notas_cut=cut(Notas, breaks=c(0,5,7,9,10),
   right=FALSE, include.lowest=TRUE)
 ```
 
-* La tabla de frecuencias absolutas 
+* La tabla de frecuencias absolutas:
 ```{r}
 table(Notas_cut)  
 ```
 
-* La tabla de frecuencias absolutas acumuladas
+* La tabla de frecuencias absolutas acumuladas:
 ```{r}
 cumsum(table(Notas_cut))  
 ```
 
-* La tabla de frecuencias relativas 
+* La tabla de frecuencias relativas:
 ```{r}
 prop.table(table(Notas_cut))   
 ```
 
-* La tabla de frecuencias relativas acumuladas 
+* La tabla de frecuencias relativas acumuladas:
 ```{r}
 cumsum(prop.table(table(Notas_cut)))  
 ```
 
 También podríamos haber obtenido estas frecuencias usando la función `hist` para calcular el vector de frecuencias absolutas y luego operando con este vector para obtener el resto:
 
-* La tabla de frecuencias absolutas 
+* La tabla de frecuencias absolutas: 
 ```{r}
-frec_abs=hist(Notas, breaks=c(0,5,7,9,10), right=FALSE, 
-  include.lowest=TRUE, plot=FALSE)$count  #Tabla de frecuencias absolutas 
+frec_abs=hist(Notas, breaks=c(0,5,7,9,10), right=FALSE,
+   include.lowest=TRUE, plot=FALSE)$count 
 frec_abs
 ```
 
-* La tabla de frecuencias absolutas acumuladas
+* La tabla de frecuencias absolutas acumuladas:
 ```{r}
 cumsum(frec_abs) 
 ```
 
-* La tabla de frecuencias relativas (ahora no podemos usar `prop.table`, puesto que `frec_abs` no es una `table`)
+* La tabla de frecuencias relativas (ahora no podemos usar `prop.table`, puesto que `frec_abs` no es una `table`):
 ```{r}
 frec_abs/length(Notas)  
 ```
 
-* La tabla de frecuencias relativas acumuladas
+* La tabla de frecuencias relativas acumuladas:
 ```{r}
 cumsum(frec_abs/length(Notas))  
 ```
 
-Ahora podemos construir un *data frame* que contenga las frecuencias de estas calificaciones con la estructura de las tablas que hemos dado al final de la sección anterior.  Como ya explicamos en el Ejemplo \@ref(exm:dados),
-si calculamos las frecuencias absolutas con `table`, no es conveniente usar el resultado como columna del *data frame*:  
-es mejor utilizar el vector que se obtiene al aplicar `as.vector` al resultado de   `table`, y así no se generan columnas espurias con los nombres de los niveles.
+Ahora podemos construir un *data frame* que contenga las frecuencias de estas calificaciones con la estructura de las tablas que hemos dado al final de la sección anterior.  Como ya explicamos en el Ejemplo \@ref(exm:dados), si calculamos las frecuencias absolutas con `table`, no es conveniente usar el resultado como columna del *data frame*: es mejor utilizar el vector que se obtiene al aplicar `as.vector` al resultado de   `table`, y así no se generan columnas espurias con los nombres de los niveles.
 ```{r}
 intervalos=c("[0,5)","[5,7)","[7,9)","[9,10]")
 calificaciones=c("Suspenso","Aprobado","Notable","Sobresaliente")
@@ -563,11 +561,14 @@ y usar el vector `f.abs` como arranque para calcular las columnas de frecuencias
 
 ```{example}
 Continuemos con el Ejemplo \@ref(exm:cut); vamos a calcular  las diferentes frecuencias para la codificación `x_int`:
+  
+  
+```
+
 ```{r}
+x_int
 table(x_int)
-x_int
 prop.table(table(x_int))
-x_int
 cumsum(table(x_int))
 cumsum(prop.table(table(x_int)))
 ```
@@ -576,7 +577,7 @@ cumsum(prop.table(table(x_int)))
 Ahora, vamos a construir un *data frame* que contenga la tabla de frecuencias de esta variable agrupada:
 ```{r}
 intervalos=levels(x_int)
-marcas=MC  #Las hemos calculado en el Ejemplo 11.8
+marcas=MC  #Las hemos calculado en un ejemplo anterior
 f.abs=as.vector(table(x_int))
 f.abs.cum=cumsum(f.abs)
 f.rel=f.abs/length(x)
@@ -609,7 +610,7 @@ Sus parámetros son: $x$, el vector con los datos, y $L$, el vector de extremos 
 Tabla_frec_agrup_L=function(x,L){
     x_int=cut(x, breaks=L, right=FALSE, include.lowest=TRUE)
     intervalos=levels(x_int)
-    marcas=(L[1:(length(L)-1)]+L[2:length(L)])/2
+    marcas=(L[-length(L)]+L[-1])/2
     f.abs=as.vector(table(x_int))
     f.rel=f.abs/length(x)
     f.abs.cum=cumsum(f.abs)
@@ -627,6 +628,14 @@ Volviendo al Ejemplo \@ref(exm:alerg), vamos a calcular, para el agrupamiento en
 ```{r}
 Tabla_frec_agrup(alergia, 7, 1.9, 0.1)
 ```
+
+La ventaja de definir esta tabla de frecuencias mediante un *data frame* es que podemos usar la función `kable` del paquete **knitr** o el paquete *printr* para producirla en formato adecuado en un documento html.
+
+```{r}
+kable(Tabla_frec_agrup(alergia, 7, 1.9, 0.1))
+```
+
+
 Observad que, como advertíamos en su momento, ha escrito los extremos de los intervalos redondeados para que tengan como máximo 3 cifras. Esto se puede resolver usando en la función  `cut` el parámetro `dig.lab`, que permite especificar el número máximo de cifras significativas en los extremos de las etiquetas. 
 ```{r}
 L=3.75+1.9*(0:7)
@@ -737,7 +746,7 @@ Edad.media
 
 * Varianza:
 ```{r}
-Edad.varianza=sum(tabla$Población*tabla$marcas^2)/Total-Edad.media^2 
+Edad.varianza=sum(tabla$Población*tabla$Marcas^2)/Total-Edad.media^2 
 Edad.varianza
 ```
 
@@ -777,7 +786,7 @@ La justificación de esta fórmula es la siguiente: lo que hacemos es unir con u
 
 
 
-```{r median, out.width="50%", echo=FALSE, fig.cap='Aproximación lineal de la mediana a partir de las frecuencias de los datos agrupados.'}
+```{r median, out.width="60%", echo=FALSE, fig.cap='Aproximación lineal de la mediana a partir de las frecuencias de los datos agrupados.'}
 knitr::include_graphics("AprendeR-Parte-I_files/figure-html/median.png")
 ```
 
@@ -810,7 +819,9 @@ $$
 ## Histogramas {#sec:hist}
 
 
-Los datos agrupados se describen gráficamente por medio de unos diagramas de barras específicos llamados **histogramas**, donde se dibuja sobre cada clase una barra cuya área  representa la frecuencia de dicha clase. Veamos un ejemplo.
+Los datos agrupados se describen gráficamente por medio de unos diagramas de barras específicos llamados **histogramas**, donde se dibuja sobre cada clase una barra cuya **área**  representa la frecuencia de dicha clase. Queremos recalcar que en los histogramas es el área de las barras, y no su altura, la que en general representa las frecuencias de las clases.
+
+Veamos un ejemplo.
 
 ```{example, 1115}
 Supongamos que tenemos los datos
@@ -869,7 +880,7 @@ axis(1, at=L1)
 axis(2, at=seq(0,max(h1$density),length.out=8),labels=5*(0:7))
 #
 h2=hist(x, breaks=L2, right=FALSE, plot=FALSE,include.lowest=TRUE )
-h2$density=c(2.4,10,15,35)
+h2$density=cumsum(h2$density*c(5,2,2,1))
 plot(h2, axes=FALSE, freq=FALSE,
   main="",xlab="x", ylab="Frec. absolutas acumuladas")
 axis(1, at=L2)
@@ -890,10 +901,8 @@ este consejo se extiende a los histogramas de frecuencias relativas.
 ```{r 205, echo=FALSE, fig.show="hold", fig.width=10,fig.asp=0.5, fig.cap='Estructura básica de un histograma de frecuencias absolutas (izquierda) y absolutas acumuladas (derecha)'}
 par(mfrow=c(1,2))
 plot(c(1,1,1.5,1.5,1.5,2,2,2.5,2.5,3,3),c(0,6,6,0,2,2,0,0,4,4,0),
-main="Histograma y polígono de frecuencias absolutas",type="S",ylim=c(0.22,6),xlim=c(0.95,3.5),xlab="Intervalos",
+main="Histograma de frecuencias absolutas",type="S",ylim=c(0.22,6),xlim=c(0.95,3.5),xlab="Intervalos",
  ylab="Frecuencias absolutas",xaxs="i",yaxs="i",bty="l",xaxt="n",yaxt="n")
-lines(c(1,1.25,1.75),c(0,6,2),col="red")
-lines(c(2.25,2.75,3),c(2,4,0),col="red")
 axis(1,at=c(1,1.5,2,2.5, 3),
 labels=c(expression(L[1]),expression(L[2]),
 expression(L[3]),expression(L[k]),expression(L[k+1])))
@@ -903,10 +912,8 @@ text(2.75,3,expression(n[2]))
 text(2.25,1,"......")
 #
 plot(c(1,1,1.5,1.5,1.5,2,2,2.5,2.5,3,3),c(0,6,6,0,8,8,0,0,12,12,0),type="S",
-main="Histograma y polígono de frec. absolutas acumuladas",ylim=c(0.22,12),xlim=c(0.95,3.5),xlab="Intervalos",
+main="Histograma de frec. absolutas acumuladas",ylim=c(0.22,12),xlim=c(0.95,3.5),xlab="Intervalos",
  ylab="Frecuencias absolutas acumuladas",xaxs="i",yaxs="i",bty="l",xaxt="n",yaxt="n")
-lines(c(1,1.50,2),c(0,6,8),col="red")
-lines(c(2.3,2.5,3),c(10,11,12),col="red")
 axis(1,at=c(1,1.5,2,2.5,3),
 labels=c(expression(L[1]),expression(L[2]),
 expression(L[3]),expression(L[k]),expression(L[k+1])))
@@ -927,7 +934,7 @@ Una observación: en la práctica, no es conveniente que en un histograma aparez
 
 La función para dibujar histogramas con R es `hist`. Su estructura básica es 
 ```{r,eval=FALSE}
-hist(x, breaks=..., freq=..., right=..., ...)
+hist(x, breaks=..., freq=..., right=FALSE, include.lowest=TRUE, ...)
 ```
 donde:
 
@@ -1002,7 +1009,7 @@ h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE,
     axes=FALSE, col="lightgray",
     main="Histograma de frecuencias absolutas",
     xlab="Intervalos",ylab="")
- text(h$mids, h$density/2, labels=h$counts, col="blue")
+ text(h$mids, h$density/2, labels=h$counts, col="blue", cex=0.75)
 }
 axis(1, at=L)}
 ```
@@ -1035,7 +1042,7 @@ hist_abs(fruta, L1)
 rug(fruta)
 ```
 
-Observaréis que, en este histograma, es difícil deducir de la "alfombra" que la tercera clase tiene una frecuencia mayor que las dos primeras debido a un mayor número de empates. Si encontráis difícil ver los empates, la Ayuda de `rug` os recomienda combinar `rug` con la función `jitter`, que añade un poco de "ruido" a los datos de un vector, deshaciendo empates. Veamos su uso en el histograma anterior:
+Notaréis que, en este histograma, es difícil deducir de la "alfombra" que la tercera clase tiene una frecuencia mayor que las dos primeras debido a un mayor número de empates. Si encontráis difícil ver los empates, la Ayuda de `rug` os recomienda combinar `rug` con la función `jitter`, que añade un poco de "ruido" a los datos de un vector, deshaciendo empates. Veamos su uso en el histograma anterior:
 ```{r}
 hist_abs(fruta, L1)
 rug(jitter(fruta))
@@ -1052,7 +1059,7 @@ plot(h, freq=FALSE, axes=FALSE, col="lightgray",
   main="Histograma de frecuencias absolutas acumuladas", 
   xlab="Intervalos", ylab="")
 axis(1, at=L)
-text(h$mids, h$density/2, labels=cumsum(h$counts), col="blue")
+text(h$mids, h$density/2, labels=cumsum(h$counts), col="blue", cex=0.75)
 }
 ```
 
@@ -1064,11 +1071,11 @@ hist_abs.cum(fruta,L1)
 
 
 Con esta función producimos el histograma "básico" de los datos, sin dibujarlo, y a continuación
-modificamos su componente `density` para que contenga las sumas acumuladas de la componente `density` del histograma original. Luego dibujamos el nuevo histograma resultante, aplicándole la función `plot}; los parámetros del gráfico se tienen que añadir a este `plot`, no al histograma original. Finalmente, completamos el gráfico añadiendo el eje de abscisas y las frecuencias acumuladas en el interior de las barras. También podéis añadir un eje de ordenadas con marcas de frecuencias, por ejemplo añadiendo una instrucción del estilo de
+modificamos su componente `density` para que contenga las sumas acumuladas de la componente `density` del histograma original. Luego dibujamos el nuevo histograma resultante, aplicándole la función `plot`; los parámetros del gráfico se tienen que añadir a este `plot`, no al histograma original. Finalmente, completamos el gráfico añadiendo el eje de abscisas y las frecuencias acumuladas en el interior de las barras. También podéis añadir un eje de ordenadas con marcas de frecuencias, por ejemplo añadiendo una instrucción del estilo de
 ```{r,eval=FALSE}
 axis(2,at=seq(0,max(h$density),length.out=...),labels=seq(0,length(x),length.out=...))
 ```
-con los números de marcas (indicados por los `length.out`) a vuestro gusto: pueden ser un parámetro de la nueva función que defináis. Por ejemplo
+con el número de marcas (indicado por los `length.out`) a vuestro gusto: pueden ser un parámetro de la nueva función que defináis. Por ejemplo
 ```{r}
 hist_abs.cum.2=function(x,L,m){
 h=hist(x, breaks=L, right=FALSE, include.lowest=TRUE, plot=FALSE)
@@ -1094,7 +1101,7 @@ en una familia cada vez mayor de intervalos;  si el rango de los datos se mantie
 intervalos del histograma irá decreciendo; cuando el tamaño del conjunto de datos tiende a infinito, 
 los intervalos tienden a ser puntos y, las barras, a ser líneas verticales. Los extremos superiores de estas líneas dibujarán una curva: ésta es la densidad de la variable.
 
-La densidad más famosa es la llamada **campana de Gauss**, y  corresponde a una variable que tenga una **distribución normal** (véase la Figura \@ref(fig:norm). La forma concreta de la campana depende de dos parámetros: el valor medio $\mu$ de la variable y su desviación típica $\sigma$.
+La densidad más famosa es la llamada **campana de Gauss**, y  corresponde a una variable que tenga una **distribución normal** (véase la Figura \@ref(fig:norm)). La forma concreta de la campana depende de dos parámetros: el valor medio $\mu$ de la variable y su desviación típica $\sigma$.
 
 
 ```{r,norm,out.width="100%", echo=FALSE, fig.cap='Campana de Gauss.'}
@@ -1103,7 +1110,7 @@ knitr::include_graphics("AprendeR-Parte-I_files/figure-html/gauss.png")
 
 
 
-Hay muchos métodos  para estimar la densidad de la distribución a partir de una muestra; la manera más sencilla de hacerlo con R es usar la función `density`. Cuando aplicamos esta función, con sus parámetros por defecto, a un vector númerico, produce una `list` que incluye los vectores `x` e `y` de primeras y segundas coordenadas de una secuencia de puntos $(x,y)$ sobre la curva densidad estimada. (Explicar el método que usa esta función `density` para estimar la densidad cae fuera del nivel de este curso. Los curiosos pueden consultar  [este artículo de la Wikipedia](http://en.wikipedia.org/wiki/Kernel_density_estimation) y luego la Ayuda de la función.) Aplicando `plot`, con `type="l"`, o `lines` (si hay que añadirla a un gráfico anterior) al resultado de `density`, obtenemos el gráfico de esta curva.
+Hay muchos métodos  para estimar la densidad de la distribución a partir de una muestra; la manera más sencilla de hacerlo con R es usar la función `density`. Cuando aplicamos esta función, con sus parámetros por defecto, a un vector númerico, produce una `list` que incluye los vectores `x` e `y` de primeras y segundas coordenadas de una secuencia de puntos $(x,y)$ sobre la curva densidad estimada.  Aplicando `plot`, con `type="l"`, o `lines` (si hay que añadirla a un gráfico anterior) al resultado de `density`, obtenemos el gráfico de esta curva. (Explicar el método que usa esta función `density` para estimar la densidad cae fuera del nivel de este curso. Los curiosos pueden consultar  [este artículo de la Wikipedia](http://en.wikipedia.org/wiki/Kernel_density_estimation) y luego la Ayuda de la función.)
 
 La instrucción siguiente produce el gráfico de la densidad estimada de la variable que ha producido el vector `fruta`:
 ```{r}
@@ -1128,8 +1135,7 @@ plot(h, freq=FALSE, col="lightgray",
  main="Histograma de frec. relativas y curva de densidad estimada",
  xaxt="n", ylim=c(0,t), xlab="Intervalos", ylab="Densidades")
 axis(1, at=L)
-text(h$mids, h$density/2,
-  labels=round(h$counts/length(x),2), col="blue")
+text(h$mids, h$density/2, labels=round(h$counts/length(x),2), col="blue", cex=0.75)
 lines(density(x), col="red", lwd=2)
 }
 ```
@@ -1142,7 +1148,7 @@ hist_rel(fruta, L1)
 
 
 
-En los histogramas de frecuencias relativas acumuladas, se puede superponer una curva que estime la **función de distribución** de la variable definida por la característica que medimos; esta función de distribución de una variable nos da, en cada punto, la fracción de individuos de la población que caen a la izquierda de este punto, es decir, la frecuencia relativa acumulada por la variable sobre la población en ese punto. En general, la función de distribución en un valor determinado es igual al área de la región, a la izquierda de la vertical definida por dicho valor, delimitada por la función de densidad y el eje de abscisas.
+En los histogramas de frecuencias relativas acumuladas, se puede superponer una curva que estime la **función de distribución** de la variable definida por la característica que medimos. Esta función de distribución de una variable nos da, en cada punto, la fracción de individuos de la población que caen a la izquierda de este punto, es decir, la frecuencia relativa acumulada de la variable sobre la población en ese punto. En general, la función de distribución en un valor determinado es igual al área de la región, a la izquierda de la vertical definida por dicho valor, delimitada por la función de densidad y el eje de abscisas.
 
 Para dibujar un histograma de frecuencias relativas acumuladas que incluya la función de distribución estimada, podéis usar la función siguiente:
 
@@ -1154,8 +1160,7 @@ plot(h, freq=FALSE, main="Histograma de frec. rel. acumuladas\n y
   curva de distribución estimada", xaxt="n", col="lightgray",
   xlab="Intervalos", ylab="Frec. relativas acumuladas")
 axis(1, at=L)
-text(h$mids, h$density/2,
-  labels=round(h$density,2), col="blue")
+text(h$mids, h$density/2,labels=round(h$density,2), col="blue", cex=0.75)
 dens.x=density(x)
 dens.x$y=cumsum(dens.x$y)*(dens.x$x[2]-dens.x$x[1]) 
 lines(dens.x,col="red",lwd=2)
@@ -1185,10 +1190,17 @@ alergia=c(10.5,11.2,9.9,15.0,11.4,12.7,16.5,10.1,12.7,11.4,11.6,
 nclass.Sturges(alergia)
 diff(range(alergia))
 12.7/7
-#Tomamos A=1.9
+```
+
+Por lo tanto, tomamos A=1.9.
+
+```{r}
 L.al=min(alergia)-0.05+1.9*(0:7) 
 L.al
-#Usamos las funciones que hemos definido 
+```
+
+Y ahora usamos las funciones que hemos definido:
+```{r}
 hist_rel(alergia, L.al)
 hist_rel.cum(alergia, L.al)
 ```
@@ -1205,7 +1217,7 @@ El fichero `datacrab.txt`, del cual hemos guardado una copia en el url https://r
 
 
 
-Vamos a dibujar un histograma de las frecuencias relativas de estas amplitudes que incluya su curva de densidad estimada; para variar, agruparemos estas amplitudes usando la regla de Scott.  Aprovecharemos para calcular la tabla de frecuencias de este agrupamiento.
+Vamos a dibujar un histograma de las frecuencias relativas de estas amplitudes que incluya su curva de densidad estimada; esta vez agruparemos estas amplitudes usando la regla de Scott.  Aprovecharemos para calcular la tabla de frecuencias de este agrupamiento.
 
 Empezamos importando esta tabla en un *data frame* y definiendo un vector con la variable correspondiente a la amplitud. 
 ```{r}
@@ -1218,19 +1230,22 @@ A continuación, determinamos el número de clases, amplitud, etc. del agrupamie
 ```{r}
 nclass.scott(crw)
 diff(range(crw))/10
-#Tomaremos A=1.3
+```
+
+Por lo tanto, tomamos A=1.3.
+
+```{r}
 L.cr=min(crw)-0.05+1.3*(0:10)
 L.cr
-MC.cr=(L.cr[1]+L.cr[2])/2+1.3*(0:9)
-MC.cr
 crw_int=cut(crw, breaks=L.cr, right=FALSE)
 ```
 Ahora calcularemos la tabla de frecuencias para este agrupamiento `crw_int`. Usaremos la función 
 `Tabla_frec_agrup` que hemos definido al final de la Sección \@ref(sec:agrupR).
 
 ```{r}
-Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4)
+kable(Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4))
 ```
+
 Por lo que se refiere al histograma, es
 ```{r}
 hist_rel(crw, L.cr)
@@ -1248,9 +1263,9 @@ entrando como valores de `mu` y `sd` la media y la desviación típica deseadas,
 hist_rel(crw, L.cr)
 curve(dnorm(x, mean(crw), sd(crw)), col="purple", lty=3, lwd=2, add=TRUE)
 legend("topright", lwd=c(2,2), lty=c(1,2), col=c("red","purple"),
-  legend=c("densidad estimada","densidad normal"))
+  legend=c("densidad estimada","densidad normal"), cex=0.7)
 ```
-Se observan una ligera diferencia entre la densidad estimada y la campana de Gauss en la zona central.
+Se observa un ligero desplazamiento a la izquierda de la densidad estimada respecto de la campana de Gauss.
 
 
 
