@@ -1,0 +1,256 @@
+# Introducción a la programación {#chap:for}
+
+
+Una de las grandes ventajas de R es su capacidad de **vectorizar construcciones**, es decir, la posibilidad de aplicar de golpe una función a todo un vector, o a todas las entradas de un vector, o a todas las filas o columnas de un *data frame* o una matriz. Por ejemplo, para calcular la suma de todos los elementos de un vector,  en muchos lenguajes de programación tendríamos que usar un pequeño programa como el que sigue:
+
+1. Iniciamos una variable "Suma" igual al primer elemento del vector
+2. Para cada posición *i* entre 2 y la longitud del vector, redefinimos "Suma" como la suma de su valor actual y el elemento *i*-ésimo del vector
+3. Al llegar al final del vector, damos el valor final de "Suma"
+
+En cambio, como sabéis, con R basta  entrar `sum(vector)`. 
+
+De manera similar, para calcular todos los cuadrados de números naturales del 1 al 100, con R basta  entrar `(1:100)^2` nientras que en muchos lenguajes de programación tendríamos que llevar a cabo un proceso  parecido al anterior:
+
+1. Definimos un vector "Cuadrados" vacío
+2. Para cada n entre 1 y 100, añadimos al final del vector "Cuadrados" el valor de n^2^
+3. Al terminar, damos el contenido final del vector "Cuadrados"
+
+
+Incluso para construcciones más complicadas que elevar al cuadrado, R dispone de funciones, genéricamente llamadas **funciones de tipo apply** que permiten aplicar una función a todos los elementos de un objeto. Algunas de estas funciones ya han aparecido en lecciones anteriores:
+
+* `apply`, para aplicar una función a todas las filas o a todas las columnas de una matriz
+
+* `aggregate`, para aplicar una función a todos los grupos formados al clasificar una variable según un factor
+
+* `sapply`, para aplicar una función a todos los elementos de un objeto y dar el resultado en forma de un vector, una matriz o, en general, de un *array*
+
+* `lapply`, para aplicar una función a todos los elementos de un objeto y dar el resultado en forma de *list*
+
+Es cierto que la "buena práctica de la programación" en R fomenta el uso de la vectorización de cálculos usando funciones de tipo *apply* u otras funciones específica tipo `sum`. Pero hay ocasiones en que es necesario, o al menos conveniente en algún sentido, escribir un pequeño programa del estilo de los que hemos explicado. En esta lección introducimos de manera muy elemental dos tipos de estructuras de control que pueden ser útiles: los bucles  y las estructuras condicionales.
+
+## Bucles "for"
+
+
+Un **bucle for** es una estructura del estilo "Para todo ... haz ..." en la que se repite una determinada operación o secuencia de operaciones para todos los elementos de un un vector (también puede ser de una list). Con R, este tipo de bucles se especifican con una instrucción de la forma
+```{r,eval=FALSE}
+for(índice in vector){operaciones(índice)}
+```
+Esta sintaxis indica a R que 
+
+> para todo `índice` que pertenezca al `vector` especificado entre los paréntesis, efectue las `operaciones` especificadas entre las llaves.
+
+En esta instrucción el `índice` juega un papel de variable interna, como las variables entre los paréntesis en la definición de funciones, y lo podéis substituir por cualquier nombre de variable, como por ejemplo n, i o x, mientras luego uséis ese mismo nombre en la construcción entre llaves. Por ejemplo, para construir el vector de los cuadrados de números naturales del 1 al 100 por medio de un bucle **for**  entraríamos
+
+```{r,error=TRUE}
+for(n in 1:100){Cuadrados[n]=n^2}
+```
+
+Bueno, ya veis que no. Esta construcción solo implementa el paso 2 del proceso descrito en la introducción de la lección. Antes, hay que llevar a cabo el paso 1: definir el vector de Cuadrados y darle un valor inicial, aunque sea igualarlos a un vector vacío, para que luego R ya lo vaya construyendo:
+
+```{r}
+Cuadrados=c()  #Iniciamos Cuadrados como un vector vacío
+for(n in 1:100){Cuadrados[n]=n^2}
+Cuadrados
+```
+
+En vez de ir definiendo las entradas del vector `Cuadrados` en las diferentes iteraciones del bucle, también podríamos ir añadiéndolas al final:
+
+```{r}
+Cuadrados=c(1)  
+for(n in 2:100){Cuadrados=c(Cuadrados,n^2)}
+Cuadrados
+```
+
+
+Estas construcciones tienen un defecto: como cada iteración del bucle cambia la dimensión del vector `Cuadrados`, en cada iteración R define un nuevo objeto "Cuadrados" en el que copia el contenido del `Cuadrados` anterior y añade el nuevo elemento. En bucles más complicados, esto podría ralentizar el cálculo. La manera correcta de entrar este bucle en R sería iniciar el vector `Cuadrados` como un vector de la longitud que va a tener al final, 100 en nuestro caso, y con el contenido que queramos, por ejemplo constante, y entonces ir modificando sus entradas una a una: 
+
+```{r}
+Cuadrados=rep(1,100)  #Iniciamos Cuadrados como un vector constante de longitud 100
+for(n in 2:100){Cuadrados[n]=n^2}
+Cuadrados
+```
+
+
+```{example,fib1}
+Supongo que recordáis la sucesión de Fibonacci $F_n$,
+$$
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots,
+$$ 
+donde cada término es la suma de los dos anteriores. Esto corresponde a la recurrencia
+$$
+F_{n}=F_{n-2}+F_{n-1},
+$$
+que, junto con las condiciones iniciales $F_1=F_2=1$, determina completamente la sucesión: 
+$$
+F_3=F_1+F_2=2,\ 
+F_4=F_2+F_3=3,\ 
+F_5=F_3+F_4=5,\ 
+\ldots
+$$
+  
+  
+````
+
+Vamos a calcular los 100 primeros números de Fibonacci, $(F_n)_{n=1,\ldots,100}$. Para ello, usaremos un bucle **for** que traduzca la construcción "para cada n de 1 a 100, $F_n$ es la suma de $F_{n-1}$ y $F_{n-2}$". Como $F_1=F_2=1$, iniciaremos el vector que al final  contendrá los 100 primeros números de Fibonacci como un vector formado por cien unos, y con el bucle redefniremos sus entradas a partir de la tercera:
+```{r}
+Fib=rep(1,100) 
+for(n in 3:100){Fib[n]=Fib[n-1]+Fib[n-2]} 
+Fib[1:10]
+Fib[100]
+```
+
+
+Como en la definición de funciones, si la construcción que queremos realizar en cada paso del bucle requiere de más de una instrucción, las podemos separar dentro de las llaves mediantes signos de punto y coma o simplemente escribiéndolas en líneas aparte. Además, podéis anidar construcciones `for` si necesitáis que el conjunto de índices sea multidimensional.
+
+```{example}
+Supongamos que queremos definir una función SimM que, aplicada a una matriz cuadrada A, la *simetrice*, es decir, substituya cada entrada (i,j) de A  fuera de su diagonal principal por la media de las entradas (i,j) y (j,i). Para ello lo que haremos será, dada la matriz A, si n indica sus números de filas y de columnas:
+
+
+````
+
+1. Definir una copia AA de A
+2. Para cada i entre 1 y n-1 y para cada j entre i+1 y n, redefinir AA[i,j] y AA[j,i] como (A[i,j]+A[j,i])/2
+3. Dar como resultado la matriz simétrica AA resultante
+
+```{r}
+SimM=function(A){
+  n=dim(A)[1]
+  AA=A
+  for (i in 1:(n-1)){
+    for (j in (i+1):n){
+      AA[i,j]=(A[i,j]+A[j,i])/2
+      AA[j,i]=(A[i,j]+A[j,i])/2 
+    }
+  }
+AA
+}
+```
+
+Veamos con un ejemplo si funciona:
+```{r}
+A=matrix(c(1:9),nrow=3,byrow=TRUE)
+A
+SimM(A)
+```
+
+
+
+## Bucles "while" 
+
+Los **bucles while** repiten una determinada secuencia de operaciones mientras (*while*) una cierta condición lógica se satisfaga. Su sintaxis es
+```{r,eval=FALSE}
+while(condición){operaciones}
+```
+e indica a R que 
+
+> antes de efectuar por primera vez las `operaciones` y tras cada ejecución de las mismas, compruebe si la `condición` se satisface: en caso afirmativo, se vuelven a efectuar las operaciones, y en caso negativo se para la ejecución del bucle..
+
+
+Por ejemplo, el bucle 
+```{r}
+Cuadrados=rep(1,100)
+for(n in 1:100){Cuadrados[n]=n^2}
+Cuadrados
+```
+se podría reescribir como un `while` de la manera siguiente
+```{r}
+n=1 #Iniciamos un contador
+Cuadrados=c() #Iniciamos el vector
+while(n<=100){ #Mientras n sea menor o igual a 100...
+  Cuadrados[n]=n^2 #añadimos n^2 al vector de Cuadrados...
+  n=n+1 #y aumentamos en 1 el contador n
+}
+Cuadrados
+```
+Este bucle: 
+
+* Como $1\leq 100$, definirá Cuadrados[1]=1 y redefinirá n=2;
+* Comprobará que $2\leq 100$, y entonces definirá Cuadrados[2]=4 y redefinirá n=3; 
+* Comprobará que $3\leq 100$, y entonces definirá Cuadrados[3]=9 y redefinirá n=4;
+* ...
+* Comprobará que $100\leq 100$, y entonces definirá Cuadrados[100]=10000 y redefinirá n=101; 
+* Comprobará que $101>100$ y parará.
+
+Veamos otro ejemplo. Supongamos que queremos calcular los números de Fibonacci menores o iguales a 10^6^. Podemos usar un bucle **while** de la manera siguiente:
+
+```{r}
+Fib=c(1,1) #Iniciamos Fib con los dos primeros números de Fibonacci
+while (Fib[length(Fib)]<=10^6){  #Mientras el último número de Fibonacci calculado sea menor o igual a 1000...
+  Fib[length(Fib)+1]=Fib[length(Fib)]+Fib[length(Fib)-1] #calculamos el siguiente número de Fibonacci
+  } 
+Fib
+```
+
+## Estructuras condicionales
+
+Las **estructuras de control condicionales** (o **condicionales** a secas) permiten que un programa decida de manera automática entre varias opciones. Estas estructuras tienen en R la misma estructura que en casi todos los otros lenguajes de programación. Por un lado, tenemos la estructura
+```{r,eval=FALSE}
+if (condición){
+  acción
+}
+```
+que indica que si se satisface la `condición` se lleve a cabo la `acción` y luego se continue con el programa, y si no se satisface la condición, se continue con el programa sin efectuar la `acción`.
+
+Por otro lado, tenemos la estructura
+```{r,eval=FALSE}
+if (condición){
+  acción1
+   } else {
+    acción2 
+   }
+}
+```
+que indica que si se satisface la `condición` se lleve a cabo la `acción1` y  si no se satisface la condición se lleve a cabo la `acción2` (y luego, en ambos casos se continue con el programa).
+
+Por ejemplo, si quisiéramos definir una función que valiera $x^2$ para los $x\leq 0$ y $x^3$ para los $x\geq 0$, tendríamos que usar  un condicional:
+
+```{r}
+f=function(x){
+  if (x<=0){
+    x^2
+  } else {
+      x^3
+    }
+}
+```
+
+Vamos a definir una función más complicada, que usará varios condicionales y un bucle. Se trata de una función que usa la criba de Eratóstenes para decidir si un número natural es primo o no, indicándolo con los valores lógicos usuales `TRUE` y `FALSE`. En esta función, en primer lugar usaremos un condicional para que si la entrada no es un número natural nos de un mensaje de error y si es un número natural continue. A continuación, con un segundo condicional separaremos las entradas 0 y 1, que no son primos, del resto. Finalmente, con un tercer condicional separaremos las entradas 2 y 3, que son primos, de las mayores o iguales que 4. Para estas últimas, con un bucle **for**  probaremos todos los divisores enteros entre 2 y su raíz cuadrada: si alguno da resto 0 (un cuarto condicional), el número entrado no será primo, y si todos los restos son diferentes de 0, sí que será primo. 
+
+```{r}
+Es.Primo=function(n){
+  if (n!=round(n) | n<0){
+    stop("x no es un número natural")  #Da error y para
+  } else {
+    if (n==0 | n==1){
+          Primo=FALSE
+    } else {
+      Primo=TRUE
+      if (n>=4){
+           for(i in 2:floor(sqrt(n))) {
+          if ((n %% i) == 0) {
+            Primo=FALSE
+          } 
+}
+}
+} 
+Primo
+}
+}
+```
+
+Veamos un ejemplo que dé error:
+
+```{r,error=TRUE}
+Es.Primo(-3)
+```
+
+Y ahora vamos a aplicar esta función a todos los números naturales entre 0 y 100. No, no usaremos un `for`, usaremos `sapply`.
+
+```{r}
+sapply(0:100,FUN=Es.Primo)
+```
+
+
+
+## Guía rápida de funciones
+
