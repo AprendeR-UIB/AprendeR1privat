@@ -23,7 +23,7 @@ Incluso para construcciones más complicadas que elevar al cuadrado, R dispone d
 
 * `lapply`, para aplicar una función a todos los elementos de un objeto y dar el resultado en forma de *list*
 
-* `sapply`, para aplicar una función a todos los elementos de un objeto y dar el resultado con una estructura lo más sencilla posible (como un vector, una matriz...)
+* `sapply`, para aplicar una función a todos los elementos de un objeto y dar el resultado con una estructura lo más sencilla posible (por ejemplo, si el resultado es una lista de números, forma con ellos un vector)
 
 
 Las normas usuales de "buena práctica de la programación" en R fomentan el uso de la vectorización de cálculos usando funciones de tipo *apply* u otras funciones específicas tipo `sum` cuando existen. Pero hay ocasiones en que es necesario, o nos puede convenir por algún motivo, escribir un pequeño  **bucle** (un proceso que repite varias veces una misma secuencia de operaciones) del estilo de los que hemos explicado. En esta lección explicamos cómo usar en R los dos tipos de bucles más sencillos: los bucles de tipo **for** y de tipo **while**. Completamos la lección introduciendo otro tipo de estructura de control muy común: las estructuras condicionales.
@@ -33,15 +33,13 @@ Las normas usuales de "buena práctica de la programación" en R fomentan el uso
 
 Un **bucle de tipo "for"** es una estructura del tipo "Para todo ... haz ..." en la que se repite una determinada operación o secuencia de operaciones para todos los elementos de un vector (también puede ser de una list, pero para simplificar aquí siempre tomaremos un vector). Con R, este tipo de bucles se especifican con una instrucción de la forma
 ```{r,eval=FALSE}
-for(índice in vector){
-  acción
-  }
+for(índice in vector){acción}
 ```
 Esta sintaxis indica a R que 
 
-> para todo `índice` que pertenezca al `vector`, efectue la `acción` especificada entre las llaves.
+> para todo `índice` que pertenezca al `vector`, efectúe la `acción` especificada entre las llaves.
 
-En esta instrucción el `índice` juega un papel de variable interna, como las variables entre los paréntesis en la definición de funciones, y lo podéis substituir por cualquier nombre de variable, como por ejemplo n, i o x, mientras luego uséis ese mismo nombre en la construcción entre llaves. 
+En esta instrucción el `índice` juega un papel de variable interna, como las variables entre los paréntesis en la definición de funciones. 
 
 Así, por ejemplo, para construir el vector de los cuadrados de números naturales del 1 al 10 por medio de un bucle de tipo "for"  entraríamos
 
@@ -49,7 +47,7 @@ Así, por ejemplo, para construir el vector de los cuadrados de números natural
 for(n in 1:10){Cuadrados[n]=n^2}
 ```
 
-Bueno, ya veis que no. Esta construcción solo implementa el paso 2 del proceso descrito en la introducción de la lección. Antes, hay que llevar a cabo el paso 1: definir el vector de Cuadrados y darle un valor inicial, aunque sea igualarlo a un vector vacío, para que luego R ya lo vaya construyendo:
+Bueno, ya veis que no. Esta construcción solo implementa el paso 2 del proceso descrito en la introducción de la lección. Antes, hay que efectuar el paso 1: definir el vector de Cuadrados y darle un valor inicial, aunque sea igualarlo a un vector vacío, para que luego R lo vaya construyendo:
 
 ```{r}
 Cuadrados=c()  #Iniciamos Cuadrados como un vector vacío
@@ -76,7 +74,7 @@ Cuadrados
 
 
 ```{example,fib1}
-Supongo que recordáis la sucesión de Fibonacci $F_n$,
+Estamos seguros de que conocéis la sucesión de Fibonacci $F_n$,
 $$
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots,
 $$ 
@@ -108,13 +106,13 @@ Fib
 Como en la definición de funciones, si la construcción que queremos realizar en cada paso de un bucle, sea de tipo "for" o, en la siguiente sección, de tipo "while", requiere de más de una instrucción, las podemos separar dentro de las llaves mediante signos de punto y coma o simplemente escribiéndolas en líneas aparte. Además, podéis anidar instrucciones `for` si necesitáis que el conjunto de índices sea multidimensional.
 
 ```{example}
-Supongamos que queremos definir una función SimM que, aplicada a una matriz cuadrada A, la *simetrice*, es decir, substituya cada entrada (i,j) de A  fuera de su diagonal principal por la suma de las entradas (i,j) y (j,i). Para ello lo que haremos será, dada la matriz A, si n indica sus números de filas y de columnas:
+Supongamos que queremos definir una función SimM que, aplicada a una matriz cuadrada A, la *simetrice*, es decir, substituya cada entrada (i,j) de A  fuera de su diagonal principal por la media de las entradas (i,j) y (j,i). Para ello lo que haremos será, dada la matriz A, si n indica sus números de filas y de columnas:
 
 
 ````
 
 1. Definir una copia AA de A
-2. Para cada i entre 1 y n-1 y para cada j entre i+1 y n, redefinir AA[i,j] y AA[j,i] como A[i,j]+A[j,i]
+2. Para cada i entre 1 y n-1 y para cada j entre i+1 y n, redefinir AA[i,j] y AA[j,i] como (A[i,j]+A[j,i])/2
 3. Dar como resultado la matriz simétrica AA resultante
 
 ```{r}
@@ -123,8 +121,8 @@ SimM=function(A){
   AA=A
   for (i in 1:(n-1)){
     for (j in (i+1):n){
-      AA[i,j]=A[i,j]+A[j,i]
-      AA[j,i]=A[i,j]+A[j,i] 
+      AA[i,j]=(A[i,j]+A[j,i])/2
+      AA[j,i]=(A[i,j]+A[j,i])/2
     }
   }
 AA
@@ -140,10 +138,7 @@ SimM(A)
 
 Naturalmente, y como casi siempre con R, no hacía falta usar bucles de tipo "for" para definir esta función:
 ```{r}
-SimM2=function(A){
-  AA=A+t(A) 
-  diag(AA)=diag(AA)/2 #Con la operación anterior, diag(AA) es 2 veces diag(A)
-  AA}
+SimM2=function(A){(A+t(A))/2}
 SimM2(A)
 ```
 
@@ -152,13 +147,11 @@ SimM2(A)
 
 Los **bucles de tipo "while"** repiten una determinada secuencia de operaciones mientras (*while*) una cierta condición lógica se satisfaga. Su sintaxis es
 ```{r,eval=FALSE}
-while(condición){
-  acción
-  }
+while(condición){acción}
 ```
 e indica a R que 
 
-> antes de efectuar por primera vez la `acción` especificada entre las llaves y tras cada ejecución de la misma, compruebe si la `condición` especificada entre paréntesis se satisface; en caso afirmativo, se vuelven a efectuar la acción, y en caso negativo se para la ejecución del bucle..
+> antes de efectuar por primera vez la `acción` especificada entre las llaves y tras cada ejecución de la misma, compruebe si la `condición` especificada entre paréntesis se satisface; en caso afirmativo, vuelva a efectuar la acción, y en caso negativo pare la ejecución del bucle.
 
 
 Por ejemplo, el bucle 
@@ -188,10 +181,13 @@ Este bucle:
 
 Veamos otro ejemplo. Supongamos que queremos calcular los números de Fibonacci menores o iguales a 100. Podemos usar un bucle de tipo "while" de la manera siguiente:
 
+1. Iniciaremos un vector con los dos primeros números de Fibonacci
+2. Mientras la suma de los dos últimos números de Fibonacci calculados sea menor o igual a 100, añadiremos esta suma al final del vector, como siguiente número de Fibonacci
+
 ```{r}
-Fib=c(1,1) #Iniciamos Fib con los dos primeros números de Fibonacci
-while (Fib[length(Fib)]+Fib[length(Fib)-1]<=100){  #Mientras el próximo número de Fibonacci que calcularíamos sea menor o igual a 100...
-  Fib[length(Fib)+1]=Fib[length(Fib)]+Fib[length(Fib)-1] #lo añadimos
+Fib=c(1,1) 
+while(Fib[length(Fib)]+Fib[length(Fib)-1]<=100){
+  Fib[length(Fib)+1]=Fib[length(Fib)]+Fib[length(Fib)-1] 
   } 
 Fib
 ```
@@ -207,52 +203,51 @@ Fib[length(Fib)]+Fib[length(Fib)-1]
 
 Las **estructuras de control condicionales** (o **condicionales** a secas) permiten que un programa decida de manera automática entre varias opciones en función de si se cumplen o no determinadas condiciones. Estas estructuras tienen en R la misma estructura que en casi todos los otros lenguajes de programación. Por un lado, tenemos la estructura
 ```{r,eval=FALSE}
-if (condición){
-  acción
-}
+if(condición){acción}
 ```
 que indica  a R que 
 
-> si se satisface la `condición` especificada entre paréntesis, se lleve a cabo la `acción` especificada entre llaves y luego se continúe con el programa, mientras que si no se satisface la `condición`, se continúe con el programa sin efectuar la `acción`.
+> si se satisface la `condición` especificada entre paréntesis, se lleve a cabo la `acción` especificada entre llaves y luego se continúe con el programa, mientras que si no se satisface dicha `condición`, se continúe con el programa sin efectuar la `acción`.
 
 Por otro lado, tenemos la estructura
 ```{r,eval=FALSE}
-if (condición){
-  acción1
-   } else {
-    acción2 
-   }
-}
+if(condición){acción1} else {acción2}
 ```
 que indica  a R que 
 
-> si se satisface la `condición` se lleve a cabo la `acción1` y  si no se satisface la condición se lleve a cabo la `acción2` (y luego, en ambos casos se continúe con el programa).
+> si se satisface la `condición` se lleve a cabo la `acción1` y  si no se satisface dicha `condición` se lleve a cabo la `acción2` (y luego, en ambos casos se continúe con el programa).
 
 Por ejemplo, si quisiéramos definir una función que valiera $x^2$ si $x\leq 0$ y $x^3$ si $x\geq 0$, tendríamos que usar  un condicional:
 
 ```{r}
 f=function(x){
-  if (x<=0){
-    x^2
-  } else {
-      x^3
-    }
+  if(x<=0){x^2} else {x^3}
 }
+f(-3)
+f(3)
 ```
 
-Vamos a definir una función más complicada, que usará varios condicionales y un bucle. Se trata de una función que usa la criba de Eratóstenes para decidir si un número natural es primo o no, indicándolo con los valores lógicos usuales `TRUE` y `FALSE`. En esta función, en primer lugar usaremos un condicional para que si la entrada no es un número natural nos dé un mensaje de error y si es un número natural proceda con la criba de Eratóstenes. A continuación, con un segundo condicional separaremos las entradas 0 y 1, que no son primos, del resto. Finalmente, con un tercer condicional separaremos las entradas 2 y 3, que son primos, de las mayores o iguales que 4. Para estas últimas, con un bucle de tipo "for"  probaremos todos los divisores enteros entre 2 y su raíz cuadrada: si algún resto da resto 0 (un cuarto condicional), el número entrado no es primo, y si todos los restos son diferentes de 0, sí que es primo. 
+Vamos a definir una función más complicada, que usará varios condicionales y un bucle. Se trata de una función que usa la **criba de Eratóstenes** (un número natural $n$ mayor que 1 es primo si, y solo si, no es divisible por ningún número natural entre 2 y $n-1$) para decidir si un número natural es primo o no, indicándolo con los valores lógicos usuales `TRUE` y `FALSE`. En esta función:
+
+1. En primer lugar usaremos un condicional para que si la entrada no es un número natural nos dé un mensaje de error y si es un número natural proceda con la criba de Eratóstenes. 
+
+2. A continuación, con un segundo condicional separaremos las entradas 0 y 1, que no son primos, del resto. 
+
+3. Luego, con un tercer condicional separaremos la entrada 2, que es un número primo, de las mayores o iguales que 3. 
+
+4. Finalmente, para un número $n\geq 3$, con un bucle de tipo "for"  probaremos todos los divisores naturales entre 2 y $n-1$: si algún resto de la división entera da resto 0 (un cuarto condicional), el número entrado no es primo, y si todos los restos son diferentes de 0, sí que es primo. 
 
 ```{r}
 Es.Primo=function(n){
-  if (n!=round(n) | n<0){
-    stop("x no es un número natural")  #Da error y para
+  if (n!=round(n) | n<0){ #Si n no es entero o si es negativo...
+    stop("El argumento no es un número natural")  #da error y para
   } else {
     if (n==0 | n==1){
           Primo=FALSE
     } else {
       Primo=TRUE
-      if (n>=4){
-           for(i in 2:floor(sqrt(n))) {
+      if (n>=3){
+           for(i in 2:(n-1)) {
           if ((n %% i) == 0) {
             Primo=FALSE
           } 
@@ -292,9 +287,9 @@ sapply(0:20,FUN=Es.Primo)
 
 * `while(condición){acción}`  implementa un bucle de tipo "while"
 
-* `if (condición){acción}`  implementa un condicional "if...then"
+* `if(condición){acción}`  implementa un condicional "if...then"
 
-* `if (condición){acción1} else {acción2`  implementa un condicional "if...then...else"
+* `if(condición){acción1} else {acción2}`  implementa un condicional "if...then...else"
 
 * `stop` para una ejecución y da un mensaje de error
 
@@ -305,22 +300,70 @@ sapply(0:20,FUN=Es.Primo)
 ### Test {-}
 
 
-*(1)* Dad el valor del término $x_{100}$ de la sucesión $x_n$  definida por $x_1=1$, $x_2=2$ y $x_{n}=2x_{n-1}-x_{n-2}+2$ para todo $n\geq 3$. 
+*(1)* Dad el valor del término $x_{100}$ de la sucesión $x_n$  definida por $x_1=1$, $x_2=2$ y $x_{n}=2x_{n-1}-x_{n-2}+\lfloor n/2\rfloor$ para todo $n\geq 3$. 
 
-*(2)* Tenemos dos sucesiones $x_n$ y $y_n$ que evolucionan de manera conjunta siguiendo las ecuaciones $x_{n+1}=2x_n+3y_n$ e $y_{n+1}=x_n-2y_n$. Si partimos de $x_1=10$ y $y_1=1$, ¿qué vale $y_n$ para el primer $n$ tal que $x_n>10^6$?
+*(2)* Tenemos dos sucesiones $x_n$ y $y_n$ que evolucionan de manera conjunta siguiendo las ecuaciones $x_{n+1}=2x_n-3y_n$ e $y_{n+1}=x_n+(-1)^ny_n$. Si partimos de $x_1=10$ y $y_1=1$, ¿qué vale $y_n$ para el primer $n$ tal que $x_n>10^6$?
 
 
 ### Ejercicio {-}
  
 La **conjetura de Collatz** es una de las más misteriosas de la matemática actual. Dice lo siguiente. 
 
-> Empezando con un número natural mayor o igual que 1 cualquiera, vamos iterando el proceso siguiente: si el número es par, lo dividimos por 2, y si es impar, lo multiplicamos por 3 y le sumamos 1, y vuelta a empezar. Esto proceso termina por producir, más pronto o más tarde, siempre un 1.
+> Empezando con un número natural mayor o igual que 1 cualquiera, iterad el proceso siguiente: si el número es par, lo dividimos por 2, y si es impar, lo multiplicamos por 3 y le sumamos 1, y vuelta a empezar. Esto proceso terminará por producir, más pronto o más tarde, siempre un 1.
 
-Por ejemplo, empecemos con 7. Como es impar, lo multiplicamos por 3 y le sumamos 1: 22. Como es par, lo dividimos por 2: 11. Como es impar, lo multiplicamos por 3 y le sumamos 1: 34. Como es par, lo dividimos por 2: 17. Como es impar, lo multiplicamos por 3 y le sumamos 1: 52 Como es par, lo dividimos por 2: 26.  Como es par, lo dividimos por 2: 13. Como es impar, lo multiplicamos por 3 y le sumamos 1: 40.  Como es par, lo dividimos por 2: 20.  Como es par, lo dividimos por 2: 10.  Como es par, lo dividimos por 2: 5. Como es impar, lo multiplicamos por 3 y le sumamos 1: 16. Como es par, lo dividimos por 2: 8. Como es par, lo dividimos por 2: 4. Como es par, lo dividimos por 2: 2. Como es par, lo dividimos por 2: **1**. 
+Por ejemplo, empecemos con 7. 
+
+1. Como 7 es impar, lo multiplicamos por 3 y le sumamos 1: 22. 
+
+1. Como 22 es par, lo dividimos por 2: 11. 
+
+1. Como 11 es impar, lo multiplicamos por 3 y le sumamos 1: 34. 
+
+1. Como 34 es par, lo dividimos por 2: 17. 
+
+1. Como 17  es impar, lo multiplicamos por 3 y le sumamos 1: 52 
+
+1. Como 52 es par, lo dividimos por 2: 26.  
+
+1. Como 26 es par, lo dividimos por 2: 13. 
+
+1. Como 13 es impar, lo multiplicamos por 3 y le sumamos 1: 40.  
+
+1. Como 40 es par, lo dividimos por 2: 20.  
+
+1. Como 20 es par, lo dividimos por 2: 10.  
+
+1. Como 10 es par, lo dividimos por 2: 5. 
+
+1. Como 5 es impar, lo multiplicamos por 3 y le sumamos 1: 16. 
+
+1. Como 16 es par, lo dividimos por 2: 8. 
+
+1. Como 8 es par, lo dividimos por 2: 4. 
+
+1. Como 4 es par, lo dividimos por 2: 2. 
+
+1. Como 2 es par, lo dividimos por 2: **1**. 
 
 Fijaos que al llegar al 1, entraríamos en un bucle. Como es impar, lo multiplicaríamos por 3 y le sumaríamos 1, daría 4; como es par, lo dividiríamos por 2, daría 2; como es par, lo dividiríamos por 2, daría 1; y volveríamos al 4.
 
-*(1)* Definid una función que, aplicada a dos números naturales no nulos n y N, produzca la secuencia que se obtiene con este procedimiento empezando con n hasta llegar a un 1, o que pare si han efectuado N pasos sin alcanzarlo y entonces escriba en la consola "Tras N pasos no hemos llegado al 1" (con N el número que se ha entrado). Para esto último podéis usar la función `paste`; consultad su Ayuda.
+*(1)* Definid una función que, aplicada a un número natural no nulo n, produzca la secuencia que se obtiene con este procedimiento empezando con n hasta llegar a un 1.
+
+```{r,include=FALSE}
+CollatzB=function(n){
+C=c(n)
+while (C[length(C)]!=1){
+ if (C[length(C)]%%2==0){
+   C[length(C)+1]=C[length(C)]/2
+ } else {
+   C[length(C)+1]=3*C[length(C)]+1
+ }
+}
+C
+}
+#Más astuto en https://www.r-bloggers.com/testing-the-collatz-conjecture-with-r/
+```
+*(2)* Definid una función que, aplicada a dos números naturales no nulos n y N, produzca la secuencia que se obtiene con este procedimiento empezando con n hasta llegar a un 1, o que pare si han efectuado N pasos sin alcanzarlo y entonces escriba en la consola "Tras N pasos no hemos llegado a un 1" (con N el número que se ha entrado). Para esto último podéis usar la función `paste`; consultad su Ayuda. Además, la función ha de dar algún mensaje de error si la n a la que se aplique no es un número natural mayor que 0.
 
 ```{r,include=FALSE}
 Collatz=function(n,N){
@@ -336,15 +379,14 @@ while (C[length(C)]!=1 & length(C)<N){
  }
 }
 if (C[length(C)]!=1){
- C=paste("Tras ", N, " pasos no hemos llegado al 1")
+ C=paste("Tras ", N, " pasos no hemos llegado a un 1")
 }
 }
 C
 }
-#Más astuto en https://www.r-bloggers.com/testing-the-collatz-conjecture-with-r/
 ```
 
-*(2)* ¿Cuál es el primer número natural para el que, tras 250 pasos, no se ha llegado a 1?
+*(3)* ¿Cuál es el primer número natural para el que, tras 250 pasos, no se ha llegado a 1?
 
 ```{r,include=FALSE}
 n=2
@@ -357,18 +399,27 @@ n
 
 ```{r,include=FALSE}
 x=c(1,rep(2,99))
-for(n in 3:100){x[n]=2*x[n-1]-x[n-2]+2}
+for(n in 3:100){x[n]=2*x[n-1]-x[n-2]+floor(n/2)}
+#
 y=c(10)
 z=c(1)
 n=1
-while(2*y[n]+3*z[n]<=10^6){
-  y[n+1]=2*y[n]+3*z[n]
-  z[n+1]=y[n]-2*z[n]
+while(2*y[n]-3*z[n]<=10^6){
+  y[n+1]=2*y[n]-3*z[n]
+  z[n+1]=y[n]+(-1)^n*z[n]
   n=n+1
 }
 ```
 
+```{r,include=FALSE}
+options(scipen=999)
+```
 
 *(1)*  `r x[100]`
 
+
 *(2)* `r z[length(z)]`
+
+```{r,include=FALSE}
+options(scipen=0)
+```
