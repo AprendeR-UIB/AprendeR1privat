@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lección 11 Descripción de datos ordinales | AprendeR: Parte I</title>
   <meta name="description" content="Apuntes AprendeR bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lección 11 Descripción de datos ordinales | AprendeR: Parte I" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="The UIB-AprendeR team" />
 
 
-<meta name="date" content="2020-03-10" />
+<meta name="date" content="2021-03-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="chap-edqual.html"/>
 <link rel="next" href="chap-quan.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +41,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,7 +49,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/d3-3.5.3/d3.min.js"></script>
 <link href="libs/colorbrewer-1/colorbrewer.css" rel="stylesheet" />
 <script src="libs/colorbrewer-1/colorbrewer.js"></script>
@@ -56,25 +60,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +88,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,102 +141,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentación</a></li>
 <li class="part"><span><b>Parte I: R básico</b></span></li>
-<li class="chapter" data-level="1" data-path="chap-0.html"><a href="chap-0.html"><i class="fa fa-check"></i><b>1</b> Logística de R</a><ul>
-<li class="chapter" data-level="1.1" data-path="chap-0.html"><a href="chap-0.html#como-instalar-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Cómo instalar R y <em>RStudio</em></a></li>
+<li class="chapter" data-level="1" data-path="chap-0.html"><a href="chap-0.html"><i class="fa fa-check"></i><b>1</b> Logística de R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="chap-0.html"><a href="chap-0.html#cómo-instalar-r-y-rstudio"><i class="fa fa-check"></i><b>1.1</b> Cómo instalar R y <em>RStudio</em></a></li>
 <li class="chapter" data-level="1.2" data-path="chap-0.html"><a href="chap-0.html#sec:guardar"><i class="fa fa-check"></i><b>1.2</b> Cómo guardar el trabajo realizado</a></li>
 <li class="chapter" data-level="1.3" data-path="chap-0.html"><a href="chap-0.html#sec:guiones"><i class="fa fa-check"></i><b>1.3</b> Cómo trabajar con guiones y otros ficheros</a></li>
 <li class="chapter" data-level="1.4" data-path="chap-0.html"><a href="chap-0.html#sec:help"><i class="fa fa-check"></i><b>1.4</b> Cómo obtener ayuda</a></li>
 <li class="chapter" data-level="1.5" data-path="chap-0.html"><a href="chap-0.html#sec:paquetes"><i class="fa fa-check"></i><b>1.5</b> Cómo instalar y cargar paquetes</a></li>
-<li class="chapter" data-level="1.6" data-path="chap-0.html"><a href="chap-0.html#guia-rapida"><i class="fa fa-check"></i><b>1.6</b> Guía rápida</a></li>
+<li class="chapter" data-level="1.6" data-path="chap-0.html"><a href="chap-0.html#guía-rápida"><i class="fa fa-check"></i><b>1.6</b> Guía rápida</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="chap-calc.html"><a href="chap-calc.html"><i class="fa fa-check"></i><b>2</b> La calculadora</a><ul>
-<li class="chapter" data-level="2.1" data-path="chap-calc.html"><a href="chap-calc.html#numeros-reales-operaciones-y-funciones-basicas"><i class="fa fa-check"></i><b>2.1</b> Números reales: operaciones y funciones básicas</a></li>
+<li class="chapter" data-level="2" data-path="chap-calc.html"><a href="chap-calc.html"><i class="fa fa-check"></i><b>2</b> La calculadora</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chap-calc.html"><a href="chap-calc.html#números-reales-operaciones-y-funciones-básicas"><i class="fa fa-check"></i><b>2.1</b> Números reales: operaciones y funciones básicas</a></li>
 <li class="chapter" data-level="2.2" data-path="chap-calc.html"><a href="chap-calc.html#cifras-significativas-y-redondeos"><i class="fa fa-check"></i><b>2.2</b> Cifras significativas y redondeos</a></li>
-<li class="chapter" data-level="2.3" data-path="chap-calc.html"><a href="chap-calc.html#definicion-de-variables"><i class="fa fa-check"></i><b>2.3</b> Definición de variables</a></li>
-<li class="chapter" data-level="2.4" data-path="chap-calc.html"><a href="chap-calc.html#definicion-de-funciones"><i class="fa fa-check"></i><b>2.4</b> Definición de funciones</a></li>
-<li class="chapter" data-level="2.5" data-path="chap-calc.html"><a href="chap-calc.html#numeros-complejos-opcional"><i class="fa fa-check"></i><b>2.5</b> Números complejos (opcional)</a></li>
-<li class="chapter" data-level="2.6" data-path="chap-calc.html"><a href="chap-calc.html#guia-rapida-1"><i class="fa fa-check"></i><b>2.6</b> Guía rápida</a></li>
-<li class="chapter" data-level="2.7" data-path="chap-calc.html"><a href="chap-calc.html#ejercicios"><i class="fa fa-check"></i><b>2.7</b> Ejercicios</a><ul>
+<li class="chapter" data-level="2.3" data-path="chap-calc.html"><a href="chap-calc.html#definición-de-variables"><i class="fa fa-check"></i><b>2.3</b> Definición de variables</a></li>
+<li class="chapter" data-level="2.4" data-path="chap-calc.html"><a href="chap-calc.html#definición-de-funciones"><i class="fa fa-check"></i><b>2.4</b> Definición de funciones</a></li>
+<li class="chapter" data-level="2.5" data-path="chap-calc.html"><a href="chap-calc.html#números-complejos-opcional"><i class="fa fa-check"></i><b>2.5</b> Números complejos (opcional)</a></li>
+<li class="chapter" data-level="2.6" data-path="chap-calc.html"><a href="chap-calc.html#guía-rápida-1"><i class="fa fa-check"></i><b>2.6</b> Guía rápida</a></li>
+<li class="chapter" data-level="2.7" data-path="chap-calc.html"><a href="chap-calc.html#ejercicios"><i class="fa fa-check"></i><b>2.7</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-calc.html"><a href="chap-calc.html#test"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-calc.html"><a href="chap-calc.html#ejercicio"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-calc.html"><a href="chap-calc.html#respuestas-al-test"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="chap-lm.html"><a href="chap-lm.html"><i class="fa fa-check"></i><b>3</b> Un aperitivo: Introducción a la regresión lineal</a><ul>
+<li class="chapter" data-level="3" data-path="chap-lm.html"><a href="chap-lm.html"><i class="fa fa-check"></i><b>3</b> Un aperitivo: Introducción a la regresión lineal</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="chap-lm.html"><a href="chap-lm.html#sec:introlm"><i class="fa fa-check"></i><b>3.1</b> Cálculo de rectas de regresión</a></li>
-<li class="chapter" data-level="3.2" data-path="chap-lm.html"><a href="chap-lm.html#rectas-de-regresion-y-transformaciones-logaritmicas"><i class="fa fa-check"></i><b>3.2</b> Rectas de regresión y transformaciones logarítmicas</a></li>
-<li class="chapter" data-level="3.3" data-path="chap-lm.html"><a href="chap-lm.html#guia-rapida-2"><i class="fa fa-check"></i><b>3.3</b> Guía rápida</a></li>
-<li class="chapter" data-level="3.4" data-path="chap-lm.html"><a href="chap-lm.html#ejercicios-1"><i class="fa fa-check"></i><b>3.4</b> Ejercicios</a><ul>
+<li class="chapter" data-level="3.2" data-path="chap-lm.html"><a href="chap-lm.html#rectas-de-regresión-y-transformaciones-logarítmicas"><i class="fa fa-check"></i><b>3.2</b> Rectas de regresión y transformaciones logarítmicas</a></li>
+<li class="chapter" data-level="3.3" data-path="chap-lm.html"><a href="chap-lm.html#guía-rápida-2"><i class="fa fa-check"></i><b>3.3</b> Guía rápida</a></li>
+<li class="chapter" data-level="3.4" data-path="chap-lm.html"><a href="chap-lm.html#ejercicios-1"><i class="fa fa-check"></i><b>3.4</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-lm.html"><a href="chap-lm.html#ejercicio-1"><i class="fa fa-check"></i>Ejercicio</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="chap-vect.html"><a href="chap-vect.html"><i class="fa fa-check"></i><b>4</b> Vectores y otros tipos de listas</a><ul>
+<li class="chapter" data-level="4" data-path="chap-vect.html"><a href="chap-vect.html"><i class="fa fa-check"></i><b>4</b> Vectores y otros tipos de listas</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="chap-vect.html"><a href="chap-vect.html#sec:vect"><i class="fa fa-check"></i><b>4.1</b> Construcción de vectores</a></li>
 <li class="chapter" data-level="4.2" data-path="chap-vect.html"><a href="chap-vect.html#operaciones-con-vectores"><i class="fa fa-check"></i><b>4.2</b> Operaciones con vectores</a></li>
 <li class="chapter" data-level="4.3" data-path="chap-vect.html"><a href="chap-vect.html#entradas-y-trozos-de-vectores"><i class="fa fa-check"></i><b>4.3</b> Entradas y trozos de vectores</a></li>
 <li class="chapter" data-level="4.4" data-path="chap-vect.html"><a href="chap-vect.html#subsec:factor"><i class="fa fa-check"></i><b>4.4</b> Factores</a></li>
 <li class="chapter" data-level="4.5" data-path="chap-vect.html"><a href="chap-vect.html#sec:lists"><i class="fa fa-check"></i><b>4.5</b> Listas heterogéneas</a></li>
-<li class="chapter" data-level="4.6" data-path="chap-vect.html"><a href="chap-vect.html#guia-rapida-de-funciones"><i class="fa fa-check"></i><b>4.6</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="4.7" data-path="chap-vect.html"><a href="chap-vect.html#ejercicios-2"><i class="fa fa-check"></i><b>4.7</b> Ejercicios</a><ul>
+<li class="chapter" data-level="4.6" data-path="chap-vect.html"><a href="chap-vect.html#guía-rápida-de-funciones"><i class="fa fa-check"></i><b>4.6</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="4.7" data-path="chap-vect.html"><a href="chap-vect.html#ejercicios-2"><i class="fa fa-check"></i><b>4.7</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-vect.html"><a href="chap-vect.html#test-1"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-vect.html"><a href="chap-vect.html#ejercicio-2"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-vect.html"><a href="chap-vect.html#respuestas-al-test-1"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="chap-matrix.html"><a href="chap-matrix.html"><i class="fa fa-check"></i><b>5</b> Matrices</a><ul>
-<li class="chapter" data-level="5.1" data-path="chap-matrix.html"><a href="chap-matrix.html#construccion-de-matrices"><i class="fa fa-check"></i><b>5.1</b> Construcción de matrices</a></li>
+<li class="chapter" data-level="5" data-path="chap-matrix.html"><a href="chap-matrix.html"><i class="fa fa-check"></i><b>5</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chap-matrix.html"><a href="chap-matrix.html#construcción-de-matrices"><i class="fa fa-check"></i><b>5.1</b> Construcción de matrices</a></li>
 <li class="chapter" data-level="5.2" data-path="chap-matrix.html"><a href="chap-matrix.html#sec:entrmatr"><i class="fa fa-check"></i><b>5.2</b> Acceso a entradas y submatrices</a></li>
 <li class="chapter" data-level="5.3" data-path="chap-matrix.html"><a href="chap-matrix.html#algunas-funciones-para-matrices"><i class="fa fa-check"></i><b>5.3</b> Algunas funciones para matrices</a></li>
-<li class="chapter" data-level="5.4" data-path="chap-matrix.html"><a href="chap-matrix.html#calculo-matricial"><i class="fa fa-check"></i><b>5.4</b> Cálculo matricial</a></li>
+<li class="chapter" data-level="5.4" data-path="chap-matrix.html"><a href="chap-matrix.html#cálculo-matricial"><i class="fa fa-check"></i><b>5.4</b> Cálculo matricial</a></li>
 <li class="chapter" data-level="5.5" data-path="chap-matrix.html"><a href="chap-matrix.html#valores-y-vectores-propios"><i class="fa fa-check"></i><b>5.5</b> Valores y vectores propios</a></li>
 <li class="chapter" data-level="5.6" data-path="chap-matrix.html"><a href="chap-matrix.html#matrices-complejas-opcional"><i class="fa fa-check"></i><b>5.6</b> Matrices complejas (opcional)</a></li>
-<li class="chapter" data-level="5.7" data-path="chap-matrix.html"><a href="chap-matrix.html#guia-rapida-de-funciones-1"><i class="fa fa-check"></i><b>5.7</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="5.8" data-path="chap-matrix.html"><a href="chap-matrix.html#ejercicios-3"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a><ul>
+<li class="chapter" data-level="5.7" data-path="chap-matrix.html"><a href="chap-matrix.html#guía-rápida-de-funciones-1"><i class="fa fa-check"></i><b>5.7</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="5.8" data-path="chap-matrix.html"><a href="chap-matrix.html#ejercicios-3"><i class="fa fa-check"></i><b>5.8</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-matrix.html"><a href="chap-matrix.html#test-2"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-matrix.html"><a href="chap-matrix.html#ejercicio-3"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-matrix.html"><a href="chap-matrix.html#respuestas-al-test-2"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chap-df.html"><a href="chap-df.html"><i class="fa fa-check"></i><b>6</b> <em>Data frames</em></a><ul>
+<li class="chapter" data-level="6" data-path="chap-df.html"><a href="chap-df.html"><i class="fa fa-check"></i><b>6</b> <em>Data frames</em></a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="chap-df.html"><a href="chap-df.html#estructura-de-un-data-frame"><i class="fa fa-check"></i><b>6.1</b> Estructura de un <em>data frame</em></a></li>
-<li class="chapter" data-level="6.2" data-path="chap-df.html"><a href="chap-df.html#como-importar-y-exportar-data-frames"><i class="fa fa-check"></i><b>6.2</b> Cómo importar y exportar <em>data frames</em></a></li>
-<li class="chapter" data-level="6.3" data-path="chap-df.html"><a href="chap-df.html#como-crear-data-frames"><i class="fa fa-check"></i><b>6.3</b> Cómo crear <em>data frames</em></a></li>
+<li class="chapter" data-level="6.2" data-path="chap-df.html"><a href="chap-df.html#cómo-importar-y-exportar-data-frames"><i class="fa fa-check"></i><b>6.2</b> Cómo importar y exportar <em>data frames</em></a></li>
+<li class="chapter" data-level="6.3" data-path="chap-df.html"><a href="chap-df.html#cómo-crear-data-frames"><i class="fa fa-check"></i><b>6.3</b> Cómo crear <em>data frames</em></a></li>
 <li class="chapter" data-level="6.4" data-path="chap-df.html"><a href="chap-df.html#sec:moddf"><i class="fa fa-check"></i><b>6.4</b> Cómo modificar un <em>data frame</em></a></li>
 <li class="chapter" data-level="6.5" data-path="chap-df.html"><a href="chap-df.html#sec:dfaf"><i class="fa fa-check"></i><b>6.5</b> Cómo añadir filas y columnas a un <em>data frame</em></a></li>
-<li class="chapter" data-level="6.6" data-path="chap-df.html"><a href="chap-df.html#como-seleccionar-trozos-de-un-data-frame"><i class="fa fa-check"></i><b>6.6</b> Cómo seleccionar trozos de un <em>data frame</em></a></li>
-<li class="chapter" data-level="6.7" data-path="chap-df.html"><a href="chap-df.html#como-aplicar-una-funcion-a-las-variables-de-un-data-frame"><i class="fa fa-check"></i><b>6.7</b> Cómo aplicar una función a las variables de un <em>data frame</em></a></li>
+<li class="chapter" data-level="6.6" data-path="chap-df.html"><a href="chap-df.html#cómo-seleccionar-trozos-de-un-data-frame"><i class="fa fa-check"></i><b>6.6</b> Cómo seleccionar trozos de un <em>data frame</em></a></li>
+<li class="chapter" data-level="6.7" data-path="chap-df.html"><a href="chap-df.html#cómo-aplicar-una-función-a-las-variables-de-un-data-frame"><i class="fa fa-check"></i><b>6.7</b> Cómo aplicar una función a las variables de un <em>data frame</em></a></li>
 <li class="chapter" data-level="6.8" data-path="chap-df.html"><a href="chap-df.html#sub:attach"><i class="fa fa-check"></i><b>6.8</b> Cómo añadir las variables de un <em>data frame</em> al entorno global</a></li>
-<li class="chapter" data-level="6.9" data-path="chap-df.html"><a href="chap-df.html#guia-rapida-de-funciones-2"><i class="fa fa-check"></i><b>6.9</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="6.10" data-path="chap-df.html"><a href="chap-df.html#ejercicios-4"><i class="fa fa-check"></i><b>6.10</b> Ejercicios</a><ul>
+<li class="chapter" data-level="6.9" data-path="chap-df.html"><a href="chap-df.html#guía-rápida-de-funciones-2"><i class="fa fa-check"></i><b>6.9</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="6.10" data-path="chap-df.html"><a href="chap-df.html#ejercicios-4"><i class="fa fa-check"></i><b>6.10</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-df.html"><a href="chap-df.html#test-3"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-df.html"><a href="chap-df.html#ejercicio-4"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-df.html"><a href="chap-df.html#respuestas-al-test-3"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="chap-plot.html"><a href="chap-plot.html"><i class="fa fa-check"></i><b>7</b> Gráficos básicos</a><ul>
-<li class="chapter" data-level="7.1" data-path="chap-plot.html"><a href="chap-plot.html#la-funcion-plot"><i class="fa fa-check"></i><b>7.1</b> La función <code>plot</code></a></li>
-<li class="chapter" data-level="7.2" data-path="chap-plot.html"><a href="chap-plot.html#parametros-de-plot"><i class="fa fa-check"></i><b>7.2</b> Parámetros de <code>plot</code></a></li>
-<li class="chapter" data-level="7.3" data-path="chap-plot.html"><a href="chap-plot.html#como-anadir-elementos-a-un-grafico"><i class="fa fa-check"></i><b>7.3</b> Cómo añadir elementos a un gráfico</a></li>
-<li class="chapter" data-level="7.4" data-path="chap-plot.html"><a href="chap-plot.html#guia-rapida-3"><i class="fa fa-check"></i><b>7.4</b> Guía rápida</a></li>
-<li class="chapter" data-level="7.5" data-path="chap-plot.html"><a href="chap-plot.html#ejercicios-5"><i class="fa fa-check"></i><b>7.5</b> Ejercicios</a><ul>
+<li class="chapter" data-level="7" data-path="chap-plot.html"><a href="chap-plot.html"><i class="fa fa-check"></i><b>7</b> Gráficos básicos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="chap-plot.html"><a href="chap-plot.html#la-función-plot"><i class="fa fa-check"></i><b>7.1</b> La función <code>plot</code></a></li>
+<li class="chapter" data-level="7.2" data-path="chap-plot.html"><a href="chap-plot.html#parámetros-de-plot"><i class="fa fa-check"></i><b>7.2</b> Parámetros de <code>plot</code></a></li>
+<li class="chapter" data-level="7.3" data-path="chap-plot.html"><a href="chap-plot.html#cómo-añadir-elementos-a-un-gráfico"><i class="fa fa-check"></i><b>7.3</b> Cómo añadir elementos a un gráfico</a></li>
+<li class="chapter" data-level="7.4" data-path="chap-plot.html"><a href="chap-plot.html#guía-rápida-3"><i class="fa fa-check"></i><b>7.4</b> Guía rápida</a></li>
+<li class="chapter" data-level="7.5" data-path="chap-plot.html"><a href="chap-plot.html#ejercicios-5"><i class="fa fa-check"></i><b>7.5</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-plot.html"><a href="chap-plot.html#test-4"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-plot.html"><a href="chap-plot.html#ejercicio-5"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-plot.html"><a href="chap-plot.html#respuestas-al-test-4"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="chap-for.html"><a href="chap-for.html"><i class="fa fa-check"></i><b>8</b> Estructuras de control básicas</a><ul>
+<li class="chapter" data-level="8" data-path="chap-for.html"><a href="chap-for.html"><i class="fa fa-check"></i><b>8</b> Estructuras de control básicas</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="chap-for.html"><a href="chap-for.html#bucles-de-tipo-for"><i class="fa fa-check"></i><b>8.1</b> Bucles de tipo “for”</a></li>
 <li class="chapter" data-level="8.2" data-path="chap-for.html"><a href="chap-for.html#bucles-de-tipo-while"><i class="fa fa-check"></i><b>8.2</b> Bucles de tipo “while”</a></li>
 <li class="chapter" data-level="8.3" data-path="chap-for.html"><a href="chap-for.html#estructuras-condicionales"><i class="fa fa-check"></i><b>8.3</b> Estructuras condicionales</a></li>
-<li class="chapter" data-level="8.4" data-path="chap-for.html"><a href="chap-for.html#guia-rapida-de-funciones-3"><i class="fa fa-check"></i><b>8.4</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="8.5" data-path="chap-for.html"><a href="chap-for.html#ejercicios-6"><i class="fa fa-check"></i><b>8.5</b> Ejercicios</a><ul>
+<li class="chapter" data-level="8.4" data-path="chap-for.html"><a href="chap-for.html#guía-rápida-de-funciones-3"><i class="fa fa-check"></i><b>8.4</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="8.5" data-path="chap-for.html"><a href="chap-for.html#ejercicios-6"><i class="fa fa-check"></i><b>8.5</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-for.html"><a href="chap-for.html#test-5"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-for.html"><a href="chap-for.html#ejercicio-6"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-for.html"><a href="chap-for.html#respuestas-al-test-5"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chap-distr.html"><a href="chap-distr.html"><i class="fa fa-check"></i><b>9</b> Distribuciones de probabilidad</a><ul>
-<li class="chapter" data-level="9.1" data-path="chap-distr.html"><a href="chap-distr.html#ejercicios-7"><i class="fa fa-check"></i><b>9.1</b> Ejercicios</a><ul>
+<li class="chapter" data-level="9" data-path="chap-distr.html"><a href="chap-distr.html"><i class="fa fa-check"></i><b>9</b> Distribuciones de probabilidad</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="chap-distr.html"><a href="chap-distr.html#ejercicios-7"><i class="fa fa-check"></i><b>9.1</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-distr.html"><a href="chap-distr.html#test-6"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-distr.html"><a href="chap-distr.html#problemas"><i class="fa fa-check"></i>Problemas</a></li>
 <li class="chapter" data-level="" data-path="chap-distr.html"><a href="chap-distr.html#respuestas-al-test-6"><i class="fa fa-check"></i>Respuestas al test</a></li>
@@ -239,64 +261,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>Parte II: Estadística descriptiva</b></span></li>
-<li class="chapter" data-level="10" data-path="chap-edqual.html"><a href="chap-edqual.html"><i class="fa fa-check"></i><b>10</b> Descripción de datos cualitativos</a><ul>
+<li class="chapter" data-level="10" data-path="chap-edqual.html"><a href="chap-edqual.html"><i class="fa fa-check"></i><b>10</b> Descripción de datos cualitativos</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="chap-edqual.html"><a href="chap-edqual.html#sec:edqual"><i class="fa fa-check"></i><b>10.1</b> Frecuencias</a></li>
 <li class="chapter" data-level="10.2" data-path="chap-edqual.html"><a href="chap-edqual.html#tablas-unidimensionales-de-frecuencias"><i class="fa fa-check"></i><b>10.2</b> Tablas unidimensionales de frecuencias</a></li>
 <li class="chapter" data-level="10.3" data-path="chap-edqual.html"><a href="chap-edqual.html#tablas-bidimensionales-de-frecuencias"><i class="fa fa-check"></i><b>10.3</b> Tablas bidimensionales de frecuencias</a></li>
 <li class="chapter" data-level="10.4" data-path="chap-edqual.html"><a href="chap-edqual.html#tablas-multidimensionales-de-frecuencias"><i class="fa fa-check"></i><b>10.4</b> Tablas multidimensionales de frecuencias</a></li>
 <li class="chapter" data-level="10.5" data-path="chap-edqual.html"><a href="chap-edqual.html#tablas-a-partir-de-data-frames-de-variables-cualitativas"><i class="fa fa-check"></i><b>10.5</b> Tablas a partir de <em>data frames</em> de variables cualitativas</a></li>
 <li class="chapter" data-level="10.6" data-path="chap-edqual.html"><a href="chap-edqual.html#diagramas-de-barras"><i class="fa fa-check"></i><b>10.6</b> Diagramas de barras</a></li>
-<li class="chapter" data-level="10.7" data-path="chap-edqual.html"><a href="chap-edqual.html#otros-graficos-para-datos-cualitativos"><i class="fa fa-check"></i><b>10.7</b> Otros gráficos para datos cualitativos</a></li>
+<li class="chapter" data-level="10.7" data-path="chap-edqual.html"><a href="chap-edqual.html#otros-gráficos-para-datos-cualitativos"><i class="fa fa-check"></i><b>10.7</b> Otros gráficos para datos cualitativos</a></li>
 <li class="chapter" data-level="10.8" data-path="chap-edqual.html"><a href="chap-edqual.html#sec:exqual"><i class="fa fa-check"></i><b>10.8</b> Un ejemplo completo</a></li>
-<li class="chapter" data-level="10.9" data-path="chap-edqual.html"><a href="chap-edqual.html#guia-rapida-de-funciones-4"><i class="fa fa-check"></i><b>10.9</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="10.10" data-path="chap-edqual.html"><a href="chap-edqual.html#ejercicios-8"><i class="fa fa-check"></i><b>10.10</b> Ejercicios</a><ul>
+<li class="chapter" data-level="10.9" data-path="chap-edqual.html"><a href="chap-edqual.html#guía-rápida-de-funciones-4"><i class="fa fa-check"></i><b>10.9</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="10.10" data-path="chap-edqual.html"><a href="chap-edqual.html#ejercicios-8"><i class="fa fa-check"></i><b>10.10</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-edqual.html"><a href="chap-edqual.html#test-7"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-edqual.html"><a href="chap-edqual.html#ejercicio-7"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-edqual.html"><a href="chap-edqual.html#respuestas-al-test-7"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="chap-ord.html"><a href="chap-ord.html"><i class="fa fa-check"></i><b>11</b> Descripción de datos ordinales</a><ul>
+<li class="chapter" data-level="11" data-path="chap-ord.html"><a href="chap-ord.html"><i class="fa fa-check"></i><b>11</b> Descripción de datos ordinales</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="chap-ord.html"><a href="chap-ord.html#frecuencias-para-datos-ordinales"><i class="fa fa-check"></i><b>11.1</b> Frecuencias para datos ordinales</a></li>
-<li class="chapter" data-level="11.2" data-path="chap-ord.html"><a href="chap-ord.html#descripcion-de-datos-ordinales-con-r"><i class="fa fa-check"></i><b>11.2</b> Descripción de datos ordinales con R</a></li>
-<li class="chapter" data-level="11.3" data-path="chap-ord.html"><a href="chap-ord.html#guia-rapida-de-funciones-5"><i class="fa fa-check"></i><b>11.3</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="11.4" data-path="chap-ord.html"><a href="chap-ord.html#ejercicios-9"><i class="fa fa-check"></i><b>11.4</b> Ejercicios</a><ul>
+<li class="chapter" data-level="11.2" data-path="chap-ord.html"><a href="chap-ord.html#descripción-de-datos-ordinales-con-r"><i class="fa fa-check"></i><b>11.2</b> Descripción de datos ordinales con R</a></li>
+<li class="chapter" data-level="11.3" data-path="chap-ord.html"><a href="chap-ord.html#guía-rápida-de-funciones-5"><i class="fa fa-check"></i><b>11.3</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="11.4" data-path="chap-ord.html"><a href="chap-ord.html#ejercicios-9"><i class="fa fa-check"></i><b>11.4</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-ord.html"><a href="chap-ord.html#test-8"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-ord.html"><a href="chap-ord.html#ejercicio-8"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-ord.html"><a href="chap-ord.html#respuestas-al-test-8"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="chap-quan.html"><a href="chap-quan.html"><i class="fa fa-check"></i><b>12</b> Descripción de datos cuantitativos</a><ul>
+<li class="chapter" data-level="12" data-path="chap-quan.html"><a href="chap-quan.html"><i class="fa fa-check"></i><b>12</b> Descripción de datos cuantitativos</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="chap-quan.html"><a href="chap-quan.html#sec:quan"><i class="fa fa-check"></i><b>12.1</b> Frecuencias</a></li>
 <li class="chapter" data-level="12.2" data-path="chap-quan.html"><a href="chap-quan.html#medidas-de-tendencia-central"><i class="fa fa-check"></i><b>12.2</b> Medidas de tendencia central</a></li>
-<li class="chapter" data-level="12.3" data-path="chap-quan.html"><a href="chap-quan.html#medidas-de-posicion"><i class="fa fa-check"></i><b>12.3</b> Medidas de posición</a></li>
-<li class="chapter" data-level="12.4" data-path="chap-quan.html"><a href="chap-quan.html#medidas-de-dispersion"><i class="fa fa-check"></i><b>12.4</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="12.3" data-path="chap-quan.html"><a href="chap-quan.html#medidas-de-posición"><i class="fa fa-check"></i><b>12.3</b> Medidas de posición</a></li>
+<li class="chapter" data-level="12.4" data-path="chap-quan.html"><a href="chap-quan.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>12.4</b> Medidas de dispersión</a></li>
 <li class="chapter" data-level="12.5" data-path="chap-quan.html"><a href="chap-quan.html#diagramas-de-caja"><i class="fa fa-check"></i><b>12.5</b> Diagramas de caja</a></li>
-<li class="chapter" data-level="12.6" data-path="chap-quan.html"><a href="chap-quan.html#guia-rapida-de-funciones-6"><i class="fa fa-check"></i><b>12.6</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="12.7" data-path="chap-quan.html"><a href="chap-quan.html#ejercicios-10"><i class="fa fa-check"></i><b>12.7</b> Ejercicios</a><ul>
+<li class="chapter" data-level="12.6" data-path="chap-quan.html"><a href="chap-quan.html#guía-rápida-de-funciones-6"><i class="fa fa-check"></i><b>12.6</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="12.7" data-path="chap-quan.html"><a href="chap-quan.html#ejercicios-10"><i class="fa fa-check"></i><b>12.7</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-quan.html"><a href="chap-quan.html#test-9"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-quan.html"><a href="chap-quan.html#ejercicio-9"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-quan.html"><a href="chap-quan.html#respuestas-al-test-9"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="chap-hist.html"><a href="chap-hist.html"><i class="fa fa-check"></i><b>13</b> Datos cuantitativos agrupados</a><ul>
-<li class="chapter" data-level="13.1" data-path="chap-hist.html"><a href="chap-hist.html#como-agrupar-datos"><i class="fa fa-check"></i><b>13.1</b> Cómo agrupar datos</a></li>
+<li class="chapter" data-level="13" data-path="chap-hist.html"><a href="chap-hist.html"><i class="fa fa-check"></i><b>13</b> Datos cuantitativos agrupados</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="chap-hist.html"><a href="chap-hist.html#cómo-agrupar-datos"><i class="fa fa-check"></i><b>13.1</b> Cómo agrupar datos</a></li>
 <li class="chapter" data-level="13.2" data-path="chap-hist.html"><a href="chap-hist.html#sec:agrupR"><i class="fa fa-check"></i><b>13.2</b> Agrupamiento de datos con R</a></li>
-<li class="chapter" data-level="13.3" data-path="chap-hist.html"><a href="chap-hist.html#estadisticos-para-datos-agrupados"><i class="fa fa-check"></i><b>13.3</b> Estadísticos para datos agrupados</a></li>
+<li class="chapter" data-level="13.3" data-path="chap-hist.html"><a href="chap-hist.html#estadísticos-para-datos-agrupados"><i class="fa fa-check"></i><b>13.3</b> Estadísticos para datos agrupados</a></li>
 <li class="chapter" data-level="13.4" data-path="chap-hist.html"><a href="chap-hist.html#sec:hist"><i class="fa fa-check"></i><b>13.4</b> Histogramas</a></li>
-<li class="chapter" data-level="13.5" data-path="chap-hist.html"><a href="chap-hist.html#guia-rapida-de-funciones-7"><i class="fa fa-check"></i><b>13.5</b> Guía rápida de funciones</a></li>
-<li class="chapter" data-level="13.6" data-path="chap-hist.html"><a href="chap-hist.html#ejercicios-11"><i class="fa fa-check"></i><b>13.6</b> Ejercicios</a><ul>
+<li class="chapter" data-level="13.5" data-path="chap-hist.html"><a href="chap-hist.html#guía-rápida-de-funciones-7"><i class="fa fa-check"></i><b>13.5</b> Guía rápida de funciones</a></li>
+<li class="chapter" data-level="13.6" data-path="chap-hist.html"><a href="chap-hist.html#ejercicios-11"><i class="fa fa-check"></i><b>13.6</b> Ejercicios</a>
+<ul>
 <li class="chapter" data-level="" data-path="chap-hist.html"><a href="chap-hist.html#test-10"><i class="fa fa-check"></i>Test</a></li>
 <li class="chapter" data-level="" data-path="chap-hist.html"><a href="chap-hist.html#ejercicio-10"><i class="fa fa-check"></i>Ejercicio</a></li>
 <li class="chapter" data-level="" data-path="chap-hist.html"><a href="chap-hist.html#respuestas-al-test-10"><i class="fa fa-check"></i>Respuestas al test</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html"><i class="fa fa-check"></i><b>14</b> Gráficos avanzados</a><ul>
-<li class="chapter" data-level="14.1" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#nubes-de-palabras-o-de-etiquetas-word-clouds"><i class="fa fa-check"></i><b>14.1</b> Nubes de palabras o de etiquetas (<em>word clouds</em>)</a></li>
-<li class="chapter" data-level="14.2" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#mapa-de-calor-o-heatmap"><i class="fa fa-check"></i><b>14.2</b> Mapa de calor o <em>heatmap</em></a></li>
-<li class="chapter" data-level="14.3" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#sec:dendr"><i class="fa fa-check"></i><b>14.3</b> Dendrogramas</a></li>
-<li class="chapter" data-level="14.4" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#graficos-de-burbujas-o-bubbles"><i class="fa fa-check"></i><b>14.4</b> Gráficos de burbujas o <em>bubbles</em></a></li>
-<li class="chapter" data-level="14.5" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#graficos-de-corrientes-o-streamgraphs"><i class="fa fa-check"></i><b>14.5</b> Gráficos de corrientes o <em>streamgraphs</em></a></li>
-<li class="chapter" data-level="14.6" data-path="graficos-avanzados.html"><a href="graficos-avanzados.html#guia-rapida-4"><i class="fa fa-check"></i><b>14.6</b> Guía rápida</a></li>
+<li class="chapter" data-level="14" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html"><i class="fa fa-check"></i><b>14</b> Gráficos avanzados</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#nubes-de-palabras-o-de-etiquetas-word-clouds"><i class="fa fa-check"></i><b>14.1</b> Nubes de palabras o de etiquetas (<em>word clouds</em>)</a></li>
+<li class="chapter" data-level="14.2" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#mapa-de-calor-o-heatmap"><i class="fa fa-check"></i><b>14.2</b> Mapa de calor o <em>heatmap</em></a></li>
+<li class="chapter" data-level="14.3" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#sec:dendr"><i class="fa fa-check"></i><b>14.3</b> Dendrogramas</a></li>
+<li class="chapter" data-level="14.4" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#gráficos-de-burbujas-o-bubbles"><i class="fa fa-check"></i><b>14.4</b> Gráficos de burbujas o <em>bubbles</em></a></li>
+<li class="chapter" data-level="14.5" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#gráficos-de-corrientes-o-streamgraphs"><i class="fa fa-check"></i><b>14.5</b> Gráficos de corrientes o <em>streamgraphs</em></a></li>
+<li class="chapter" data-level="14.6" data-path="gráficos-avanzados.html"><a href="gráficos-avanzados.html#guía-rápida-4"><i class="fa fa-check"></i><b>14.6</b> Guía rápida</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/RicUIB/AprendeR2.1" target="blank">Publicado con  bookdown</a></li>
@@ -318,10 +349,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chap:ord" class="section level1">
+<div id="chap:ord" class="section level1" number="11">
 <h1><span class="header-section-number">Lección 11</span> Descripción de datos ordinales</h1>
 <p>Los datos ordinales son parecidos a los cualitativos, en el sentido de que son cualidades de objetos o individuos. Su diferencia con los datos cualitativos está en que las características que expresan los datos ordinales tienen un orden natural que permite <em>acumular</em> observaciones, es decir, contar cuántas hay por debajo de cada nivel. Un caso frecuente son las escalas tipo <em>Likert</em>, que se usan para conocer la opinión de un grupo de personas sobre un tema determinado; para más información, podéis consultar <a href="http://es.wikipedia.org/wiki/Escalas_Likert">la entrada de la Wikipedia sobre escalas Likert</a>.</p>
-<div id="frecuencias-para-datos-ordinales" class="section level2">
+<div id="frecuencias-para-datos-ordinales" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> Frecuencias para datos ordinales</h2>
 <p>Cuando trabajamos con datos ordinales, el orden de los niveles de los datos permite calcular no sólo las frecuencias absolutas y relativas que veíamos en la lección anterior, y que para variables ordinales se definen del mismo modo, sino también frecuencias <strong>acumuladas</strong>. Es decir, no sólo podemos contar cuántas veces hemos observado un cierto dato, sino también cuántas veces hemos observado un dato menor o igual que él.</p>
 
@@ -331,7 +362,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <em>A</em>, <em>A</em>, <em>N</em>, <em>S</em>, <em>S</em>, <em>A</em>, <em>N</em>, <em>E</em>, <em>A</em>, <em>A</em>, <em>S</em>, <em>S</em>, <em>S</em>, <em>A</em>, <em>E</em>, <em>N</em>, <em>N</em>, <em>E</em>, <em>S</em>, <em>A</em>.
 </p>
 </div>
-
 <p>En esta lista hay 6 <em>S</em>, 7 <em>A</em>, 4 <em>N</em> y 3 <em>E</em>: éstas serían las frecuencias absolutas de las calificaciones en esta muestra de estudiantes. Por lo que se refiere a sus <strong>frecuencias absolutas acumuladas</strong>:</p>
 <ul>
 <li>Hay 6 estudiantes que han obtenido <em>S</em> o menos: la frecuencia absoluta acumulada de <em>S</em> es 6.</li>
@@ -368,48 +398,47 @@ F_j=\dfrac{N_j}{n}=\sum\limits_{k=1}^j f_k.
 \]</span></p></li>
 </ul>
 </div>
-<div id="descripcion-de-datos-ordinales-con-r" class="section level2">
+<div id="descripción-de-datos-ordinales-con-r" class="section level2" number="11.2">
 <h2><span class="header-section-number">11.2</span> Descripción de datos ordinales con R</h2>
 <p>Recordemos de la Lección <a href="chap-vect.html#chap:vect">4</a> que la función <code>cumsum</code>, aplicada a un vector, calcula el vector de sus sumas acumuladas. Sobre una tabla de contingencia tiene el mismo efecto, y por lo tanto podemos usarla para calcular la tabla de frecuencias acumuladas (absolutas o relativas) de un vector, aplicándola a su tabla de frecuencias (absolutas o relativas, según corresponda).</p>
 
 <div class="example">
 <p><span id="exm:ex1ordinales" class="example"><strong>Ejemplo 11.2  </strong></span>Vamos a calcular y representar gráficamente las frecuencias acumuladas de la muestra de calificaciones del Ejemplo <a href="chap-ord.html#exm:ex1701bis">11.1</a>. Para ello entraremos dichas calificaciones como un factor ordenado, porque es la manera natural de guardar una variable ordinal en R.</p>
 </div>
-
-<div class="sourceCode" id="cb1400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1400-1" data-line-number="1">notas=<span class="kw">ordered</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>), </a>
-<a class="sourceLine" id="cb1400-2" data-line-number="2">              <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>))</a>
-<a class="sourceLine" id="cb1400-3" data-line-number="3">notas</a></code></pre></div>
-<pre><code>##  [1] A A N S S A N E A A S S S A E N N E S A
-## Levels: S &lt; A &lt; N &lt; E</code></pre>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="chap-ord.html#cb528-1" aria-hidden="true"></a>notas=<span class="kw">ordered</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>), </span>
+<span id="cb528-2"><a href="chap-ord.html#cb528-2" aria-hidden="true"></a>              <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;S&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;N&quot;</span>,<span class="st">&quot;E&quot;</span>))</span>
+<span id="cb528-3"><a href="chap-ord.html#cb528-3" aria-hidden="true"></a>notas</span>
+<span id="cb528-4"><a href="chap-ord.html#cb528-4" aria-hidden="true"></a><span class="co">#&gt;  [1] A A N S S A N E A A S S S A E N N E S A</span></span>
+<span id="cb528-5"><a href="chap-ord.html#cb528-5" aria-hidden="true"></a><span class="co">#&gt; Levels: S &lt; A &lt; N &lt; E</span></span></code></pre></div>
 <ul>
 <li>Su tabla de frecuencias absolutas:</li>
 </ul>
-<div class="sourceCode" id="cb1402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1402-1" data-line-number="1"><span class="kw">table</span>(notas)</a></code></pre></div>
-<pre><code>## notas
-## S A N E 
-## 6 7 4 3</code></pre>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="chap-ord.html#cb529-1" aria-hidden="true"></a><span class="kw">table</span>(notas)</span>
+<span id="cb529-2"><a href="chap-ord.html#cb529-2" aria-hidden="true"></a><span class="co">#&gt; notas</span></span>
+<span id="cb529-3"><a href="chap-ord.html#cb529-3" aria-hidden="true"></a><span class="co">#&gt; S A N E </span></span>
+<span id="cb529-4"><a href="chap-ord.html#cb529-4" aria-hidden="true"></a><span class="co">#&gt; 6 7 4 3</span></span></code></pre></div>
 <ul>
 <li>Su tabla de frecuencias absolutas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1404-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">table</span>(notas))</a></code></pre></div>
-<pre><code>##  S  A  N  E 
-##  6 13 17 20</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="chap-ord.html#cb530-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">table</span>(notas))</span>
+<span id="cb530-2"><a href="chap-ord.html#cb530-2" aria-hidden="true"></a><span class="co">#&gt;  S  A  N  E </span></span>
+<span id="cb530-3"><a href="chap-ord.html#cb530-3" aria-hidden="true"></a><span class="co">#&gt;  6 13 17 20</span></span></code></pre></div>
 <ul>
 <li>Su tabla de frecuencias relativas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1406-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(notas)))</a></code></pre></div>
-<pre><code>##    S    A    N    E 
-## 0.30 0.65 0.85 1.00</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="chap-ord.html#cb531-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(notas)))</span>
+<span id="cb531-2"><a href="chap-ord.html#cb531-2" aria-hidden="true"></a><span class="co">#&gt;    S    A    N    E </span></span>
+<span id="cb531-3"><a href="chap-ord.html#cb531-3" aria-hidden="true"></a><span class="co">#&gt; 0.30 0.65 0.85 1.00</span></span></code></pre></div>
 <ul>
 <li>Un diagrama de barras de sus frecuencias absolutas:</li>
 </ul>
-<div class="sourceCode" id="cb1408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1408-1" data-line-number="1"><span class="kw">barplot</span>(<span class="kw">table</span>(notas))</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-519-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="chap-ord.html#cb532-1" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">table</span>(notas))</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Un diagrama de barras de sus frecuencias absolutas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1409-1" data-line-number="1"><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">table</span>(notas)))</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-520-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="chap-ord.html#cb533-1" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">table</span>(notas)))</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <!--
 ```{r F1702,fig.cap="Diagramas de barras de frecuencias absolutas y de frecuencias absolutas acumuladas de las notas del Ejemplo 
 \@ref(ex:ex1701bis)."}
@@ -426,25 +455,24 @@ knitr::include_graphics(c("images/notasnoacum1.png","images/notasacum1.png"))
 \end{figure}
 -->
 <p>Para calcular las frecuencias relativas acumuladas hemos usado la instrucción</p>
-<div class="sourceCode" id="cb1410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1410-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(notas)))</a></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="chap-ord.html#cb534-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(notas)))</span></code></pre></div>
 <p>que va sumando las frecuencias relativas. También las podríamos haber calculado dividiendo las frecuencias
 absolutas acumuladas por el número de datos, usando una de las dos instrucciones siguientes:</p>
-<div class="sourceCode" id="cb1411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1411-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">table</span>(notas))<span class="op">/</span><span class="kw">length</span>(notas)</a></code></pre></div>
-<pre><code>##    S    A    N    E 
-## 0.30 0.65 0.85 1.00</code></pre>
-<div class="sourceCode" id="cb1413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1413-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">table</span>(notas)<span class="op">/</span><span class="kw">length</span>(notas))</a></code></pre></div>
-<pre><code>##    S    A    N    E 
-## 0.30 0.65 0.85 1.00</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="chap-ord.html#cb535-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">table</span>(notas))<span class="op">/</span><span class="kw">length</span>(notas)</span>
+<span id="cb535-2"><a href="chap-ord.html#cb535-2" aria-hidden="true"></a><span class="co">#&gt;    S    A    N    E </span></span>
+<span id="cb535-3"><a href="chap-ord.html#cb535-3" aria-hidden="true"></a><span class="co">#&gt; 0.30 0.65 0.85 1.00</span></span>
+<span id="cb535-4"><a href="chap-ord.html#cb535-4" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">table</span>(notas)<span class="op">/</span><span class="kw">length</span>(notas))</span>
+<span id="cb535-5"><a href="chap-ord.html#cb535-5" aria-hidden="true"></a><span class="co">#&gt;    S    A    N    E </span></span>
+<span id="cb535-6"><a href="chap-ord.html#cb535-6" aria-hidden="true"></a><span class="co">#&gt; 0.30 0.65 0.85 1.00</span></span></code></pre></div>
 <p>Pero <em>no</em> podíamos usar</p>
-<div class="sourceCode" id="cb1415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1415-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">cumsum</span>(<span class="kw">table</span>(notas)))</a></code></pre></div>
-<pre><code>##         S         A         N         E 
-## 0.1071429 0.2321429 0.3035714 0.3571429</code></pre>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="chap-ord.html#cb536-1" aria-hidden="true"></a><span class="kw">prop.table</span>(<span class="kw">cumsum</span>(<span class="kw">table</span>(notas)))</span>
+<span id="cb536-2"><a href="chap-ord.html#cb536-2" aria-hidden="true"></a><span class="co">#&gt;         S         A         N         E </span></span>
+<span id="cb536-3"><a href="chap-ord.html#cb536-3" aria-hidden="true"></a><span class="co">#&gt; 0.1071429 0.2321429 0.3035714 0.3571429</span></span></code></pre></div>
 <p>Pensad qué ha entendido R que queríamos hacer con esta última instrucción.</p>
 
 <div class="example">
 <p><span id="exm:ex1704" class="example"><strong>Ejemplo 11.3  </strong></span>En un estudio sobre el comportamiento ético de una empresa, a un grupo de técnicos en impacto ambiental que trabajaban en dicha empresa se les hizo la pregunta siguiente: “<em>¿Cree que su empresa anima a sus técnicos en impacto ambiental a usar métodos que favorezcan la opinión del cliente que ha encargado el estudio?</em>”</p>
 </div>
-
 <p>Las posibles respuestas eran las que aparecen en la Tabla <a href="chap-ord.html#tab:Likert">11.1</a>, y forman una escala ordinal de tipo , con 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5.</p>
 <table>
 <caption><span id="tab:Likert">Tabla 11.1: </span>Un ejemplo de escala <em>Likert</em>.</caption>
@@ -495,47 +523,46 @@ Nivel & Significado\\\hline
 \end{table}
 -->
 <p>Supongamos que se recogieron las siguientes respuestas de 100 técnicos, que tenemos en un vector:</p>
-<div class="sourceCode" id="cb1417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1417-1" data-line-number="1">respuestas=<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb1417-2" data-line-number="2">             <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb1417-3" data-line-number="3">             <span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb1417-4" data-line-number="4">             <span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="chap-ord.html#cb537-1" aria-hidden="true"></a>respuestas=<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">1</span>,</span>
+<span id="cb537-2"><a href="chap-ord.html#cb537-2" aria-hidden="true"></a>             <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,</span>
+<span id="cb537-3"><a href="chap-ord.html#cb537-3" aria-hidden="true"></a>             <span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,</span>
+<span id="cb537-4"><a href="chap-ord.html#cb537-4" aria-hidden="true"></a>             <span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span></code></pre></div>
 <p>En este caso tenemos 5 niveles (<span class="math inline">\(k=5\)</span>) y 100 observaciones (<span class="math inline">\(n=100\)</span>) que forman una variable ordinal que llamamos <em>respuestas</em>. Vamos a calcular sus dos tablas de frecuencias relativas (acumuladas o no) y dos diagramas de barras adecuados de sus frecuencias relativas (de nuevo, acumuladas o no). Para ello, en primer lugar transformaremos este vector en un factor ordenado.</p>
-<div class="sourceCode" id="cb1418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1418-1" data-line-number="1">respuestas=<span class="kw">ordered</span>(respuestas,<span class="dt">levels=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="chap-ord.html#cb538-1" aria-hidden="true"></a>respuestas=<span class="kw">ordered</span>(respuestas,<span class="dt">levels=</span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
 <ul>
 <li>Su tabla de frecuencias relativas:</li>
 </ul>
-<div class="sourceCode" id="cb1419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1419-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas))</a></code></pre></div>
-<pre><code>## respuestas
-##    1    2    3    4    5 
-## 0.24 0.22 0.24 0.20 0.10</code></pre>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="chap-ord.html#cb539-1" aria-hidden="true"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas))</span>
+<span id="cb539-2"><a href="chap-ord.html#cb539-2" aria-hidden="true"></a><span class="co">#&gt; respuestas</span></span>
+<span id="cb539-3"><a href="chap-ord.html#cb539-3" aria-hidden="true"></a><span class="co">#&gt;    1    2    3    4    5 </span></span>
+<span id="cb539-4"><a href="chap-ord.html#cb539-4" aria-hidden="true"></a><span class="co">#&gt; 0.24 0.22 0.24 0.20 0.10</span></span></code></pre></div>
 <ul>
 <li>Su tabla de frecuencias relativas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1421-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas)))</a></code></pre></div>
-<pre><code>##    1    2    3    4    5 
-## 0.24 0.46 0.70 0.90 1.00</code></pre>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="chap-ord.html#cb540-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas)))</span>
+<span id="cb540-2"><a href="chap-ord.html#cb540-2" aria-hidden="true"></a><span class="co">#&gt;    1    2    3    4    5 </span></span>
+<span id="cb540-3"><a href="chap-ord.html#cb540-3" aria-hidden="true"></a><span class="co">#&gt; 0.24 0.46 0.70 0.90 1.00</span></span></code></pre></div>
 <ul>
 <li>Un diagrama de barras de sus frecuencias relativas:</li>
 </ul>
-<div class="sourceCode" id="cb1423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1423-1" data-line-number="1">Nombres.compl=<span class="kw">c</span>(<span class="st">&quot;Muy en</span><span class="ch">\n</span><span class="st"> desacuerdo&quot;</span>,<span class="st">&quot;En</span><span class="ch">\n</span><span class="st"> desacuerdo&quot;</span>,<span class="st">&quot;Neutro</span><span class="ch">\n</span><span class="st"> &quot;</span>,</a>
-<a class="sourceLine" id="cb1423-2" data-line-number="2">                <span class="st">&quot;De</span><span class="ch">\n</span><span class="st"> acuerdo&quot;</span>,<span class="st">&quot;Muy de</span><span class="ch">\n</span><span class="st"> acuerdo&quot;</span>)</a>
-<a class="sourceLine" id="cb1423-3" data-line-number="3"><span class="kw">barplot</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas)), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.30</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>,</a>
-<a class="sourceLine" id="cb1423-4" data-line-number="4">  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de las frecuencias relativas</span><span class="ch">\n</span><span class="st"> de la variable </span><span class="ch">\&quot;</span><span class="st">respuestas</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, </a>
-<a class="sourceLine" id="cb1423-5" data-line-number="5">  <span class="dt">names=</span>Nombres.compl, <span class="dt">xlab=</span><span class="st">&quot;Nivel de acuerdo escala Likert&quot;</span>,  <span class="dt">ylab=</span><span class="st">&quot;Frec. relativas&quot;</span>)</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-528-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="chap-ord.html#cb541-1" aria-hidden="true"></a>Nombres.compl=<span class="kw">c</span>(<span class="st">&quot;Muy en</span><span class="ch">\n</span><span class="st"> desacuerdo&quot;</span>,<span class="st">&quot;En</span><span class="ch">\n</span><span class="st"> desacuerdo&quot;</span>,<span class="st">&quot;Neutro</span><span class="ch">\n</span><span class="st"> &quot;</span>,</span>
+<span id="cb541-2"><a href="chap-ord.html#cb541-2" aria-hidden="true"></a>                <span class="st">&quot;De</span><span class="ch">\n</span><span class="st"> acuerdo&quot;</span>,<span class="st">&quot;Muy de</span><span class="ch">\n</span><span class="st"> acuerdo&quot;</span>)</span>
+<span id="cb541-3"><a href="chap-ord.html#cb541-3" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas)), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.30</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>,</span>
+<span id="cb541-4"><a href="chap-ord.html#cb541-4" aria-hidden="true"></a>  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de las frecuencias relativas</span><span class="ch">\n</span><span class="st"> de la variable </span><span class="ch">\&quot;</span><span class="st">respuestas</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, </span>
+<span id="cb541-5"><a href="chap-ord.html#cb541-5" aria-hidden="true"></a>  <span class="dt">names=</span>Nombres.compl, <span class="dt">xlab=</span><span class="st">&quot;Nivel de acuerdo escala Likert&quot;</span>,  <span class="dt">ylab=</span><span class="st">&quot;Frec. relativas&quot;</span>)</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-14-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Un diagrama de barras de sus frecuencias relativas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1424-1" data-line-number="1"><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas))), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>,</a>
-<a class="sourceLine" id="cb1424-2" data-line-number="2">  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de las frecuencias relativas acumuladas </span><span class="ch">\n</span><span class="st"> de la variable </span><span class="ch">\&quot;</span><span class="st">respuestas</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, </a>
-<a class="sourceLine" id="cb1424-3" data-line-number="3">  <span class="dt">names=</span>Nombres.compl, <span class="dt">xlab=</span><span class="st">&quot;Nivel de acuerdo escala Likert&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Frec. relativas acumuladas&quot;</span>)</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-529-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="chap-ord.html#cb542-1" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(respuestas))), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>,</span>
+<span id="cb542-2"><a href="chap-ord.html#cb542-2" aria-hidden="true"></a>  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de las frecuencias relativas acumuladas </span><span class="ch">\n</span><span class="st"> de la variable </span><span class="ch">\&quot;</span><span class="st">respuestas</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, </span>
+<span id="cb542-3"><a href="chap-ord.html#cb542-3" aria-hidden="true"></a>  <span class="dt">names=</span>Nombres.compl, <span class="dt">xlab=</span><span class="st">&quot;Nivel de acuerdo escala Likert&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Frec. relativas acumuladas&quot;</span>)</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-15-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>En los dos últimos diagramas de barras, hemos representado los niveles con un texto más descriptivo. Para hacerlo, hemos definido un vector <code>Nombres.compl</code> con sus nuevos nombres en el orden correspondiente (y en dos líneas cada uno para ocupar menos espacio horizontal), y entonces en los <code>barplot</code> hemos especificado <code>names=Nombres.compl</code>. Además, con el parámetro <code>cex.names</code> hemos reducido un 25% el tamaño de los nombres de las barras para que cupieran bien en el dibujo.</p>
 
 <div class="example">
 <p><span id="exm:ex1706" class="example"><strong>Ejemplo 11.4  </strong></span>Un microbiólogo ha evaluado la semejanza a una cierta comunidad prototipo de los microbiotas intestinales de 40 individuos con síndrome del colon irritable. Los niveles de semejanza que ha usado son los de la Tabla <a href="chap-ord.html#tab:tablameta">11.2</a>, y los considera ordenados de la manera natural:</p>
 </div>
-
 <p style="text-align:center">
 Tot.difs &lt;Difs &lt; Pars &lt; Muy.pars &lt; Iguales
 </p>
@@ -614,49 +641,49 @@ Nivel & Significado\\\hline
 \end{table}
 -->
 <p>Los valores obtenidos en el estudio son los contenidos en el siguiente vector.</p>
-<div class="sourceCode" id="cb1425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1425-1" data-line-number="1">datos=<span class="kw">c</span>(<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>,</a>
-<a class="sourceLine" id="cb1425-2" data-line-number="2">        <span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,</a>
-<a class="sourceLine" id="cb1425-3" data-line-number="3">        <span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,</a>
-<a class="sourceLine" id="cb1425-4" data-line-number="4">        <span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,</a>
-<a class="sourceLine" id="cb1425-5" data-line-number="5">        <span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="chap-ord.html#cb543-1" aria-hidden="true"></a>datos=<span class="kw">c</span>(<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>,</span>
+<span id="cb543-2"><a href="chap-ord.html#cb543-2" aria-hidden="true"></a>        <span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,</span>
+<span id="cb543-3"><a href="chap-ord.html#cb543-3" aria-hidden="true"></a>        <span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,</span>
+<span id="cb543-4"><a href="chap-ord.html#cb543-4" aria-hidden="true"></a>        <span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,</span>
+<span id="cb543-5"><a href="chap-ord.html#cb543-5" aria-hidden="true"></a>        <span class="st">&quot;Iguales&quot;</span>,<span class="st">&quot;Tot.difs&quot;</span>)</span></code></pre></div>
 <p>Para estudiar las frecuencias acumuladas de los niveles de semejanza en este estudio, transformaremos este vector en un factor ordenado con los niveles ordenados de manera adecuada.</p>
-<div class="sourceCode" id="cb1426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1426-1" data-line-number="1">sem.com=<span class="kw">ordered</span>(datos,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Tot.difs&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="chap-ord.html#cb544-1" aria-hidden="true"></a>sem.com=<span class="kw">ordered</span>(datos,<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Tot.difs&quot;</span>,<span class="st">&quot;Difs&quot;</span>,<span class="st">&quot;Pars&quot;</span>,<span class="st">&quot;Muy.pars&quot;</span>,<span class="st">&quot;Iguales&quot;</span>))</span></code></pre></div>
 <ul>
 <li>La tabla de frecuencias absolutas:</li>
 </ul>
-<div class="sourceCode" id="cb1427"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1427-1" data-line-number="1">AbsFr=<span class="kw">table</span>(sem.com)</a>
-<a class="sourceLine" id="cb1427-2" data-line-number="2">AbsFr</a></code></pre></div>
-<pre><code>## sem.com
-## Tot.difs     Difs     Pars Muy.pars  Iguales 
-##        3        8        8       13        8</code></pre>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="chap-ord.html#cb545-1" aria-hidden="true"></a>AbsFr=<span class="kw">table</span>(sem.com)</span>
+<span id="cb545-2"><a href="chap-ord.html#cb545-2" aria-hidden="true"></a>AbsFr</span>
+<span id="cb545-3"><a href="chap-ord.html#cb545-3" aria-hidden="true"></a><span class="co">#&gt; sem.com</span></span>
+<span id="cb545-4"><a href="chap-ord.html#cb545-4" aria-hidden="true"></a><span class="co">#&gt; Tot.difs     Difs     Pars Muy.pars  Iguales </span></span>
+<span id="cb545-5"><a href="chap-ord.html#cb545-5" aria-hidden="true"></a><span class="co">#&gt;        3        8        8       13        8</span></span></code></pre></div>
 <ul>
 <li>La tabla de frecuencias relativas:</li>
 </ul>
-<div class="sourceCode" id="cb1429"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1429-1" data-line-number="1"><span class="kw">prop.table</span>(AbsFr)</a></code></pre></div>
-<pre><code>## sem.com
-## Tot.difs     Difs     Pars Muy.pars  Iguales 
-##    0.075    0.200    0.200    0.325    0.200</code></pre>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="chap-ord.html#cb546-1" aria-hidden="true"></a><span class="kw">prop.table</span>(AbsFr)</span>
+<span id="cb546-2"><a href="chap-ord.html#cb546-2" aria-hidden="true"></a><span class="co">#&gt; sem.com</span></span>
+<span id="cb546-3"><a href="chap-ord.html#cb546-3" aria-hidden="true"></a><span class="co">#&gt; Tot.difs     Difs     Pars Muy.pars  Iguales </span></span>
+<span id="cb546-4"><a href="chap-ord.html#cb546-4" aria-hidden="true"></a><span class="co">#&gt;    0.075    0.200    0.200    0.325    0.200</span></span></code></pre></div>
 <ul>
 <li>La tabla de frecuencias absolutas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1431-1" data-line-number="1"><span class="kw">cumsum</span>(AbsFr)</a></code></pre></div>
-<pre><code>## Tot.difs     Difs     Pars Muy.pars  Iguales 
-##        3       11       19       32       40</code></pre>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="chap-ord.html#cb547-1" aria-hidden="true"></a><span class="kw">cumsum</span>(AbsFr)</span>
+<span id="cb547-2"><a href="chap-ord.html#cb547-2" aria-hidden="true"></a><span class="co">#&gt; Tot.difs     Difs     Pars Muy.pars  Iguales </span></span>
+<span id="cb547-3"><a href="chap-ord.html#cb547-3" aria-hidden="true"></a><span class="co">#&gt;        3       11       19       32       40</span></span></code></pre></div>
 <ul>
 <li>La tabla de frecuencias relativas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1433"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1433-1" data-line-number="1"><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(AbsFr))</a></code></pre></div>
-<pre><code>## Tot.difs     Difs     Pars Muy.pars  Iguales 
-##    0.075    0.275    0.475    0.800    1.000</code></pre>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="chap-ord.html#cb548-1" aria-hidden="true"></a><span class="kw">cumsum</span>(<span class="kw">prop.table</span>(AbsFr))</span>
+<span id="cb548-2"><a href="chap-ord.html#cb548-2" aria-hidden="true"></a><span class="co">#&gt; Tot.difs     Difs     Pars Muy.pars  Iguales </span></span>
+<span id="cb548-3"><a href="chap-ord.html#cb548-3" aria-hidden="true"></a><span class="co">#&gt;    0.075    0.275    0.475    0.800    1.000</span></span></code></pre></div>
 <ul>
 <li>Un diagrama de barras de sus frecuencias relativas acumuladas:</li>
 </ul>
-<div class="sourceCode" id="cb1435"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1435-1" data-line-number="1">Nombres.Completos=<span class="kw">c</span>(<span class="st">&quot;Totalmente</span><span class="ch">\n</span><span class="st"> diferentes&quot;</span>,<span class="st">&quot;Diferentes</span><span class="ch">\n</span><span class="st">&quot;</span>,<span class="st">&quot;Parecidas</span><span class="ch">\n</span><span class="st"> &quot;</span>,</a>
-<a class="sourceLine" id="cb1435-2" data-line-number="2">                    <span class="st">&quot;Muy</span><span class="ch">\n</span><span class="st"> parecidas&quot;</span>,<span class="st">&quot;Totalmente</span><span class="ch">\n</span><span class="st"> iguales&quot;</span>)</a>
-<a class="sourceLine" id="cb1435-3" data-line-number="3"><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">prop.table</span>(AbsFr)), <span class="dt">names=</span>Nombres.Completos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>)</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-535-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="chap-ord.html#cb549-1" aria-hidden="true"></a>Nombres.Completos=<span class="kw">c</span>(<span class="st">&quot;Totalmente</span><span class="ch">\n</span><span class="st"> diferentes&quot;</span>,<span class="st">&quot;Diferentes</span><span class="ch">\n</span><span class="st">&quot;</span>,<span class="st">&quot;Parecidas</span><span class="ch">\n</span><span class="st"> &quot;</span>,</span>
+<span id="cb549-2"><a href="chap-ord.html#cb549-2" aria-hidden="true"></a>                    <span class="st">&quot;Muy</span><span class="ch">\n</span><span class="st"> parecidas&quot;</span>,<span class="st">&quot;Totalmente</span><span class="ch">\n</span><span class="st"> iguales&quot;</span>)</span>
+<span id="cb549-3"><a href="chap-ord.html#cb549-3" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">cumsum</span>(<span class="kw">prop.table</span>(AbsFr)), <span class="dt">names=</span>Nombres.Completos, <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">cex.names=</span><span class="fl">0.75</span>)</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-21-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Para calcular frecuencias acumuladas en una tabla multidimensional, hay que aplicar a la tabla la función <code>cumsum</code> mediante la función <code>apply</code>. En este caso concreto, la sintaxis de la instrucción sería</p>
-<div class="sourceCode" id="cb1436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1436-1" data-line-number="1"><span class="kw">apply</span>(tabla, <span class="dt">MARGIN=</span>..., <span class="dt">FUN=</span>cumsum)</a></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="chap-ord.html#cb550-1" aria-hidden="true"></a><span class="kw">apply</span>(tabla, <span class="dt">MARGIN=</span>..., <span class="dt">FUN=</span>cumsum)</span></code></pre></div>
 <p>donde el valor de <code>MARGIN</code> ha de ser el de la dimensión en la que queremos acumular las frecuencias: 1 si queremos calcular las frecuencias acumuladas por filas, 2 si las queremos calcular por columnas, etc. Esta construcción tiene algunas particularidades, que vamos a ilustrar con un ejemplo.</p>
 <!--
 \begin{ejemplo}\label{ex:encuestacum}
@@ -665,62 +692,61 @@ Nivel & Significado\\\hline
 <div class="example">
 <p><span id="exm:encuestacum" class="example"><strong>Ejemplo 11.5  </strong></span>Supongamos que las 100 respuestas a la encuesta en el Ejemplo <a href="chap-ord.html#exm:ex1704">11.3</a> en realidad provienen de técnicos de tres empresas diferentes, A, B y C, de manera que las 30 primeras son de técnicos de A, las 20 siguientes, de técnicos de B, y las 50 últimas, de técnicos de C. Nos interesa estudiar la distribución de las respuestas según la empresa.</p>
 </div>
-
 <p>Vamos a organizar estos datos en un <em>data frame</em>. Para que sea más fácil visualizar la información que nos interesa, es conveniente que las filas de las tablas de frecuencias correspondan a las empresas. Por lo tanto, al definir el <em>data frame</em>, entraremos como primera variable la de las empresas; de esta manera, éstas aparecerán en las filas al aplicarle la función <code>table</code>. Recordad además que las respuestas ya las tenemos convenientemente organizadas en un factor ordenado llamado <em>respuestas</em>.</p>
-<div class="sourceCode" id="cb1437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1437-1" data-line-number="1">empresas=<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>), <span class="dt">times=</span><span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">20</span>,<span class="dv">50</span>))</a>
-<a class="sourceLine" id="cb1437-2" data-line-number="2">df_encuesta=<span class="kw">data.frame</span>(empresas,respuestas)</a>
-<a class="sourceLine" id="cb1437-3" data-line-number="3"><span class="kw">str</span>(df_encuesta)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    100 obs. of  2 variables:
-##  $ empresas  : Factor w/ 3 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ respuestas: Ord.factor w/ 5 levels &quot;1&quot;&lt;&quot;2&quot;&lt;&quot;3&quot;&lt;&quot;4&quot;&lt;..: 4 4 2 1 3 3 4 1 1 3 ...</code></pre>
-<div class="sourceCode" id="cb1439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1439-1" data-line-number="1"><span class="kw">head</span>(df_encuesta,<span class="dv">5</span>)</a></code></pre></div>
-<pre><code>##   empresas respuestas
-## 1        A          4
-## 2        A          4
-## 3        A          2
-## 4        A          1
-## 5        A          3</code></pre>
-<div class="sourceCode" id="cb1441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1441-1" data-line-number="1"><span class="kw">table</span>(df_encuesta)</a></code></pre></div>
-<pre><code>##         respuestas
-## empresas  1  2  3  4  5
-##        A  9  9  4  5  3
-##        B  3  5  7  4  1
-##        C 12  8 13 11  6</code></pre>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="chap-ord.html#cb551-1" aria-hidden="true"></a>empresas=<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;B&quot;</span>,<span class="st">&quot;C&quot;</span>), <span class="dt">times=</span><span class="kw">c</span>(<span class="dv">30</span>,<span class="dv">20</span>,<span class="dv">50</span>))</span>
+<span id="cb551-2"><a href="chap-ord.html#cb551-2" aria-hidden="true"></a>df_encuesta=<span class="kw">data.frame</span>(empresas,respuestas)</span>
+<span id="cb551-3"><a href="chap-ord.html#cb551-3" aria-hidden="true"></a><span class="kw">str</span>(df_encuesta)</span>
+<span id="cb551-4"><a href="chap-ord.html#cb551-4" aria-hidden="true"></a><span class="co">#&gt; &#39;data.frame&#39;:    100 obs. of  2 variables:</span></span>
+<span id="cb551-5"><a href="chap-ord.html#cb551-5" aria-hidden="true"></a><span class="co">#&gt;  $ empresas  : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...</span></span>
+<span id="cb551-6"><a href="chap-ord.html#cb551-6" aria-hidden="true"></a><span class="co">#&gt;  $ respuestas: Ord.factor w/ 5 levels &quot;1&quot;&lt;&quot;2&quot;&lt;&quot;3&quot;&lt;&quot;4&quot;&lt;..: 4 4 2 1 3 3 4 1 1 3 ...</span></span>
+<span id="cb551-7"><a href="chap-ord.html#cb551-7" aria-hidden="true"></a><span class="kw">head</span>(df_encuesta,<span class="dv">5</span>)</span>
+<span id="cb551-8"><a href="chap-ord.html#cb551-8" aria-hidden="true"></a><span class="co">#&gt;   empresas respuestas</span></span>
+<span id="cb551-9"><a href="chap-ord.html#cb551-9" aria-hidden="true"></a><span class="co">#&gt; 1        A          4</span></span>
+<span id="cb551-10"><a href="chap-ord.html#cb551-10" aria-hidden="true"></a><span class="co">#&gt; 2        A          4</span></span>
+<span id="cb551-11"><a href="chap-ord.html#cb551-11" aria-hidden="true"></a><span class="co">#&gt; 3        A          2</span></span>
+<span id="cb551-12"><a href="chap-ord.html#cb551-12" aria-hidden="true"></a><span class="co">#&gt; 4        A          1</span></span>
+<span id="cb551-13"><a href="chap-ord.html#cb551-13" aria-hidden="true"></a><span class="co">#&gt; 5        A          3</span></span>
+<span id="cb551-14"><a href="chap-ord.html#cb551-14" aria-hidden="true"></a><span class="kw">table</span>(df_encuesta)</span>
+<span id="cb551-15"><a href="chap-ord.html#cb551-15" aria-hidden="true"></a><span class="co">#&gt;         respuestas</span></span>
+<span id="cb551-16"><a href="chap-ord.html#cb551-16" aria-hidden="true"></a><span class="co">#&gt; empresas  1  2  3  4  5</span></span>
+<span id="cb551-17"><a href="chap-ord.html#cb551-17" aria-hidden="true"></a><span class="co">#&gt;        A  9  9  4  5  3</span></span>
+<span id="cb551-18"><a href="chap-ord.html#cb551-18" aria-hidden="true"></a><span class="co">#&gt;        B  3  5  7  4  1</span></span>
+<span id="cb551-19"><a href="chap-ord.html#cb551-19" aria-hidden="true"></a><span class="co">#&gt;        C 12  8 13 11  6</span></span></code></pre></div>
 <p>Para calcular la tabla de frecuencias absolutas acumuladas de las respuestas por empresa, y como las empresas definen las filas de la tabla anterior, hemos de usar <code>apply</code> con <code>MARGIN=1</code>.</p>
-<div class="sourceCode" id="cb1443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1443-1" data-line-number="1"><span class="kw">apply</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum)</a></code></pre></div>
-<pre><code>##           empresas
-## respuestas  A  B  C
-##          1  9  3 12
-##          2 18  8 20
-##          3 22 15 33
-##          4 27 19 44
-##          5 30 20 50</code></pre>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="chap-ord.html#cb552-1" aria-hidden="true"></a><span class="kw">apply</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum)</span>
+<span id="cb552-2"><a href="chap-ord.html#cb552-2" aria-hidden="true"></a><span class="co">#&gt;           empresas</span></span>
+<span id="cb552-3"><a href="chap-ord.html#cb552-3" aria-hidden="true"></a><span class="co">#&gt; respuestas  A  B  C</span></span>
+<span id="cb552-4"><a href="chap-ord.html#cb552-4" aria-hidden="true"></a><span class="co">#&gt;          1  9  3 12</span></span>
+<span id="cb552-5"><a href="chap-ord.html#cb552-5" aria-hidden="true"></a><span class="co">#&gt;          2 18  8 20</span></span>
+<span id="cb552-6"><a href="chap-ord.html#cb552-6" aria-hidden="true"></a><span class="co">#&gt;          3 22 15 33</span></span>
+<span id="cb552-7"><a href="chap-ord.html#cb552-7" aria-hidden="true"></a><span class="co">#&gt;          4 27 19 44</span></span>
+<span id="cb552-8"><a href="chap-ord.html#cb552-8" aria-hidden="true"></a><span class="co">#&gt;          5 30 20 50</span></span></code></pre></div>
 <p>¡La tabla se ha traspuesto!
 Resulta que cuando se aplica <code>apply</code> a una <code>table</code> bidimensional, R intercambia, si es necesario, filas por columnas en el resultado para que la dimensión de la tabla resultante en la que se haya aplicado la función sea la de las columnas. Por lo tanto, para volver a tener las empresas en las filas, hemos de trasponer el resultado de <code>apply</code>.</p>
-<div class="sourceCode" id="cb1445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1445-1" data-line-number="1"><span class="kw">t</span>(<span class="kw">apply</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum))</a></code></pre></div>
-<pre><code>##         respuestas
-## empresas  1  2  3  4  5
-##        A  9 18 22 27 30
-##        B  3  8 15 19 20
-##        C 12 20 33 44 50</code></pre>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="chap-ord.html#cb553-1" aria-hidden="true"></a><span class="kw">t</span>(<span class="kw">apply</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum))</span>
+<span id="cb553-2"><a href="chap-ord.html#cb553-2" aria-hidden="true"></a><span class="co">#&gt;         respuestas</span></span>
+<span id="cb553-3"><a href="chap-ord.html#cb553-3" aria-hidden="true"></a><span class="co">#&gt; empresas  1  2  3  4  5</span></span>
+<span id="cb553-4"><a href="chap-ord.html#cb553-4" aria-hidden="true"></a><span class="co">#&gt;        A  9 18 22 27 30</span></span>
+<span id="cb553-5"><a href="chap-ord.html#cb553-5" aria-hidden="true"></a><span class="co">#&gt;        B  3  8 15 19 20</span></span>
+<span id="cb553-6"><a href="chap-ord.html#cb553-6" aria-hidden="true"></a><span class="co">#&gt;        C 12 20 33 44 50</span></span></code></pre></div>
 <p>Vamos ahora a calcular la tabla de frecuencias relativas acumuladas de las respuestas por empresa. Para ello, y en una sola instrucción, primero calculamos la tabla de frecuencias relativas por filas; a continuación, las acumulamos por filas con <code>apply</code> y <code>cumsum</code>; y, finalmente, como ya estamos avisados, trasponemos el resultado. Además, redondearemos el resultado a 3 cifras decimales.</p>
-<div class="sourceCode" id="cb1447"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1447-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">t</span>(<span class="kw">apply</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum)),<span class="dv">3</span>)</a></code></pre></div>
-<pre><code>##         respuestas
-## empresas    1   2     3    4 5
-##        A 0.30 0.6 0.733 0.90 1
-##        B 0.15 0.4 0.750 0.95 1
-##        C 0.24 0.4 0.660 0.88 1</code></pre>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="chap-ord.html#cb554-1" aria-hidden="true"></a><span class="kw">round</span>(<span class="kw">t</span>(<span class="kw">apply</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum)),<span class="dv">3</span>)</span>
+<span id="cb554-2"><a href="chap-ord.html#cb554-2" aria-hidden="true"></a><span class="co">#&gt;         respuestas</span></span>
+<span id="cb554-3"><a href="chap-ord.html#cb554-3" aria-hidden="true"></a><span class="co">#&gt; empresas    1   2     3    4 5</span></span>
+<span id="cb554-4"><a href="chap-ord.html#cb554-4" aria-hidden="true"></a><span class="co">#&gt;        A 0.30 0.6 0.733 0.90 1</span></span>
+<span id="cb554-5"><a href="chap-ord.html#cb554-5" aria-hidden="true"></a><span class="co">#&gt;        B 0.15 0.4 0.750 0.95 1</span></span>
+<span id="cb554-6"><a href="chap-ord.html#cb554-6" aria-hidden="true"></a><span class="co">#&gt;        C 0.24 0.4 0.660 0.88 1</span></span></code></pre></div>
 <p>Vamos ahora a dibujar el diagrama de barras por bloques de esta tabla. Como queremos que las barras de este diagrama se agrupen por empresas, hemos de aplicar <code>barplot</code> a la tabla sin trasponer.</p>
-<div class="sourceCode" id="cb1449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1449-1" data-line-number="1">Tabla=<span class="kw">apply</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>cumsum)</a>
-<a class="sourceLine" id="cb1449-2" data-line-number="2"><span class="kw">barplot</span>(Tabla, <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb1449-3" data-line-number="3">        <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de respuestas por empresa&quot;</span>)</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-541-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="chap-ord.html#cb555-1" aria-hidden="true"></a>Tabla=<span class="kw">apply</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(df_encuesta), <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>,<span class="dt">FUN=</span>cumsum)</span>
+<span id="cb555-2"><a href="chap-ord.html#cb555-2" aria-hidden="true"></a><span class="kw">barplot</span>(Tabla, <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,</span>
+<span id="cb555-3"><a href="chap-ord.html#cb555-3" aria-hidden="true"></a>        <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de respuestas por empresa&quot;</span>)</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Como vemos, la leyenda se superpone sobre las barras de la última empresa. Para resolver este problema, situaremos la leyenda en la esquina superior izquierda. Además, vamos a sustituir en la leyenda los valores de las respuestas por sus significados, y para que quepa, reduciremos el tamaño del texto.</p>
-<div class="sourceCode" id="cb1450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1450-1" data-line-number="1"><span class="kw">barplot</span>(Tabla, <span class="dt">beside=</span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb1450-2" data-line-number="2">        <span class="dt">legend.text=</span><span class="kw">c</span>(<span class="st">&quot;Muy en desacuerdo&quot;</span>, <span class="st">&quot;En desacuerdo&quot;</span>,<span class="st">&quot;Neutro&quot;</span>,<span class="st">&quot;De acuerdo&quot;</span>,<span class="st">&quot;Muy de acuerdo&quot;</span>), </a>
-<a class="sourceLine" id="cb1450-3" data-line-number="3">        <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de respuestas por empresa&quot;</span>,</a>
-<a class="sourceLine" id="cb1450-4" data-line-number="4">        <span class="dt">args.legend=</span><span class="kw">list</span>(<span class="dt">x=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">cex=</span><span class="fl">0.45</span>))</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-542-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="chap-ord.html#cb556-1" aria-hidden="true"></a><span class="kw">barplot</span>(Tabla, <span class="dt">beside=</span><span class="ot">TRUE</span>, </span>
+<span id="cb556-2"><a href="chap-ord.html#cb556-2" aria-hidden="true"></a>        <span class="dt">legend.text=</span><span class="kw">c</span>(<span class="st">&quot;Muy en desacuerdo&quot;</span>, <span class="st">&quot;En desacuerdo&quot;</span>,<span class="st">&quot;Neutro&quot;</span>,<span class="st">&quot;De acuerdo&quot;</span>,<span class="st">&quot;Muy de acuerdo&quot;</span>), </span>
+<span id="cb556-3"><a href="chap-ord.html#cb556-3" aria-hidden="true"></a>        <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de respuestas por empresa&quot;</span>,</span>
+<span id="cb556-4"><a href="chap-ord.html#cb556-4" aria-hidden="true"></a>        <span class="dt">args.legend=</span><span class="kw">list</span>(<span class="dt">x=</span><span class="st">&quot;topleft&quot;</span>, <span class="dt">cex=</span><span class="fl">0.45</span>))</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-28-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <!--
 \end{ejemplo}
 
@@ -736,94 +762,93 @@ Resulta que cuando se aplica <code>apply</code> a una <code>table</code> bidimen
 <div class="example">
 <p><span id="exm:sprayord" class="example"><strong>Ejemplo 11.6  </strong></span>Consideremos el <em>data frame</em> <code>InsectSprays</code>, que viene predefinido en R. Veamos su estructura.</p>
 </div>
-
-<div class="sourceCode" id="cb1451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1451-1" data-line-number="1"><span class="kw">head</span>(InsectSprays)</a></code></pre></div>
-<pre><code>##   count spray
-## 1    10     A
-## 2     7     A
-## 3    20     A
-## 4    14     A
-## 5    14     A
-## 6    12     A</code></pre>
-<div class="sourceCode" id="cb1453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1453-1" data-line-number="1"><span class="kw">str</span>(InsectSprays)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    72 obs. of  2 variables:
-##  $ count: num  10 7 20 14 14 12 10 23 17 20 ...
-##  $ spray: Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="chap-ord.html#cb557-1" aria-hidden="true"></a><span class="kw">head</span>(InsectSprays)</span>
+<span id="cb557-2"><a href="chap-ord.html#cb557-2" aria-hidden="true"></a><span class="co">#&gt;   count spray</span></span>
+<span id="cb557-3"><a href="chap-ord.html#cb557-3" aria-hidden="true"></a><span class="co">#&gt; 1    10     A</span></span>
+<span id="cb557-4"><a href="chap-ord.html#cb557-4" aria-hidden="true"></a><span class="co">#&gt; 2     7     A</span></span>
+<span id="cb557-5"><a href="chap-ord.html#cb557-5" aria-hidden="true"></a><span class="co">#&gt; 3    20     A</span></span>
+<span id="cb557-6"><a href="chap-ord.html#cb557-6" aria-hidden="true"></a><span class="co">#&gt; 4    14     A</span></span>
+<span id="cb557-7"><a href="chap-ord.html#cb557-7" aria-hidden="true"></a><span class="co">#&gt; 5    14     A</span></span>
+<span id="cb557-8"><a href="chap-ord.html#cb557-8" aria-hidden="true"></a><span class="co">#&gt; 6    12     A</span></span>
+<span id="cb557-9"><a href="chap-ord.html#cb557-9" aria-hidden="true"></a><span class="kw">str</span>(InsectSprays)</span>
+<span id="cb557-10"><a href="chap-ord.html#cb557-10" aria-hidden="true"></a><span class="co">#&gt; &#39;data.frame&#39;:    72 obs. of  2 variables:</span></span>
+<span id="cb557-11"><a href="chap-ord.html#cb557-11" aria-hidden="true"></a><span class="co">#&gt;  $ count: num  10 7 20 14 14 12 10 23 17 20 ...</span></span>
+<span id="cb557-12"><a href="chap-ord.html#cb557-12" aria-hidden="true"></a><span class="co">#&gt;  $ spray: Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span></code></pre></div>
 <p>Consultando la Ayuda de <code>InsectSprays</code> nos enteramos de que la variable numérica <code>count</code> contiene los números de insectos que se encontraron en diferentes superficies agrícolas, todas de la misma área, tratadas con el insecticida indicado por el factor <code>spray</code>.</p>
 <p>En primer lugar, vamos a convertir la variable <code>count</code> en una variable ordinal que agrupe las entradas de la variable original en los niveles siguientes: “<em>Entre 0 y 4</em>”, “<em>Entre 5 y 9</em>”, “<em>Entre 10 y 14</em>”, “<em>Entre 15 y 19</em>” y “<em>20 o más</em>”. La manera más sencilla de llevarlo a cabo es usando la función <code>cut</code>, que estudiaremos en detalle en la Lección <a href="#chap:cut"><strong>??</strong></a>. Por ahora es suficiente saber que la instrucción</p>
-<div class="sourceCode" id="cb1455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1455-1" data-line-number="1"><span class="kw">cut</span>(InsectSprays<span class="op">$</span>count, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>), <span class="dt">right=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1455-2" data-line-number="2">    <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="chap-ord.html#cb558-1" aria-hidden="true"></a><span class="kw">cut</span>(InsectSprays<span class="op">$</span>count, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>), <span class="dt">right=</span><span class="ot">FALSE</span>,</span>
+<span id="cb558-2"><a href="chap-ord.html#cb558-2" aria-hidden="true"></a>    <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>))</span></code></pre></div>
 <p>“cortará” el vector numérico <code>InsectSprays$count</code> en intervalos de extremos los puntos especificados en el argumento <code>breaks</code>, donde <code>Inf</code> indica <span class="math inline">\(\infty\)</span>, y el parámetro <code>right=FALSE</code> indica que los puntos de corte pertenecen al intervalo a su derecha, formando por lo tanto intervalos cerrados a la izquierda. Así pues, los intervalos en los que esta instrucción clasifica los números de insectos son</p>
 <p><span class="math display">\[
 [0,5), [5,10), [10,15), [15,20), [20,\infty).
 \]</span>
 El resultado de la instrucción es un factor no ordenado que tiene como niveles estos intervalos, identificados por medio de las etiquetas especificadas con el parámetro <code>labels</code> (es decir, respectivamente, <code>0-4</code>, <code>5-9</code>, <code>10-14</code>, <code>15-19</code> y <code>20-...</code>) y donde cada entrada de <code>InsectSprays$count</code> ha sido substituida por la etiqueta correspondiente al intervalo al que pertenece. A modo de ejemplo, comparemos las primeras 10 entradas de <code>InsectSprays$count</code> con las primeras 10 entradas del resultado de esta función <code>cut</code>:</p>
-<div class="sourceCode" id="cb1456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1456-1" data-line-number="1">InsectSprays<span class="op">$</span>count[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
-<pre><code>##  [1] 10  7 20 14 14 12 10 23 17 20</code></pre>
-<div class="sourceCode" id="cb1458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1458-1" data-line-number="1"><span class="kw">cut</span>(InsectSprays<span class="op">$</span>count, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>), <span class="dt">right=</span><span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb1458-2" data-line-number="2">    <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>))[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
-<pre><code>##  [1] 10-14  5-9    20-... 10-14  10-14  10-14  10-14  20-... 15-19  20-...
-## Levels: 0-4 5-9 10-14 15-19 20-...</code></pre>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="chap-ord.html#cb559-1" aria-hidden="true"></a>InsectSprays<span class="op">$</span>count[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb559-2"><a href="chap-ord.html#cb559-2" aria-hidden="true"></a><span class="co">#&gt;  [1] 10  7 20 14 14 12 10 23 17 20</span></span>
+<span id="cb559-3"><a href="chap-ord.html#cb559-3" aria-hidden="true"></a><span class="kw">cut</span>(InsectSprays<span class="op">$</span>count, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>), <span class="dt">right=</span><span class="ot">FALSE</span>,</span>
+<span id="cb559-4"><a href="chap-ord.html#cb559-4" aria-hidden="true"></a>    <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>))[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb559-5"><a href="chap-ord.html#cb559-5" aria-hidden="true"></a><span class="co">#&gt;  [1] 10-14  5-9    20-... 10-14  10-14  10-14  10-14  20-... 15-19  20-...</span></span>
+<span id="cb559-6"><a href="chap-ord.html#cb559-6" aria-hidden="true"></a><span class="co">#&gt; Levels: 0-4 5-9 10-14 15-19 20-...</span></span></code></pre></div>
 <p>Como nosotros vamos a usar estos intervalos como niveles de una variable ordinal, tenemos que convertir el factor resultante en ordenado. Vamos a añadir este factor ordenado como una nueva variable a una copia de <code>InsectSprays</code>.</p>
-<div class="sourceCode" id="cb1460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1460-1" data-line-number="1">IS=InsectSprays</a>
-<a class="sourceLine" id="cb1460-2" data-line-number="2">IS<span class="op">$</span>count.rank=<span class="kw">ordered</span>(<span class="kw">cut</span>(IS<span class="op">$</span>count,<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>),</a>
-<a class="sourceLine" id="cb1460-3" data-line-number="3">  <span class="dt">right=</span><span class="ot">FALSE</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>)))</a>
-<a class="sourceLine" id="cb1460-4" data-line-number="4"><span class="kw">str</span>(IS)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    72 obs. of  3 variables:
-##  $ count     : num  10 7 20 14 14 12 10 23 17 20 ...
-##  $ spray     : Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ count.rank: Ord.factor w/ 5 levels &quot;0-4&quot;&lt;&quot;5-9&quot;&lt;&quot;10-14&quot;&lt;..: 3 2 5 3 3 3 3 5 4 5 ...</code></pre>
-<div class="sourceCode" id="cb1462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1462-1" data-line-number="1"><span class="kw">head</span>(IS)</a></code></pre></div>
-<pre><code>##   count spray count.rank
-## 1    10     A      10-14
-## 2     7     A        5-9
-## 3    20     A     20-...
-## 4    14     A      10-14
-## 5    14     A      10-14
-## 6    12     A      10-14</code></pre>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="chap-ord.html#cb560-1" aria-hidden="true"></a>IS=InsectSprays</span>
+<span id="cb560-2"><a href="chap-ord.html#cb560-2" aria-hidden="true"></a>IS<span class="op">$</span>count.rank=<span class="kw">ordered</span>(<span class="kw">cut</span>(IS<span class="op">$</span>count,<span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>,<span class="dv">20</span>,<span class="ot">Inf</span>),</span>
+<span id="cb560-3"><a href="chap-ord.html#cb560-3" aria-hidden="true"></a>  <span class="dt">right=</span><span class="ot">FALSE</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;0-4&quot;</span>,<span class="st">&quot;5-9&quot;</span>,<span class="st">&quot;10-14&quot;</span>,<span class="st">&quot;15-19&quot;</span>,<span class="st">&quot;20-...&quot;</span>)))</span>
+<span id="cb560-4"><a href="chap-ord.html#cb560-4" aria-hidden="true"></a><span class="kw">str</span>(IS)</span>
+<span id="cb560-5"><a href="chap-ord.html#cb560-5" aria-hidden="true"></a><span class="co">#&gt; &#39;data.frame&#39;:    72 obs. of  3 variables:</span></span>
+<span id="cb560-6"><a href="chap-ord.html#cb560-6" aria-hidden="true"></a><span class="co">#&gt;  $ count     : num  10 7 20 14 14 12 10 23 17 20 ...</span></span>
+<span id="cb560-7"><a href="chap-ord.html#cb560-7" aria-hidden="true"></a><span class="co">#&gt;  $ spray     : Factor w/ 6 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb560-8"><a href="chap-ord.html#cb560-8" aria-hidden="true"></a><span class="co">#&gt;  $ count.rank: Ord.factor w/ 5 levels &quot;0-4&quot;&lt;&quot;5-9&quot;&lt;&quot;10-14&quot;&lt;..: 3 2 5 3 3 3 3 5 4 5 ...</span></span>
+<span id="cb560-9"><a href="chap-ord.html#cb560-9" aria-hidden="true"></a><span class="kw">head</span>(IS)</span>
+<span id="cb560-10"><a href="chap-ord.html#cb560-10" aria-hidden="true"></a><span class="co">#&gt;   count spray count.rank</span></span>
+<span id="cb560-11"><a href="chap-ord.html#cb560-11" aria-hidden="true"></a><span class="co">#&gt; 1    10     A      10-14</span></span>
+<span id="cb560-12"><a href="chap-ord.html#cb560-12" aria-hidden="true"></a><span class="co">#&gt; 2     7     A        5-9</span></span>
+<span id="cb560-13"><a href="chap-ord.html#cb560-13" aria-hidden="true"></a><span class="co">#&gt; 3    20     A     20-...</span></span>
+<span id="cb560-14"><a href="chap-ord.html#cb560-14" aria-hidden="true"></a><span class="co">#&gt; 4    14     A      10-14</span></span>
+<span id="cb560-15"><a href="chap-ord.html#cb560-15" aria-hidden="true"></a><span class="co">#&gt; 5    14     A      10-14</span></span>
+<span id="cb560-16"><a href="chap-ord.html#cb560-16" aria-hidden="true"></a><span class="co">#&gt; 6    12     A      10-14</span></span></code></pre></div>
 <p>Nos interesa estudiar la distribución de los números de insectos según el tipo de insecticida. Por lo tanto, vamos a calcular las tablas bidimensionales de frecuencias relativas y relativas acumuladas de los intervalos de números de insectos en cada nivel de <code>Spray</code>, y las representaremos por medio de diagramas de barras.</p>
 <p>La tabla de frecuencias absolutas de los pares (insecticida, intervalo de números de insectos) se puede obtener aplicando <code>table</code> al <em>data frame</em> formado por las dos últimas columnas de <code>IS</code>.</p>
-<div class="sourceCode" id="cb1464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1464-1" data-line-number="1">Tab=<span class="kw">table</span>(IS[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb1464-2" data-line-number="2">Tab</a></code></pre></div>
-<pre><code>##      count.rank
-## spray 0-4 5-9 10-14 15-19 20-...
-##     A   0   1     7     1      3
-##     B   0   1     4     5      2
-##     C  11   1     0     0      0
-##     D   5   6     1     0      0
-##     E   8   4     0     0      0
-##     F   0   1     4     3      4</code></pre>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="chap-ord.html#cb561-1" aria-hidden="true"></a>Tab=<span class="kw">table</span>(IS[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>])</span>
+<span id="cb561-2"><a href="chap-ord.html#cb561-2" aria-hidden="true"></a>Tab</span>
+<span id="cb561-3"><a href="chap-ord.html#cb561-3" aria-hidden="true"></a><span class="co">#&gt;      count.rank</span></span>
+<span id="cb561-4"><a href="chap-ord.html#cb561-4" aria-hidden="true"></a><span class="co">#&gt; spray 0-4 5-9 10-14 15-19 20-...</span></span>
+<span id="cb561-5"><a href="chap-ord.html#cb561-5" aria-hidden="true"></a><span class="co">#&gt;     A   0   1     7     1      3</span></span>
+<span id="cb561-6"><a href="chap-ord.html#cb561-6" aria-hidden="true"></a><span class="co">#&gt;     B   0   1     4     5      2</span></span>
+<span id="cb561-7"><a href="chap-ord.html#cb561-7" aria-hidden="true"></a><span class="co">#&gt;     C  11   1     0     0      0</span></span>
+<span id="cb561-8"><a href="chap-ord.html#cb561-8" aria-hidden="true"></a><span class="co">#&gt;     D   5   6     1     0      0</span></span>
+<span id="cb561-9"><a href="chap-ord.html#cb561-9" aria-hidden="true"></a><span class="co">#&gt;     E   8   4     0     0      0</span></span>
+<span id="cb561-10"><a href="chap-ord.html#cb561-10" aria-hidden="true"></a><span class="co">#&gt;     F   0   1     4     3      4</span></span></code></pre></div>
 <p>La tabla bidimensional de frecuencias relativas de los intervalos de números de insectos en cada nivel de <code>Spray</code> es la siguiente:</p>
-<div class="sourceCode" id="cb1466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1466-1" data-line-number="1">Freq.rel=<span class="kw">round</span>(<span class="kw">prop.table</span>(Tab, <span class="dt">margin=</span><span class="dv">1</span>), <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb1466-2" data-line-number="2">Freq.rel</a></code></pre></div>
-<pre><code>##      count.rank
-## spray   0-4   5-9 10-14 15-19 20-...
-##     A 0.000 0.083 0.583 0.083  0.250
-##     B 0.000 0.083 0.333 0.417  0.167
-##     C 0.917 0.083 0.000 0.000  0.000
-##     D 0.417 0.500 0.083 0.000  0.000
-##     E 0.667 0.333 0.000 0.000  0.000
-##     F 0.000 0.083 0.333 0.250  0.333</code></pre>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="chap-ord.html#cb562-1" aria-hidden="true"></a>Freq.rel=<span class="kw">round</span>(<span class="kw">prop.table</span>(Tab, <span class="dt">margin=</span><span class="dv">1</span>), <span class="dv">3</span>)</span>
+<span id="cb562-2"><a href="chap-ord.html#cb562-2" aria-hidden="true"></a>Freq.rel</span>
+<span id="cb562-3"><a href="chap-ord.html#cb562-3" aria-hidden="true"></a><span class="co">#&gt;      count.rank</span></span>
+<span id="cb562-4"><a href="chap-ord.html#cb562-4" aria-hidden="true"></a><span class="co">#&gt; spray   0-4   5-9 10-14 15-19 20-...</span></span>
+<span id="cb562-5"><a href="chap-ord.html#cb562-5" aria-hidden="true"></a><span class="co">#&gt;     A 0.000 0.083 0.583 0.083  0.250</span></span>
+<span id="cb562-6"><a href="chap-ord.html#cb562-6" aria-hidden="true"></a><span class="co">#&gt;     B 0.000 0.083 0.333 0.417  0.167</span></span>
+<span id="cb562-7"><a href="chap-ord.html#cb562-7" aria-hidden="true"></a><span class="co">#&gt;     C 0.917 0.083 0.000 0.000  0.000</span></span>
+<span id="cb562-8"><a href="chap-ord.html#cb562-8" aria-hidden="true"></a><span class="co">#&gt;     D 0.417 0.500 0.083 0.000  0.000</span></span>
+<span id="cb562-9"><a href="chap-ord.html#cb562-9" aria-hidden="true"></a><span class="co">#&gt;     E 0.667 0.333 0.000 0.000  0.000</span></span>
+<span id="cb562-10"><a href="chap-ord.html#cb562-10" aria-hidden="true"></a><span class="co">#&gt;     F 0.000 0.083 0.333 0.250  0.333</span></span></code></pre></div>
 <p>y la correspondiente tabla de frecuencias relativas acumuladas (ya traspuesta) es:</p>
-<div class="sourceCode" id="cb1468"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1468-1" data-line-number="1">Freq.rel.acum=<span class="kw">round</span>(<span class="kw">apply</span>(<span class="kw">prop.table</span>(Tab, <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum), <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb1468-2" data-line-number="2"><span class="kw">t</span>(Freq.rel.acum)</a></code></pre></div>
-<pre><code>##      count.rank
-## spray   0-4   5-9 10-14 15-19 20-...
-##     A 0.000 0.083 0.667 0.750      1
-##     B 0.000 0.083 0.417 0.833      1
-##     C 0.917 1.000 1.000 1.000      1
-##     D 0.417 0.917 1.000 1.000      1
-##     E 0.667 1.000 1.000 1.000      1
-##     F 0.000 0.083 0.417 0.667      1</code></pre>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="chap-ord.html#cb563-1" aria-hidden="true"></a>Freq.rel.acum=<span class="kw">round</span>(<span class="kw">apply</span>(<span class="kw">prop.table</span>(Tab, <span class="dt">margin=</span><span class="dv">1</span>), <span class="dt">MARGIN=</span><span class="dv">1</span>, <span class="dt">FUN=</span>cumsum), <span class="dv">3</span>)</span>
+<span id="cb563-2"><a href="chap-ord.html#cb563-2" aria-hidden="true"></a><span class="kw">t</span>(Freq.rel.acum)</span>
+<span id="cb563-3"><a href="chap-ord.html#cb563-3" aria-hidden="true"></a><span class="co">#&gt;      count.rank</span></span>
+<span id="cb563-4"><a href="chap-ord.html#cb563-4" aria-hidden="true"></a><span class="co">#&gt; spray   0-4   5-9 10-14 15-19 20-...</span></span>
+<span id="cb563-5"><a href="chap-ord.html#cb563-5" aria-hidden="true"></a><span class="co">#&gt;     A 0.000 0.083 0.667 0.750      1</span></span>
+<span id="cb563-6"><a href="chap-ord.html#cb563-6" aria-hidden="true"></a><span class="co">#&gt;     B 0.000 0.083 0.417 0.833      1</span></span>
+<span id="cb563-7"><a href="chap-ord.html#cb563-7" aria-hidden="true"></a><span class="co">#&gt;     C 0.917 1.000 1.000 1.000      1</span></span>
+<span id="cb563-8"><a href="chap-ord.html#cb563-8" aria-hidden="true"></a><span class="co">#&gt;     D 0.417 0.917 1.000 1.000      1</span></span>
+<span id="cb563-9"><a href="chap-ord.html#cb563-9" aria-hidden="true"></a><span class="co">#&gt;     E 0.667 1.000 1.000 1.000      1</span></span>
+<span id="cb563-10"><a href="chap-ord.html#cb563-10" aria-hidden="true"></a><span class="co">#&gt;     F 0.000 0.083 0.417 0.667      1</span></span></code></pre></div>
 <p>Los dos diagramas de barras que no interesan son los siguientes:</p>
-<div class="sourceCode" id="cb1470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1470-1" data-line-number="1">cyan.col=<span class="kw">c</span>(<span class="st">&quot;cyan4&quot;</span>,<span class="st">&quot;cyan3&quot;</span>,<span class="st">&quot;cyan2&quot;</span>,<span class="st">&quot;cyan1&quot;</span>,<span class="st">&quot;cyan&quot;</span>) <span class="co">#Colores azulones para las barras</span></a>
-<a class="sourceLine" id="cb1470-2" data-line-number="2"><span class="kw">barplot</span>(<span class="kw">t</span>(Freq.rel), <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">col=</span>cyan.col, </a>
-<a class="sourceLine" id="cb1470-3" data-line-number="3">  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas</span><span class="ch">\n</span><span class="st"> de números de insectos por insecticida&quot;</span>)</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-550-1.png" width="528" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb1471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1471-1" data-line-number="1"><span class="kw">barplot</span>(Freq.rel.acum, <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,<span class="dt">col=</span>cyan.col, </a>
-<a class="sourceLine" id="cb1471-2" data-line-number="2">  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de números de insectos por insecticida&quot;</span>, </a>
-<a class="sourceLine" id="cb1471-3" data-line-number="3">  <span class="dt">args.legend=</span><span class="kw">list</span>(<span class="dt">x=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">cex=</span><span class="fl">0.55</span>))</a></code></pre></div>
-<p><img src="AprendeR-Parte-I_files/figure-html/unnamed-chunk-551-1.png" width="528" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="chap-ord.html#cb564-1" aria-hidden="true"></a>cyan.col=<span class="kw">c</span>(<span class="st">&quot;cyan4&quot;</span>,<span class="st">&quot;cyan3&quot;</span>,<span class="st">&quot;cyan2&quot;</span>,<span class="st">&quot;cyan1&quot;</span>,<span class="st">&quot;cyan&quot;</span>) <span class="co">#Colores azulones para las barras</span></span>
+<span id="cb564-2"><a href="chap-ord.html#cb564-2" aria-hidden="true"></a><span class="kw">barplot</span>(<span class="kw">t</span>(Freq.rel), <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">col=</span>cyan.col, </span>
+<span id="cb564-3"><a href="chap-ord.html#cb564-3" aria-hidden="true"></a>  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas</span><span class="ch">\n</span><span class="st"> de números de insectos por insecticida&quot;</span>)</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-36-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="chap-ord.html#cb565-1" aria-hidden="true"></a><span class="kw">barplot</span>(Freq.rel.acum, <span class="dt">beside=</span><span class="ot">TRUE</span>, <span class="dt">legend=</span><span class="ot">TRUE</span>,<span class="dt">col=</span>cyan.col, </span>
+<span id="cb565-2"><a href="chap-ord.html#cb565-2" aria-hidden="true"></a>  <span class="dt">main=</span><span class="st">&quot;Diagrama de barras de frecuencias relativas acumuladas</span><span class="ch">\n</span><span class="st"> de números de insectos por insecticida&quot;</span>, </span>
+<span id="cb565-3"><a href="chap-ord.html#cb565-3" aria-hidden="true"></a>  <span class="dt">args.legend=</span><span class="kw">list</span>(<span class="dt">x=</span><span class="st">&quot;topleft&quot;</span>,<span class="dt">cex=</span><span class="fl">0.55</span>))</span></code></pre></div>
+<p><img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Observamos que los insecticidas C, D y E son los más efectivos, porque producen mayores números de campos con pocos insectos, mientras que B y F son poco efectivos.</p>
 <!--
 \begin{figure}[htb]
@@ -837,7 +862,7 @@ El resultado de la instrucción es un factor no ordenado que tiene como niveles 
 \end{ejemplo}
 -->
 </div>
-<div id="guia-rapida-de-funciones-5" class="section level2">
+<div id="guía-rápida-de-funciones-5" class="section level2" number="11.3">
 <h2><span class="header-section-number">11.3</span> Guía rápida de funciones</h2>
 <ul>
 <li><p><code>ordered</code> sirve para construir factores ordenados. Sus parámetros principales se pueden consultar en la guía de la Lección <a href="chap-vect.html#chap:vect">4</a>.</p></li>
@@ -850,7 +875,7 @@ los niveles de las variables de la <code>tabla</code> que se especifican en <cod
 <li><p><code>barplot</code> dibuja el diagrama de barras de un vector o un factor a partir de una tabla de frecuencias. Sus parámetros principales se pueden consultar en la guía de la Lección <a href="chap-edqual.html#chap:edqual">10</a>.</p></li>
 </ul>
 </div>
-<div id="ejercicios-9" class="section level2">
+<div id="ejercicios-9" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Ejercicios</h2>
 <div id="test-8" class="section level3 unnumbered">
 <h3>Test</h3>
@@ -892,11 +917,13 @@ de las calificaciones alfabéticas dentro de cada grupo: los bloques han de corr
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -904,12 +931,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -921,6 +947,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

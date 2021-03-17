@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Un aperitivo: Introducción a la regresión lineal {#chap:lm}
 
 En muchos libros de texto y artículos científicos encontraréis gráficos donde una línea recta o algún otro tipo de curva se ajusta a una serie de observaciones representadas por medio de puntos en el plano. La situación en general es la siguiente. Supongamos que tenemos una serie de puntos del plano cartesiano $\mathbb{R}^2$, 
@@ -504,8 +509,7 @@ Elevando 10 a ambos lados de esta igualdad, obtenemos
 y=10^{\log(y)}= & 10^{1.918}\cdot 10^{3.274\log(x)}=10^{1.918}\cdot (10^{\log(x)})^{3.274}
 \\ = & 82.79422\cdot x^{3.274}.
 \end{align*}
-
-Para ver si los puntos $(\textrm{tiempo}_n,{\textrm{SIDA_acum}}_n)_{n=1,\ldots,12}$ se ajustan bien a la curva 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 $$
 y=82.79422\cdot x^{3.274},

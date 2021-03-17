@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # La calculadora {#chap:calc}
 
  Cuando se trabaja en modo interactivo en la consola de R, hay que escribir las instrucciones a la derecha de la marca de inicio `>` de la línea inferior (que omitimos en los bloques de código de este libro). 
@@ -23,8 +28,14 @@ Si la expresión que entramos no está completa, R no la evaluará y en la líne
 2*(3+5)
 ```
 
-```{r,error=TRUE}
-2*3+5)
+```{r,error=TRUE,eval=FALSE}
+```
+
+
+```
+## Error: <text>:1:6: inesperado ')'
+## 1: 2*3+5)
+##          ^
 ```
 
 Como podemos ver, al ejecutar la segunda instrucción, R nos  avisa de que el paréntesis  no está en su sitio.
@@ -41,8 +52,14 @@ Se puede agrupar más de una instrucción en una sola línea separándolas con s
 
 
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 2+2,5
+```
+
+```
+## Error: <text>:1:4: inesperado ','
+## 1: 2+2,
+##        ^
 ```
 
 ```{r}
@@ -102,17 +119,30 @@ pi
 
 ¡Cuidado! No  podemos omitir el signo `*` en las  multiplicaciones.
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 2(3+5)
 ```
+
+
+```
+## Error in eval(expr, envir, enclos): tentativa de aplicar una no-función
+```
+
 
 ```{r}
 2*(3+5)
 ```
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 2pi
 ```
+
+```
+## Error: <text>:1:2: unexpected symbol
+## 1: 2pi
+##      ^
+```
+
 
 ```{r}
 2*pi
@@ -241,9 +271,15 @@ log(8)/log(10)
 7^log(2,7) #7 elevado al logaritmo en base 7 de 2 es 2
 ```
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 10! #R no entiende esta expresión
 ```
+
+```
+10! #R no entiende esta expresión
+```
+
+
 
 ```{r}
 factorial(10)
@@ -418,12 +454,23 @@ x<-2
 2->x
 ```
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 2=x
 ```
 
-```{r,error=TRUE}
+```
+## Error in 2 = x: lado izquierdo de la asignación inválida (do_set)
+```
+
+
+
+```{r,error=TRUE,eval=FALSE}
 2<-x
+```
+
+
+```
+## Error in 2 <- x: lado izquierdo de la asignación inválida (do_set)
 ```
 
 Nosotros usaremos sistemáticamente el signo `=` para hacer asignaciones. 
@@ -547,17 +594,26 @@ Veamos un ejemplo:
 1+2/3i #Esto en realidad es 1 más 2 partido por 3i
 ```
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 1+(2/3)i  
+```
+```
+## Error in eval(expr, envir, enclos): objeto 'i' no encontrado
 ```
 
 ```{r}
 complex(real=1, imaginary=2/3)
 ```
 
-```{r,error=TRUE}
+```{r,error=TRUE,eval=FALSE}
 z=1+sqrt(2)i
 ```
+
+```
+## Error in eval(expr, envir, enclos): objeto 'i' no encontrado
+
+```
+
 
 ```{r}
 z=complex(real=1, imaginary=sqrt(2))

@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
 # Gráficos avanzados
 
 
@@ -87,8 +93,10 @@ Otras  transformaciones posibles que nosotros no hemos aplicado, son: `stripWhit
 Ahora estamos en condiciones de construir la nube de palabras de la LOMCE. Para ello, usaremos la función `wordcloud` del paquete homónimo. Veamos su aplicación a nuestro caso concreto, y luego comentamos algunos parámetros:
 ```{r,message=FALSE,warning=FALSE}
 library(wordcloud)
-wordcloud(Prueba[[2]], scale=c(3,0.5), max.words=100, 
-          rot.per=0.25, colors=brewer.pal(8, "Dark2"))
+wordcloud(Prueba[[2]],
+                 scale=c(3,0.5), max.words=100,
+                 rot.per=0.25,
+                 colors=brewer.pal(8, "Dark2"))
 ```
 
 Obtenemos el gráfico anterior, donde observamos que las palabras de mayor tamaño, y por lo tanto las más repetidas, son  **educación**, **alumnos**, **alumnas**, **centros**, etc.
@@ -226,7 +234,7 @@ Muchos algoritmos de *clustering* jerárquico siguen una misma estrategia. En un
 Un *dendrograma* es entonces una representación gráfica del orden en el que se han ido realizando dichas agrupaciones y de las distancias entre los pares de individuos (originales y *virtuales*) que se han ido uniendo. Así podemos visualizar qué individuos se parecen más o si aparece de manera natural alguna clasificación de los individuos.
 
 Veamos un ejemplo detallado.
-La tabla de datos `all.mammals.milk.1956` que lleva el paquete **cluster.datasets** contiene información sobre 5 variables numéricas relativas a la composición de  la leche materna de 25 especies de mamíferos. Las variables de esta tabla de datos son:
+La tabla de datos `all.mammals.milk.1956` que llevaba el paquete **cluster.datasets** ha quedado obsolota y lo cargamos directamente de la fuente de Hartigan,contiene información sobre 5 variables numéricas relativas a la composición de  la leche materna de 25 especies de mamíferos. Las variables de esta tabla de datos son:
 
 * `name`: El nombre del animal.
 * `water`: Porcentaje de agua en la leche.
@@ -237,8 +245,10 @@ La tabla de datos `all.mammals.milk.1956` que lleva el paquete **cluster.dataset
 
 Démosle un vistazo.
 ```{r}
-library(cluster.datasets)
-data(all.mammals.milk.1956)  
+#library(cluster.datasets)
+#data(all.mammals.milk.1956)  
+all.mammals.milk.1956=read.table("https://people.sc.fsu.edu/~jburkardt/datasets/hartigan/file47.txt",
+                               header=TRUE,skip=29)
 AMM=all.mammals.milk.1956
 str(AMM)
 head(AMM)
@@ -287,7 +297,7 @@ A modo de ejemplo, una vez cargado este paquete, para cambiar directamente las e
 suppressPackageStartupMessages(library(dendextend))
 L=labels(dend.AMM)
 L
-labels(dend.AMM)=AMM$name[L]
+labels(dend.AMM)=AMM$Name[L]
 labels(dend.AMM)
 
 ```
@@ -323,13 +333,15 @@ La posibilidad de colorear las etiquetas, o las aristas, puede mejorar la compre
 
 * Para distinguir visualmente los principales grupos que se forman en el dendrograma, y por ejemplo usar un color en cada grupo,  podemos usar el parámetro `k` igualado al número de grupos que queremos reconocer.
 Por ejemplo,
+
 ```{r}
 dend.AMM%>%
    set(what="labels_cex", 0.8)%>%
-   set(what="labels_col", c("red","blue","green"), k=3)%>%
+   set(what="labels_colors", c("red","blue","green"), k=3)%>%
    set(what="branches_k_color",c("red","blue","green"),k=3)%>% #Colores de las ramas
    plot(main="Dendrograma con 3 grupos resaltados")
 ```
+
 
 * Podemos clasificar los individuos representados en el dendrograma mediante un factor
 y usar este factor para asignar colores a las etiquetas para así ver si los grupos que produce el dendrograma se corresponden con la clasificación según el factor. Como nuestro *data frame* `AMM` no tiene ninguna variable factor que podamos usar, vamos a añadirle una que represente la dieta principal del animal: C para carnívoro, H para   herbívoro, O para omnívoro, P para  piscívoro.
@@ -345,8 +357,8 @@ Ahora colorearemos las etiquetas del dendrograma según su dieta, y aprovecharem
 ```{r}
 dend.AMM2=dend.AMM%>%  
    set(what="labels_cex", 0.8)%>%   #Tamaño de etiquetas
-   set(what="labels",AMM$name[L])%>%  #Nombres en las etiquetas
-   set(what="labels_col",as.numeric(AMM$diet[L]))  #Colores según la dieta
+   set(what="labels",AMM$Name[L])%>%  #Nombres en las etiquetas
+   set(what="labels_color",as.numeric(AMM$diet[L]))  #Colores según la dieta
 plot(dend.AMM2, main="Dendrograma de mamíferos clasificados
     \n según la dieta")
 ```
@@ -357,6 +369,7 @@ Vemos que la similitud de la composición de la leche materna no tiene mucha cor
 Para más información sobre las posibilidades de `dendextend` y su interacción con otros paquetes que dibujan dendrogramas, consultad la Ayuda de **dendextend**. Por ejemplo,
 podemos modificar un dendrograma con `set` y luego 
 aplicarle la función `circlize_dendrogram` del paquete **circlize** para obtener una representación circular. Véase el gráfico siguiente:
+
 ```{r,message=FALSE}
 library(circlize)
 circlize_dendrogram(dend.AMM2)
@@ -449,18 +462,24 @@ movies.small=movies[,c(2,18:24)]
 str(movies.small)
 ```
 
-Ahora hemos de modificar el *data frame* para poderlo usar como una serie temporal, donde para cada año y para cada categoría nos dé el correspondiente número de películas. La manera más sencilla es, en primer lugar, usar la función `gather` del paquete `**tidyr**, especializado en funciones para *limpiar* y reorganizar datos.
+Ahora hemos de modificar el *data frame* para poderlo usar como una serie temporal, donde para cada año y para cada categoría nos dé el correspondiente número de películas. La manera más sencilla es, en primer lugar, usar la función `pivot_longuer` del paquete `**tidyr**, especializado en funciones para *limpiar* y reorganizar datos.
 Con esta función podemos sustituir las variables binarias correspondientes a las categorías por 
 una nueva variable factor (la llamaremos `genero`) cuyos valores sean los nombres de dichas variables   y añadir una nueva variable binaria (la llamaremos `valor`)  que da el valor de la variable binaria original.
 La sintaxis es
+
 ```{r,eval=FALSE}
-gather("dataframe", "nuevo factor", "nueva variable numérica", "variables agrupadas")
+pivot_longer(data="dataframe o tibble", cols="columnas a pivotar", names_to="variable que contiene elnombre de la columna",values_to=""variable que contine el valor")
 ```
 
 De esta manera, en nuestro caso, cada fila de `movies.small` se convierte en 7 filas del nuevo *data frame*, una para cada variable *agrupada* en la nueva variable `genero`.  
 ```{r}
+library(tidyverse)
 library(tidyr)
-movies.agrup=gather(movies.small,genero,valor,-year) #-year indica "todas las variables menos year"
+movies.agrup=movies.small %>% pivot_longer(cols=c(Action:Short),
+                                                             names_to="genero",
+                                                            values_to="valor") 
+#-year indica "todas las variables menos year"
+# Action:Short indica que  toamamos todas las variables entre Action y Short
 str(movies.agrup)
 ```
 A continuación, observamos que menos del 0.1\% de las películas se filmaron antes de 1930, por lo que en nuestro *streamgraph* esos años van a aparecer muy delgados, así que los eliminamos.
@@ -477,7 +496,7 @@ sum.movies.agrup=aggregate(valor~year+genero, data=movies.agrup,
 str(sum.movies.agrup)
 ```
 
-Y ahora ya estamos en disposición de dibujar el *streamgraph*. La función para hacerlo es
+Y ahora ya estamos en disposición de dibujar el *streamgraph*. La función para hacerlo es \footnote{En la salida de este bookdown en pdf o word no el gráfico no será  interactivo.})
 ```{r,eval=FALSE}
 streamgraph(data frame, "factor", "valores", "tiempo", interactive=...)? 
 ```

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # (PART\*) Parte II: Estadística descriptiva {-}
 
 
@@ -538,20 +543,7 @@ barplot(table(Respuestas), col=c("red","blue"))
 
  En un diagrama con muchas barras, es conveniente usar un esquema adecuado de colores para ellas. Para ello se puede usar el paquete **RColorBrewer**, del que hablaremos en detalle en la Sección \@ref(sec:grmulti).
 
-<!--
-```{r F1605,fig.cap="Ejemplos de diagramas de barras de colores."}
-knitr::include_graphics(c("images/barplotyverd.png","images/barploty2col.png"))
-```
 
-
-\begin{figure}[htb]
-\begin{center}
-\includegraphics[width=0.45\textwidth]{barplotyverd.pdf} 
-\includegraphics[width=0.45\textwidth]{barploty2col.pdf}
-\end{center}
-\caption{Ejemplos de diagramas de barras de colores.}\label{fig:16.5}
-\end{figure}
--->
 
 Una opción interesante es dibujar las barras horizontales en vez de  verticales: para hacerlo, se tiene que añadir el parámetro `horiz=TRUE`. Así, la Figura \@ref(fig:F1606) se obtiene con la siguiente instrucción:
 

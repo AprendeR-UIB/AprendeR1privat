@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Vectores y otros tipos de listas {#chap:vect}
 
 Un **vector** es una secuencia ordenada de datos. R dispone de muchos tipos de datos, entre los que destacamos:
@@ -86,7 +91,7 @@ notas
 
 Si primero descargamos este fichero, sin cambiarle el nombre, en el directorio de trabajo de R, para definir el vector anterior bastará entrar:
 
-```{r}
+```{r leerscan,,eval=FALSE}
 notas2=scan("notas.txt")
 notas2
 ```

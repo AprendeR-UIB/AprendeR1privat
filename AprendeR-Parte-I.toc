@@ -1,0 +1,138 @@
+\contentsline {chapter}{Presentación}{7}{chapter*.2}%
+\contentsline {part}{Parte I: R básico}{11}{part*.3}%
+\contentsline {chapter}{\numberline {1}Logística de R}{11}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Cómo instalar R y \emph {RStudio}}{11}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Cómo guardar el trabajo realizado}{15}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Cómo trabajar con guiones y otros ficheros}{16}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Cómo obtener ayuda}{17}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Cómo instalar y cargar paquetes}{18}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Guía rápida}{20}{section.1.6}%
+\contentsline {chapter}{\numberline {2}La calculadora}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Números reales: operaciones y funciones básicas}{22}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Cifras significativas y redondeos}{26}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Definición de variables}{29}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Definición de funciones}{31}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Números complejos (opcional)}{32}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Guía rápida}{36}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Ejercicios}{37}{section.2.7}%
+\contentsline {subsection}{Test}{37}{section*.4}%
+\contentsline {subsection}{Ejercicio}{38}{section*.5}%
+\contentsline {subsection}{Respuestas al test}{38}{section*.6}%
+\contentsline {chapter}{\numberline {3}Un aperitivo: Introducción a la regresión lineal}{39}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Cálculo de rectas de regresión}{40}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Rectas de regresión y transformaciones logarítmicas}{48}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Guía rápida}{57}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Ejercicios}{58}{section.3.4}%
+\contentsline {subsection}{Ejercicio}{58}{section*.7}%
+\contentsline {chapter}{\numberline {4}Vectores y otros tipos de listas}{61}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Construcción de vectores}{61}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Operaciones con vectores}{68}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Entradas y trozos de vectores}{72}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Factores}{79}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Listas heterogéneas}{81}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Guía rápida de funciones}{83}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Ejercicios}{85}{section.4.7}%
+\contentsline {subsection}{Test}{85}{section*.8}%
+\contentsline {subsection}{Ejercicio}{86}{section*.9}%
+\contentsline {subsection}{Respuestas al test}{87}{section*.10}%
+\contentsline {chapter}{\numberline {5}Matrices}{89}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Construcción de matrices}{89}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Acceso a entradas y submatrices}{93}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Algunas funciones para matrices}{95}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Cálculo matricial}{97}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Valores y vectores propios}{103}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Matrices complejas (opcional)}{107}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Guía rápida de funciones}{109}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Ejercicios}{110}{section.5.8}%
+\contentsline {subsection}{Test}{110}{section*.11}%
+\contentsline {subsection}{Ejercicio}{111}{section*.12}%
+\contentsline {subsection}{Respuestas al test}{113}{section*.13}%
+\contentsline {chapter}{\numberline {6}\emph {Data frames}}{115}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Estructura de un \emph {data frame}}{117}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Cómo importar y exportar \emph {data frames}}{122}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Cómo crear \emph {data frames}}{128}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Cómo modificar un \emph {data frame}}{130}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Cómo añadir filas y columnas a un \emph {data frame}}{138}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Cómo seleccionar trozos de un \emph {data frame}}{140}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Cómo aplicar una función a las variables de un \emph {data frame}}{145}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Cómo añadir las variables de un \emph {data frame} al entorno global}{147}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Guía rápida de funciones}{148}{section.6.9}%
+\contentsline {section}{\numberline {6.10}Ejercicios}{149}{section.6.10}%
+\contentsline {subsection}{Test}{149}{section*.14}%
+\contentsline {subsection}{Ejercicio}{150}{section*.15}%
+\contentsline {subsection}{Respuestas al test}{151}{section*.16}%
+\contentsline {chapter}{\numberline {7}Gráficos básicos}{153}{chapter.7}%
+\contentsline {section}{\numberline {7.1}La función \texttt {plot}}{153}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Parámetros de \texttt {plot}}{154}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Cómo añadir elementos a un gráfico}{169}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Guía rápida}{179}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Ejercicios}{180}{section.7.5}%
+\contentsline {subsection}{Test}{180}{section*.17}%
+\contentsline {subsection}{Ejercicio}{181}{section*.18}%
+\contentsline {subsection}{Respuestas al test}{182}{section*.19}%
+\contentsline {chapter}{\numberline {8}Estructuras de control básicas}{183}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Bucles de tipo ``for''}{184}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Bucles de tipo ``while''}{187}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Estructuras condicionales}{188}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Guía rápida de funciones}{190}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Ejercicios}{190}{section.8.5}%
+\contentsline {subsection}{Test}{191}{section*.20}%
+\contentsline {subsection}{Ejercicio}{191}{section*.21}%
+\contentsline {subsection}{Respuestas al test}{192}{section*.22}%
+\contentsline {chapter}{\numberline {9}Distribuciones de probabilidad}{193}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Ejercicios}{196}{section.9.1}%
+\contentsline {subsection}{Test}{197}{section*.23}%
+\contentsline {subsection}{Problemas}{197}{section*.24}%
+\contentsline {subsection}{Respuestas al test}{198}{section*.25}%
+\contentsline {subsection}{Soluciones sucintas de los problemas}{199}{section*.26}%
+\contentsline {part}{Parte II: Estadística descriptiva}{203}{part*.27}%
+\contentsline {chapter}{\numberline {10}Descripción de datos cualitativos}{203}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Frecuencias}{203}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Tablas unidimensionales de frecuencias}{205}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Tablas bidimensionales de frecuencias}{208}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Tablas multidimensionales de frecuencias}{213}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Tablas a partir de \emph {data frames} de variables cualitativas}{220}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Diagramas de barras}{223}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Otros gráficos para datos cualitativos}{231}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Un ejemplo completo}{235}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Guía rápida de funciones}{242}{section.10.9}%
+\contentsline {section}{\numberline {10.10}Ejercicios}{243}{section.10.10}%
+\contentsline {subsection}{Test}{244}{section*.28}%
+\contentsline {subsection}{Ejercicio}{245}{section*.29}%
+\contentsline {subsection}{Respuestas al test}{245}{section*.30}%
+\contentsline {chapter}{\numberline {11}Descripción de datos ordinales}{247}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Frecuencias para datos ordinales}{247}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Descripción de datos ordinales con R}{249}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Guía rápida de funciones}{262}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Ejercicios}{263}{section.11.4}%
+\contentsline {subsection}{Test}{263}{section*.31}%
+\contentsline {subsection}{Ejercicio}{263}{section*.32}%
+\contentsline {subsection}{Respuestas al test}{264}{section*.33}%
+\contentsline {chapter}{\numberline {12}Descripción de datos cuantitativos}{265}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Frecuencias}{266}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Medidas de tendencia central}{268}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Medidas de posición}{270}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Medidas de dispersión}{272}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Diagramas de caja}{278}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Guía rápida de funciones}{290}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Ejercicios}{291}{section.12.7}%
+\contentsline {subsection}{Test}{291}{section*.34}%
+\contentsline {subsection}{Ejercicio}{291}{section*.35}%
+\contentsline {subsection}{Respuestas al test}{292}{section*.36}%
+\contentsline {chapter}{\numberline {13}Datos cuantitativos agrupados}{293}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Cómo agrupar datos}{295}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Agrupamiento de datos con R}{303}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Estadísticos para datos agrupados}{312}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Histogramas}{317}{section.13.4}%
+\contentsline {section}{\numberline {13.5}Guía rápida de funciones}{336}{section.13.5}%
+\contentsline {section}{\numberline {13.6}Ejercicios}{337}{section.13.6}%
+\contentsline {subsection}{Test}{337}{section*.37}%
+\contentsline {subsection}{Ejercicio}{338}{section*.38}%
+\contentsline {subsection}{Respuestas al test}{339}{section*.39}%
+\contentsline {chapter}{\numberline {14}Gráficos avanzados}{341}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Nubes de palabras o de etiquetas (\emph {word clouds})}{341}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Mapa de calor o \emph {heatmap}}{346}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Dendrogramas}{351}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Gráficos de burbujas o \emph {bubbles}}{359}{section.14.4}%
+\contentsline {section}{\numberline {14.5}Gráficos de corrientes o \emph {streamgraphs}}{362}{section.14.5}%
+\contentsline {section}{\numberline {14.6}Guía rápida}{366}{section.14.6}%

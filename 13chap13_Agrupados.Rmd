@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document: 
+    keep_tex: yes
+  html_document: default
+---
 # Datos cuantitativos agrupados {#chap:hist}
 
 En nuestro lenguaje cotidiano, solemos agrupar datos cuantitativos sin que seamos conscientes de ello. Cuando decimos, por ejemplo, que la edad de alguien es de 18 años, no queremos decir que nació justo hoy hace 18 años, sino que ya ha cumplido los 18 años, pero aún no ha cumplido los 19; es decir, que agrupamos todas las edades que caen dentro del intervalo [18,19) en una misma clase, que llamamos "18 años". Del mismo modo, que alguien mida 1.72 no significa que esta sea su altura exacta, con la precisión del grueso de un cabello, sino que su altura pertenece a un intervalo de valores en torno a 1.72 metros que identificamos con "1.72". Bajo  la calificación de "aprobado" agrupamos todas las notas mayores o iguales que 5 y menores que 7. Y estamos seguros de que se os ocurren otros ejemplos. 
@@ -88,9 +94,13 @@ Como podéis ver, las dos primeras sólo dependen de $n$, mientras que las  dos 
 
 
 ```{example,alerg}
-Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto. Estas reacciones varían entre pacientes, no sólo en lo que se refiere a la gravedad de la reacción, sino también en el tiempo que tarda en manifestarse. En un estudio se midió,  en 40 pacientes que experimentaron una reacción alérgica a una picadura de abeja,  el tiempo de inicio de esta reacción desde la picadura, y se obtuvieron los datos siguientes,  que expresamos en minutos:
+Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto. 
+Estas reacciones varían entre pacientes, no sólo en lo que se refiere a la gravedad de la reacción,
+sino también en el tiempo que tarda en manifestarse. 
 
-  
+En un estudio se midió,  en 40 pacientes que experimentaron una reacción alérgica a una picadura de abeja,
+el tiempo de inicio de esta reacción desde la picadura, y se obtuvieron los datos siguientes,  que expresamos en minutos:
+
 ```
 
 ```{r}
@@ -132,7 +142,10 @@ Como podéis ver, reglas diferentes pueden dar valores diferentes, y puede que n
 Una vez determinado el número $k$ de clases, tenemos que decidir su amplitud. La forma más sencilla, y que adoptaremos por defecto, es tomar todos los intervalos de la misma amplitud (aunque no es la única forma posible de hacerlo, naturalmente: recordad, por ejemplo,  el agrupamiento de las calificaciones en Suspenso, Aprobado, Notable y Sobresaliente, que representan intervalos de notas de amplitudes diferentes). Para calcular esta amplitud, $A$, dividiremos el rango de los datos entre el número $k$ de clases y redondearemos por exceso a un valor de la precisión de la medida: si medimos edades con una precisión de años, redondearemos este cociente por exceso a años, si medimos alturas con una precisión de centímetros, redondearemos por exceso a centímetros, etc. En el caso improbable de que el cociente del rango entre el número de clases dé un valor exacto en la precisión de la medida, tomaremos como $A$ este cociente más una unidad de precisión; así, por ejemplo, si hemos medido unas alturas en metros con una precisión de centímetros y obtenemos que el cociente del rango entre $k$ da un número exacto de centímetros, tomaremos como amplitud $A$ este cociente más 1 cm.
 
 ```{example}
-Seguimos con el Ejemplo \@ref(exm:alerg); vamos a continuar el proceso de agrupamiento de los datos en $k=7$ clases. Recordemos que el rango del conjunto de datos en cuestión es 12.7 y que los datos están expresados en minutos con una precisión de una cifra decimal; por lo tanto, la amplitud será el cociente $12.7/7=1.8143$ redondeado por exceso a  una cifra decimal: $A=1.9$.
+Seguimos con el Ejemplo \@ref(exm:alerg); vamos a continuar el proceso de agrupamiento de los datos en $k=7$ clases.
+Recordemos que el rango del conjunto de datos en cuestión es 12.7 y que los datos están expresados en minutos 
+con una precisión de una cifra decimal; por lo tanto, la amplitud será el cociente $12.7/7=1.8143$ redondeado
+por exceso a  una cifra decimal: $A=1.9$.
 
 
 ```
@@ -273,12 +286,10 @@ $$
 \begin{array}{lccccc}
 \hline \text{clases} & X_j &
 n_j & N_j & f_j & F_j
-\\\hline [L_1,L_2) & X_1 & n_1 & N_1 & f_1 & F_1 \\
-[L_2,L_3) & X_2 & n_2 & N_2 & f_2 & F_2 \\ \quad\ \vdots &
-\vdots &
-\vdots & \vdots & \vdots & \vdots \\ [L_k,L_{k+1}) & X_k &
-n_k &
-N_k & f_k & F_k\\ \hline
+\\\hline \left[L_1,L_2\right) & X_1 & n_1 & N_1 & f_1 & F_1 \\
+\left[L_2,L_3\right) & X_2 & n_2 & N_2 & f_2 & F_2 \\
+\quad\ \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+\left[L_k,L_{k+1}\right) & X_k & n_k & N_k & f_k & F_k\\ \hline
 \end{array}
 $$
 
@@ -300,13 +311,13 @@ $$
   \hline
 \text{clases} & X_j & n_j & N_j & f_j & F_j \\ 
   \hline
-[3.75, 5.65) & 4.7 &   1 &   1 & 0.025 & 0.025 \\ 
-[5.65, 7.55) & 6.6 &   3 &   4 & 0.075 & 0.100 \\ 
-[7.55, 9.45) & 8.5 &   8 &  12 & 0.200 & 0.300 \\ 
-[9.45, 11.35) & 10.4 &  11 &  23 & 0.275 & 0.575 \\ 
-[11.35, 13.25) & 12.3 &  12 &  35 & 0.300 & 0.875 \\ 
-[13.25, 15.15) & 14.2 &   4 &  39 & 0.100 & 0.975 \\ 
-[15.15, 17.05) & 16.1 &   1 &  40 & 0.025 & 1.000 \\ 
+\left[3.75, 5.65\right) & 4.7 &   1 &   1 & 0.025 & 0.025 \\ 
+\left[5.65, 7.55\right) & 6.6 &   3 &   4 & 0.075 & 0.100 \\ 
+\left[7.55, 9.45\right) & 8.5 &   8 &  12 & 0.200 & 0.300 \\ 
+\left[9.45, 11.35\right) & 10.4 &  11 &  23 & 0.275 & 0.575 \\ 
+\left[11.35, 13.25\right) & 12.3 &  12 &  35 & 0.300 & 0.875 \\ 
+\left[13.25, 15.15\right) & 14.2 &   4 &  39 & 0.100 & 0.975 \\ 
+\left[15.15, 17.05\right) & 16.1 &   1 &  40 & 0.025 & 1.000 \\ 
    \hline
 \end{array}
 $$
@@ -339,7 +350,7 @@ El extremo inferior de la primera clase será 6-0.5=5.5, y a partir de aquí cal
 ```
 Por consiguiente, los intervalos son
 $$
-[5.5, 8.5),\ [8.5,11.5),\ [11.5, 14.5),\ [14.5, 17.5),\ [17.5, 20.5).
+\left[5.5, 8.5\right),\ \left[8.5,11.5\right),\ \left[11.5, 14.5\right),\ \left[14.5, 17.5\right),\ \left[17.5, 20.5\right).
 $$
 
 Las marcas de clase serán los puntos medios de estos intervalos, que calcularemos sumando múltiplos consecutivos de la amplitud al primer punto medio:
@@ -361,11 +372,11 @@ $$
 \begin{array}{lccccc}
 \hline
 \text{clases}  & X_j & n_j & N_j &  f_j &  F_j \\ \hline 
-[5.5,8.5)  & \ 7  & 11 & 11 & 0.22 &  0.22 \\ 
-[8.5,11.5) & 10  & 11  & 22  & 0.22  & 0.44 \\
-[11.5,14.5) & 13 & 17  & 39  & 0.34  & 0.78 \\ 
-[14.5,17.5) & 16 & \ 9  & 48 & 0.18  & 0.96\\
-[17.5,20.5) & 19   & \ 2  & 50 & 0.04  & 1.00 \\ \hline
+\left[5.5,8.5\right)  & \ 7  & 11 & 11 & 0.22 &  0.22 \\ 
+\left[8.5,11.5\right) & 10  & 11  & 22  & 0.22  & 0.44 \\
+\left[11.5,14.5\right) & 13 & 17  & 39  & 0.34  & 0.78 \\ 
+\left[14.5,17.5\right) & 16 & \ 9  & 48 & 0.18  & 0.96\\
+\left[17.5,20.5\right) & 19   & \ 2  & 50 & 0.04  & 1.00 \\ \hline
 \end{array}
 $$
 
@@ -412,12 +423,14 @@ En un experimento hemos recogido los datos siguientes:
   
 ```
 
-
+```
 > 10,9,8,7,3,5,6,8,9,5,2,1,3,1,1.
+```
 
 Vamos a agruparlos en los intervalos
+
 $$
-[0.5,4.5), [4.5,8.5), [8.5,12.5).
+\left[0.5,4.5\right), \left[4.5,8.5\right), \left[8.5,12.5\right).
 $$
 
 Son $k=3$ intervalos de amplitud $A=4$. 
@@ -621,8 +634,7 @@ Tabla_frec_agrup_L=function(x,L){
 ```
 
 ````{example}
-Volviendo al Ejemplo \@ref(exm:alerg), vamos a calcular, para el agrupamiento en 7 clases,  su tabla  de frecuencias en forma de *data frame* usando la función `Tabla_frec_agrup`. Ya sabemos que $k=7$ y $A=1.9$ y que los datos están expresados con una precisión de décimas de unidad. 
-
+Volviendo al Ejemplo \@ref(exm:alerg), vamos a calcular, para el agrupamiento en 7 clases,  su tabla  de frecuencias en forma de *data frame* usando la función `Tabla_frec_agrup`. Ya sabemos que $k=7$ y $A=1.9$ y que los datos están expresados con una precisión de décimas de unidad.
 ```
 
 ```{r}
@@ -632,7 +644,7 @@ Tabla_frec_agrup(alergia, 7, 1.9, 0.1)
 La ventaja de definir esta tabla de frecuencias mediante un *data frame* es que podemos usar la función `kable` del paquete **knitr** o el paquete *printr* para producirla en formato adecuado en un documento html.
 
 ```{r}
-kable(Tabla_frec_agrup(alergia, 7, 1.9, 0.1))
+knitr::kable(Tabla_frec_agrup(alergia, 7, 1.9, 0.1))
 ```
 
 
@@ -719,7 +731,7 @@ Lo primero que hacemos es importarlo en un *data frame*; para ello podemos usar 
 `stringsAsFactors=FALSE`. Como las etiquetas de los grupos de edad contienen la palabra "años", para garantizar que las eñes se importan de manera correcta es conveniente incluir `encoding="utf8"`.
 ```{r}
 tabla=read.csv("https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/cens81.csv", 
-               stringsAsFactors=FALSE, encoding="utf8")
+               stringsAsFactors=FALSE, encoding="UTF-8")
 str(tabla)
 tabla
 ```
@@ -1243,7 +1255,7 @@ Ahora calcularemos la tabla de frecuencias para este agrupamiento `crw_int`. Usa
 `Tabla_frec_agrup` que hemos definido al final de la Sección \@ref(sec:agrupR).
 
 ```{r}
-kable(Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4))
+knitr::kable(Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4))
 ```
 
 Por lo que se refiere al histograma, es
