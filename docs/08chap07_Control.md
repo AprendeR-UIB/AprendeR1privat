@@ -82,7 +82,8 @@ Cuadrados
 ```
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:fib1"><strong>(\#exm:fib1) </strong></span>Estamos seguros de que conocéis la sucesión de Fibonacci $F_n$,
+\BeginKnitrBlock{example}
+<span class="example" id="exm:fib1"><strong>(\#exm:fib1) </strong></span>Estamos seguros de que conocéis la sucesión de Fibonacci $F_n$,
 $$
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \ldots,
 $$ 
@@ -100,7 +101,8 @@ F_5=F_3+F_4=5\\
 \end{array}
 $$
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 
 Vamos a calcular los 20 primeros números de Fibonacci, $(F_n)_{n=1,\ldots,20}$. Para ello, usaremos un bucle de tipo "for" que traduzca la construcción "para cada n de 3 a 20, $F_n$ es la suma de $F_{n-1}$ y $F_{n-2}$". Como $F_1=F_2=1$, iniciaremos el vector que al final  contendrá nuestros números de Fibonacci como un vector formado por veinte unos, y con el bucle redefniremos sus entradas a partir de la tercera:
 
@@ -115,9 +117,11 @@ Fib
 
 Como en la definición de funciones, si la construcción que queremos realizar en cada paso de un bucle, sea de tipo "for" o, en la siguiente sección, de tipo "while", requiere de más de una instrucción, las podemos separar dentro de las llaves mediante signos de punto y coma o simplemente escribiéndolas en líneas aparte. Además, podéis anidar instrucciones `for` si necesitáis que el conjunto de índices sea multidimensional.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-7"><strong>(\#exm:unnamed-chunk-7) </strong></span>Supongamos que queremos definir una función SimM que, aplicada a una matriz cuadrada A, la *simetrice*, es decir, substituya cada entrada (i,j) de A  fuera de su diagonal principal por la media de las entradas (i,j) y (j,i). Para ello lo que haremos será, dada la matriz A, si n indica sus números de filas y de columnas:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-7"><strong>(\#exm:unnamed-chunk-7) </strong></span>Supongamos que queremos definir una función SimM que, aplicada a una matriz cuadrada A, la *simetrice*, es decir, substituya cada entrada (i,j) de A  fuera de su diagonal principal por la media de las entradas (i,j) y (j,i). Para ello lo que haremos será, dada la matriz A, si n indica sus números de filas y de columnas:
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 1. Definir una copia AA de A
 2. Para cada i entre 1 y n-1 y para cada j entre i+1 y n, redefinir AA[i,j] y AA[j,i] como (A[i,j]+A[j,i])/2
@@ -408,9 +412,9 @@ Fijaos que al llegar al 1, entraríamos en un bucle. Como es impar, lo multiplic
 
 
 
-*(1)*  8.4576\times 10^{4}
+*(1)*  \ensuremath{8.4576\times 10^{4}}
 
 
-*(2)* 1.56941\times 10^{5}
+*(2)* \ensuremath{1.56941\times 10^{5}}
 
 

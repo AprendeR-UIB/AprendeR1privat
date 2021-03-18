@@ -30,19 +30,32 @@ Consideremos la Tabla  \@ref(tab:nin1), que da la altura media  de los niños a 
 
 
 
+\begin{table}
 
-Table: (\#tab:nin1)Alturas medias de niños por edad.
-
-| edad (años)| altura (cm)|
-|-----------:|-----------:|
-|           1|       76.11|
-|           2|       86.45|
-|           3|       95.27|
-|           5|      109.18|
-|           7|      122.03|
-|           9|      133.73|
-|          11|      143.73|
-|          13|      156.41|
+\caption{(\#tab:nin1)Alturas medias de niños por edad.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+edad (años) & altura (cm)\\
+\hline
+1 & 76.11\\
+\hline
+2 & 86.45\\
+\hline
+3 & 95.27\\
+\hline
+5 & 109.18\\
+\hline
+7 & 122.03\\
+\hline
+9 & 133.73\\
+\hline
+11 & 143.73\\
+\hline
+13 & 156.41\\
+\hline
+\end{tabular}
+\end{table}
 
 
 <!--
@@ -112,10 +125,14 @@ Así, por ejemplo, para dibujar el gráfico de la Figura  \@ref(fig:A301) de los
 plot(datos1)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/A301-1.png" alt="Representación gráfica de la altura media de los niños a determinadas edades." width="90%" />
-<p class="caption">(\#fig:A301)Representación gráfica de la altura media de los niños a determinadas edades.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/A301-1} 
+
+}
+
+\caption{Representación gráfica de la altura media de los niños a determinadas edades.}(\#fig:A301)
+\end{figure}
 
 Al ejecutar esta instrucción en la consola de `Rstudio`, el gráfico resultante se abrirá en la pestaña *Plots*, y en él se puede observar a simple vista que nuestros puntos siguen aproximadamente una recta. 
 Vamos a calcular ahora  su recta de regresión. 
@@ -164,10 +181,14 @@ le añade la recta de regresión, produciendo la Figura  \@ref(fig:A302).
 Se ve a simple vista que, efectivamente, esta recta aproxima muy bien los datos.
 
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/A302-1.png" alt="Ajuste mediante la recta de regresión de la altura media de los niños respecto de su edad." width="90%" />
-<p class="caption">(\#fig:A302)Ajuste mediante la recta de regresión de la altura media de los niños respecto de su edad.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/A302-1} 
+
+}
+
+\caption{Ajuste mediante la recta de regresión de la altura media de los niños respecto de su edad.}(\#fig:A302)
+\end{figure}
 
 
 
@@ -235,18 +256,24 @@ datos1$edad
 
 Veamos otro ejemplo de cálculo de recta de regresión. 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:reg2"><strong>(\#exm:reg2) </strong></span>Karl Pearson recopiló en 1903 las alturas de 1078 parejas formadas por un padre y un hijo. Hemos guardado en el `url` [http://aprender.uib.es/Rdir/pearson.txt](http://aprender.uib.es/Rdir/pearson.txt) un fichero que contiene estas alturas.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:reg2"><strong>(\#exm:reg2) </strong></span>Karl Pearson recopiló en 1903 las alturas de 1078 parejas formadas por un padre y un hijo. Hemos guardado en el `url` [http://aprender.uib.es/Rdir/pearson.txt](http://aprender.uib.es/Rdir/pearson.txt) un fichero que contiene estas alturas.
 Si lo abrís en un navegador, veréis que es una tabla de dos columnas, etiquetadas `Padres` e `Hijos` (Figura \@ref(fig:pearson)). Cada fila contiene las alturas  en pulgadas de un par Padre-Hijo.
 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/pearson.png" alt="Vista en un navegador del fichero pearson.txt." width="90%" />
-<p class="caption">(\#fig:pearson)Vista en un navegador del fichero pearson.txt.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/pearson} 
+
+}
+
+\caption{Vista en un navegador del fichero pearson.txt.}(\#fig:pearson)
+\end{figure}
 
 
 Vamos a usar estos datos para estudiar si hay dependencia lineal entre la altura de un hijo y la de su padre. Para ello, lo primero que haremos será cargarlos en un *data frame*. Esto se puede llevar a cabo de dos maneras:
@@ -260,10 +287,14 @@ AAAAAAAAAAAAAAAA arreglar problemas con la caption que no va en latex
 Opciones para guardar el fichero `pearson.txt` en un *data frame* llamado df_pearson usando el menú *Import Dataset*.
 -->
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/guardpearson.png" alt="Opciones para guardar el fichero *pearson.txt* en un *data frame* llamado *df_pearson* usando el menú *Import Dataset*." width="90%" />
-<p class="caption">(\#fig:guardpearson)Opciones para guardar el fichero *pearson.txt* en un *data frame* llamado *df_pearson* usando el menú *Import Dataset*.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/guardpearson} 
+
+}
+
+\caption{Opciones para guardar el fichero *pearson.txt* en un *data frame* llamado *df_pearson* usando el menú *Import Dataset*.}(\#fig:guardpearson)
+\end{figure}
 
 * Usando la instrucción `read.table`, de la que también hablaremos en la Lección \@ref(chap:df); por ahora simplemente hay que saber que se ha de aplicar al nombre del fichero entre comillas, si está en el directorio de trabajo, o a su `url`, también escrito  entre comillas. Si además el fichero contiene una primera fila con los nombres de las columnas, hay que añadir el parámetro `header=TRUE`.
 
@@ -322,10 +353,14 @@ plot(df_pearson)
 abline(lm(Hijos~Padres, data=df_pearson),col="red")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/pears2-1.png" alt="Representación gráfica de las alturas de los hijos en función de la de sus padres, junto con su recta de regresión." width="90%" />
-<p class="caption">(\#fig:pears2)Representación gráfica de las alturas de los hijos en función de la de sus padres, junto con su recta de regresión.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/pears2-1} 
+
+}
+
+\caption{Representación gráfica de las alturas de los hijos en función de la de sus padres, junto con su recta de regresión.}(\#fig:pears2)
+\end{figure}
 
 
 Hemos usado el parámetro `col="red"` en el `abline`  para que la recta de regresión sea roja y facilitar así su visualización en medio de la nube de puntos.
@@ -358,23 +393,31 @@ donde $\beta=10^b$.
 Veamos algunos ejemplos de regresiones lineales con cambios de escala.
  
  
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:reg3"><strong>(\#exm:reg3) </strong></span>La serotonina se asocia a la estabilidad emocional en el hombre. En un  experimento (véase el artículo de B. Peskar y S. Spector  "Serotonin: Radioimmunoassay" en  *Science*  179 (1973), pp. 1340-1341)  se midió, para algunas cantidades de serotonina (expresadas en *nanogramos*, la milmillonésima parte de un gramo), el porcentaje de inhibición de un cierto proceso bioquímico en el que se observaba su presencia. El objetivo era estimar la cantidad de serotonina presente en un tejido a partir del porcentaje de inhibición observado. Los datos que se obtuvieron son los de la Tabla  \@ref(tab:T4).
-
-
-</div>\EndKnitrBlock{example}
-
+\BeginKnitrBlock{example}
+<span class="example" id="exm:reg3"><strong>(\#exm:reg3) </strong></span>La serotonina se asocia a la estabilidad emocional en el hombre. En un  experimento (véase el artículo de B. Peskar y S. Spector  "Serotonin: Radioimmunoassay" en  *Science*  179 (1973), pp. 1340-1341)  se midió, para algunas cantidades de serotonina (expresadas en *nanogramos*, la milmillonésima parte de un gramo), el porcentaje de inhibición de un cierto proceso bioquímico en el que se observaba su presencia. El objetivo era estimar la cantidad de serotonina presente en un tejido a partir del porcentaje de inhibición observado. Los datos que se obtuvieron son los de la Tabla  \@ref(tab:T4).
 
 
 
+\EndKnitrBlock{example}
 
-Table: (\#tab:T4)Porcentajes de inhibición de un cierto proceso bioquímico en presencia de serotonina.
 
-| serotonina (ng)| inhibición (%)|
-|---------------:|--------------:|
-|             1.2|             19|
-|             3.6|             36|
-|            12.0|             60|
-|            33.0|             84|
+
+
+\begin{table}
+
+\caption{(\#tab:T4)Porcentajes de inhibición de un cierto proceso bioquímico en presencia de serotonina.}
+\centering
+\begin{tabular}[t]{rr}
+\toprule
+serotonina (ng) & inhibición (\%)\\
+\midrule
+1.2 & 19\\
+3.6 & 36\\
+12.0 & 60\\
+33.0 & 84\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 <!--
 ```
@@ -411,10 +454,14 @@ Con la instrucción siguiente obtenemos la Figura  \@ref(fig:F304bis), donde vem
 plot(inh, ser)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F304bis-1.png" alt="Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina." width="90%" />
-<p class="caption">(\#fig:F304bis)Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F304bis-1} 
+
+}
+
+\caption{Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina.}(\#fig:F304bis)
+\end{figure}
 
 
 <!--
@@ -435,10 +482,14 @@ Vamos a dibujar ahora el gráfico semilogarítmico de estos puntos, para ver si 
 plot(inh, ser, log="y")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F305bis-1.png" alt="Representación gráfica en escala semilogarítmica del porcentaje de inhibición en función de la cantidad de serotonina." width="90%" />
-<p class="caption">(\#fig:F305bis)Representación gráfica en escala semilogarítmica del porcentaje de inhibición en función de la cantidad de serotonina.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F305bis-1} 
+
+}
+
+\caption{Representación gráfica en escala semilogarítmica del porcentaje de inhibición en función de la cantidad de serotonina.}(\#fig:F305bis)
+\end{figure}
 
 
 <!--
@@ -510,10 +561,14 @@ plot(inh, ser)
 curve(0.52*1.052^x, add=TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F306bis-1.png" alt="Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina, junto con la función $y=0.52\cdot 1.052^x$." width="90%" />
-<p class="caption">(\#fig:F306bis)Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina, junto con la función $y=0.52\cdot 1.052^x$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F306bis-1} 
+
+}
+
+\caption{Representación gráfica en escala lineal del porcentaje de inhibición en función de la cantidad de serotonina, junto con la función $y=0.52\cdot 1.052^x$.}(\#fig:F306bis)
+\end{figure}
 
 
 
@@ -537,35 +592,54 @@ para estimar la cantidad de serotonina presente en el tejido a partir de una inh
 0.52·1.052^25^=1.84 ng
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:reg4"><strong>(\#exm:reg4) </strong></span>Consideremos ahora los datos de la Tabla \@ref(tab:sida). Se trata de los números acumulados de casos de SIDA en los Estados Unidos desde 1981 hasta 1992, extraídos del *HIV/AIDS Surveillance Report* de 1993 ([http://www.cdc.gov/hiv/topics/surveillance/resources/reports/index.htm](http://www.cdc.gov/hiv/topics/surveillance/resources/reports/index.htm)).  *Acumulados*  significa que, para cada año, se da el número de casos detectados *hasta*  entonces.
-
-
-</div>\EndKnitrBlock{example}
-
+\BeginKnitrBlock{example}
+<span class="example" id="exm:reg4"><strong>(\#exm:reg4) </strong></span>Consideremos ahora los datos de la Tabla \@ref(tab:sida). Se trata de los números acumulados de casos de SIDA en los Estados Unidos desde 1981 hasta 1992, extraídos del *HIV/AIDS Surveillance Report* de 1993 ([http://www.cdc.gov/hiv/topics/surveillance/resources/reports/index.htm](http://www.cdc.gov/hiv/topics/surveillance/resources/reports/index.htm)).  *Acumulados*  significa que, para cada año, se da el número de casos detectados *hasta*  entonces.
 
 
 
-
+\EndKnitrBlock{example}
 
 
 
 
-Table: (\#tab:sida)Números acumulados anuales de casos de SIDA en los Estados Unidos, 1981 a 1992.
 
-|  año|  casos|
-|----:|------:|
-| 1981|     97|
-| 1982|    709|
-| 1983|   2698|
-| 1984|   6928|
-| 1985|  15242|
-| 1986|  29944|
-| 1987|  52902|
-| 1988|  83903|
-| 1989| 120612|
-| 1990| 161711|
-| 1991| 206247|
-| 1992| 257085|
+
+
+
+\begin{table}
+
+\caption{(\#tab:sida)Números acumulados anuales de casos de SIDA en los Estados Unidos, 1981 a 1992.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+año & casos\\
+\hline
+1981 & 97\\
+\hline
+1982 & 709\\
+\hline
+1983 & 2698\\
+\hline
+1984 & 6928\\
+\hline
+1985 & 15242\\
+\hline
+1986 & 29944\\
+\hline
+1987 & 52902\\
+\hline
+1988 & 83903\\
+\hline
+1989 & 120612\\
+\hline
+1990 & 161711\\
+\hline
+1991 & 206247\\
+\hline
+1992 & 257085\\
+\hline
+\end{tabular}
+\end{table}
 
 
 <!--
@@ -606,10 +680,14 @@ Con la instrucción siguiente dibujamos estos datos:
 plot(df_SIDA)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F307a-1.png" alt="Representación gráfica en escala lineal  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año." width="90%" />
-<p class="caption">(\#fig:F307a)Representación gráfica en escala lineal  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F307a-1} 
+
+}
+
+\caption{Representación gráfica en escala lineal  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.}(\#fig:F307a)
+\end{figure}
 
 Obtenemos  el gráfico de la Figura \@ref(fig:F307a), y está claro que los puntos $(x_n,y_n)$, donde $x$ representa el año e $y$ el número acumulado de casos  de SIDA, no se ajustan a una recta. De hecho, a simple vista se diría que el crecimiento de $y$ en función de $x$ es exponencial. 
 
@@ -620,10 +698,14 @@ Para confirmar este crecimiento exponencial, dibujamos el gráfico semilogarítm
 plot(df_SIDA, log="y")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F307b-1.png" alt="Representación gráfica en escala semilogarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año." width="90%" />
-<p class="caption">(\#fig:F307b)Representación gráfica en escala semilogarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F307b-1} 
+
+}
+
+\caption{Representación gráfica en escala semilogarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.}(\#fig:F307b)
+\end{figure}
 
 Obtenemos el gráfico de la Figura \@ref(fig:F307b), donde los puntos tampoco siguen una recta. Así pues, resulta que $y$ tampoco parece ser función exponencial de $x$.
 
@@ -634,10 +716,14 @@ Vamos a ver si el crecimiento de $y$ en función de $x$ es potencial. Para ello,
 plot(df_SIDA, log="xy")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/F307c-1.png" alt="Representación gráfica en escala doble logarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año." width="90%" />
-<p class="caption">(\#fig:F307c)Representación gráfica en escala doble logarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/F307c-1} 
+
+}
+
+\caption{Representación gráfica en escala doble logarítmica  del número acumulado de casos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año.}(\#fig:F307c)
+\end{figure}
 
 Obtenemos el gráfico de  la Figura \@ref(fig:F307c), y ahora sí que parece lineal. Así que parece que los números acumulados de casos de SIDA crecieron potencialmente con el transcurso de los años.
 
@@ -679,10 +765,14 @@ plot(df_SIDA)
 curve(82.79422*x^3.274, add=TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="03chap02_Un_aperitivo_files/figure-html/SF3010-1.png" alt="Representación gráfica en escala lineal de la cantidad acumulada de enfermos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año, junto con su ajuste mediante la función potencial $82.79422 · x^{3.274}$." width="90%" />
-<p class="caption">(\#fig:SF3010)Representación gráfica en escala lineal de la cantidad acumulada de enfermos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año, junto con su ajuste mediante la función potencial $82.79422 · x^{3.274}$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{03chap02_Un_aperitivo_files/figure-latex/SF3010-1} 
+
+}
+
+\caption{Representación gráfica en escala lineal de la cantidad acumulada de enfermos de SIDA en EEUU desde 1980 en función de los años transcurridos desde ese año, junto con su ajuste mediante la función potencial $82.79422 · x^{3.274}$.}(\#fig:SF3010)
+\end{figure}
 Obtenemos la Figura 
 \@ref(fig:SF3010), donde vemos que la curva se ajusta bastante bien a los puntos.
 
@@ -734,16 +824,26 @@ En la Tabla \@ref(tab:cuques), $x$ representa la cantidad de feromona empleada, 
 
 
 
+\begin{table}
 
-Table: (\#tab:cuques)Cantidades de feromona empleadas en trampas y números de machos atrapados.
-
-|   $x$| $N$|
-|-----:|---:|
-|   0.1|   3|
-|   1.0|   6|
-|   5.0|   9|
-|  10.0|  11|
-| 100.0|  20|
+\caption{(\#tab:cuques)Cantidades de feromona empleadas en trampas y números de machos atrapados.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+\$x\$ & \$N\$\\
+\hline
+0.1 & 3\\
+\hline
+1.0 & 6\\
+\hline
+5.0 & 9\\
+\hline
+10.0 & 11\\
+\hline
+100.0 & 20\\
+\hline
+\end{tabular}
+\end{table}
 
 <!--
 \begin{table}[htb]

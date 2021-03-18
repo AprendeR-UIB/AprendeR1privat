@@ -35,10 +35,14 @@ sudo dpkg -i rstudio-<version>-i386.deb
 ```
 donde `version` refiere a la versión concreta que hayáis descargado.  Conviene  recordar que *RStudio* no es R, ni tan sólo lo contiene: hay que instalar ambos programas. De hecho, las instalaciones de R y *RStudio* son independientes una de la otra, de manera que cuando se pone al día uno de estos programas, no se modifica el otro.
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/rstudio1.png" alt="Ventana de RStudio para Mac OS X." width="80%" />
-<p class="caption">(\#fig:rstudio1)Ventana de RStudio para Mac OS X.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{AprendeR-Parte-I_files/figure-html/rstudio1} 
+
+}
+
+\caption{Ventana de RStudio para Mac OS X.}(\#fig:rstudio1)
+\end{figure}
 
 Cuando se abre *RStudio*, aparece una ventana similar a la que  muestra la Figura   \@ref(fig:rstudio1): su apariencia exacta dependerá del sistema operativo, de la versión de *RStudio* e incluso de los paquetes que estemos usando.  De momento, nos concentraremos en la ventana de la izquierda,  llamada la **consola**  de R (la pestaña *Console*). Observaréis que en el momento de abrir la aplicación, dicha ventana contiene una serie de información (versión, 
 créditos etc.) y al final una línea en blanco encabezada por el símbolo `>`. Este símbolo es la **marca de inicio**  e indica que R espera que escribáis alguna instrucción y la  ejecutéis.

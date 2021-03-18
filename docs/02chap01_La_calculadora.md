@@ -803,10 +803,14 @@ R  da como raíz cuadrada de un número real la positiva, y como raíz cuadrada 
 AAAAAAAA pendiente dibujo de raíces de  complejos
 -->
 
-<div class="figure" style="text-align: center">
-<img src="02chap01_La_calculadora_files/figure-html/geom-1.png" alt="Interpretación geométrica de los números complejos." width="80%" />
-<p class="caption">(\#fig:geom)Interpretación geométrica de los números complejos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{02chap01_La_calculadora_files/figure-latex/geom-1} 
+
+}
+
+\caption{Interpretación geométrica de los números complejos.}(\#fig:geom)
+\end{figure}
 
 
 <!--
@@ -876,16 +880,26 @@ Signo\vphantom{$\Big($} & `Re` & `Im` & `Mod` & `Arg` & `Conj` \\ \hline
 
 
 
+\begin{table}
 
-Table: (\#tab:comp)Funciones específicas para números complejos.
-
-|Operación        |Signo  |
-|:----------------|:------|
-|Parte real       |`Re`   |
-|Parte imaginaria |`Im`   |
-|Módulo           |`Mod`  |
-|Argumento        |`Arg`  |
-|Conjugado        |`Conj` |
+\caption{(\#tab:comp)Funciones específicas para números complejos.}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+Operación & Signo\\
+\hline
+Parte real & `Re`\\
+\hline
+Parte imaginaria & `Im`\\
+\hline
+Módulo & `Mod`\\
+\hline
+Argumento & `Arg`\\
+\hline
+Conjugado & `Conj`\\
+\hline
+\end{tabular}
+\end{table}
 -->
 
 

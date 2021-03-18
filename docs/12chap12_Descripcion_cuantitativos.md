@@ -15,9 +15,11 @@ Los datos cuantitativos admiten dos tipos de tratamiento, según trabajemos con 
 
 El tratamiento de las frecuencias de datos cuantitativos es similar al de los datos ordinales, excepto por un detalle: no se tienen en cuenta todos los niveles posibles, sino solo los  observados.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex181"><strong>(\#exm:ex181) </strong></span>Hemos pedido las edades a un grupo de 15 voluntarios de una ONG. Las respuestas, en años, han sido las siguientes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex181"><strong>(\#exm:ex181) </strong></span>Hemos pedido las edades a un grupo de 15 voluntarios de una ONG. Las respuestas, en años, han sido las siguientes:
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 <p style="text-align:center">18, 22, 16, 19, 23, 18, 35, 16, 45, 20, 20, 22, 40, 18, 45.</p>
   
@@ -83,9 +85,11 @@ $\displaystyle F_j=\frac{N_j}{n}=\sum\limits_{i=1}^j f_i.$
 
 
  
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:dados"><strong>(\#exm:dados) </strong></span>Lanzamos 10 veces un dado de seis caras al aire y anotamos los resultados:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:dados"><strong>(\#exm:dados) </strong></span>Lanzamos 10 veces un dado de seis caras al aire y anotamos los resultados:
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 <p style="text-align:center"> 2, 1, 4, 5, 6, 3, 5, 6, 3.</p> 
 
@@ -156,7 +160,8 @@ $$
 En este curso, cuando hablemos de la *media*  de unos datos nos referiremos siempre a su media aritmética. Hay otros tipos de media, como por ejemplo la media geométrica o la armónica, que no estudiaremos.
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-7"><strong>(\#exm:unnamed-chunk-7) </strong></span>En la situación del Ejemplo \@ref(exm:ex181), la moda es 18 y  la media es
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-7"><strong>(\#exm:unnamed-chunk-7) </strong></span>En la situación del Ejemplo \@ref(exm:ex181), la moda es 18 y  la media es
 $$
 \frac{18+22+16+19+23+18+35+16+45+20+20+22+40+18+45}{15}=25.1333.
 $$
@@ -166,7 +171,8 @@ Si ordenamos los 15 resultados, quedan de la siguiente manera:
 
 Su mediana es la entrada central en esta lista, es decir, la octava: 20.
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 En la situación del Ejemplo \@ref(exm:dados), la moda es, de hecho, cuatro valores: 1, 3, 5 y 6. La media es
 $$
@@ -237,9 +243,11 @@ Las **medidas de posición** estiman qué valores dividen la población en unas 
 Dada una proporción $0<p<1$, el **cuantil de orden $p$** de una variable cuantitativa, que denotaremos por $Q_p$, es  el valor más pequeño tal que su frecuencia relativa acumulada es mayor o igual que $p$. En otras palabras, si tenemos un conjunto de datos $x_1, \ldots, x_n$ y los ordenamos de menor a mayor, $Q_p$ es el número más pequeño que deja a su izquierda (incluyéndolo a él) como mínimo la fracción $p$ de los datos, es decir,  $p\cdot n$ datos.
 De esta manera, la mediana viene a ser el cuantil $Q_{0.5}$.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex184"><strong>(\#exm:ex184) </strong></span>Consideremos otro experimento de lanzamientos de un dado. Esta vez lo lanzamos 30 veces y obtenemos los resultados siguientes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex184"><strong>(\#exm:ex184) </strong></span>Consideremos otro experimento de lanzamientos de un dado. Esta vez lo lanzamos 30 veces y obtenemos los resultados siguientes:
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 <p style="text-align:center"> 2, 4, 5, 6, 3, 2, 4, 5, 1, 2, 1, 3, 4, 2, 3, 4, 1, 2, 5, 6, 5, 5, 3, 2, 1, 3, 4, 2, 2, 1.</p>
 
@@ -634,10 +642,14 @@ Un **diagrama de caja**, o *box plot*, es un gráfico que resume algunos datos e
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/boxplotgen.png" alt="Esquema de un diagrama de caja." width="90%" />
-<p class="caption">(\#fig:boxplot)Esquema de un diagrama de caja.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/boxplotgen} 
+
+}
+
+\caption{Esquema de un diagrama de caja.}(\#fig:boxplot)
+\end{figure}
 
 
 La función básica para dibujar un diagrama de caja con R es `boxplot`. Por ejemplo,
@@ -648,10 +660,14 @@ boxplot(x)
 ```
 produce la Figura \@ref(fig:182).
 
-<div class="figure" style="text-align: center">
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/182-1.png" alt="Un diagrama de caja." width="90%" />
-<p class="caption">(\#fig:182)Un diagrama de caja.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/182-1} 
+
+}
+
+\caption{Un diagrama de caja.}(\#fig:182)
+\end{figure}
 
 
 
@@ -663,7 +679,9 @@ boxplot(iris[iris$Species=="setosa", ]$Petal.Length,
         main="Longitudes de pétalos de las Iris setosa", yaxp=c(1,1.9,9)) 
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-42-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-42-1} \end{center}
 
 Para dibujar varios diagramas de caja en un mismo gráfico, por ejemplo para poder compararlos, basta aplicar la instrucción `boxplot` a todos los vectores simultáneamente. Por ejemplo: 
 
@@ -674,7 +692,9 @@ z=c(3,5,6,1,2,3,1,2,5,1,5,2,4,2,6,5,2,1,4,4,1,6,5,5,4,6,4,5,4,5)
 boxplot(x, y, z, names=c("x","y","z"))
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-43-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-43-1} \end{center}
 
 Observad que en la función `boxplot` del bloque anterior hemos usado el parámetro `names` para especificar las etiquetas de los diagramas de caja: de lo contrario, el gráfico hubiera sido más difícil de interpretar, probadlo. 
 
@@ -684,7 +704,9 @@ Si preferís las cajas horizontales, podéis usar el parámetro `horizontal=TRUE
 boxplot(x, y, z, names=c("x","y","z"), horizontal=TRUE)
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-44-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-44-1} \end{center}
 
 Podemos dibujar los diagramas de caja de todas las variables de un *data frame* en un solo paso, aplicando la función `boxplot` al  *data frame*; por ejemplo: 
 
@@ -692,7 +714,9 @@ Podemos dibujar los diagramas de caja de todas las variables de un *data frame* 
 boxplot(iris)
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-45-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-45-1} \end{center}
 
 Observaréis que este gráfico no es muy satisfactorio. Dibujar el diagrama de caja de la variable `Species`, que es un factor, no tiene ningún sentido, y los nombres, además, no han quedado muy vistosos; podemos mejorar este gráfico, incluyendo solo las cuatro primeras variables y cambiando un poco los nombres, con la instrucción siguiente:
 
@@ -701,7 +725,9 @@ Observaréis que este gráfico no es muy satisfactorio. Dibujar el diagrama de c
 boxplot(iris[, 1:4], names=c("Sepal\n length","Sepal\n width","Petal\n length","Petal\n width"))
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-46-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-46-1} \end{center}
 
 
 El objetivo de agrupar varios diagramas de caja en un único gráfico suele ser el poder compararlos visualmente, y esto normalmente solo tiene sentido cuando las variables tienen significados muy similares, o mejor, cuando son la misma variable sobre poblaciones diferentes. En concreto, a menudo querremos producir diagramas de caja de una variable cuantitativa segmentada por un factor, porque esto nos permitirá comparar el comportamiento de esta variable sobre cada uno de los niveles del factor. La manera más conveniente de hacerlo es partir de un *data frame* donde el factor sea una variable, digamos, `F`, y el vector de datos numéricos otra variable, digamos, `X`. Entonces, para cada nivel `L` de `F`, obtendremos un diagrama de caja de los valores que toma la variable `X` en los individuos de nivel `L`. 
@@ -718,10 +744,14 @@ boxplot(Sepal.Length~Species, data=iris, ylab="Longitudes de sépalos (cm)")
 ```
 y obtenemos  la Figura \@ref(fig:187), donde podemos observar diferencias sustanciales entre las longitudes de los sépalos de las tres especies, y además un valor inusualmente pequeño en el conjunto de valores de las flores virgínica.
 
-<div class="figure" style="text-align: center">
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/187-1.png" alt="Diagramas de caja de las longitudes de sépalos de las flores iris agrupadas por especies." width="90%" />
-<p class="caption">(\#fig:187)Diagramas de caja de las longitudes de sépalos de las flores iris agrupadas por especies.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/187-1} 
+
+}
+
+\caption{Diagramas de caja de las longitudes de sépalos de las flores iris agrupadas por especies.}(\#fig:187)
+\end{figure}
 
 
 Aparte de los parámetros de la función `plot` que tengan sentido, 
@@ -733,10 +763,14 @@ boxplot(Sepal.Length~Species, data=iris, notch=TRUE,
 ```
 produce el gráfico de la Figura \@ref(fig:notch) donde, colores aparte, vemos que las muescas no se solapan, lo que nos permite afirmar con un alto grado de confianza que las medianas de las longitudes de los sépalos de las tres especies de flores iris son diferentes (en general, y no solo para la muestra concreta recogida en el *data frame*). Este tipo de conclusiones son las que persigue la estadística inferencial.
 
-<div class="figure" style="text-align: center">
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/notch-1.png" alt="Diagramas de caja con muescas de las longitudes de sépalos de las flores iris agrupadas por especies." width="90%" />
-<p class="caption">(\#fig:notch)Diagramas de caja con muescas de las longitudes de sépalos de las flores iris agrupadas por especies.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/notch-1} 
+
+}
+
+\caption{Diagramas de caja con muescas de las longitudes de sépalos de las flores iris agrupadas por especies.}(\#fig:notch)
+\end{figure}
 
 
 A veces es útil superponer a un diagrama de caja una marca en el valor correspondiente a la media aritmética. Para ello se puede usar la función `points`. Considerad el bloque de código siguiente. Su primera instrucción produce el diagrama de caja de las longitudes de los sépalos de las flores iris agrupadas según la especie, de color gris claro; la segunda, calcula las medias de dichas longitudes para cada especie; finalmente, la tercera, añade al diagrama de caja de cada especie un diamante rojo en la ordenada correspondiente al valor de su media. 
@@ -748,7 +782,9 @@ medias=aggregate(Sepal.Length~Species, data=iris, FUN=mean)
 points(medias, col="red", pch=18)
 ```
 
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/unnamed-chunk-50-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/unnamed-chunk-50-1} \end{center}
 
 
 El resultado de una instrucción `boxplot` tiene una estructura interna que podemos aprovechar. Observemos, por ejemplo, el resultado de la instrucción siguiente (el parámetro `plot=FALSE` indica que no dibuje el boxplot): 
@@ -789,10 +825,12 @@ boxplot(Sepal.Length~Species, data=iris, plot=FALSE)$group
 #> [1] 3
 ```
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-54"><strong>(\#exm:unnamed-chunk-54) </strong></span>Recordemos del Ejemplo \@ref(exm:sprayord) el *data frame* `InsectSprays` que viene predefinido en R. Este *data frame* tiene una variable factor `spray` con 6 niveles que corresponden a tipos de insecticidas,  y una variable numérica `count` que contiene números de insectos recolectados en campos tratados con los insecticidas. En aquel ejemplo convertimos la variable `count` en una variable ordinal, pero está claro que se trata de una variable cuantitativa; por lo tanto, podemos usar las técnicas explicadas en esta lección para comparar de manera más significativa la efectividad de los insecticidas a partir de los datos brutos de esta variable.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-54"><strong>(\#exm:unnamed-chunk-54) </strong></span>Recordemos del Ejemplo \@ref(exm:sprayord) el *data frame* `InsectSprays` que viene predefinido en R. Este *data frame* tiene una variable factor `spray` con 6 niveles que corresponden a tipos de insecticidas,  y una variable numérica `count` que contiene números de insectos recolectados en campos tratados con los insecticidas. En aquel ejemplo convertimos la variable `count` en una variable ordinal, pero está claro que se trata de una variable cuantitativa; por lo tanto, podemos usar las técnicas explicadas en esta lección para comparar de manera más significativa la efectividad de los insecticidas a partir de los datos brutos de esta variable.
 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 En primer lugar, obtenemos un resumen estadístico de los números de insectos recogidos en los campos tratados con cada tipo de insecticida.
 
@@ -843,10 +881,14 @@ aggregate(count~spray, data=InsectSprays, FUN=sd)
 ```
 
 
-<div class="figure" style="text-align: center">
-<img src="12chap12_Descripcion_cuantitativos_files/figure-html/188-1.png" alt="Diagramas de caja de los números de insectos en campos tratados con diferentes insecticidas." width="90%" />
-<p class="caption">(\#fig:188)Diagramas de caja de los números de insectos en campos tratados con diferentes insecticidas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{12chap12_Descripcion_cuantitativos_files/figure-latex/188-1} 
+
+}
+
+\caption{Diagramas de caja de los números de insectos en campos tratados con diferentes insecticidas.}(\#fig:188)
+\end{figure}
 
 
 ## Guía rápida de funciones

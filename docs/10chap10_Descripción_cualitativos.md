@@ -20,9 +20,11 @@ cualitativa, para cada uno de sus niveles  podemos contar cuántos datos hay en 
 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex1601"><strong>(\#exm:ex1601) </strong></span>Supongamos que se ha realizado un seguimiento a 20 personas ingresadas en un geriátrico. Uno de los datos que se han recogido sobre estas personas ha sido su sexo. El resultado ha sido una variable cualitativa formada por las 20 observaciones siguientes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex1601"><strong>(\#exm:ex1601) </strong></span>Supongamos que se ha realizado un seguimiento a 20 personas ingresadas en un geriátrico. Uno de los datos que se han recogido sobre estas personas ha sido su sexo. El resultado ha sido una variable cualitativa formada por las 20 observaciones siguientes:
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
  
 <p style="text-align:center">Mujer,  Mujer,  Hombre,  Mujer,  Mujer,  Mujer,  Mujer,  Mujer,  Hombre, Mujer
 Hombre,  Hombre,  Mujer,  Mujer,  Hombre,  Mujer,  Mujer,  Mujer,  Mujer,  Hombre.</p>
@@ -261,9 +263,11 @@ names(which(table(Respuestas)==max(table(Respuestas))))
 ```
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:sexo"><strong>(\#exm:sexo) </strong></span>Continuamos en la situación del Ejemplo \@ref(exm:ex1601). Para calcular las frecuencias y la moda con R, definimos un vector con los datos y le aplicamos las funciones pertinentes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:sexo"><strong>(\#exm:sexo) </strong></span>Continuamos en la situación del Ejemplo \@ref(exm:ex1601). Para calcular las frecuencias y la moda con R, definimos un vector con los datos y le aplicamos las funciones pertinentes:
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 
@@ -669,9 +673,11 @@ apply(table(Sexo,Respuestas,Pais), MARGIN=2, FUN=sum)
 
 Hasta ahora hemos manipulado tablas de frecuencias que hemos construido nosotros mismos a partir de variables cualitativas. Todo lo que hemos hecho con estas tablas se puede también hacer con las tablas de frecuencias que lleva R predefinidas o que obtengamos de otra manera. Veamos un ejemplo.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:HairEyeColor"><strong>(\#exm:HairEyeColor) </strong></span>El objeto de datos `HairEyeColor` que lleva predefinido R es una tabla las frecuencias absolutas, en una muestra de personas, de tres variables cualitativas: color de cabello, `Hair`, color de los ojos, `Eye`, y sexo, `Sex`, en este orden. 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:HairEyeColor"><strong>(\#exm:HairEyeColor) </strong></span>El objeto de datos `HairEyeColor` que lleva predefinido R es una tabla las frecuencias absolutas, en una muestra de personas, de tres variables cualitativas: color de cabello, `Hair`, color de los ojos, `Eye`, y sexo, `Sex`, en este orden. 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -971,10 +977,14 @@ barplot(table(Sexo_Ger), col=c("lightblue","pink"),
         main="Diagrama de barras de las frecuencias absolutas\n de la variable \"Sexo_Ger\"")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F1601-1.png" alt="Diagrama de barras de las frecuencias absolutas de los datos  del Ejemplo \@ref(exm:ex1601)." width="90%" />
-<p class="caption">(\#fig:F1601)Diagrama de barras de las frecuencias absolutas de los datos  del Ejemplo \@ref(exm:ex1601).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F1601-1} 
+
+}
+
+\caption{Diagrama de barras de las frecuencias absolutas de los datos  del Ejemplo \@ref(exm:ex1601).}(\#fig:F1601)
+\end{figure}
 Antes de continuar con los diagramas de barras, vamos a comentar dos *trucos* usados en el título de este gráfico. Por un laod, la marca `\n` dentro de una frase entrada entre comillas introduce un cambio de línea. El mismo efecto se obtiene con un cambio de línea. Id con cuidado, porque ambos efectos se acumulan, así que si cambiais de línea después del `\n`, obtendréis una línea en blanco. Por otro lado, `\\"` escribe unas comillas en el texto entrado entre comillas.
 
 <!--
@@ -995,14 +1005,18 @@ Respuestas=c("No","No","Sí","No","Sí","No","No","Sí")
 barplot(table(x), main="Diagrama de barras de frecuencias absolutas de la variable \"x\"")
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-54-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-54-1} \end{center}
 
 ```r
 barplot(prop.table(table(Respuestas)), 
         main="Diagrama de barras de frecuencias relativas\n de la variable \"Respuestas\"")
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-55-1} \end{center}
 
 
 **¡Atención!** Como pasaba con `prop.table`, el argumento de `barplot` ha de ser una tabla, y, por consiguiente, se ha de aplicar al resultado de `table` o de `prop.table`, nunca al vector de datos original. 
@@ -1016,13 +1030,17 @@ Se pueden especificar los colores de las barras usando el parámetro `col`. Si s
 barplot(table(Respuestas), col=c("green"))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 ```r
 barplot(table(Respuestas), col=c("red","blue"))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-57-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-57-1} \end{center}
 
  En un diagrama con muchas barras, es conveniente usar un esquema adecuado de colores para ellas. Para ello se puede usar el paquete **RColorBrewer**, del que hablaremos en detalle en la Sección \@ref(sec:grmulti).
 
@@ -1035,10 +1053,14 @@ Una opción interesante es dibujar las barras horizontales en vez de  verticales
 barplot(table(x), horiz=TRUE)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F1606-1.png" alt="Un diagrama de barras horizontales." width="90%" />
-<p class="caption">(\#fig:F1606)Un diagrama de barras horizontales.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F1606-1} 
+
+}
+
+\caption{Un diagrama de barras horizontales.}(\#fig:F1606)
+\end{figure}
 
 <!--
 \vspace*{-3ex}
@@ -1065,10 +1087,14 @@ table(Sexo,Respuestas)
 barplot(table(Sexo,Respuestas))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F1607-1.png" alt="Un diagrama de barras apiladas." width="90%" />
-<p class="caption">(\#fig:F1607)Un diagrama de barras apiladas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F1607-1} 
+
+}
+
+\caption{Un diagrama de barras apiladas.}(\#fig:F1607)
+\end{figure}
 
 
 En un  diagrama de barras apiladas, las barras globales corresponden a los niveles de la variable que definen  las columnas de la tabla, es decir, la segunda variable especificada dentro de `table`: en el de la Figura \@ref(fig:F1607), se trata de la variable `Respuestas`, de niveles `No` y `Si`. Cada una de estas barras se divide verticalmente en sectores que representan los niveles de la otra variable, en orden ascendente: en el ejemplo que nos ocupa,  la zona inferior de cada barra representa el nivel `H` de la variable `Sexo` y la zona superior su nivel `M`. 
@@ -1091,10 +1117,14 @@ barplot(table(Sexo,Respuestas), beside=TRUE)
 produce el diagrama de barras de la Figura \@ref(fig:F1608a).
 En este diagrama,  cada bloque de barras representa un nivel de la variable de las columnas (`No`  y `Si`), y en cada uno de estos bloques las barras representan los niveles de las filas en su orden (en cada bloque, la barra de la izquierda corresponde a `H` y la de la derecha  a `M`). 
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F1608a-1.png" alt="Un diagrama de barras por bloques." width="90%" />
-<p class="caption">(\#fig:F1608a)Un diagrama de barras por bloques.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F1608a-1} 
+
+}
+
+\caption{Un diagrama de barras por bloques.}(\#fig:F1608a)
+\end{figure}
 
 
 
@@ -1106,7 +1136,9 @@ Los diagramas de barras tienen que mostrar la información de la manera más ade
 barplot(table(Respuestas,Sexo), beside=TRUE)
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-59-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-59-1} \end{center}
 
 
 Suele ser conveniente añadir a un diagrama de barras de dos variables una leyenda que indique  qué nivel representa cada sector (en los diagramas de barras apiladas) o cada barra (en los diagramas de barras por bloques). Esto se puede realizar entrando el parámetro `legend.text` igualado a `TRUE`, si no queremos modificar los nombres de los niveles de las filas, o igualado a un vector con los nombres que les queremos asignar (en el orden que toque). 
@@ -1118,10 +1150,14 @@ barplot(table(Sexo,Respuestas), beside=TRUE, legend.text=TRUE)
 ```
 produce el diagrama de la Figura \@ref(fig:F1608b), con el formato de leyenda por defecto. 
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F1608b-1.png" alt="Un diagrama de barras por bloques con una leyenda." width="90%" />
-<p class="caption">(\#fig:F1608b)Un diagrama de barras por bloques con una leyenda.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F1608b-1} 
+
+}
+
+\caption{Un diagrama de barras por bloques con una leyenda.}(\#fig:F1608b)
+\end{figure}
 
 <!--
 \begin{figure}[ht]
@@ -1148,10 +1184,14 @@ barplot(table(Respuestas,Sexo), beside=TRUE, names=c("Men","Women"),
         col=c("red","blue"), legend.text=c("No","Yes"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F16011-1.png" alt="Diagrama de barras para visualizar la distribución de las respuestas por sexo." width="90%" />
-<p class="caption">(\#fig:F16011)Diagrama de barras para visualizar la distribución de las respuestas por sexo.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F16011-1} 
+
+}
+
+\caption{Diagrama de barras para visualizar la distribución de las respuestas por sexo.}(\#fig:F16011)
+\end{figure}
 
 <!--
 \begin{figure}[ht]
@@ -1177,10 +1217,14 @@ pie(table(Respuestas), main="Diagrama circular de la variable \"Respuestas\"")
 produce el diagrama de la Figura \@ref(fig:F16012). 
 
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/F16012-1.png" alt="Un diagrama circular." width="90%" />
-<p class="caption">(\#fig:F16012)Un diagrama circular.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/F16012-1} 
+
+}
+
+\caption{Un diagrama circular.}(\#fig:F16012)
+\end{figure}
 
 
 
@@ -1199,10 +1243,14 @@ Pese a su popularidad, es poco recomendable usar diagramas circulares cuando man
 [entrada sobre diagramas circulares de la *Wikipedia*](http://en.wikipedia.org/wiki/Pie_chart)).
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/wikipc.png" alt="Diagramas de barras *versus* diagramas circulares." width="90%" />
-<p class="caption">(\#fig:wiki)Diagramas de barras *versus* diagramas circulares.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/wikipc} 
+
+}
+
+\caption{Diagramas de barras *versus* diagramas circulares.}(\#fig:wiki)
+\end{figure}
 
 
 <!--
@@ -1229,10 +1277,14 @@ plot(table(Sexo,Respuestas), main="Diagrama de mosaico de las variables \"Sexo\"
 produce el diagrama de mosaico de la Figura \@ref(fig:mosaic1a).
 
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/mosaic1a-1.png" alt="Un diagrama de mosaico bidimendiol." width="90%" />
-<p class="caption">(\#fig:mosaic1a)Un diagrama de mosaico bidimendiol.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/mosaic1a-1} 
+
+}
+
+\caption{Un diagrama de mosaico bidimendiol.}(\#fig:mosaic1a)
+\end{figure}
 
 En el diagrama de mosaico de una tabla tridimensional, primero se divide el cuadrado en barras verticales  de amplitudes iguales a las frecuencias relativas de una variable; luego, cada barra se divide, a lo alto, en regiones de alturas proporcionales a las frecuencias relativas marginales de cada nivel de una segunda variable dentro del nivel correspondiente de la primera variable; y, finalmente, cada sector rectangular se vuelve a dividir a lo ancho en regiones de amplitudes proporcionales a las frecuencias relativas marginales de cada nivel de la tercera variable dentro de la combinación correspondiente de niveles de las otras dos. Por ejemplo,
 
@@ -1244,10 +1296,14 @@ plot(HairEyeColor,  main="Diagrama de mosaico de la tabla \"HairEyeColor\"",
 produce el gráfico de la Figura \@ref(fig:mosaic1b).
 
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/mosaic1b-1.png" alt="Un diagrama de mosaico tridimendiol." width="90%" />
-<p class="caption">(\#fig:mosaic1b)Un diagrama de mosaico tridimendiol.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/mosaic1b-1} 
+
+}
+
+\caption{Un diagrama de mosaico tridimendiol.}(\#fig:mosaic1b)
+\end{figure}
 
 <!--
 \begin{figure}[ht]
@@ -1277,10 +1333,14 @@ mosaic(HairEyeColor, dir=c("v","h","v"), highlighting="Sex",
    highlighting_fill=c("pink","lightblue"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/HCSvcd-1.png" alt="Diagrama de mosaico producido con `mosaic`." width="90%" />
-<p class="caption">(\#fig:HCSvcd)Diagrama de mosaico producido con `mosaic`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/HCSvcd-1} 
+
+}
+
+\caption{Diagrama de mosaico producido con `mosaic`.}(\#fig:HCSvcd)
+\end{figure}
 El parámetro `dir` es el equivalente del parámetro homónimo en `mosaicplot` (y lo hemos especificado para obtener el gráfico equivalente al de la derecha de la Figura \@ref(fig:mosaic1}; por defecto, `mosaic` toma la primera variable en horizontal);  el parámetro `highlighting` sirve para destacar una variable; y el parámetro `highlighting_fill` para asignar colores a los niveles de la variable destacada. Esta función dispone de muchos más parámetros, que podéis consultar su Ayuda.
 
 <!--
@@ -1299,10 +1359,14 @@ library(vcd)
 cotabplot(table(Sexo,Respuestas,Pais))
 ```
 produce el gráfico de la Figura \@ref(fig:extresquala).
-<div class="figure" style="text-align: center">
-<img src="10chap10_Descripción_cualitativos_files/figure-html/extresquala-1.png" alt="Diagrama de mosaico producido con `cotabplot`." width="90%" />
-<p class="caption">(\#fig:extresquala)Diagrama de mosaico producido con `cotabplot`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/extresquala-1} 
+
+}
+
+\caption{Diagrama de mosaico producido con `cotabplot`.}(\#fig:extresquala)
+\end{figure}
 
 
 Finalmente,  el paquete **vcdExtra** incluye la función `mosaic3d`    que produce un diagrama de mosaico tridimensional en una ventana de una aplicación para gráficos 3D interactivos. Por ejemplo, el bloque de código
@@ -1319,10 +1383,14 @@ produce el gráfico 3D de la Figura \@ref(fig:extresqualb) en una ventana de gr�
 knitr::include_graphics("AprendeR-Parte-I_files/figure-html/exmosaic3d.png")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/exmosaic3d.png" alt="Diagrama de mosaico 3D producido con `mosaic3d`." width="90%" />
-<p class="caption">(\#fig:extresqualb)Diagrama de mosaico 3D producido con `mosaic3d`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/exmosaic3d} 
+
+}
+
+\caption{Diagrama de mosaico 3D producido con `mosaic3d`.}(\#fig:extresqualb)
+\end{figure}
 
 
 <!--
@@ -1391,7 +1459,9 @@ plot(HEC,col=c("lightblue"),
      main="Diagrama de mosaico de la tabla bidimensional de frecuencias\n de colores de cabellos y ojos")
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/HECmosaic-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/HECmosaic-1} \end{center}
 A simple vista, vemos que las combinaciones de colores de cabellos y ojos más frecuentes son 
 los cabellos castaños con los ojos marrones, y los cabellos rubios con los ojos azules. 
 
@@ -1452,7 +1522,9 @@ barplot(prop.table(colSums(HEC)), ylim=c(0,0.4),
   col=c("burlywood4","lightblue","orange3","lightgreen"))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-74-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 * Diagrama de barras de frecuencias relativas de colores de cabello: 
 
@@ -1461,7 +1533,9 @@ barplot(prop.table(rowSums(HEC)),
   col=c("black","brown","red","gold"), ylim=c(0,0.5))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-75-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 Vemos que el color dominante de cabellos es el castaño, mientras que en el color de ojos el marrón y el azul están prácticamente empatados.
 
@@ -1520,7 +1594,9 @@ barplot(prop.table(HEC, margin=1), beside=TRUE, legend.text=TRUE,
    col=c("black","brown","red","gold"), ylim=c(0,0.8))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-79-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-79-1} \end{center}
 
 * Diagrama de barras de frecuencias relativas de los colores de ojos dentro de cada color de cabello: 
 
@@ -1530,7 +1606,9 @@ barplot(t(prop.table(HEC, margin=2)), beside=TRUE,
    col=c("burlywood4","lightblue","orange3","lightgreen"))
 ```
 
-<img src="10chap10_Descripción_cualitativos_files/figure-html/unnamed-chunk-80-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{10chap10_Descripción_cualitativos_files/figure-latex/unnamed-chunk-80-1} \end{center}
 
 Vemos, por ejemplo, que entre las personas de ojos azules, los cabellos rubios son los más frecuentes, y que entre las personas castañas el color de ojos más frecuente es el pardo.
 

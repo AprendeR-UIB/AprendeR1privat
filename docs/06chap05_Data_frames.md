@@ -77,10 +77,14 @@ véase la Figura \@ref(fig:View).
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/View.png" alt="Vista de un *data frame* con `View`." width="90%" />
-<p class="caption">(\#fig:View)Vista de un *data frame* con `View`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/View} 
+
+}
+
+\caption{Vista de un *data frame* con `View`.}(\#fig:View)
+\end{figure}
 
 <!--
 
@@ -387,17 +391,25 @@ str(NH4)
 Para importar tablas de datos también se puede usar el menú *Import Dataset* de la pestaña **Environment**, y de hecho esta es la opción más aconsejable cuando usamos R de manera interactiva. Este menú dispone de varias opciones, según el tipo de fichero (texto simple, Excel, SPSS ...) y según que esté en el ordenador o en un *url* (si entráis un *url* pulsad a continuación el botón *Update* para que se conecte). Según la opción que escojáis, puede ser que tengáis que instalar algún paquete, como **readr** o **readxl**, ya  os avisará *RStudio* con un mensaje de error. En cada caso, se os presentarán diversas opciones que os permitirán, por ejemplo, poner nombre al *data frame* (en el campo *Name*), indicar si tiene una primera fila con los nombres de las variables (seleccionando *Yes* en el campo *Heading* o marcando  el botón *First Row as Names*, según la opción del menú que hayáis elegido), especificar el signo que separa las columnas (*Separator* o *Delimiter*, de nuevo según la opción del menú que hayáis elegido) y cómo aparecen identificados los valores `NA` en el fichero, etc.  La ventaja de estos menús es que podéis ver el aspecto del *data frame* que crearéis con nuestras elecciones. Su inconveniente es que, si queréis que vuestro análisis de datos sea reproducible por otras personas, es necesario incluir en el documento que publiquéis la instrucción usada para cargar los datos. Por suerte, en la mayoría de opciones de este menú podéis ver las instrucciones que se usan y podéis copiarlas. En las Figuras \@ref(fig:ID1) y \@ref(fig:ID2) mostramos las ventanas que aparecen usando en el menú *Import Dataset* las opciones *From Text (base)...* (para importar con `read.table` un fichero local) y *From Text (readr)...* (para importar con funciones del paquete **readr** ficheros locales o en línea) para importar el fichero  "NotaHemanosc.txt". En esta última, observad que en el campo inferior derecho (*Code Preview*) aparecen las instrucciones que usará R y que podéis copiar (no copiéis el `View`, naturalmente).
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/figID1.png" alt="Importador de tablas de datos del *Rstudio* usando *From Text (base)...*." width="90%" />
-<p class="caption">(\#fig:ID1)Importador de tablas de datos del *Rstudio* usando *From Text (base)...*.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/figID1} 
+
+}
+
+\caption{Importador de tablas de datos del *Rstudio* usando *From Text (base)...*.}(\#fig:ID1)
+\end{figure}
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/figID2.png" alt="Importador de tablas de datos del *Rstudio* usando *From Text (readr)...*." width="90%" />
-<p class="caption">(\#fig:ID2)Importador de tablas de datos del *Rstudio* usando *From Text (readr)...*.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/figID2} 
+
+}
+
+\caption{Importador de tablas de datos del *Rstudio* usando *From Text (readr)...*.}(\#fig:ID2)
+\end{figure}
 
 
 
@@ -743,10 +755,14 @@ y se hubiera abierto una ventana como la que muestra  la  Figura \@ref(fig:edit)
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/dataeditordf2.png" alt="Editor de *data frames*  de `Rstudio` en  Mac OS X." width="90%" />
-<p class="caption">(\#fig:edit)Editor de *data frames*  de `Rstudio` en  Mac OS X.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/dataeditordf2} 
+
+}
+
+\caption{Editor de *data frames*  de `Rstudio` en  Mac OS X.}(\#fig:edit)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \abovecaptionskip=-1ex

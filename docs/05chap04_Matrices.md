@@ -1180,19 +1180,32 @@ a.  Calculad de este modo los valores de $a$ y $b$ cuando las observaciones son 
 
 
 
+\begin{table}
 
-Table: (\#tab:Ex501)Alturas medias de niños por edad.
-
-| edad (años)| altura (cm)|
-|-----------:|-----------:|
-|           1|       76.11|
-|           2|       86.45|
-|           3|       95.27|
-|           5|      109.18|
-|           7|      122.03|
-|           9|      133.73|
-|          11|      143.73|
-|          13|      156.41|
+\caption{(\#tab:Ex501)Alturas medias de niños por edad.}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+edad (años) & altura (cm)\\
+\hline
+1 & 76.11\\
+\hline
+2 & 86.45\\
+\hline
+3 & 95.27\\
+\hline
+5 & 109.18\\
+\hline
+7 & 122.03\\
+\hline
+9 & 133.73\\
+\hline
+11 & 143.73\\
+\hline
+13 & 156.41\\
+\hline
+\end{tabular}
+\end{table}
 
 
 <!--

@@ -404,10 +404,14 @@ fix(x)
 Se abrirá entonces una ventana como la que mostramos en la Figura \@ref(fig:editvect). Ahora, en esta ventana, podéis añadir, borrar y cambiar los datos que queráis. Por ejemplo, añadid un 0 al principio y 20, 30 al final y guardad el resultado (pulsando el botón *Save* en la  ventana del editor). El contenido del vector `x` se habrá modificado, como podréis comprobar entrando `x` en la consola.
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/finestres0.png" alt="Ventana del editor de vectores de *RStudio* para Mac OS X." width="90%" />
-<p class="caption">(\#fig:editvect)Ventana del editor de vectores de *RStudio* para Mac OS X.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/finestres0} 
+
+}
+
+\caption{Ventana del editor de vectores de *RStudio* para Mac OS X.}(\#fig:editvect)
+\end{figure}
 
 
 ## Operaciones con vectores

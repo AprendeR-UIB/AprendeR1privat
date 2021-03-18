@@ -143,7 +143,7 @@ qbinom(0.25,20,0.3)
 
 ```r
 rbinom(10,20,0.3)
-#>  [1] 8 8 8 8 2 8 2 4 7 8
+#>  [1]  7  4  7 10  7  7  6  6  8  3
 ```
 
 * Dos vectores aleatorios más, de 10 valores cada uno, generados con la variable aleatoria $X$:
@@ -152,9 +152,9 @@ rbinom(10,20,0.3)
 
 ```r
 rbinom(10,20,0.3) 
-#>  [1]  7  5 10  5  9  3  6  3  9  3
+#>  [1] 7 7 1 7 5 6 7 6 7 5
 rbinom(10,20,0.3)
-#>  [1] 7 4 6 6 7 4 7 6 8 9
+#>  [1] 7 8 5 5 7 7 8 7 4 8
 ```
 
 
@@ -192,7 +192,7 @@ qpois(0.6,5)
 
 ```r
 rpois(20,5)
-#>  [1]  2  5  4  4  3  5  3  5 10  5  7  4  3  4  4  5  6  3  8  4
+#>  [1]  1  2  3  6  5  2 10  3  7  4  3  3  7  5  7  4  4  4  5  4
 ```
 
 
@@ -213,10 +213,14 @@ Las funciones densidad y distribución de una variable aleatoria se pueden dibuj
 curve(dnorm(x,0,1.5),-5,5,xlab="",ylab="",main="")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09chap08_Distribuciones_files/figure-html/dnorm-1.png" alt="Función densidad de una variable *N*(0,1)." width="90%" />
-<p class="caption">(\#fig:dnorm)Función densidad de una variable *N*(0,1).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{09chap08_Distribuciones_files/figure-latex/dnorm-1} 
+
+}
+
+\caption{Función densidad de una variable *N*(0,1).}(\#fig:dnorm)
+\end{figure}
 
 De manera similar, la función siguiente dibuja la gráfica de la función de distribución de una variable normal estándar de la Figura \@ref(fig:pnorm):
 
@@ -225,10 +229,14 @@ De manera similar, la función siguiente dibuja la gráfica de la función de di
 curve(pnorm(x,0,1.5),-5,5,xlab="",ylab="",main="")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="09chap08_Distribuciones_files/figure-html/pnorm-1.png" alt="Función distribución de una variable *N*(0,1)." width="90%" />
-<p class="caption">(\#fig:pnorm)Función distribución de una variable *N*(0,1).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{09chap08_Distribuciones_files/figure-latex/pnorm-1} 
+
+}
+
+\caption{Función distribución de una variable *N*(0,1).}(\#fig:pnorm)
+\end{figure}
 
 ## Ejercicios
 
@@ -427,5 +435,7 @@ plot(prop.table(table(Y)[n]),col="blue",type="h",xlab="Longitudes de cadenas max
 points(n,dgeom(n,0.5),col="red",type="o",pch=20,cex=0.5)
 ```
 
-<img src="09chap08_Distribuciones_files/figure-html/unnamed-chunk-39-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{09chap08_Distribuciones_files/figure-latex/unnamed-chunk-39-1} \end{center}
 -->

@@ -1,3 +1,5 @@
+\babel@toc {spanish}{}
+\babel@toc {spanish}{}
 \contentsline {chapter}{Presentación}{7}{chapter*.2}%
 \contentsline {part}{Parte I: R básico}{11}{part*.3}%
 \contentsline {chapter}{\numberline {1}Logística de R}{11}{chapter.1}%
@@ -11,9 +13,9 @@
 \contentsline {section}{\numberline {2.1}Números reales: operaciones y funciones básicas}{22}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Cifras significativas y redondeos}{26}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Definición de variables}{29}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Definición de funciones}{31}{section.2.4}%
+\contentsline {section}{\numberline {2.4}Definición de funciones}{30}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Números complejos (opcional)}{32}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Guía rápida}{36}{section.2.6}%
+\contentsline {section}{\numberline {2.6}Guía rápida}{35}{section.2.6}%
 \contentsline {section}{\numberline {2.7}Ejercicios}{37}{section.2.7}%
 \contentsline {subsection}{Test}{37}{section*.4}%
 \contentsline {subsection}{Ejercicio}{38}{section*.5}%
@@ -51,7 +53,7 @@
 \contentsline {section}{\numberline {6.1}Estructura de un \emph {data frame}}{117}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Cómo importar y exportar \emph {data frames}}{122}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Cómo crear \emph {data frames}}{128}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Cómo modificar un \emph {data frame}}{130}{section.6.4}%
+\contentsline {section}{\numberline {6.4}Cómo modificar un \emph {data frame}}{131}{section.6.4}%
 \contentsline {section}{\numberline {6.5}Cómo añadir filas y columnas a un \emph {data frame}}{138}{section.6.5}%
 \contentsline {section}{\numberline {6.6}Cómo seleccionar trozos de un \emph {data frame}}{140}{section.6.6}%
 \contentsline {section}{\numberline {6.7}Cómo aplicar una función a las variables de un \emph {data frame}}{145}{section.6.7}%

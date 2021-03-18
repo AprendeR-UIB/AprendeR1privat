@@ -37,10 +37,14 @@ y obtenemos la Figura  \@ref(fig:F501).
 -->
 
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F501-1.png" alt="Gráfico básico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1)." width="90%" />
-<p class="caption">(\#fig:F501)Gráfico básico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F501-1} 
+
+}
+
+\caption{Gráfico básico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1).}(\#fig:F501)
+\end{figure}
 
 Cuando aplicamos `plot` a un solo vector $(x_1, \ldots, x_n)$, R produce el gráfico de los puntos
 $$
@@ -53,10 +57,14 @@ Es decir, si el vector tiene longitud $n$, `plot(x)` es una abreviatura de `plot
 plot(2^(1:10))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F50105-1.png" alt="Gráfico básico de las diez primeras potencias de 2." width="90%" />
-<p class="caption">(\#fig:F50105)Gráfico básico de las diez primeras potencias de 2.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F50105-1} 
+
+}
+
+\caption{Gráfico básico de las diez primeras potencias de 2.}(\#fig:F50105)
+\end{figure}
 <!--
 \begin{figure}[h]
 \begin{center}
@@ -73,10 +81,14 @@ f=function(x){x^2}
 plot(f)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/x2-1.png" alt="Gráfico básico de la curva $y=x^2$." width="90%" />
-<p class="caption">(\#fig:x2)Gráfico básico de la curva $y=x^2$.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/x2-1} 
+
+}
+
+\caption{Gráfico básico de la curva $y=x^2$.}(\#fig:x2)
+\end{figure}
 <!--
 \begin{figure}[h]
 \begin{center}
@@ -131,10 +143,14 @@ plot(n, Fib, xlab="n", main="Números de Fibonacci",
   ylab=expression(F[n]==(1/sqrt(5))*(((1+sqrt(5))/2)^(n+1)-((1-sqrt(5))/2)^(n+1))))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F402-1.png" alt="Gráfico de los 31 valores iniciales $F_n$ de la sucesión de Fibonacci." width="90%" />
-<p class="caption">(\#fig:F402)Gráfico de los 31 valores iniciales $F_n$ de la sucesión de Fibonacci.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F402-1} 
+
+}
+
+\caption{Gráfico de los 31 valores iniciales $F_n$ de la sucesión de Fibonacci.}(\#fig:F402)
+\end{figure}
 
 
 
@@ -167,10 +183,14 @@ Cómo podéis ver, por defecto `plot` dibuja los puntos como círculos vacíos. 
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/pchh.png" alt="Signos correspondientes a los diferentes valores de `pch`." width="90%" />
-<p class="caption">(\#fig:F403)Signos correspondientes a los diferentes valores de `pch`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{AprendeR-Parte-I_files/figure-html/pchh} 
+
+}
+
+\caption{Signos correspondientes a los diferentes valores de `pch`.}(\#fig:F403)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -187,10 +207,14 @@ El tamaño de estos signos se puede modificar  mediante el parámetro `cex` igua
 plot(x, y, pch=20, cex=3)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/cex-1.png" alt="Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) con puntos de tamaño triple." width="90%" />
-<p class="caption">(\#fig:cex)Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) con puntos de tamaño triple.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/cex-1} 
+
+}
+
+\caption{Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) con puntos de tamaño triple.}(\#fig:cex)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -209,10 +233,14 @@ Así, por ejemplo, la función siguiente produce la Figura  \@ref(fig:F402051):
 plot(x, y, col="red", pch=15)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F402051-1.png" alt="Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) como cuadrados rojos." width="90%" />
-<p class="caption">(\#fig:F402051)Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) como cuadrados rojos.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F402051-1} 
+
+}
+
+\caption{Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) como cuadrados rojos.}(\#fig:F402051)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -230,10 +258,14 @@ Los puntos que se obtienen con `pch` de 21 a 25 admiten un color para el borde (
 plot(x, y, pch=21, col="blue", bg="red", cex=2)
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F402052-1.png" alt="Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) bicolores." width="90%" />
-<p class="caption">(\#fig:F402052)Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) bicolores.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F402052-1} 
+
+}
+
+\caption{Gráfico de los puntos (2,1), (5,7), (6,3), (3,2), (4,1) bicolores.}(\#fig:F402052)
+\end{figure}
 
 
 
@@ -256,43 +288,57 @@ Y=c(2,8,4,6,3)
 plot(X, Y, type="p")  #Tipo por defecto
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 ```r
 plot(X, Y, type="l")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 ```r
 plot(X, Y, type="b")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-7-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
 ```r
 plot(X, Y, type="o")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 ```r
 plot(X, Y, type="h")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-9-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 ```r
 plot(X, Y, type="s")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-10-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 ```r
 plot(X, Y, type="n")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-11-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 
 
@@ -328,13 +374,17 @@ Veamos dos ejemplos:
 plot(X, Y, type="o", col="blue", pch=19, lty="dotted")
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-12-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 ```r
 plot(X, Y, type="o", pch=19, lty="dashed", lwd=2)
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-13-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 <!--
 \begin{figure}[htb]
@@ -357,7 +407,9 @@ f=function(x){x*log(x)}
 plot(f)    
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-14-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 * Modificando el rango del eje de abscisas:
 
@@ -365,7 +417,9 @@ plot(f)
 plot(f, xlim=c(1, 10))    
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-15-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 * Modificando los rangos de ambos ejes:
 
@@ -373,7 +427,9 @@ plot(f, xlim=c(1, 10))
 plot(f, xlim=c(1, 10), ylim=c(0, 50))  
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-16-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
 
 
@@ -397,21 +453,27 @@ Para modificar las posiciones de las marcas en los ejes de abscisas y ordenadas 
 plot(f, xlim=c(1, 10))
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-17-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-17-1} \end{center}
 * Definiendo las marcas sobre el eje de abscisas:
 
 ```r
 plot(f, xlim=c(1, 10), xaxp=c(1, 10, 9))
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-18-1} \end{center}
 * Definiendo las marcas sobre ambos ejes:
 
 ```r
 plot(f, xlim=c(1, 10), xaxp=c(1, 10, 9), ylim=c(0, 25), yaxp=c(0, 25, 10))
 ```
 
-<img src="07chap06_Graficos_I_files/figure-html/unnamed-chunk-19-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 
 
@@ -453,10 +515,14 @@ points(0, 0, pch=19)
 ```
 produce  la Figura \@ref(fig:ex1punt), en la que hemos dibujado la parábola $y=x^2$ y hemos marcado su vértice con un punto.
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/ex1punt-1.png" alt="Gráfica de una parábola con su vértice marcado." width="90%" />
-<p class="caption">(\#fig:ex1punt)Gráfica de una parábola con su vértice marcado.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/ex1punt-1} 
+
+}
+
+\caption{Gráfica de una parábola con su vértice marcado.}(\#fig:ex1punt)
+\end{figure}
 
 <!--
 \begin{figure}[htb]
@@ -480,10 +546,14 @@ points(0:10, (0:10)^2, pch=19)
 dibuja un trozo de la parábola $y=x^2$ y añade los puntos 
 $(n, n^2)_{n=0, \ldots, 10}$, produciendo la Figura \@ref(fig:expoints1).
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/expoints1-1.png" alt="Gráfico de la función $f(x)=x^2$ con varios puntos marcados" width="90%" />
-<p class="caption">(\#fig:expoints1)Gráfico de la función $f(x)=x^2$ con varios puntos marcados</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/expoints1-1} 
+
+}
+
+\caption{Gráfico de la función $f(x)=x^2$ con varios puntos marcados}(\#fig:expoints1)
+\end{figure}
 
 Por su parte, el código
 
@@ -497,10 +567,14 @@ points(n, y, pch=19, col="red")
 primero dibuja los puntos $(n, 1.3^n-2\cdot 0.8^n)_{n=0, \ldots, 20}$  como circulitos azules vacíos, y después añade los puntos $(n, 0.2\cdot 1.3^n+1.7 \cdot 0.8^n)_{n=0, \ldots, 20}$ como circulitos rojos llenos, produciendo  la Figura \@ref(fig:expoints2). 
 
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/expoints2-1.png" alt="Gráfico de dos trozos de sucesiones." width="90%" />
-<p class="caption">(\#fig:expoints2)Gráfico de dos trozos de sucesiones.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/expoints2-1} 
+
+}
+
+\caption{Gráfico de dos trozos de sucesiones.}(\#fig:expoints2)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \abovecaptionskip=-1ex
@@ -539,10 +613,14 @@ abline(-1, 2, lty="dotdash")
 produce la Figura \@ref(fig:F10014). En este caso, hemos añadido a la gráfica de la  parábola $y=x^2$, dos puntos  en (0, 0) y  (1, 1), la  recta horizontal $y=0$ de puntos, la recta vertical $x=1$ discontinua y  la recta $y=-1+2x$ de puntos y rayas.
 
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F10014-1.png" alt="Gráfica conjunta de una parábola, dos puntos y tres rectas." width="90%" />
-<p class="caption">(\#fig:F10014)Gráfica conjunta de una parábola, dos puntos y tres rectas.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F10014-1} 
+
+}
+
+\caption{Gráfica conjunta de una parábola, dos puntos y tres rectas.}(\#fig:F10014)
+\end{figure}
 
 
 
@@ -564,10 +642,14 @@ plot(f, xlim=c(-3, 3), col="red")
 abline(h=0:9, v=-3:3, lty="dotted")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/multivh-1.png" alt="Gráfica de una parábola y una rejilla de rectas horizontales y verticales." width="90%" />
-<p class="caption">(\#fig:multivh)Gráfica de una parábola y una rejilla de rectas horizontales y verticales.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/multivh-1} 
+
+}
+
+\caption{Gráfica de una parábola y una rejilla de rectas horizontales y verticales.}(\#fig:multivh)
+\end{figure}
 
 <!--
 \begin{figure}[htb]
@@ -597,10 +679,14 @@ points(0, 0.5, pch=19)
 text(0, 0.5, labels="no pos")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F10015-1.png" alt="Significado del parámetro `pos` de la función `text`." width="90%" />
-<p class="caption">(\#fig:F10015)Significado del parámetro `pos` de la función `text`.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F10015-1} 
+
+}
+
+\caption{Significado del parámetro `pos` de la función `text`.}(\#fig:F10015)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -639,10 +725,14 @@ plot(f, xlim=c(0, 9))
 lines(3*(0:3), (3*(0:3))^2, lwd=2, lty="dashed")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/F10016-1.png" alt="Gráfica conjunta de una función y una línea poligonal inscrita." width="90%" />
-<p class="caption">(\#fig:F10016)Gráfica conjunta de una función y una línea poligonal inscrita.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/F10016-1} 
+
+}
+
+\caption{Gráfica conjunta de una función y una línea poligonal inscrita.}(\#fig:F10016)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -660,10 +750,14 @@ curve(x^3, lty="dashed", add=TRUE)
 curve(x^4, lty="dotted", add=TRUE) 
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/mons-1.png" alt="Gráfica conjunta de diferentes monomios." width="90%" />
-<p class="caption">(\#fig:mons)Gráfica conjunta de diferentes monomios.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/mons-1} 
+
+}
+
+\caption{Gráfica conjunta de diferentes monomios.}(\#fig:mons)
+\end{figure}
 
 <!--
 \begin{figure}[htb]
@@ -713,10 +807,14 @@ legend("bottomleft", legend=c(expression(x^2), expression(x^3), expression(x^4))
 ```
 produce el gráfico de la Figura \@ref(fig:mons21). Observad que, aunque en el primer `curve` no hemos especificado el parámetro `lty`, y ha tomado su valor por defecto, en el parámetro `lty` del `legend` sí que hemos especificado su valor para la primera función.
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/mons21-1.png" alt="Ejemplo de gráfica conjunta de diferentes funciones con una leyenda." width="90%" />
-<p class="caption">(\#fig:mons21)Ejemplo de gráfica conjunta de diferentes funciones con una leyenda.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/mons21-1} 
+
+}
+
+\caption{Ejemplo de gráfica conjunta de diferentes funciones con una leyenda.}(\#fig:mons21)
+\end{figure}
 
 
 
@@ -733,10 +831,14 @@ legend("topleft", legend=c(expression(2*x+3), expression(2*x^2+3), expression(2*
 produce el gráfico de la Figura \@ref(fig:mons22). Observad el efecto del parámetro `cex` comparando esta leyenda con la de la Figura \@ref(fig:mons21).
 
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/mons22-1.png" alt="Ejemplo de gráfica conjunta de diferentes funciones con una leyenda reducida." width="90%" />
-<p class="caption">(\#fig:mons22)Ejemplo de gráfica conjunta de diferentes funciones con una leyenda reducida.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/mons22-1} 
+
+}
+
+\caption{Ejemplo de gráfica conjunta de diferentes funciones con una leyenda reducida.}(\#fig:mons22)
+\end{figure}
 <!--
 \begin{figure}[htb]
 \begin{center}
@@ -758,10 +860,14 @@ legend("topleft", legend=c(expression(2*x+3), expression(2*x^2+3),
                            expression(2*x^3+3)), col=c("black", "red", "blue"))
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07chap06_Graficos_I_files/figure-html/caca-1.png" alt="Ejemplo de gráfica conjunta de diferentes funciones con una leyenda inútil" width="90%" />
-<p class="caption">(\#fig:caca)Ejemplo de gráfica conjunta de diferentes funciones con una leyenda inútil</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{07chap06_Graficos_I_files/figure-latex/caca-1} 
+
+}
+
+\caption{Ejemplo de gráfica conjunta de diferentes funciones con una leyenda inútil}(\#fig:caca)
+\end{figure}
 
 <!--
 \begin{figure}[htb]

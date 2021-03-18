@@ -21,12 +21,14 @@ El gráfico siguiente muestra el diagrama de barras de sus frecuencias, tomando 
 
 
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.6\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 En situaciones como esta, es recomendable dividir los posibles valores de la variable en  intervalos y contar cuántos datos caen dentro de cada intervalo: habitualmente, las frecuencias que se obtienen de esta manera son más fáciles de interpretar que las de los datos individuales. Así, siguiendo con nuestro ejemplo de las alturas, el diagrama de barras siguiente representa sus frecuencias cuando las agrupamos en intervalos de 5 cm. La distribución de estas alturas es mucho más fácil de entender mediante este gráfico que con el primero.
 
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-3-1.png" width="60%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.6\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 
 
@@ -88,13 +90,15 @@ $$
 Como podéis ver, las dos primeras sólo dependen de $n$, mientras que las  dos últimas tienen  en cuenta, de maneras diferentes, su dispersión. No hay una regla mejor que las otras y, además, números de clases diferentes pueden revelar  características diferentes de los datos. Las tres últimas reglas están implementadas en las funciones `nclass.Sturges`, `nclass.scott` y `nclass.FD` de R, respectivamente.
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:alerg"><strong>(\#exm:alerg) </strong></span>Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto. 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:alerg"><strong>(\#exm:alerg) </strong></span>Mucha gente manifiesta reacciones alérgicas sistémicas a las picaduras de insecto. 
 Estas reacciones varían entre pacientes, no sólo en lo que se refiere a la gravedad de la reacción,
 sino también en el tiempo que tarda en manifestarse. 
 
 En un estudio se midió,  en 40 pacientes que experimentaron una reacción alérgica a una picadura de abeja,
 el tiempo de inicio de esta reacción desde la picadura, y se obtuvieron los datos siguientes,  que expresamos en minutos:
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -146,12 +150,14 @@ Como podéis ver, reglas diferentes pueden dar valores diferentes, y puede que n
 
 Una vez determinado el número $k$ de clases, tenemos que decidir su amplitud. La forma más sencilla, y que adoptaremos por defecto, es tomar todos los intervalos de la misma amplitud (aunque no es la única forma posible de hacerlo, naturalmente: recordad, por ejemplo,  el agrupamiento de las calificaciones en Suspenso, Aprobado, Notable y Sobresaliente, que representan intervalos de notas de amplitudes diferentes). Para calcular esta amplitud, $A$, dividiremos el rango de los datos entre el número $k$ de clases y redondearemos por exceso a un valor de la precisión de la medida: si medimos edades con una precisión de años, redondearemos este cociente por exceso a años, si medimos alturas con una precisión de centímetros, redondearemos por exceso a centímetros, etc. En el caso improbable de que el cociente del rango entre el número de clases dé un valor exacto en la precisión de la medida, tomaremos como $A$ este cociente más una unidad de precisión; así, por ejemplo, si hemos medido unas alturas en metros con una precisión de centímetros y obtenemos que el cociente del rango entre $k$ da un número exacto de centímetros, tomaremos como amplitud $A$ este cociente más 1 cm.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-9"><strong>(\#exm:unnamed-chunk-9) </strong></span>Seguimos con el Ejemplo \@ref(exm:alerg); vamos a continuar el proceso de agrupamiento de los datos en $k=7$ clases.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-9"><strong>(\#exm:unnamed-chunk-9) </strong></span>Seguimos con el Ejemplo \@ref(exm:alerg); vamos a continuar el proceso de agrupamiento de los datos en $k=7$ clases.
 Recordemos que el rango del conjunto de datos en cuestión es 12.7 y que los datos están expresados en minutos 
 con una precisión de una cifra decimal; por lo tanto, la amplitud será el cociente $12.7/7=1.8143$ redondeado
 por exceso a  una cifra decimal: $A=1.9$.
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 Ahora hemos de calcular los extremos de los intervalos. En este curso, tomaremos estos intervalos siempre cerrados a la izquierda y abiertos a la derecha, y los denotaremos por
 $$
@@ -169,9 +175,11 @@ L_i=L_1+(i-1)A,\quad i=2,\ldots,k+1.
 $$
 Como decíamos, de esta manera se garantiza que los extremos de los intervalos nunca coincidan con valores del conjunto de datos: por ejemplo, si los datos están expresados con una sola cifra decimal, estos extremos tienen todos un 5 en su segunda cifra decimal.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-10"><strong>(\#exm:unnamed-chunk-10) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg) y $k=7$; hemos visto que tenemos que tomar $A=1.9$. El valor mínimo del conjunto de datos es:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-10"><strong>(\#exm:unnamed-chunk-10) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg) y $k=7$; hemos visto que tenemos que tomar $A=1.9$. El valor mínimo del conjunto de datos es:
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -211,7 +219,8 @@ $$
 X_1=\frac{L_1+L_2}{2}\quad \text{ y }\quad X_i=X_1+(i-1)A, \quad i=2,\ldots,k.
 $$
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-12"><strong>(\#exm:unnamed-chunk-12) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg) para $k=7$. Las marcas de clase serán los puntos medios de los intervalos que hemos determinado en el ejemplo anterior; como hemos visto, formarán  una progresión aritmética de origen el punto medio del primer intervalo y paso la amplitud de las clases:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-12"><strong>(\#exm:unnamed-chunk-12) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg) para $k=7$. Las marcas de clase serán los puntos medios de los intervalos que hemos determinado en el ejemplo anterior; como hemos visto, formarán  una progresión aritmética de origen el punto medio del primer intervalo y paso la amplitud de las clases:
 $$
 \begin{array}{l}
 X_1=(3.75+5.65)/2=4.7\\
@@ -222,12 +231,15 @@ X_5= 4.7 + 4\cdot 1.9= 12.3\\
 X_6=4.7 + 5\cdot 1.9= 14.2\\
 X_7= 4.7 + 6\cdot 1.9= 16.1
 \end{array}
-$$</div>\EndKnitrBlock{example}
+$$
+\EndKnitrBlock{example}
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:alerg7cl"><strong>(\#exm:alerg7cl) </strong></span>Volvamos a la situación inicial del Ejemplo \@ref(exm:alerg), y esta vez vamos a agrupar los datos siguiendo la regla de Scott. 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:alerg7cl"><strong>(\#exm:alerg7cl) </strong></span>Volvamos a la situación inicial del Ejemplo \@ref(exm:alerg), y esta vez vamos a agrupar los datos siguiendo la regla de Scott. 
 Ya  calculamos en su momento que, con esta regla, tenemos que usar  $k=5$ intervalos. Como el rango de los datos es 12.7 y $12.7/5=2.54$, redondeando por exceso este cociente a una décima obtenemos que la amplitud de los intervalos ha de ser  $A=2.6$.
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 Calculemos los extremos de los intervalos: el extremo inferior del primero es, de nuevo, $L_1=3.8-0.05=3.75$, y a partir de este valor, los otros extremos se obtienen sumando consecutivamente la amplitud hasta llegar a $L_6$:
   
@@ -301,8 +313,10 @@ $$
 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:table1"><strong>(\#exm:table1) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg). Recordemos los datos, que damos ordenados para facilitar el cálculo de la tabla de frecuencias:
-</div>\EndKnitrBlock{example}
+\BeginKnitrBlock{example}
+<span class="example" id="exm:table1"><strong>(\#exm:table1) </strong></span>Continuemos con el Ejemplo \@ref(exm:alerg). Recordemos los datos, que damos ordenados para facilitar el cálculo de la tabla de frecuencias:
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -330,9 +344,11 @@ $$
 \end{array}
 $$
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:fruitals"><strong>(\#exm:fruitals) </strong></span>Los siguientes valores son números de árboles frutales afectados por la mosca de la fruta en 50 terrenos rústicos de las mismas dimensiones:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:fruitals"><strong>(\#exm:fruitals) </strong></span>Los siguientes valores son números de árboles frutales afectados por la mosca de la fruta en 50 terrenos rústicos de las mismas dimensiones:
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 
 
 ```r
@@ -436,9 +452,11 @@ sin `include.lowest=TRUE` no tendríamos en cuenta los $L_{k+1}$ del conjunto de
 
 Podéis consultar la Ayuda de la función para conocer otros parámetros que os puedan ser de utilidad y para saber cómo se pueden especificar otros tipos de intervalos.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:cut"><strong>(\#exm:cut) </strong></span>En un experimento hemos recogido los datos siguientes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:cut"><strong>(\#exm:cut) </strong></span>En un experimento hemos recogido los datos siguientes:
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 
 ```
 > 10,9,8,7,3,5,6,8,9,5,2,1,3,1,1.
@@ -520,9 +538,11 @@ hist(x, breaks=..., right=FALSE, include.lowest=TRUE, plot=FALSE)$count
 ```
 En esta instrucción, es conveniente igualar el parámetro `breaks` al vector de los extremos de los intervalos (porque `cut` y `hist` usan métodos diferentes para agrupar los datos cuando se especifica sólo el número de clases); el significado de `right=FALSE` (y, si es necesario, `include.lowest=TRUE`) es el mismo que en `cut`; y `plot=FALSE` impide que se dibuje el histograma. Por ahora es interesante también saber que el resultado de `hist` incluye la componente `mids` que contiene el vector de puntos medios de los intervalos, nuestras marcas de clase.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:notes"><strong>(\#exm:notes) </strong></span>Supongamos que tenemos las 50 calificaciones siguientes, obtenidas por los estudiantes de una asignatura:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:notes"><strong>(\#exm:notes) </strong></span>Supongamos que tenemos las 50 calificaciones siguientes, obtenidas por los estudiantes de una asignatura:
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -637,9 +657,11 @@ marcas=Hist_notas$mids
 y usar el vector `f.abs` como arranque para calcular las columnas de frecuencias del *data frame* y el vector `marcas` como columna de marcas de clase.
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-43"><strong>(\#exm:unnamed-chunk-43) </strong></span>Continuemos con el Ejemplo \@ref(exm:cut); vamos a calcular  las diferentes frecuencias para la codificación `x_int`:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-43"><strong>(\#exm:unnamed-chunk-43) </strong></span>Continuemos con el Ejemplo \@ref(exm:cut); vamos a calcular  las diferentes frecuencias para la codificación `x_int`:
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 
 
 ```r
@@ -718,7 +740,9 @@ Tabla_frec_agrup_L=function(x,L){
   }
 ```
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-48"><strong>(\#exm:unnamed-chunk-48) </strong></span>Volviendo al Ejemplo \@ref(exm:alerg), vamos a calcular, para el agrupamiento en 7 clases,  su tabla  de frecuencias en forma de *data frame* usando la función `Tabla_frec_agrup`. Ya sabemos que $k=7$ y $A=1.9$ y que los datos están expresados con una precisión de décimas de unidad.</div>\EndKnitrBlock{example}
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-48"><strong>(\#exm:unnamed-chunk-48) </strong></span>Volviendo al Ejemplo \@ref(exm:alerg), vamos a calcular, para el agrupamiento en 7 clases,  su tabla  de frecuencias en forma de *data frame* usando la función `Tabla_frec_agrup`. Ya sabemos que $k=7$ y $A=1.9$ y que los datos están expresados con una precisión de décimas de unidad.
+\EndKnitrBlock{example}
 
 
 ```r
@@ -741,16 +765,25 @@ knitr::kable(Tabla_frec_agrup(alergia, 7, 1.9, 0.1))
 ```
 
 
-
-|intervalos  | marcas| f.abs| f.abs.cum| f.rel| f.rel.cum|
-|:-----------|------:|-----:|---------:|-----:|---------:|
-|[3.75,5.65) |    4.7|     1|         1| 0.025|     0.025|
-|[5.65,7.55) |    6.6|     3|         4| 0.075|     0.100|
-|[7.55,9.45) |    8.5|     8|        12| 0.200|     0.300|
-|[9.45,11.3) |   10.4|    11|        23| 0.275|     0.575|
-|[11.3,13.2) |   12.3|    12|        35| 0.300|     0.875|
-|[13.2,15.1) |   14.2|     4|        39| 0.100|     0.975|
-|[15.1,17)   |   16.1|     1|        40| 0.025|     1.000|
+\begin{tabular}{l|r|r|r|r|r}
+\hline
+intervalos & marcas & f.abs & f.abs.cum & f.rel & f.rel.cum\\
+\hline
+[3.75,5.65) & 4.7 & 1 & 1 & 0.025 & 0.025\\
+\hline
+[5.65,7.55) & 6.6 & 3 & 4 & 0.075 & 0.100\\
+\hline
+[7.55,9.45) & 8.5 & 8 & 12 & 0.200 & 0.300\\
+\hline
+[9.45,11.3) & 10.4 & 11 & 23 & 0.275 & 0.575\\
+\hline
+[11.3,13.2) & 12.3 & 12 & 35 & 0.300 & 0.875\\
+\hline
+[13.2,15.1) & 14.2 & 4 & 39 & 0.100 & 0.975\\
+\hline
+[15.1,17) & 16.1 & 1 & 40 & 0.025 & 1.000\\
+\hline
+\end{tabular}
 
 
 Observad que, como advertíamos en su momento, ha escrito los extremos de los intervalos redondeados para que tengan como máximo 3 cifras. Esto se puede resolver usando en la función  `cut` el parámetro `dig.lab`, que permite especificar el número máximo de cifras significativas en los extremos de las etiquetas. 
@@ -802,9 +835,11 @@ Tabla_frec_agrup=function(x,k,A,p,dig.lab=3){
 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-53"><strong>(\#exm:unnamed-chunk-53) </strong></span>Vamos a calcular la tabla de frecuencias de los datos del Ejemplo \@ref(exm:fruitals) usando la función `Tabla_frec_agrup`. Ya habíamos decidido que $k=5$ y que en este caso la amplitud era 3. Los datos  estaban expresados en unidades.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-53"><strong>(\#exm:unnamed-chunk-53) </strong></span>Vamos a calcular la tabla de frecuencias de los datos del Ejemplo \@ref(exm:fruitals) usando la función `Tabla_frec_agrup`. Ya habíamos decidido que $k=5$ y que en este caso la amplitud era 3. Los datos  estaban expresados en unidades.
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -819,8 +854,10 @@ Tabla_frec_agrup(fruta, 5, 3, 1)
 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-55"><strong>(\#exm:unnamed-chunk-55) </strong></span>Vamos a volver a calcular la tabla de frecuencias de las notas del Ejemplo \@ref(exm:notes), usando  esta vez una de nuestras funciones. Como las clases tienen amplitudes diferentes, usaremos la función `Tabla_frec_agrup_L`. 
-</div>\EndKnitrBlock{example}
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-55"><strong>(\#exm:unnamed-chunk-55) </strong></span>Vamos a volver a calcular la tabla de frecuencias de las notas del Ejemplo \@ref(exm:notes), usando  esta vez una de nuestras funciones. Como las clases tienen amplitudes diferentes, usaremos la función `Tabla_frec_agrup_L`. 
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -851,8 +888,10 @@ Por lo que se refiere  a la moda, se sustituye por el **intervalo modal**, que e
 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:demografia"><strong>(\#exm:demografia) </strong></span>Hemos descargado de la [web del Instituto Nacional de Estadística](http://www.ine.es/jaxi/tabla.do?path=/t20/e243/e01/a1981/l0/&file=01006.px&type=pcaxis&L=0) una tabla con la población censal española de 1981 por grupos quinquenales de edad  y la hemos guardado en un fichero en formato CSV en el *url* https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/cens81.csv.
-</div>\EndKnitrBlock{example}
+\BeginKnitrBlock{example}
+<span class="example" id="exm:demografia"><strong>(\#exm:demografia) </strong></span>Hemos descargado de la [web del Instituto Nacional de Estadística](http://www.ine.es/jaxi/tabla.do?path=/t20/e243/e01/a1981/l0/&file=01006.px&type=pcaxis&L=0) una tabla con la población censal española de 1981 por grupos quinquenales de edad  y la hemos guardado en un fichero en formato CSV en el *url* https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/cens81.csv.
+
+\EndKnitrBlock{example}
 
 
 
@@ -991,10 +1030,14 @@ La justificación de esta fórmula es la siguiente: lo que hacemos es unir con u
 
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/median.png" alt="Aproximación lineal de la mediana a partir de las frecuencias de los datos agrupados." width="60%" />
-<p class="caption">(\#fig:median)Aproximación lineal de la mediana a partir de las frecuencias de los datos agrupados.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{AprendeR-Parte-I_files/figure-html/median} 
+
+}
+
+\caption{Aproximación lineal de la mediana a partir de las frecuencias de los datos agrupados.}(\#fig:median)
+\end{figure}
 
 
 
@@ -1029,8 +1072,10 @@ Los datos agrupados se describen gráficamente por medio de unos diagramas de ba
 
 Veamos un ejemplo.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:1115"><strong>(\#exm:1115) </strong></span>Supongamos que tenemos los datos
-</div>\EndKnitrBlock{example}
+\BeginKnitrBlock{example}
+<span class="example" id="exm:1115"><strong>(\#exm:1115) </strong></span>Supongamos que tenemos los datos
+
+\EndKnitrBlock{example}
 
 > 10,9,8,1,9,8,2,5,7,3,5,6,1,3,7,8,9,8,5,6,2,4,1,3,5,4,6,7,10,8,5,4,2,7,8
 
@@ -1059,10 +1104,14 @@ La Figura \@ref(fig:201a) muestra un histograma de las frecuencias absolutas de 
 Como todas las clases tienen la misma amplitud, las alturas de estas barras son proporcionales a las frecuencias de sus clases (son estas frecuencias divididas por la amplitud) y las representan correctamente, por lo que hemos marcado  sin ningún problema las frecuencias sobre el eje vertical.
 
 
-<div class="figure" style="text-align: center">
-<img src="13chap13_Agrupados_files/figure-html/201a-1.png" alt="Histograma del Ejemplo ref(exm:1115)." width="50%" />
-<p class="caption">(\#fig:201a)Histograma del Ejemplo ref(exm:1115).</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{13chap13_Agrupados_files/figure-latex/201a-1} 
+
+}
+
+\caption{Histograma del Ejemplo ref(exm:1115).}(\#fig:201a)
+\end{figure}
 
 
 Pero si las amplitudes de las clases no son iguales, las alturas de las barras en un histograma no representan correctamente las frecuencias de las clases. A modo de ejemplo, supongamos que los datos anteriores son notas y que  las agrupamos en suspensos, aprobados, notables y sobresalientes: [0,5),  [5,7), [7,9) y [9,10]. Recordad que, en este caso, el último intervalo ha de ser cerrado.
@@ -1084,19 +1133,27 @@ x_int2
 En la Figura \@ref(fig:203) podéis ver un histograma de frecuencias absolutas de estos datos con este agrupamiento. Comprobaréis que las alturas de las barras son las necesarias para que el área de cada barra sea igual a la frecuencia de la clase correspondiente; como las bases son de amplitudes diferentes, estas alturas no son proporcionales a las frecuencias de las clases, por lo que las marcas en el eje de ordenadas no son las frecuencias de las clases, sino los cocientes entre la frecuencia y la amplitud de las clases. 
 
 
-<div class="figure" style="text-align: center">
-<img src="13chap13_Agrupados_files/figure-html/203-1.png" alt="Histograma del Ejemplo ref(exm:1115) con clases de diferentes amplitudes." width="50%" />
-<p class="caption">(\#fig:203)Histograma del Ejemplo ref(exm:1115) con clases de diferentes amplitudes.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{13chap13_Agrupados_files/figure-latex/203-1} 
+
+}
+
+\caption{Histograma del Ejemplo ref(exm:1115) con clases de diferentes amplitudes.}(\#fig:203)
+\end{figure}
 
 
 
 También se usan histogramas para representar frecuencias acumuladas de datos agrupados; en este caso, y a diferencia del anterior, las alturas representan las frecuencias independientemente de la base. El motivo es que estas alturas tienen que ir creciendo. Así, los histogramas de frecuencias absolutas acumuladas de nuestros datos para los dos agrupamientos anteriores serían los mostrados en la Figura \@ref(fig:204).
 
-<div class="figure" style="text-align: center">
-<img src="13chap13_Agrupados_files/figure-html/204-1.png" alt="Histogramas de frecuencias acumuladas de los datos del Ejemplo \@ref(exm:1115) para dos agrupamientos diferentes." width="90%" />
-<p class="caption">(\#fig:204)Histogramas de frecuencias acumuladas de los datos del Ejemplo \@ref(exm:1115) para dos agrupamientos diferentes.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/204-1} 
+
+}
+
+\caption{Histogramas de frecuencias acumuladas de los datos del Ejemplo \@ref(exm:1115) para dos agrupamientos diferentes.}(\#fig:204)
+\end{figure}
 
 
 La Figura \@ref(fig:205) muestra la estructura básica de dos histogramas, el izquierdo para las frecuencias absolutas y el derecho para las frecuencias absolutas acumuladas. En un histograma, el eje de las abscisas representa los datos, donde marcamos los extremos de las clases, y se dibuja una barra sobre cada clase; esta barra tiene un significado diferente según el tipo de histograma, pero en general representa la frecuencia de su clase:
@@ -1108,10 +1165,14 @@ este consejo se extiende a los histogramas de frecuencias relativas.
 
 * En los histogramas de frecuencias acumuladas (absolutas o relativas), las alturas de las barras son iguales a las frecuencias acumuladas de la clases, independientemente de su amplitud.
 
-<div class="figure" style="text-align: center">
-<img src="13chap13_Agrupados_files/figure-html/205-1.png" alt="Estructura básica de un histograma de frecuencias absolutas (izquierda) y absolutas acumuladas (derecha)" width="90%" />
-<p class="caption">(\#fig:205)Estructura básica de un histograma de frecuencias absolutas (izquierda) y absolutas acumuladas (derecha)</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/205-1} 
+
+}
+
+\caption{Estructura básica de un histograma de frecuencias absolutas (izquierda) y absolutas acumuladas (derecha)}(\#fig:205)
+\end{figure}
 
 
 
@@ -1145,11 +1206,13 @@ donde:
 Podéis consultar el resto de parámetros en la Ayuda de `hist`. 
 
   
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:frut-hist"><strong>(\#exm:frut-hist) </strong></span>Seguimos con el Ejemplo \@ref(exm:fruitals), sobre árboles frutales afectados por la mosca de la fruta; 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:frut-hist"><strong>(\#exm:frut-hist) </strong></span>Seguimos con el Ejemplo \@ref(exm:fruitals), sobre árboles frutales afectados por la mosca de la fruta; 
 vamos a producir el histograma por defecto de los datos para dos agrupamientos diferentes: el que dábamos en  dicho ejemplo, en tres clases de amplitud 3, y el que los agrupa en las clases
 [5,8), [8,12),[12,14) y [14,20),
 de amplitudes diferentes. 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -1157,14 +1220,18 @@ L1=5.5+3*(0:5)
 hist(fruta, breaks= L1, right=FALSE)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-68-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-68-1} \end{center}
 
 ```r
 L2=c(5,8,12,14,20)
 hist(fruta, breaks= L2, right=FALSE)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-69-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-69-1} \end{center}
 
 
 Como podéis ver, `hist`  ha dibujado los ejes y las barras, pero en el eje horizontal no ha marcado los extremos de las clases; por lo que refiere al eje vertical, en el histograma con las clases de las mismas amplitudes, ha marcado las frecuencias absolutas, pero en el otro ha marcado las densidades, lo que puede dificultar su comprensión.
@@ -1238,7 +1305,9 @@ hist_abs(fruta, L1)
 hist_abs(fruta, L2)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-72-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-72-1} \end{center}
 
 ```r
 par(mfrow=c(1,1))
@@ -1264,7 +1333,9 @@ hist_abs(fruta, L1)
 rug(fruta)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-73-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-73-1} \end{center}
 
 Notaréis que, en este histograma, es difícil deducir de la "alfombra" que la tercera clase tiene una frecuencia mayor que las dos primeras debido a un mayor número de empates. Si encontráis difícil ver los empates, la Ayuda de `rug` os recomienda combinar `rug` con la función `jitter`, que añade un poco de "ruido" a los datos de un vector, deshaciendo empates. Veamos su uso en el histograma anterior:
 
@@ -1273,7 +1344,9 @@ hist_abs(fruta, L1)
 rug(jitter(fruta))
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-74-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 
 
@@ -1298,7 +1371,9 @@ Aplicándola a los valores de `fruta` y `L1` anteriores:
 hist_abs.cum(fruta,L1)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-76-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 
 Con esta función producimos el histograma "básico" de los datos, sin dibujarlo, y a continuación
@@ -1322,7 +1397,9 @@ axis(2,at=seq(0,max(h$density),length.out=m),labels=seq(0,length(x),length.out=m
 hist_abs.cum.2(fruta,L1,11)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-78-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 
 
@@ -1339,10 +1416,14 @@ los intervalos tienden a ser puntos y, las barras, a ser líneas verticales. Los
 La densidad más famosa es la llamada **campana de Gauss**, y  corresponde a una variable que tenga una **distribución normal** (véase la Figura \@ref(fig:norm)). La forma concreta de la campana depende de dos parámetros: el valor medio $\mu$ de la variable y su desviación típica $\sigma$.
 
 
-<div class="figure" style="text-align: center">
-<img src="AprendeR-Parte-I_files/figure-html/gauss.png" alt="Campana de Gauss." width="100%" />
-<p class="caption">(\#fig:norm)Campana de Gauss.</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{AprendeR-Parte-I_files/figure-html/gauss} 
+
+}
+
+\caption{Campana de Gauss.}(\#fig:norm)
+\end{figure}
 
 
 
@@ -1355,7 +1436,9 @@ plot(density(fruta), type="l", xlab="Número de árboles",
   ylab="Densidad", main="Densidad de la variable \"fruta\"")
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-79-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-79-1} \end{center}
 
 La estructura del resultado de `density(fruta)` es la siguiente:
 
@@ -1397,7 +1480,9 @@ Si la aplicamos a los valores de `fruta` y `L1` anteriores:
 hist_rel(fruta, L1)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-82-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 
 
@@ -1428,14 +1513,18 @@ Aplicándola a los valores de `fruta` y `L1` anteriores:
 hist_rel.cum(fruta,L1)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-84-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-84-1} \end{center}
 
 
 Veamos otro ejemplo.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:unnamed-chunk-85"><strong>(\#exm:unnamed-chunk-85) </strong></span>Consideremos los datos de tiempos de inicio de reacción alérgica a una picadura del Ejemplo \@ref(exm:alerg). Queremos dibujar los histogramas de frecuencias relativas y relativas acumuladas para el agrupamiento según la regla de Sturges. Por completitud, empezaremos de cero.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:unnamed-chunk-85"><strong>(\#exm:unnamed-chunk-85) </strong></span>Consideremos los datos de tiempos de inicio de reacción alérgica a una picadura del Ejemplo \@ref(exm:alerg). Queremos dibujar los histogramas de frecuencias relativas y relativas acumuladas para el agrupamiento según la regla de Sturges. Por completitud, empezaremos de cero.
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -1466,21 +1555,27 @@ Y ahora usamos las funciones que hemos definido:
 hist_rel(alergia, L.al)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-88-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-88-1} \end{center}
 
 ```r
 hist_rel.cum(alergia, L.al)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-88-2.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-88-2} \end{center}
 
 
 
 Veamos un último ejemplo.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:crab"><strong>(\#exm:crab) </strong></span>El fichero `datacrab.txt`, del cual hemos guardado una copia en el url https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/datacrab.txt,  recoge los datos sobre hembras de límula del Atlántico analizadas en el artículo "Satellite male groups in horseshoe crabs, *Limulus polyphemus*" de H. J. Brockmann (*Ethology* 102 (1996), pp. 1-21). Una de las variables que incluye esta tabla de datos es la amplitud, `width`, de los especímenes analizados. 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:crab"><strong>(\#exm:crab) </strong></span>El fichero `datacrab.txt`, del cual hemos guardado una copia en el url https://raw.githubusercontent.com/AprendeR-UIB/AprendeR1/master/datos/datacrab.txt,  recoge los datos sobre hembras de límula del Atlántico analizadas en el artículo "Satellite male groups in horseshoe crabs, *Limulus polyphemus*" de H. J. Brockmann (*Ethology* 102 (1996), pp. 1-21). Una de las variables que incluye esta tabla de datos es la amplitud, `width`, de los especímenes analizados. 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 
@@ -1527,19 +1622,31 @@ knitr::kable(Tabla_frec_agrup(crw,10,1.3,0.1,dig.lab=4))
 ```
 
 
-
-|intervalos    | marcas| f.abs| f.abs.cum|     f.rel| f.rel.cum|
-|:-------------|------:|-----:|---------:|---------:|---------:|
-|[20.95,22.25) |   21.6|     2|         2| 0.0115607| 0.0115607|
-|[22.25,23.55) |   22.9|    14|        16| 0.0809249| 0.0924855|
-|[23.55,24.85) |   24.2|    27|        43| 0.1560694| 0.2485549|
-|[24.85,26.15) |   25.5|    44|        87| 0.2543353| 0.5028902|
-|[26.15,27.45) |   26.8|    34|       121| 0.1965318| 0.6994220|
-|[27.45,28.75) |   28.1|    31|       152| 0.1791908| 0.8786127|
-|[28.75,30.05) |   29.4|    15|       167| 0.0867052| 0.9653179|
-|[30.05,31.35) |   30.7|     3|       170| 0.0173410| 0.9826590|
-|[31.35,32.65) |   32.0|     2|       172| 0.0115607| 0.9942197|
-|[32.65,33.95) |   33.3|     1|       173| 0.0057803| 1.0000000|
+\begin{tabular}{l|r|r|r|r|r}
+\hline
+intervalos & marcas & f.abs & f.abs.cum & f.rel & f.rel.cum\\
+\hline
+[20.95,22.25) & 21.6 & 2 & 2 & 0.0115607 & 0.0115607\\
+\hline
+[22.25,23.55) & 22.9 & 14 & 16 & 0.0809249 & 0.0924855\\
+\hline
+[23.55,24.85) & 24.2 & 27 & 43 & 0.1560694 & 0.2485549\\
+\hline
+[24.85,26.15) & 25.5 & 44 & 87 & 0.2543353 & 0.5028902\\
+\hline
+[26.15,27.45) & 26.8 & 34 & 121 & 0.1965318 & 0.6994220\\
+\hline
+[27.45,28.75) & 28.1 & 31 & 152 & 0.1791908 & 0.8786127\\
+\hline
+[28.75,30.05) & 29.4 & 15 & 167 & 0.0867052 & 0.9653179\\
+\hline
+[30.05,31.35) & 30.7 & 3 & 170 & 0.0173410 & 0.9826590\\
+\hline
+[31.35,32.65) & 32.0 & 2 & 172 & 0.0115607 & 0.9942197\\
+\hline
+[32.65,33.95) & 33.3 & 1 & 173 & 0.0057803 & 1.0000000\\
+\hline
+\end{tabular}
 
 Por lo que se refiere al histograma, es
 
@@ -1547,7 +1654,9 @@ Por lo que se refiere al histograma, es
 hist_rel(crw, L.cr)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-93-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-93-1} \end{center}
 
 
 
@@ -1566,7 +1675,9 @@ legend("topright", lwd=c(2,2), lty=c(1,2), col=c("red","purple"),
   legend=c("densidad estimada","densidad normal"), cex=0.7)
 ```
 
-<img src="13chap13_Agrupados_files/figure-html/unnamed-chunk-95-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{13chap13_Agrupados_files/figure-latex/unnamed-chunk-95-1} \end{center}
 Se observa un ligero desplazamiento a la izquierda de la densidad estimada respecto de la campana de Gauss.
 
 

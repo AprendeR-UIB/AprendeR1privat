@@ -12,11 +12,13 @@ Los datos ordinales son parecidos a los cualitativos, en el sentido de que son c
 
  Cuando trabajamos con datos ordinales, el orden de los niveles de los datos permite calcular no sólo las frecuencias absolutas y relativas que veíamos en la lección anterior, y que para variables ordinales se definen del mismo modo, sino también frecuencias **acumuladas**. Es decir, no sólo podemos contar cuántas veces hemos observado un cierto dato, sino también cuántas veces hemos observado un dato menor o igual que él.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex1701bis"><strong>(\#exm:ex1701bis) </strong></span>Tenemos una muestra de 20 estudiantes de quienes sabemos la calificación que han sacado en un examen. Clasificamos estas calificaciones en Suspenso (*S*), Aprobado (*A*), Notable (*N*) y Sobresaliente (*E*) y consideramos su orden natural *S* < *A* < *N* < *E*. Las calificaciones que han obtenido son las siguientes:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex1701bis"><strong>(\#exm:ex1701bis) </strong></span>Tenemos una muestra de 20 estudiantes de quienes sabemos la calificación que han sacado en un examen. Clasificamos estas calificaciones en Suspenso (*S*), Aprobado (*A*), Notable (*N*) y Sobresaliente (*E*) y consideramos su orden natural *S* < *A* < *N* < *E*. Las calificaciones que han obtenido son las siguientes:
 <p style="text-align:center">*A*, *A*, *N*, *S*, *S*, *A*, *N*, *E*, *A*, *A*, *S*, *S*, *S*, *A*, *E*, *N*, *N*, *E*, *S*, *A*.</p> 
   
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 En esta lista hay 6 *S*, 7 *A*, 4 *N* y 3 *E*: éstas serían las frecuencias absolutas de las calificaciones en esta muestra de estudiantes. Por lo que se refiere a sus **frecuencias absolutas acumuladas**:
 
 * Hay 6 estudiantes que han obtenido *S* o menos: la frecuencia absoluta acumulada de *S* es 6.
@@ -62,10 +64,12 @@ $$
  Recordemos de la Lección \@ref(chap:vect) que la función `cumsum`, aplicada a un vector, calcula el vector de sus sumas acumuladas. Sobre una tabla de contingencia tiene el mismo efecto, y por lo tanto podemos usarla para calcular la tabla de frecuencias acumuladas (absolutas o relativas) de un vector, aplicándola a su tabla de frecuencias (absolutas o relativas, según corresponda). 
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex1ordinales"><strong>(\#exm:ex1ordinales) </strong></span>Vamos a calcular y representar gráficamente las frecuencias acumuladas de la muestra de calificaciones del Ejemplo \@ref(exm:ex1701bis). Para ello entraremos dichas calificaciones como un factor ordenado, porque es la manera natural de guardar una variable ordinal en R.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex1ordinales"><strong>(\#exm:ex1ordinales) </strong></span>Vamos a calcular y representar gráficamente las frecuencias acumuladas de la muestra de calificaciones del Ejemplo \@ref(exm:ex1701bis). Para ello entraremos dichas calificaciones como un factor ordenado, porque es la manera natural de guardar una variable ordinal en R.
 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -111,7 +115,9 @@ cumsum(prop.table(table(notas)))
 barplot(table(notas))
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-5-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 * Un diagrama de barras de sus frecuencias absolutas acumuladas:
 
@@ -120,7 +126,9 @@ barplot(table(notas))
 barplot(cumsum(table(notas)))
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 
 <!--
@@ -165,22 +173,30 @@ prop.table(cumsum(table(notas)))
 ```
 Pensad qué ha entendido R que queríamos hacer con esta última instrucción.
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex1704"><strong>(\#exm:ex1704) </strong></span>En un estudio sobre el comportamiento ético de una empresa, a un grupo de técnicos en impacto ambiental que trabajaban en dicha empresa se les hizo la pregunta siguiente: "*¿Cree que su empresa anima a sus técnicos en impacto ambiental a usar métodos que favorezcan la opinión del cliente que ha encargado el estudio?*"
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex1704"><strong>(\#exm:ex1704) </strong></span>En un estudio sobre el comportamiento ético de una empresa, a un grupo de técnicos en impacto ambiental que trabajaban en dicha empresa se les hizo la pregunta siguiente: "*¿Cree que su empresa anima a sus técnicos en impacto ambiental a usar métodos que favorezcan la opinión del cliente que ha encargado el estudio?*"
   
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 Las posibles respuestas eran las que aparecen en la Tabla \@ref(tab:Likert), y forman una escala ordinal de tipo \emph{Likert}, con 1 < 2 < 3 < 4 < 5.
 
+\begin{table}
 
-Table: (\#tab:Likert)Un ejemplo de escala *Likert*.
-
-| Nivel|Significado       |
-|-----:|:-----------------|
-|     1|Muy en desacuerdo |
-|     2|En desacuerdo     |
-|     3|Neutro            |
-|     4|De acuerdo        |
-|     5|Muy de acuerdo    |
+\caption{(\#tab:Likert)Un ejemplo de escala *Likert*.}
+\centering
+\begin{tabular}[t]{rl}
+\toprule
+Nivel & Significado\\
+\midrule
+1 & Muy en desacuerdo\\
+2 & En desacuerdo\\
+3 & Neutro\\
+4 & De acuerdo\\
+5 & Muy de acuerdo\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 <!--
@@ -248,7 +264,9 @@ barplot(prop.table(table(respuestas)), ylim=c(0, 0.30), cex.names=0.75,
   names=Nombres.compl, xlab="Nivel de acuerdo escala Likert",  ylab="Frec. relativas")
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-14-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 * Un diagrama de barras de sus frecuencias relativas acumuladas:
 
@@ -259,50 +277,39 @@ barplot(cumsum(prop.table(table(respuestas))), ylim=c(0, 1), cex.names=0.75,
   names=Nombres.compl, xlab="Nivel de acuerdo escala Likert", ylab="Frec. relativas acumuladas")
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-15-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 
 En los dos últimos diagramas de barras, hemos representado los niveles con un texto más descriptivo. Para hacerlo, hemos definido un vector `Nombres.compl` con sus nuevos nombres en el orden correspondiente (y en dos líneas  cada uno para ocupar menos espacio horizontal), y entonces en los `barplot` hemos especificado `names=Nombres.compl`. Además, con el parámetro `cex.names` hemos reducido un 25% el tamaño de los nombres de las barras para que cupieran bien en el dibujo.
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:ex1706"><strong>(\#exm:ex1706) </strong></span>Un microbiólogo ha evaluado la semejanza a una cierta comunidad prototipo de los microbiotas intestinales de 40 individuos con síndrome del colon irritable. Los niveles de semejanza que ha usado son los de la Tabla \@ref(tab:tablameta), y los considera ordenados de la  manera natural:
+\BeginKnitrBlock{example}
+<span class="example" id="exm:ex1706"><strong>(\#exm:ex1706) </strong></span>Un microbiólogo ha evaluado la semejanza a una cierta comunidad prototipo de los microbiotas intestinales de 40 individuos con síndrome del colon irritable. Los niveles de semejanza que ha usado son los de la Tabla \@ref(tab:tablameta), y los considera ordenados de la  manera natural:
   
-  </div>\EndKnitrBlock{example}
+  
+\EndKnitrBlock{example}
 
 <p style="text-align:center">Tot.difs <Difs < Pars < Muy.pars < Iguales</p>
 
 
-<table>
-<caption>(\#tab:tablameta)Niveles de semejanza de comunidades microbianas.</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Nivel </th>
-   <th style="text-align:left;"> Significado </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Tot.difs </td>
-   <td style="text-align:left;"> Totalmente diferentes </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Difs </td>
-   <td style="text-align:left;"> Diferentes </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Pars </td>
-   <td style="text-align:left;"> Parecidas </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Muy.pars </td>
-   <td style="text-align:left;"> Muy parecidas </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Iguales </td>
-   <td style="text-align:left;"> Totalmente Iguales </td>
-  </tr>
-</tbody>
-</table>
+\begin{table}
+
+\caption{(\#tab:tablameta)Niveles de semejanza de comunidades microbianas.}
+\centering
+\begin{tabular}[t]{ll}
+\toprule
+Nivel & Significado\\
+\midrule
+Tot.difs & Totalmente diferentes\\
+Difs & Diferentes\\
+Pars & Parecidas\\
+Muy.pars & Muy parecidas\\
+Iguales & Totalmente Iguales\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
 <!--
@@ -389,7 +396,9 @@ Nombres.Completos=c("Totalmente\n diferentes","Diferentes\n","Parecidas\n ",
 barplot(cumsum(prop.table(AbsFr)), names=Nombres.Completos, ylim=c(0, 1), cex.names=0.75)
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-21-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 
 Para calcular frecuencias acumuladas en una tabla multidimensional, hay que aplicar a la tabla la función `cumsum` mediante la función `apply`. En este caso concreto, la sintaxis de la instrucción sería 
@@ -404,9 +413,11 @@ donde el valor de `MARGIN` ha de ser el de la dimensión en la que queremos acum
 -->
 
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:encuestacum"><strong>(\#exm:encuestacum) </strong></span>Supongamos que las 100 respuestas a la encuesta en el Ejemplo \@ref(exm:ex1704) en realidad provienen de técnicos de tres empresas diferentes, A, B y C, de manera que las 30 primeras son de técnicos de A, las 20 siguientes, de técnicos de B, y las 50 últimas, de técnicos de C. Nos interesa estudiar la distribución de las respuestas según la empresa. 
+\BeginKnitrBlock{example}
+<span class="example" id="exm:encuestacum"><strong>(\#exm:encuestacum) </strong></span>Supongamos que las 100 respuestas a la encuesta en el Ejemplo \@ref(exm:ex1704) en realidad provienen de técnicos de tres empresas diferentes, A, B y C, de manera que las 30 primeras son de técnicos de A, las 20 siguientes, de técnicos de B, y las 50 últimas, de técnicos de C. Nos interesa estudiar la distribución de las respuestas según la empresa. 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 Vamos a organizar estos datos en un *data frame*. Para que sea  más fácil visualizar la información que nos interesa, es conveniente que las filas  de las tablas de frecuencias correspondan a las empresas. Por lo tanto, al definir el *data frame*, entraremos como primera variable la de las empresas; de esta manera, éstas aparecerán en las filas al aplicarle la función `table`. Recordad además que las respuestas ya las tenemos convenientemente organizadas  en un factor ordenado llamado *respuestas*.
 
@@ -484,7 +495,9 @@ barplot(Tabla, beside=TRUE, legend=TRUE,
         main="Diagrama de barras de frecuencias relativas acumuladas\n de respuestas por empresa")
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 Como vemos, la leyenda se superpone sobre las barras de la última empresa. Para resolver este problema, situaremos la leyenda en la esquina superior  izquierda. Además, vamos a sustituir en la leyenda los valores de las respuestas por sus significados, y para que quepa, reduciremos el tamaño del texto. 
 
@@ -496,7 +509,9 @@ barplot(Tabla, beside=TRUE,
         args.legend=list(x="topleft", cex=0.45))
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-28-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-28-1} \end{center}
 
 
 <!--
@@ -511,10 +526,12 @@ barplot(Tabla, beside=TRUE,
 \end{figure}
 -->
 
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:sprayord"><strong>(\#exm:sprayord) </strong></span>Consideremos el *data frame* `InsectSprays`, que viene predefinido en R. Veamos su estructura.
+\BeginKnitrBlock{example}
+<span class="example" id="exm:sprayord"><strong>(\#exm:sprayord) </strong></span>Consideremos el *data frame* `InsectSprays`, que viene predefinido en R. Veamos su estructura.
 
 
-</div>\EndKnitrBlock{example}
+
+\EndKnitrBlock{example}
 
 
 ```r
@@ -632,7 +649,9 @@ barplot(t(Freq.rel), beside=TRUE, legend=TRUE,  ylim=c(0,1), col=cyan.col,
   main="Diagrama de barras de frecuencias relativas\n de números de insectos por insecticida")
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-36-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 ```r
 barplot(Freq.rel.acum, beside=TRUE, legend=TRUE,col=cyan.col, 
@@ -640,7 +659,9 @@ barplot(Freq.rel.acum, beside=TRUE, legend=TRUE,col=cyan.col,
   args.legend=list(x="topleft",cex=0.55))
 ```
 
-<img src="11chap11_Descripcion_ordinales_files/figure-html/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.9\linewidth]{11chap11_Descripcion_ordinales_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 Observamos que los insecticidas C, D y E son los más efectivos, porque producen mayores números de campos con pocos insectos, mientras que B y F son poco efectivos.
 
